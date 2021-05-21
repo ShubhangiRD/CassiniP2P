@@ -1,0 +1,75 @@
+{
+	"PurchaseGroupInformation": [{
+		"vendorId": "22000000",
+		"vendorName": "First",
+		"PurchaseOrg": "001",
+		"PurchaseGrp": "TKP",
+		"CompCode": 1,
+		"ItemsData": [{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "105"
+
+		},
+		{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "105"
+
+		}]
+	}, {
+		"vendorId": "22000001",
+		"vendorName": "Second",
+		"PurchaseOrg": "002",
+		"PurchaseGrp": "ADP",
+		"CompCode": 1,
+		"ItemsData": [{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "45"
+		}]
+	}, {
+		"vendorId": "22000002",
+		"vendorName": "Third",
+		"PurchaseOrg": "003",
+		"PurchaseGrp": "SRD",
+		"CompCode": 1,
+		"ItemsData": [{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "105"
+		}]
+	}, {
+		"vendorId": "22000003",
+		"vendorName": "Four",
+		"PurchaseOrg": "004",
+		"PurchaseGrp": "ADD",
+		"CompCode": 6,
+		"ItemsData": [{
+
+			"materialNo": "1248",
+			"materialDis": "6Fok",
+			"PO_Quality": "Equal",
+			"UnitOfM": "Battery",
+			"Plant": "RHF",
+			"Price": "10"
+		}]
+	}]
+
+}

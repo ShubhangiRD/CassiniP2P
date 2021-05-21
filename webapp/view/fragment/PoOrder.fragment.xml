@@ -1,0 +1,172 @@
+<core:FragmentDefinition xmlns:t="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns:card="sap.f.cards"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	displayBlock="true" height="100%" xmlns:u="sap.ui.unified">
+	<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+	<VBox id="PurchaseOrderid"  visible="true">
+		<f:Form id="FormPerSale" editable="false">
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+				emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:formElements>
+				<f:FormElement label="Vendor Number">
+							<f:fields>
+								<Input id="vnumber" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
+									value="{PurchaseModel>/TempContract/Lifnr}" valueHelpRequest="handleMaterialValueHelp"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVebor">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							
+							
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Purchase Org">
+							<f:fields>
+								<Input id="idPurchaseOrg" textFormatMode="KeyValue" placeholder=" Purchase Org .." showSuggestion="true"
+									value="{PurchaseModel>/TempContract/Ekorg}" showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"
+									suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
+									</suggestionItems>
+								</Input>
+							
+							</f:fields>
+						</f:FormElement>
+					
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					
+							<f:FormElement label=" Vendor Name">
+							<f:fields>
+								<Input type="Text" id="VendorName" editable="false"></Input>
+							</f:fields>
+						</f:FormElement>
+						
+			
+				
+						<f:FormElement label="Purchase Group">
+							<f:fields>
+								<Input type="Text" id="pg" value="{PurchaseModel>/TempContract/Ekgrp}" editable="true"></Input>
+							</f:fields>
+						</f:FormElement>
+						
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+						<f:FormElement label="Company Code">
+							<f:fields>
+								<Input id="cc" textFormatMode="KeyValue" placeholder="Company Code ..." showSuggestion="true" value="{PurchaseModel>/TempContract/Bukrs}"
+									showValueHelp="true" valueHelpRequest="handleCompanyCodeVendor" suggestionItems="{ path: 'Lookup>/CountryCode' }"
+									suggestionItemSelected="onSuggest">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
+									</suggestionItems>
+								</Input>
+								
+							</f:fields>
+						</f:FormElement>
+							<f:FormElement label=" Currency">
+							<f:fields>
+								<Input type="Text" id="cu" value="{PurchaseModel>/TempContract/Waers}" editable="true"></Input>
+							</f:fields>
+						</f:FormElement>
+						
+				</f:formElements>
+			
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>	</VBox>
+		<VBox width="100%" class="sapUiLargeMarginBegin">
+			<t:Table id="idTableitem" rows="{PurchaseModel>/TempContract/POItem}" visibleRowCount="5"
+				selectionMode="MultiToggle">
+				<t:extension>
+					<OverflowToolbar>
+						<Title text="Create Purchase Order"/>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" type="Transparent" tooltip="Add Row" press="onAddNewConditionItem"/>
+						<Button icon="sap-icon://delete" enabled="{=${PurchaseModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+							tooltip="Delete Row" press="onDeleteConditionItem"/>
+						<Button id="idEdit" icon="sap-icon://display" type="Transparent" tooltip="DisplyEdit" press="onEditPRess"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem" hAlign="Center">
+						<Label text="Material Number"/>
+						<t:template>
+							<Input id="idMaterialNumber" textFormatMode="KeyValue" placeholder=" Enter Material No" showSuggestion="true" showValueHelp="true"
+								value="{PurchaseModel>Matnr}" valueHelpRequest="handlePOMaterialHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+								suggestionItemSelected="onSuggest">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+								</suggestionItems>
+							</Input>
+						
+						</t:template>
+					</t:Column>
+					<t:Column hAlign="Center" width="12rem">
+						<Label text="Material Description"/>
+						<t:template>
+							<Input class="desc1" id="nDescription" placeholder="Enter Material Description" showSuggestion="true" showValueHelp="true"
+							 valueHelpRequest="handleValueHelpMaterialDiscription" suggestionItems="{VHeader>/MaterialmasterSet}"
+								suggestionItemSelected="MaterialDiscriptionItemSelected">
+								<suggestionItems>
+									<core:Item text="{VHeader>Description}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="PO Quantity"/>
+						<t:template>
+							<Input id="Quantity" value="{PurchaseModel>Menge}" textAlign="End" placeholder="Enter PO Quantity"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Unit of Measure"/>
+						<t:template>
+							<Input id="uom1" class="measure1"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Plant"/>
+						<t:template>
+							<Input id="Plant" textFormatMode="KeyValue" placeholder=" Enter Plant No" showSuggestion="true" showValueHelp="true"
+								value="{PurchaseModel>Werks}" valueHelpRequest="handleValueHelpPlant" suggestionItems="{ path: 'Lookup>/POPlant' }"
+								suggestionItemSelected="onSuggest">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+								</suggestionItems>
+							</Input>
+							
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Price"/>
+						<t:template>
+							<Input id="Price" class="price1"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+				<t:footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button id="faBtn1" icon="sap-icon://save" text="Save" press="onSavePurchaseOrder"/>
+						<Button icon="sap-icon://decline" text="{i18n>cancel}" press="OnCancel"/>
+					</Toolbar>
+				</t:footer>
+			</t:Table>
+	
+	</VBox>
+	</ScrollContainer>
+</core:FragmentDefinition>
+
+
+
+

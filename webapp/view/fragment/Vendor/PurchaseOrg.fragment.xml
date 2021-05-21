@@ -1,0 +1,17 @@
+
+
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Purchase Organization List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/PurchaseOrganization}"
+		search="_handlePOrganiVendorSearch"
+		confirm="_handlePOrganiVendorClose"
+		cancel="_handlePOrganiVendorClose">
+		<StandardListItem
+			title="{Lookup>Ekorg}"
+			info="{Lookup>Ekotx}" />
+	</SelectDialog>
+</core:FragmentDefinition>

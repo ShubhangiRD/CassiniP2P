@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Instruction Key List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/InstructionKeyList}"
+		search="_handleInstructionKeySearch"
+		confirm="_handleInstructionKeyClose"
+		cancel="_handleInstructionKeyClose">
+		<StandardListItem
+			title="{Lookup>Dtaws}"
+			info="{Lookup>Dtws1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

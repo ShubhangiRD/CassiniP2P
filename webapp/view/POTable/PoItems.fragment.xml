@@ -1,0 +1,360 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="PO Items" id="ListDialog" afterClose="onAfterClose" class="sapUiSizeCompact" contentHeight="800px" contentWidth="1000px">
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="PoItemsForms" editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Status">
+								<f:fields>
+									<Input id="idstatuss" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Item">
+								<f:fields>
+									<Input id="iditems" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="A">
+								<f:fields>
+									<Input id="idAa" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+										valueHelpRequest="handlePOAA" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestAA">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="I">
+								<f:fields>
+									<Input id="idii" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+										valueHelpRequest="handlePOII" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestII">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Material Number">
+								<f:fields>
+									<Input id="idMaterialNumber" class="sapUiTinyMarginTop" textFormatMode="KeyValue" placeholder=" Material No" showSuggestion="true"
+										showValueHelp="true" value="{PurchaseModel>Matnr}" valueHelpRequest="handlePOMaterialHelp"
+										suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggest">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Material Description">
+								<f:fields>
+									<Input class="sapUiTinyMarginTop" id="nDescription" textFormatMode="KeyValue" placeholder=" Material Description" showSuggestion="true"
+										showValueHelp="true" valueHelpRequest="handleMaterialDisVendor" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }"
+										suggestionItemSelected="onSuggest">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="PO Quantity">
+								<f:fields>
+									<Input id="Quantity" class="sapUiTinyMarginTop" value="{PurchaseModel>Menge}" textAlign="End" placeholder="Enter PO Quantity"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Unit of Measure">
+								<f:fields>
+									<Input id="uom1" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Plant">
+								<f:fields>
+									<Input id="Plant" class="sapUiTinyMarginTop" textFormatMode="KeyValue" placeholder=" Enter Plant No" showSuggestion="true"
+										showValueHelp="true" value="{PurchaseModel>Werks}" valueHelpRequest="handleValueHelpPlant" suggestionItems="{ path: 'Lookup>/POPlant' }"
+										suggestionItemSelected="onSuggest">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Price">
+								<f:fields>
+									<Input id="Price" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Date Cat.">
+								<f:fields>
+									<Input id="iddatecat" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePODateCate" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestDateCate">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Deliv.Date">
+								<f:fields>
+									<Input id="iddelivDate" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePODateDeliv" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestDateDeliv">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Order Unit">
+								<f:fields>
+									<Input id="idorderUnit" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handleOrderUnit" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestOrderUnit">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+								<f:FormElement label="Requisn Item">
+								<f:fields>
+									<Input id="Requisnitem" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="OutLine Agreement">
+								<f:fields>
+									<Input id="idOutLineAgmnt" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOOutLineAgmnt" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestOutLineAgmnt">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Contract Item">
+								<f:fields>
+									<Input id="idContractitem" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Central Contract ">
+								<f:fields>
+									<Input id="idCentralcontract" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOCentralContract" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestCentralContract">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Cent Contract Item">
+								<f:fields>
+									<Input id="idCentContractitem" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="RFQ">
+								<f:fields>
+									<Input id="idRGQ" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+										valueHelpRequest="handlePORFQ" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestRFQ">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="RFQ Item">
+								<f:fields>
+									<Input id="idRFQitem" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+						
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Batch">
+								<f:fields>
+									<Input id="idbatch" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+										valueHelpRequest="handlePOBatchPo" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestBatchPO">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Requestment Number">
+								<f:fields>
+									<Input id="idReqnumber" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Requisitoner">
+								<f:fields>
+									<Input id="idRequisitonerr" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Type Of Subcontracting ">
+								<f:fields>
+									<Input id="idsubcontracting" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOSubcontracting" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestSubcontracting">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Inventory Managed Material">
+								<f:fields>
+									<Input id="idinventrymaterial" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOInventrymaterial" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestInventrymaterial">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Info Rec">
+								<f:fields>
+									<Input id="idInfoRec" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOInfoRec" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestInfoRec">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label=" ">
+								<f:fields></f:fields>
+							</f:FormElement>
+							<f:FormElement label="Texts">
+								<f:fields>
+									<Input id="idtextss" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Purchase Request">
+								<f:fields>
+									<Input id="idPurcReq" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOPurcReq" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestPurcReq">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Currency">
+								<f:fields>
+									<Input id="idCurrencyPO" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Per">
+								<f:fields>
+									<Input id="idPer" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Store Location">
+								<f:fields>
+									<Input id="idstoreLocation" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOStoreLocation" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestStoreLocation">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+								<f:FormElement label="ISS Store Location">
+								<f:fields>
+									<Input id="idissStorLoc" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOissStorLoc" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestissStorLoc">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Higher Level Item">
+								<f:fields>
+									<Input id="idHigherLevItem" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="SubItem Category">
+								<f:fields>
+									<Input id="idSubitemCate" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOSubitemCate" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestSubitemCate">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="RFX Number /Ext Doc">
+								<f:fields>
+									<Input id="idextDoc" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Ext Item">
+								<f:fields>
+									<Input id="itExtItem" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+								<f:FormElement label="Purchasing Document">
+								<f:fields>
+									<Input id="idPurchasingDocument" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>}" valueHelpRequest="handlePOPurDoc" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestPurcDoc">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="PO Document Item">
+								<f:fields>
+									<Input id="idpodocumentitem" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label=" ">
+								<f:fields>
+									<CheckBox id="idIUID" text="IUID" class="sapUiTinyMarginTop"/>
+									<CheckBox id="idFixedDate" text="Fixed Date " class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label=" ">
+								<f:fields>
+									<CheckBox id="ReturnsItems" text="Return Items" class="sapUiTinyMarginTop"/>
+									<CheckBox id="idFrees" text="Free" class="sapUiTinyMarginTop"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements>
+						
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements>
+						
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+			<Button text="Save" type="Emphasized" press="onCloseFu"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" type="Emphasized" press="onCloseFu"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

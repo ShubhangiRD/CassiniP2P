@@ -1,0 +1,35 @@
+<!--<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Country"
+		class="sapUiPopupWithPadding"
+		items="{ path: 'VHeader>/country_keySet' , filters: [{ path: 'Spras', operator: 'EQ', value1: 'E' }]}"
+		search="_handleValueHelpSearchCountry"
+		confirm="_handleValueHelpCloseCountry"
+		cancel="_handleValueHelpCloseCountry">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{VHeader>Land1}"
+			description="{VHeader>Landx}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+-->
+
+
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title=" Country List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/CountryCodeRegion}"
+		search="_handlecountryVendorSearch"
+		confirm="_handlecountryVendorClose"
+		cancel="_handlecountryVendorClose">
+		<StandardListItem
+			title="{Lookup>Land1}"
+			info="{Lookup>Landx}" />
+	</SelectDialog>
+</core:FragmentDefinition>

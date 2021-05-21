@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Bank Key  List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/BankKeyList}"
+		search="_handleBankKeyVendorSearch"
+		confirm="_handleBankKeyVendorClose"
+		cancel="_handleBankKeyVendorClose">
+		<StandardListItem
+			title="{Lookup>Bankl}"
+			info="{Lookup>Banks}" />
+	</SelectDialog>
+</core:FragmentDefinition>

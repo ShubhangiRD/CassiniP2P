@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+		 <Dialog title="Filters" id="ListDialog" afterClose="onAfterClose">
+  <l:VerticalLayout class="sapUiContentPadding" width="500px">
+
+   
+    <Label text="Company Code" labelFor="date" width="10em" />
+   <Input id="inpuhear" width="100%"  change="handleLiveChange"/>
+  
+ <Label text="Purchase Order" labelFor="date" width="10em" />
+   <Input id="idporderf" width="100%" change="handleLiveChange"/>
+   
+  <Label text="Vendor Number" labelFor="date" width="10em" />
+   <Input id="idVendorNumber" width="100%" change="handleLiveChange"/>
+  
+  </l:VerticalLayout>
+  
+  <beginButton>
+   <Button text="Save" press="onExit1" />
+  </beginButton>
+  <endButton>
+   <Button text="Close" press="onCloseFu1" />
+  </endButton>
+ </Dialog>
+
+	
+	<!--<Dialog title="Dialog" id="ListDialog" afterClose="onAfterClose" contentHeight="400px" contentWidth="400px">
+		
+		
+		  <l:VerticalLayout class="sapUiContentPadding" width="500px">
+
+   
+    <Label text="Date of need" labelFor="date" width="10em" />
+   <Input id="inpuhear" width="100%" change="handleLiveChange"/>
+  
+ 
+  </l:VerticalLayout>
+  
+		<beginButton>
+			<Button text="Exit" press="onExit"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="onCloseFu"/>
+		</endButton>
+	</Dialog>-->
+</core:FragmentDefinition>

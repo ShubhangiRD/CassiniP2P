@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Fiscal Address List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/DisplyaVendorList}"
+		search="_handleFiscalAddressSearch"
+		confirm="_handleFiscalAddressClose"
+		cancel="_handleFiscalAddressClose">
+		<StandardListItem
+			title="{Lookup>Lifnr}"
+			info="{Lookup>Name1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

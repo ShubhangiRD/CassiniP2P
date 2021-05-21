@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Head Office List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/DisplyaVendorList}"
+		search="_handleHeadOfficeVendorSearch"
+		confirm="_handleHeadOfficeVendorClose"
+		cancel="_handleHeadOfficeVendorClose">
+		<StandardListItem
+			title="{Lookup>Lifnr}"
+			info="{Lookup>Name1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

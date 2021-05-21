@@ -1,0 +1,79 @@
+<mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.f" controllerName="com.cassiniProcureToPay.controller.LoginPage" displayBlock="true"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<tnt:ToolHeader>
+		<Button icon="sap-icon://menu2" type="Transparent" press="onMenuButtonPress">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Button>
+		<Image src="./images/Cassini-logo.png" densityAware="false" class="logo" width="9rem">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Image>
+		<FlexBox direction="Column" alignItems="Start">
+			<items></items>
+		</FlexBox>
+		<ToolbarSpacer/>
+		<FlexBox class="logoContent" direction="Column" alignItems="Start">
+			<items></items>
+		</FlexBox>
+		<ToolbarSpacer/>
+		<Button icon="sap-icon://comment" type="Transparent">
+			<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow"/>
+			</layoutData>
+		</Button>
+		<Switch state="true" customTextOn="EN" customTextOff="DE" change="onChangeLanguage">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Switch>
+	</tnt:ToolHeader>
+	<!--	<tnt:ToolHeader>
+		<tnt:ToolPage id="toolPage">
+			<tnt:header>
+				
+				<f:ShellBar title="" showMenuButton="true" homeIcon="./images/Cassini-logo.png" showCopilot="false" showNotifications="true"
+					menuButtonPressed="onMenuButtonPress" showProductSwitcher="false" notificationsNumber="2">
+					<f:menu>
+						<Menu>
+							<MenuItem text="Flight booking" icon="sap-icon://flight"/>
+						<MenuItem text="Car rental" icon="sap-icon://car-rental"/>
+						</Menu>
+					</f:menu>
+					<f:searchManager>
+						<f:SearchManager/>
+					</f:searchManager>
+				</f:ShellBar>
+			</tnt:header>
+		</tnt:ToolPage>
+	</tnt:ToolHeader>-->
+	<Page id="idLogin" class="loginPage1" showHeader="false" enableScrolling="false">
+		<content>
+	
+			
+			
+						<VBox  fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+							<items>
+							
+								<Title class="loginTitle" level="H1" text="LOGIN"/>
+								<Title class="loginTitle" level="H3" text="Procure-To-Pay Portal"/>
+								<Input id="idInput" width="18rem" class="loginFormInput" placeholder="Username" liveChange="onChangeValue"/>
+								<Input id="idPassword" width="18rem" class="loginFormInput" type="Password" placeholder="Password" liveChange="onChangeValue"/>
+								<Button width="18rem" type="Emphasized" text="Login" press="onLogin" class="LoginButtonClass"/></items>
+						</VBox>
+		
+				
+		
+			
+		</content>
+	
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

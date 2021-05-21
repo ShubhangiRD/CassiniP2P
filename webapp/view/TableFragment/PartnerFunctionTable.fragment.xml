@@ -1,0 +1,77 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog id="PartnerDialog" title="Partner Function" contentWidth="800px" contentHeight="500px" resizable="true" draggable="true">
+		<!--<Label text="Partner Function" class="sapDialogLabel"/>-->
+		<!--<Input id="idPartnerFunction" placeholder="Partner Function"/>-->
+		<!--<Label text="Name" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idNamePartner1" placeholder="Enter Name" />-->
+		<!--<Label text="Number" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idNumberPartner" placeholder="Enter Number" />-->
+		<!--<Label text="Name" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idNamePartner2" placeholder="Enter Name" />-->
+		<!--<Label text="DP" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idDPPartner" placeholder="Enter DP" />-->
+		<VBox class="sapUiSmallMargin">
+		<f:Form id="FormChange356"
+			editable="true" class="myFormMarginTop">
+			<f:title>
+				<core:Title text=""/>
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Partner Function">
+							<f:fields>
+								<Input value="{PartnerFunction}" id="idPartnerFunction" placeholder="Partner Function"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Name">
+							<f:fields>
+								<Input value="{Name1}" id="idName1" placeholder="Name"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Number">
+							<f:fields>
+								<Input id="idNumber" value="{Number}" placeholder="Number">
+									
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Name">
+							<f:fields>
+							<Input id="idName2" placeholder="Name" value="{Name2}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="DP">
+							<f:fields>
+							<Input id="idDPPartner" placeholder="Enter DP" value="{DP}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+		<beginButton>
+			<Button text="{i18n>dialogOkButton}" press="onDialogPartnerOk"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>dialogCancelButton}" press="onDialogPartnerCancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

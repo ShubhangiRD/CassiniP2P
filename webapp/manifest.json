@@ -1,0 +1,499 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "com.cassiniProcureToPay",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZREBATESOL_SRV",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"headerSetService": {
+				"uri": "/sap/opu/odata/sap/ZREBATECON_SRV",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"rebatePostService": {
+				"uri": "/sap/opu/odata/sap/ZREBATEPOST_SRV",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"viewAllAg": {
+				"uri": "/sap/opu/odata/sap/ZVEND_REBAT_VIEW_ALL_SRV",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"mainServiceOCRSim": {
+				"uri": "/sap/opu/odata/SAP/ZCASS_OCR_SRV",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"vendorGetService": {
+				"uri": "/sap/opu/odata/sap/ZVENDOR_ASSIGNMENT_SRV/",
+				"type": "OData",
+				"settings": {
+					"defaultUpdateMethod": "PUT",
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"Vendorf4Service": {
+				"uri": "/sap/opu/odata/sap/ZP2P_PORTALSERVICES_SRV/",
+				"type": "OData",
+				"settings": {
+					"defaultUpdateMethod": "PUT",
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.cassiniProcureToPay.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.cassiniProcureToPay.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true
+			},
+			"HeaderSet": {
+				"dataSource": "headerSetService",
+				"preload": true
+			},
+			"RebatePostSet": {
+				"dataSource": "rebatePostService",
+				"preload": true
+			},
+			"ViewAllAg": {
+				"dataSource": "viewAllAg",
+				"preload": true
+			},
+			"mainServiceModel": {
+				"dataSource": "mainServiceOCRSim",
+				"preload": true
+			},
+			"VHeader": {
+				"dataSource": "vendorGetService"
+			},
+			"Vendorf4Model":{
+				"dataSource":"Vendorf4Service"
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.cassiniProcureToPay.view",
+				"controlId": "idApp",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+				"pattern": "",
+				"name": "LoginPage",
+				"target": "LoginPage"
+			}, {
+				"pattern": "ShowTiles",
+				"name": "ShowTiles",
+				"target": ["ShowTiles"]
+			}, {
+				"name": "PurchaseItemDetails",
+				"pattern": "PurchaseItemDetails/{PoNumber}",
+				"target": "PurchaseItemDetails"
+			}, {
+				"pattern": "CreateContractVendor",
+				"name": "CreateContractVendor",
+				"target": ["CreateContractVendor"]
+			}, {
+				"pattern": "OrderCreations",
+				"name": "OrderCreations",
+				"target": ["OrderCreations"]
+			}, {
+				"pattern": "PurchaseOrder",
+				"name": "PurchaseOrder",
+				"target": ["PurchaseOrder"]
+			}, {
+				"pattern": "VendorRebate",
+				"name": "VendorRebate",
+				"target": ["VendorRebate"]
+			}, {
+				"pattern": "Home",
+				"name": "Home",
+				"target": ["Home"]
+			}, {
+				"pattern": "CreateContract",
+				"name": "CreateContract",
+				"target": ["CreateContract"]
+			}, {
+				"pattern": "DashboardVendor",
+				"name": "DashboardVendor",
+				"target": ["DashboardVendor"]
+			}, {
+				"pattern": "TileDashboard",
+				"name": "TileDashboard",
+				"target": ["TileDashboard"]
+			}, {
+				"pattern": "MassAccrualPost",
+				"name": "MassAccrualPost",
+				"target": ["MassAccrualPost"]
+			}, {
+				"pattern": "MassUpload",
+				"name": "MassUpload",
+				"target": ["MassUpload"]
+			}, {
+				"pattern": "ViewContract",
+				"name": "ViewContract",
+				"target": ["ViewContract"]
+			}, {
+				"pattern": "ChangeContract",
+				"name": "ChangeContract",
+				"target": ["ChangeContract"]
+			}, {
+				"pattern": "BookInvoice",
+				"name": "BookInvoice",
+				"target": ["BookInvoice"]
+			}, {
+				"pattern": "Dashboard",
+				"name": "Dashboard",
+				"target": ["Dashboard"]
+			}, {
+				"pattern": "Dashboard2",
+				"name": "Dashboard2",
+				"target": ["Dashboard2"]
+			}, {
+				"name": "Home",
+				"pattern": "home",
+				"target": ["Home"]
+			}, {
+				"name": "OCRHome",
+				"pattern": "ocrhome",
+				"target": ["OCRHome"]
+			}, {
+				"name": "ScanningErrors",
+				"pattern": "scanning-errors",
+				"target": ["ScanningErrors"]
+			}, {
+				"name": "ReadyToPost",
+				"pattern": "ready-to-post",
+				"target": ["ReadyToPost"]
+			}, {
+				"name": "ScanningErrorDetails",
+				"pattern": "scanning-error-details/{scanId}",
+				"target": ["ScanningErrorDetails"]
+			}, {
+				"name": "ValidationErrors",
+				"pattern": "validation-errors",
+				"target": ["ValidationErrors"]
+			}, {
+				"name": "ValidationErrorDetails",
+				"pattern": "validation-error-details/{docId}",
+				"target": ["ValidationErrorDetails"]
+			}, {
+				"name": "ReadyToPostDetails",
+				"pattern": "ready-to-post-details/{recordId}",
+				"target": ["ReadyToPostDetails"]
+			}, {
+				"name": "PoPreference",
+				"pattern": "popreference/{approvalId}",
+				"target": ["PoPreference"]
+			}, {
+				"name": "DueForApproval",
+				"pattern": "due-for-approval",
+				"target": ["DueForApproval"]
+			}, {
+				"name": "DocumentsRejected",
+				"pattern": "documents-rejected",
+				"target": ["DocumentsRejected"]
+			}, {
+				"name": "DocumentsRejectedDetails",
+				"pattern": "documents-rejected-details/{rejectionId}",
+				"target": ["DocumentsRejectedDetails"]
+			}, {
+				"name": "ScannedDocuments",
+				"pattern": "scanned-documents",
+				"target": ["ScannedDocuments"]
+			}, {
+				"name": "PostedDocuments",
+				"pattern": "posted-documents",
+				"target": ["PostedDocuments"]
+			}, {
+				"name": "UpdateVendor",
+				"pattern": "UpdateVendor-documents",
+				"target": ["UpdateVendor"]
+			}, {
+				"name": "DisplayVendor",
+				"pattern": "DisplayVendor-documents",
+				"target": ["DisplayVendor"]
+			}, {
+				"name": "PurchaseOrderTable",
+				"pattern": "PurchaseOrderTable-documents",
+				"target": ["PurchaseOrderTable"]
+			}, {
+				"name": "DisplayPOItems",
+				"pattern": "DisplayPOItems-documents",
+				"target": ["DisplayPOItems"]
+			}, {
+				"name": "EditPOOrder",
+				"pattern": "EditPOOrder-documents",
+				"target": ["EditPOOrder"]
+			}, {
+				"name": "SamplePO",
+				"pattern": "SamplePO-documents",
+				"target": ["SamplePO"]
+			}, {
+				"name": "VendorCreate",
+				"pattern": "VendorCreate-documents",
+				"target": ["VendorCreate"]
+			}, {
+				"name": "EditVendor",
+				"pattern": "EditVendor",
+				"target": ["EditVendor"]
+			}, {
+				"name": "GoodReceipt",
+				"pattern": "GoodReceipt",
+				"target": ["GoodReceipt"]
+			}, {
+				"name": "VendorDetails",
+				"pattern": "VendorDetails",
+				"target": ["VendorDetails"]
+			}, {
+				"name": "AdminPanel",
+				"pattern": "AdminPanel",
+				"target": ["AdminPanel"]
+			}],
+			"targets": {
+				"LoginPage": {
+					"viewLevel": 1,
+					"viewId": "idApp",
+					"controlAggregation": "pages",
+					"viewName": "LoginPage"
+				},
+				"ShowTiles": {
+					"viewName": "ShowTiles"
+				},
+				"TileDashboard": {
+					"viewName": "TileDashboard"
+				},
+				"CreateContractVendor": {
+					"viewName": "CreateContractVendor"
+				},
+				"OrderCreations": {
+					"viewName": "OrderCreations"
+				},
+				"PurchaseOrder": {
+					"viewName": "PurchaseOrder"
+				},
+				"VendorRebate": {
+					"viewName": "VendorRebate"
+				},
+				"Home": {
+					"viewName": "Home"
+				},
+				"VendorDetails": {
+					"viewName": "VendorDetails"
+				},
+				"CreateContract": {
+					"viewName": "CreateContract"
+				},
+				"Page3": {
+					"viewName": "Page3"
+				},
+				"DashboardVendor": {
+					"viewName": "DashboardVendor"
+				},
+				"MassAccrualPost": {
+					"viewName": "MassAccrualPost"
+				},
+				"MassUpload": {
+					"viewName": "MassUpload"
+				},
+				"ViewContract": {
+					"viewName": "ViewContract"
+				},
+				"ChangeContract": {
+					"viewName": "ChangeContract"
+				},
+				"BookInvoice": {
+					"viewName": "BookInvoice"
+				},
+				"Dashboard": {
+					"viewName": "Dashboard"
+				},
+				"Dashboard2": {
+					"viewName": "Dashboard2"
+				},
+				"OCRHome": {
+					"viewType": "XML",
+					"viewName": "OCRHome"
+				},
+				"ScanningErrors": {
+					"viewType": "XML",
+					"viewName": "ScanningErrors"
+				},
+				"ReadyToPost": {
+					"viewType": "XML",
+					"viewName": "ReadyToPost"
+				},
+				"ScanningErrorDetails": {
+					"viewType": "XML",
+					"viewName": "ScanningErrorDetails"
+				},
+				"ValidationErrors": {
+					"viewType": "XML",
+					"viewName": "ValidationErrors"
+				},
+				"ValidationErrorDetails": {
+					"viewType": "XML",
+					"viewName": "ValidationErrorDetails"
+				},
+				"ReadyToPostDetails": {
+					"viewType": "XML",
+					"viewName": "ReadyToPostDetails"
+				},
+				"PoPreference": {
+					"viewType": "XML",
+					"viewName": "PoPreference"
+				},
+				"DueForApproval": {
+					"viewType": "XML",
+					"viewName": "DueForApproval"
+				},
+				"DocumentsRejected": {
+					"viewType": "XML",
+					"viewName": "DocumentsRejected"
+				},
+				"DocumentsRejectedDetails": {
+					"viewType": "XML",
+					"viewName": "DocumentsRejectedDetails"
+				},
+				"ScannedDocuments": {
+					"viewType": "XML",
+					"viewName": "ScannedDocuments"
+				},
+				"PostedDocuments": {
+					"viewType": "XML",
+					"viewName": "PostedDocuments"
+				},
+				"UpdateVendor": {
+					"viewType": "XML",
+					"viewName": "UpdateVendor"
+				},
+				"DisplayVendor": {
+					"viewType": "XML",
+					"viewName": "DisplayVendor"
+				},
+				"PurchaseOrderTable": {
+					"viewType": "XML",
+					"viewName": "PurchaseOrderTable"
+				},
+				"DisplayPOItems": {
+					"viewType": "XML",
+					"viewName": "DisplayPOItems"
+				},
+				"EditPOOrder": {
+					"viewType": "XML",
+					"viewName": "EditPOOrder"
+				},
+				"SamplePO": {
+					"viewType": "XML",
+					"viewName": "SamplePO"
+				},
+				"VendorCreate": {
+					"viewType": "XML",
+					"viewName": "VendorCreate"
+				},
+				"EditVendor": {
+					"viewType": "XML",
+					"viewName": "EditVendor"
+				},
+				"GoodReceipt": {
+					"viewType": "XML",
+					"viewName": "GoodReceipt"
+				},
+				"PurchaseItemDetails": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "PurchaseItemDetails"
+				},
+				"AdminPanel": {
+					"viewType": "XML",
+					"viewName": "AdminPanel"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,148 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:t = "sap.ui.table">
+			<t:Table id="Conditions" rows="{ }" visibleRowCount="5" selectionMode="MultiToggle">
+				<t:extension>
+					<OverflowToolbar>
+						<Title text="Conditions"/>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" type="Transparent" id="AddConditions" class="remove-attr" tooltip="Add Row" press="AddConditionItemsHeader"/>
+						<Button icon="sap-icon://delete" enabled="{=${PurchaseModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+							tooltip="Delete Row" press="onDeleteItemBank"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+							<t:Column width="6rem" hAlign="Center">
+						<Label text="Non Active "/>
+						<t:template>
+							<Input id="idnonActive" class="mtid" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
+								value="{PurchaseModel>Material}" valueHelpRequest="handleCtryHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+								suggestionItemSelected="onSuggestCtry" liveChange="Ctrychange">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="5rem" hAlign="Center">
+						<Label text="Cnty "/>
+						<t:template>
+							<Input id="idcntyy" class="mtid" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
+								value="{PurchaseModel>Material}" valueHelpRequest="handleCtryHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+								suggestionItemSelected="onSuggestCtry" liveChange="Ctrychange">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column hAlign="Center" width="9rem">
+						<Label text="Names"/>
+						<t:template>
+							<Input class="desc1" id="idnameVendor" textFormatMode="KeyValue" placeholder="Enter Bank Key" showSuggestion="true" showValueHelp="true"
+								valueHelpRequest="handleBankKey" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{PurchaseModel>ShortText}"
+								suggestionItemSelected="onSuggestBankKey">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Amount"/>
+						<t:template>
+							<Input id="idAmountC" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}" placeholder="Enter Bank Account"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="CurrencyKey"/>
+						<t:template>
+							<Input id="idcucy" class="measure1" value="{PurchaseModel>PoUnit}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+						<t:Column width="9rem" hAlign="Center">
+						<Label text="Per"/>
+						<t:template>
+							<Input id="idperr" class="price1" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="3rem" hAlign="Center">
+						<Label text=" "/>
+						<t:template>
+							<Input id="unitC" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Plant}"
+								valueHelpRequest="handleValueHelpAK" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestAK">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+				
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Condition Value"/>
+						<t:template>
+							<Input id="ConditionValue1" class="price1" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Currecy"/>
+						<t:template>
+							<Input id="CurrC" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Status"/>
+						<t:template>
+							<Input id="StatC" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+						<t:Column width="9rem" hAlign="Center">
+						<Label text="Num Cco"/>
+						<t:template>
+							<Input id="NumCC" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+						<t:Column width="9rem" hAlign="Center">
+						<Label text="Order Unit Oun"/>
+						<t:template>
+							<Input id="OrderunitC" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+						<t:Column width="9rem" hAlign="Center">
+						<Label text="CConDen"/>
+						<t:template>
+							<Input id="CConDenC" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+						<t:Column width="9rem" hAlign="Center">
+						<Label text="Unit of Measure "/>
+						<t:template>
+							<Input id="iduomm" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Plant}"
+								valueHelpRequest="handleValueHelpAK" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestAK">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+						<Label text="Condition Value"/>
+						<t:template>
+							<Input id="ConditionValue2" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="CdCurr"/>
+						<t:template>
+							<Input id="idCdCurr" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+						<t:Column width="9rem" hAlign="Center">
+						<Label text="Stat"/>
+						<t:template>
+							<CheckBox id="idstatt" class="price1"  editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			
+			</t:Table>
+	
+</core:FragmentDefinition>

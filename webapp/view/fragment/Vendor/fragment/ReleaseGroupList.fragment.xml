@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Release Group List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/ReleaseGroupList}"
+		search="_handleReleaseGroupVendorSearch"
+		confirm="_handleReleaseGroupVendorClose"
+		cancel="_handleReleaseGroupVendorClose">
+		<StandardListItem
+			title="{Lookup>Frgrp}" />
+	</SelectDialog>
+</core:FragmentDefinition>

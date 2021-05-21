@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Contact Person List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/DisplyaVendorList}"
+		search="_handleValueContPersonHelpSearch"
+		confirm="_handleValueContPersonHelpClose"
+		cancel="_handleValueContPersonHelpClose">
+		<StandardListItem
+			title="{Lookup>Name1}"
+			info="{Lookup>Lifnr}" />
+	</SelectDialog>
+</core:FragmentDefinition>
+
+
+

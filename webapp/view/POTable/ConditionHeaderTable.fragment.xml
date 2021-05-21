@@ -1,0 +1,149 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Condition Items" id="idConditonITems" afterClose="onAfterClose" class="sapUiSizeCompact" contentHeight="500px"
+		contentWidth="900px">
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="ConditionForms" editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Non Active">
+								<f:fields>
+									<Input id="idnonActiveHeader" class="sapUiTinyMarginTop" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>Material}" valueHelpRequest="handleCtryHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestCtry" liveChange="Ctrychange">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Cnty">
+								<f:fields>
+									<Input id="idcntyyHeader" class="sapUiTinyMarginTop" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>Material}" valueHelpRequest="handleCtryHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestCtry" liveChange="Ctrychange">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Names">
+								<f:fields>
+									<Input class="sapUiTinyMarginTop" id="idnameVendorHeader" textFormatMode="KeyValue" placeholder="Enter Bank Key" showSuggestion="true"
+										showValueHelp="true" valueHelpRequest="handleBankKey" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }"
+										value="{PurchaseModel>ShortText}" suggestionItemSelected="onSuggestBankKey">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Amount">
+								<f:fields>
+									<Input id="idAmountCHeader" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}" placeholder="Enter Bank Account"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="CurrencyKey">
+								<f:fields>
+									<Input id="idcucyHeader" class="sapUiTinyMarginTop" value="{PurchaseModel>PoUnit}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Per">
+								<f:fields>
+									<Input id="idperrHeader" class="sapUiTinyMarginTop" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label=" ">
+								<f:fields>
+									<Input id="unitCHeader" class="sapUiTinyMarginTop"  textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Plant}"
+										valueHelpRequest="handleValueHelpAK" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestAK">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Condition Value">
+								<f:fields>
+									<Input id="ConditionValueHeader1" class="sapUiTinyMarginTop" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							
+							<f:FormElement label="Currency">
+								<f:fields>
+									<Input id="CurrCHeader" class="sapUiTinyMarginTop" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Status">
+								<f:fields>
+									<Input id="StatCHeader" class="sapUiTinyMarginTop" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Num Cco">
+								<f:fields>
+									<Input id="NumCCHeader" class="sapUiTinyMarginTop" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Order Unit Oun">
+								<f:fields>
+									<Input id="OrderunitCHeader" class="sapUiTinyMarginTop" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="CConDen">
+								<f:fields>
+									<Input id="CConDenCHeader" class="sapUiTinyMarginTop" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Unit Of Measure">
+								<f:fields>
+									<Input id="iduommHeader" class="sapUiTinyMarginTop" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Plant}"
+										valueHelpRequest="handleValueHelpAK" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestAK">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Condition Value">
+								<f:fields>
+									<Input id="ConditionValueHeader2" class="sapUiTinyMarginTop" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="CdCurr">
+								<f:fields>
+									<Input id="idCdCurrHeader" class="sapUiTinyMarginTop" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Stat ">
+								<f:fields>
+									<CheckBox id="idstattHeader" class="sapUiTinyMarginTop" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+			<Button text="Save" type="Emphasized" press="onCloseCondition"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" type="Emphasized" press="onExitCondition"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

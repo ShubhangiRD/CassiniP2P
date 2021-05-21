@@ -1,0 +1,71 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="materialform" editable="true" class="sapUiTinyMarginTop">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+					emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Material Group" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="MaterialGrp" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleMaterialMaterialGrpp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="suggestionMaterialGrp" editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+									</suggestionItems>
+								</Input>
+								<CheckBox id="idrelevent" class="sapUiTinyMarginTop" text="IUID-Relevent"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Vendor Mat.no" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="vendormatno" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Vendor Sub-range" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="vendorsubrang" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Batch" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="idbatchMD" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Revision Level " class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="RevisionLevel" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleRevisionLevel" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="suggestionRevisionLevel"  editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="EAN/UPC" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="ideadupc" textFormatMode="KeyValue" class="sapUiTinyMarginTop"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Vendor Batch" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="vendorbatch" textFormatMode="KeyValue" class="sapUiTinyMarginTop"/>
+								<CheckBox id="idInfoUpdate" text="InfoUpdate" class="sapUiTinyMarginTop"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

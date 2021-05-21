@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Customer Office Entry List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/CustomerOfficeEntryList}"
+		search="_handleCustomerOfficeEntryVendorSearch"
+		confirm="_handleCustomerOfficeEntryVendorClose"
+		cancel="_handleCustomerOfficeEntryVendorClose">
+		<StandardListItem
+			title="{Lookup>Zolla}"
+			info="{Lookup>Land1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

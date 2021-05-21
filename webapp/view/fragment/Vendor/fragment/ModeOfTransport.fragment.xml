@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Mode Of Transport"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/ModeOfTransportList}"
+		search="_handleModeOfTransportSearch"
+		confirm="_handleModeOfTransportClose"
+		cancel="_handleModeOfTransportClose">
+		<StandardListItem
+			title="{Lookup>Vktra}" />
+	</SelectDialog>
+</core:FragmentDefinition>

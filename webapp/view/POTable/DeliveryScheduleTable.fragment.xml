@@ -1,0 +1,125 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Delivery Schedule Items" id="idDeliveryScheduleITems" afterClose="onAfterClose" class="sapUiSizeCompact" contentHeight="400px"
+		contentWidth="800px">
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="idDeliveryScheduleITemsForms" editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Status">
+								<f:fields>
+									<Input id="idDeliscStatus" class="mtid" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
+								value="{PurchaseModel>Material}" valueHelpRequest="handleCtryHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+								suggestionItemSelected="onSuggestCtry" liveChange="Ctrychange">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+								</suggestionItems>
+							</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="C">
+								<f:fields>
+									<Input id="idCDelisc" class="mtid" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
+								value="{PurchaseModel>Material}" valueHelpRequest="handleCtryHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+								suggestionItemSelected="onSuggestCtry" liveChange="Ctrychange">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+								</suggestionItems>
+							</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Delivery Date">
+								<f:fields>
+									<Input class="desc1" id="DeliveryDateSD" textFormatMode="KeyValue" placeholder="Enter Bank Key" showSuggestion="true" showValueHelp="true"
+								valueHelpRequest="handleBankKey" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{PurchaseModel>ShortText}"
+								suggestionItemSelected="onSuggestBankKey">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+								</suggestionItems>
+							</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Schedule Quantity">
+								<f:fields>
+									<Input id="ScheduleQuantSD" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}" placeholder="Enter Bank Account"/>
+						</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Time">
+								<f:fields>
+									<Input id="idTimeDS" class="measure1" value="{PurchaseModel>PoUnit}" editable="{EditModel>/isEditable}"/>
+							</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Stat Del.Date">
+								<f:fields>
+									<Input id="StatDelDateDS" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Plant}"
+								valueHelpRequest="handleValueHelpAK" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestAK">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+								</suggestionItems>
+							</Input>	</f:fields>
+							</f:FormElement>
+							<f:FormElement label="GR Quantity ">
+								<f:fields>
+									<Input id="GRQuanttitySD" class="price1" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+			
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Purchase Request">
+								<f:fields>
+									<Input id="PurchaseRequestSD" class="price1" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+						</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							
+							<f:FormElement label="Requison Items">
+								<f:fields>
+									<Input id="RequisonItemsSD" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</f:fields>
+							</f:FormElement>
+							<f:FormElement label="No Exped">
+								<f:fields>
+								<Input id="NoExpedSD" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Open Quantity">
+								<f:fields>
+									<Input id="OpenQuantitySD" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Sch Line">
+								<f:fields>
+										<Input id="SchLineSD" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Preq Closed.">
+								<f:fields>
+									<Input id="PreqClosedSD" class="price1" value="{PurchaseModel>}" editable="{EditModel>/isEditable}"/>
+						</f:fields>
+							</f:FormElement>
+						
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+			<Button text="Save" type="Emphasized" press="onCloseDeliverySchedule"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" type="Emphasized" press="onExitDeliverySchedule"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

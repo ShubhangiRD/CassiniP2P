@@ -1,0 +1,509 @@
+<core:FragmentDefinition xmlns:t="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns:card="sap.f.cards"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	displayBlock="true" height="100%" xmlns:u="sap.ui.unified">
+	<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+		<VBox>
+			<VBox class="PurchaseVboxSecond">
+				<f:Form id="FormHeaderContent" editable="false">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+							emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer title=" " class="FormContainerVendor">
+							<f:formElements>
+								<f:FormElement label=" Vendor Number">
+								<f:fields>
+									<Input
+											id="idVendor"
+											textFormatMode="KeyValue"
+											placeholder="Vendor"
+											showSuggestion="true"
+											value="{CreateVendor>/VendorContract/Lifnr}" 
+										
+											showValueHelp="true"
+											valueHelpRequest="handleMaterialValueHelp"
+											suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+											suggestionItemSelected="onSuggest">
+											<suggestionItems>
+												<core:ListItem
+												key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}" />
+											</suggestionItems>
+										</Input>
+						
+								</f:fields>
+							</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+						<f:FormContainer title=" ">
+							<f:formElements>
+								<f:FormElement label="Account Group">
+								<f:fields>
+										<Input
+											id="idAccGp"
+											textFormatMode="KeyValue"
+											placeholder="Account Group ..."
+										
+												value="{CreateVendor>/VendorContract/AccountGrp}"
+											showSuggestion="true"
+											showValueHelp="true"
+											valueHelpRequest="handleAccountCodeVendor"
+											suggestionItems="{ path: 'Lookup>/AccountGroup' }"
+											suggestionItemSelected="suggestionItemAccount">
+											<suggestionItems>
+												<core:ListItem
+												key="{Lookup>Ktokk}" text="{Lookup>Ktokk}" additionalText="{Lookup>Ktokk}" />
+											</suggestionItems>
+										</Input>
+									
+									
+									
+								
+								</f:fields>
+							</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+						<f:FormContainer title=" ">
+							<f:formElements>
+								<f:FormElement label="Purchase Organization">
+								<f:fields>
+									<Input
+											id="idPurOrg"
+											textFormatMode="KeyValue"
+											placeholder=" Purchase Org .."
+											showSuggestion="true"
+										
+											showValueHelp="true"
+											 value="{CreateVendor>/VendorContract/PurchaseOrg}" 
+											valueHelpRequest="handlePurchaseOrgVendor"
+											suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }"
+											suggestionItemSelected="suggestionItemPurchaseOrg">
+											<suggestionItems>
+												<core:ListItem
+												key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}" />
+											</suggestionItems>
+										</Input>
+									
+									
+								<!--	<Input placeholder=" Purchase Org ..." showSuggestion="true"  showValueHelp="true" valueHelpRequest="handleValueHelpPurchaseOrg" type="Text"
+										id="idPurOrg" value="{CreateVendor>/VendorContract/PurchaseOrg}" suggestionItems="{VHeader>/get_purchaseorg_f4helpSet}"
+										suggestionItemSelected="suggestionItemPurchaseOrg">
+										<suggestionItems>
+											<core:Item key="{VHeader>Ekorg}" text="{VHeader>Ekotx}"/>
+										</suggestionItems>
+									</Input>-->
+								</f:fields>
+							</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+						<f:FormContainer title=" ">
+							<f:formElements>
+								<f:FormElement label="Company Code">
+								<f:fields>
+								<Input
+											id="idCompCode"
+											textFormatMode="KeyValue"
+										
+											placeholder="Company Code ..."
+											showSuggestion="true"
+											value="{CreateVendor>/VendorContract/CompCode}" 
+											showValueHelp="true"
+											valueHelpRequest="handleCompanyCodeVendor"
+											suggestionItems="{ path: 'Lookup>/CountryCode' }"
+												suggestionItemSelected="suggestionItemCompCode">
+											<suggestionItems>
+												<core:ListItem
+												key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}" />
+											</suggestionItems>
+										</Input>
+								<!--	<Input id="idCompCode" type="Text"   placeholder="Company Code ..." value="{CreateVendor>/VendorContract/CompCode}" 
+									showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelpCompCode"
+										suggestionItemSelected="suggestionItemCompCode"
+										suggestionItems="{ path: 'VHeader>/get_companycode_f4helpSet' , filters: [{ path: 'Bukrs', operator: 'EQ', value1: '{Bukrs}' }]}">
+							
+								<suggestionItems>
+											<core:Item key="{VHeader>Bukrs}" text="{VHeader>Butxt}"/>
+										</suggestionItems>
+									</Input>-->
+									
+								</f:fields>
+							</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+			<VBox class="HeaderIconBarClass PurchaseVboxSecond" visible="true">
+				<IconTabBar id="idIconTabBarNoIcons" expanded="true" class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter text="General " key="general">
+							<VBox class="sapUiSmallMargin">
+								<f:Form id="FormPerSale" editable="false">
+									<f:layout>
+										<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+											emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4" singleContainerFullSize="false"/>
+									</f:layout>
+									<f:formContainers>
+										<f:FormContainer>
+											<f:formElements>
+												<f:FormElement label="Vendor Title">
+							<f:fields>
+								<Select id="vtitle" selectedKey="vtitle" class="sapclassinputbox">
+									<items>
+											<core:Item text="Mr." key="Mr"/>
+										<core:Item text="Ms." key="Ms"/>
+											<core:Item text="MADM." key="MADM"/>
+										<core:Item text="MISS." key="MISS"/>
+										<core:Item text="MIST." key="MIST"/>
+										<core:Item text="Company" key="Company"/>
+										<core:Item text="DOCT." key="DOCT"/>
+									
+										<core:Item text="Dr." key="Dr"/>
+									
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Address Number">
+							<f:fields>
+								<Input id="idAddno" value="{CreateVendor>/VendorContract/AddressNum}"  type="Text" class="InputBoxContainer" placeholder="Address Number"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Streets">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Street}" id="idStreet"  placeholder=" Your Street..."/>
+							</f:fields>
+						</f:FormElement>
+						</f:formElements>
+										</f:FormContainer>
+										<f:FormContainer>
+											<f:formElements>
+												<f:FormElement label="FirstName">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/FirstName}" id="idFname"   placeholder=" Firstname ..."></Input>
+							</f:fields>
+						</f:FormElement>
+					
+						<f:FormElement label="Telphone">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Telephone}" id="idTel"    class="InputBoxContainer" placeholder=" Enter Telephone ..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Gender">
+							<f:fields>
+								<Select id="idGender" selectedKey="Gendor" class="sapclassinputbox">
+									<items>
+										<core:Item text="Male" key="1"/>
+										<core:Item text="Female" key="0"/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+											</f:formElements>
+										</f:FormContainer>
+										<f:FormContainer>
+											<f:formElements>
+											<f:FormElement label="LastName">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/LastName}"   id="idLname" placeholder="LastName ..."/>
+							</f:fields>
+						</f:FormElement>
+					<f:FormElement label="BirthPlace">
+							<f:fields>
+								<Input id="idBirth" value="{CreateVendor>/VendorContract/BirthPlace}"   type="Text" class="InputBoxContainer" placeholder="BirthPlace"></Input>
+							</f:fields>
+						</f:FormElement>
+			
+											</f:formElements>
+										</f:FormContainer>
+									</f:formContainers>
+								</f:Form>
+							</VBox>
+						</IconTabFilter>
+						<IconTabFilter class="hide" text="Other Data " key="general">
+								<VBox class="sapUiSmallMargin">
+								<f:Form id="idvendorrform" editable="false">
+									<f:layout>
+										<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+											emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4" singleContainerFullSize="false"/>
+									</f:layout>
+									<f:formContainers>
+										<f:FormContainer>
+											<f:FormElement label="Order Currency">
+						<f:fields>
+							<Input id="idOrderCur" value="{CreateVendor>/VendorContract/OrderCurrency}"  class="InputBoxContainer" type="Text"
+								placeholder=" Select Order Currency ..."></Input>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Country">
+						<f:fields>
+							<Input id="idCountryCode" 	value="{CreateVendor>/VendorContract/Country}" 	
+									 textFormatMode="KeyValue" placeholder=" Country Code .." showSuggestion="true" showValueHelp="true"
+								valueHelpRequest="handleValueHelpCountryCode" suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }" suggestionItemSelected="onSuggest">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Land1}" text="{Lookup>Landx}" additionalText="{Lookup>Land1}"/>
+								</suggestionItems>
+							</Input>
+						</f:fields>
+					</f:FormElement>
+					</f:FormContainer>
+										<f:FormContainer>
+													<f:FormElement label="Postal Code">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/PostalCode}"  class="InputBoxContainer" id="idPostcode" placeholder=" Postal Code ..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Region">
+							<f:fields>
+								<Input id="idRegion" class="RegionClass"   value="{CreateVendor>/VendorContract/Region}" placeholder="Select Region ..." type="Text"
+									>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+											
+										</f:FormContainer>
+										<f:FormContainer>
+											<f:formElements>
+															<f:FormElement label="City">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/City}" id="idCity"   class="InputBoxContainer" placeholder=" City ..."/>
+							</f:fields>
+						</f:FormElement>
+							<f:FormElement label="Distinct">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Distinct}" class="InputBoxContainer"    id="idDis" placeholder="Enter Distinct ..."/>
+							</f:fields>
+						</f:FormElement>
+				
+				</f:formElements>
+										</f:FormContainer>
+									</f:formContainers>
+								</f:Form>
+							</VBox>
+						
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</VBox>
+		</VBox>
+	</ScrollContainer>
+</core:FragmentDefinition>
+
+
+
+
+<!--
+
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<f:Form id="FormPerSale" editable="false">
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+				emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label=" Vendor Number">
+								<f:fields>
+									<Input
+											id="idVendor"
+											textFormatMode="KeyValue"
+											placeholder="Vendor"
+											showSuggestion="true"
+											value="{CreateVendor>/VendorContract/Lifnr}" 
+										
+											showValueHelp="true"
+											valueHelpRequest="handleMaterialValueHelp"
+											suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+											suggestionItemSelected="onSuggest">
+											<suggestionItems>
+												<core:ListItem
+												key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}" />
+											</suggestionItems>
+										</Input>
+						
+								</f:fields>
+							</f:FormElement>
+					<f:FormElement label="Vendor Title">
+							<f:fields>
+								<Select id="vtitle" selectedKey="vtitle" class="SelectionClass">
+									<items>
+										<core:Item text="Dr." key="Dr"/>
+										<core:Item text="Company" key="Company"/>
+										<core:Item text="DOCT." key="DOCT"/>
+										<core:Item text="MADM." key="MADM"/>
+										<core:Item text="MISS." key="MISS"/>
+										<core:Item text="MIST." key="MIST"/>
+										<core:Item text="Mr." key="Mr"/>
+										<core:Item text="Ms." key="Ms"/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Address Number">
+							<f:fields>
+								<Input id="idAddno" value="{CreateVendor>/VendorContract/AddressNum}"  type="Text" class="InputBoxContainer" placeholder="Address Number"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Streets">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Street}" id="idStreet"  placeholder=" Your Street..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="BirthPlace">
+							<f:fields>
+								<Input id="idBirth" value="{CreateVendor>/VendorContract/BirthPlace}"   type="Text" class="InputBoxContainer" placeholder="BirthPlace"></Input>
+							</f:fields>
+						</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Account Group">
+								<f:fields>
+										<Input
+											id="idAccGp"
+											textFormatMode="KeyValue"
+											placeholder="Account Group ..."
+											editable="{EditModel>/isEditable}" 
+												value="{CreateVendor>/VendorContract/AccountGrp}"
+											showSuggestion="true"
+											showValueHelp="true"
+											valueHelpRequest="handleAccountCodeVendor"
+											suggestionItems="{ path: 'Lookup>/AccountGroup' }"
+											suggestionItemSelected="suggestionItemAccount">
+											<suggestionItems>
+												<core:ListItem
+												key="{Lookup>Ktokk}" text="{Lookup>Ktokk}" additionalText="{Lookup>Ktokk}" />
+											</suggestionItems>
+										</Input>
+									
+									
+									
+								
+								</f:fields>
+							</f:FormElement>
+					<f:FormElement label="FirstName">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/FirstName}" id="idFname"   placeholder=" Firstname ..."></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Distinct">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Distinct}" class="InputBoxContainer"    id="idDis" placeholder="Enter Distinct ..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Telphone">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Telephone}" id="idTel"    class="InputBoxContainer" placeholder=" Enter Telephone ..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Gender">
+							<f:fields>
+								<Select id="idGender" selectedKey="Gendor" class="SelectionClass">
+									<items>
+										<core:Item text="Male" key="1"/>
+										<core:Item text="Female" key="0"/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Purchase Organization">
+								<f:fields>
+									<Input
+											id="idPurOrg"
+											textFormatMode="KeyValue"
+											placeholder=" Purchase Org .."
+											showSuggestion="true"
+										
+											showValueHelp="true"
+											 value="{CreateVendor>/VendorContract/PurchaseOrg}" 
+											valueHelpRequest="handlePurchaseOrgVendor"
+											suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }"
+											suggestionItemSelected="suggestionItemPurchaseOrg">
+											<suggestionItems>
+												<core:ListItem
+												key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}" />
+											</suggestionItems>
+										</Input>
+									
+									
+							
+								</f:fields>
+							</f:FormElement>
+					<f:FormElement label="LastName">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/LastName}"   id="idLname" placeholder="LastName ..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Postal Code">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/PostalCode}"  class="InputBoxContainer" id="idPostcode" placeholder=" Postal Code ..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="City">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/City}" id="idCity"   class="InputBoxContainer" placeholder=" City ..."/>
+							</f:fields>
+						</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Company Code">
+								<f:fields>
+								<Input
+											id="idCompCode"
+											textFormatMode="KeyValue"
+										
+											placeholder="Company Code ..."
+											showSuggestion="true"
+											value="{CreateVendor>/VendorContract/CompCode}" 
+											showValueHelp="true"
+											valueHelpRequest="handleCompanyCodeVendor"
+											suggestionItems="{ path: 'Lookup>/CountryCode' }"
+												suggestionItemSelected="suggestionItemCompCode">
+											<suggestionItems>
+												<core:ListItem
+												key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}" />
+											</suggestionItems>
+										</Input>
+							
+									
+								</f:fields>
+							</f:FormElement>
+					<f:FormElement label="Order Currency">
+						<f:fields>
+							<Input id="idOrderCur" value="{CreateVendor>/VendorContract/OrderCurrency}"  class="InputBoxContainer" type="Text"
+								placeholder=" Select Order Currency ..."></Input>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Country">
+						<f:fields>
+							<Input id="idCountryCode" textFormatMode="KeyValue" placeholder=" Country Code .." showSuggestion="true" showValueHelp="true"
+								valueHelpRequest="handleValueHelpCountryCode" suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }" suggestionItemSelected="onSuggest">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Land1}" text="{Lookup>Landx}" additionalText="{Lookup>Land1}"/>
+								</suggestionItems>
+							</Input>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Region">
+							<f:fields>
+								<Input id="idRegion" class="RegionClass"   value="{CreateVendor>/VendorContract/Region}" placeholder="Select Region ..." type="Text"
+									>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+</core:FragmentDefinition>-->
