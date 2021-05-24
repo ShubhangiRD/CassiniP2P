@@ -88,12 +88,14 @@
 			</f:Form>
 		</VBox>
 		<beginButton>
-				<Button text="Close" type="Emphasized" press="onExitContactDetails"/>
+				<Button text="Close"  press="onExitContactDetails"/>
 		
-			</beginButton>
+				</beginButton>
 		<endButton>
+		
 				<Button text="Save" type="Emphasized" press="onSaveContactDetails"/>
 	
+			
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>

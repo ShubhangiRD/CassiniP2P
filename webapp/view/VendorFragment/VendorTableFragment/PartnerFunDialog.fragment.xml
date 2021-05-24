@@ -67,10 +67,12 @@
 			</f:Form>
 		</VBox>
 		<beginButton>
-			<Button text="Save" type="Emphasized" press="onClosePartnerFunction"/>
-		</beginButton>
+				<Button text="Close"  press="onExitPartnerFunction"/>
+		
+			</beginButton>
 		<endButton>
-			<Button text="Close" type="Emphasized" press="onExitPartnerFunction"/>
+				<Button text="Save" type="Emphasized" press="onClosePartnerFunction"/>
+	
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>

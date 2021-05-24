@@ -224,7 +224,7 @@
 						</f:FormElement>
 						<f:FormElement label="SCAC ">
 							<f:fields>
-								<Input id="idSCAC" placeholder="SCAC" maxLength="4"/>
+								<Input id="idSCAC" placeholder="Standard Code" maxLength="4" value="{VendorModel>/StandardCode}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Transport Zone">
@@ -256,7 +256,7 @@
 						</f:FormElement>
 						<f:FormElement label="External Maufac">
 							<f:fields>
-								<Input id="idExternal" maxLength="10"/>
+								<Input id="idExternal" value="{VendorModel>/ExternalManufacturer}"  maxLength="10"/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>

@@ -43,13 +43,14 @@
 					<suggestionItems>
 						<core:Item key="{hierarchy>Bezei}" text="{hierarchy>Bland}"/>
 					</suggestionItems>
+				</Input><Label text="POBoxPostalCode"/>
+				<Input maxLength="35" value="{VendorModel>/POBoxPostalCode}" id="idPOBoxPostalCode" >
+				
 				</Input>
 				<core:Title text=" "/>
 				<Label text="Street/House no"/>
 				<Input maxLength="35" value="{VendorModel>/Street}" id="idStreet" placeholder=" Your Street">
-					<layoutData>
-						<l:GridData span="XL2 L3 M4 S4"/>
-					</layoutData>
+				
 				</Input>
 		<!--		<Input maxLength="10" id="idAddno" value="{VendorModel>/AddressNum}" type="Text" placeholder="Address Number"></Input>
 			-->	<Label text="City"/>
@@ -98,9 +99,11 @@
 				<Label text="Data Line"/>
 				<Input maxLength="14" id="idDataline"  class="InputBoxContainer" placeholder="Enter Data Line"/>
 				<Label text="Tel Ext"/>
-				<Input id="TelExtension" class="InputBoxContainer" value="{VendorModel>/FaxNumber}" placeholder="Enter Extension"/>
+				<Input id="TelExtension" class="InputBoxContainer" value="{VendorModel>/TelexNumber}" placeholder="Enter Extension"/>
 				<Label text="Fax Ext"/>
 				<Input id="FaxExtension" class="InputBoxContainer" value="{VendorModel>/TelexNumber}" placeholder="Enter Extension"/>
+				<Label text="Tele Box"/>
+				<Input id="TeleboxNumber" class="InputBoxContainer" value="{VendorModel>/TeleboxNumber}" placeholder="Enter Extension"/>
 			</form:content>
 		</form:SimpleForm>
 	</VBox>

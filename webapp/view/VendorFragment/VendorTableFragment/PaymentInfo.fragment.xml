@@ -88,10 +88,12 @@
 			</f:Form>
 		</VBox>
 		<beginButton>
-			<Button text="Save" type="Emphasized" press="onSavePaymentInfo"/>
-		</beginButton>
+				<Button text="Close"  press="onExitPaymentInfo"/>
+	
+			</beginButton>
 		<endButton>
-			<Button text="Close" type="Emphasized" press="onExitPaymentInfo"/>
-		</endButton>
+				<Button text="Save" type="Emphasized" press="onSavePaymentInfo"/>
+	
+			</endButton>
 	</Dialog>
 </core:FragmentDefinition>

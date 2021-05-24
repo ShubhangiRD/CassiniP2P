@@ -224,8 +224,7 @@ sap.ui.define([
 		},
 	getUpdateRequestPayload: function() {
 			return {
-
-				Akontb: this.ReconciliationAccount,
+	            Akontb: this.ReconciliationAccount,
 				Anreda: this.Title,
 				Bankld: this.BankKey,
 				Banknd: this.BankAcct,
@@ -244,7 +243,7 @@ sap.ui.define([
 				Intadb: this.InternetAddrs,
 				Koinhd: this.AccountHolderName,
 				Ktokka: this.VendorAccountGroup,
-				Land1a: this.CountryKey,
+				Land1a: this.Country,
 				Lifnra: this.Vendor,
 				Lzonea: this.TransportationZone,
 				Meprfc: this.PriceDetermination,
@@ -279,7 +278,10 @@ sap.ui.define([
 				Waersc: this.PurchaseOrderCurrency,
 				Ztermb: this.TermsPaymentKey,
 				Zwelsb: this.PaymentMethods
-
+				
+			
+			
+			
 			};
 		},
 

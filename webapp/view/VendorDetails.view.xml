@@ -14,11 +14,12 @@
 					</m:FlexBox>
 				</snappedHeading>
 				<actions>
-					<ObjectPageHeaderActionButton text="Edit" type="Emphasized" hideText="false" tooltip="edit" press="onEditPress"/>
-					<ObjectPageHeaderActionButton type="Emphasized" hideText="false" text="Save" tooltip="save" press="onSaveContract"/>
-					<ObjectPageHeaderActionButton hideText="false" type="Emphasized" text="Close" tooltip="decline"/>
-					<ObjectPageHeaderActionButton id="btn_display" type="Emphasized" hideText="false" text="Display" press="onDisplayPress" tooltip="display"/>
-				</actions>
+			<!--		<ObjectPageHeaderActionButton text="Edit" type="Emphasized" hideText="false" tooltip="edit" press="onEditPress"/>
+			
+	
+				-->		<ObjectPageHeaderActionButton hideText="false"  text="Close" tooltip="decline"/><ObjectPageHeaderActionButton type="Emphasized" hideText="false" text="Save" tooltip="save" press="onSaveContract"/>
+						<!--		<ObjectPageHeaderActionButton id="btn_display" type="Emphasized" hideText="false" text="Display" press="onDisplayPress" tooltip="display"/>
+		-->		</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
 		<headerContent>

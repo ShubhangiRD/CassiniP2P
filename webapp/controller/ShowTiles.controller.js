@@ -429,7 +429,7 @@ sap.ui.define([
 						});
 
 					}
-					console.log(ListofVendor);
+				//	console.log(ListofVendor);
 
 					var Count = new sap.ui.model.json.JSONModel({
 						item: item
@@ -470,7 +470,7 @@ sap.ui.define([
 						}
 
 					}
-					console.log(ListofVendor);
+				//	console.log(ListofVendor);
 
 					var Count = new sap.ui.model.json.JSONModel({
 						item: item
@@ -780,7 +780,7 @@ sap.ui.define([
 						});
 
 					}
-					console.log(ListofPurchaseOrders);
+			//		console.log(ListofPurchaseOrders);
 
 					var CountPo = new sap.ui.model.json.JSONModel({
 						item: itemPO
@@ -1065,7 +1065,7 @@ sap.ui.define([
 						}
 					}
 					final.sort(compareSecondColumn);
-					console.log(final);
+				//	console.log(final);
 					var top5products = [];
 					for (var zz = 0; zz <= 4; zz++) {
 						top5products.push({
@@ -1073,11 +1073,11 @@ sap.ui.define([
 							count: final[zz][1]
 						});
 					}
-					console.log(top5products);
+			//		console.log(top5products);
 					var top5productsModel = new JSONModel();
 					top5productsModel.setData(top5products);
 					oView.setModel(top5productsModel, "top5products");
-					console.log(top5productsModel);
+			//		console.log(top5productsModel);
 				},
 				error: function(er) {
 					console.log(er);

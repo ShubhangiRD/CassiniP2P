@@ -152,14 +152,14 @@
 				</f:FormContainer>
 				<f:FormContainer title=" ">
 					<f:formElements>
-						<f:FormElement label="Act Clerk tel no">
+						<f:FormElement label="AcountClrk tel no">
 							<f:fields>
-								<Input id="clrtelno"/>
+								<Input id="clrtelno" value="{VendorModel>/AccountingClerkTelephone}"/>
 							</f:fields>
 						</f:FormElement>
-						<f:FormElement label="Clerk Fax ">
+						<f:FormElement label="Clerk Fax no">
 							<f:fields>
-								<Input id="clrkatfax"/>
+								<Input id="clrkatfax" value="{VendorModel>/AccountingClerkFax}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Clerk Internet ">

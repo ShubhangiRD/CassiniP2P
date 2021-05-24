@@ -2606,10 +2606,9 @@ sap.ui.define([
 				var oModelCreate = this.getView().getModel("VHeader");
 			var oVendorModel = oView.getModel("VendorModel");
 
-			//		var oContract=	VendorContract.getUpdateRequestPayload();
-
-			var vendor = oVendorModel.oData.Vendor;
-				var zero1 = "";
+	
+		var vendor = oVendorModel.oData.Vendor;
+		/*		var zero1 = "";
 				//	var no;
 
 				var len = vendor.length;
@@ -2623,8 +2622,29 @@ sap.ui.define([
 				console.log(len);
 				console.log(zero1);
 				vendor = zero1 + vendor;
-				console.log(vendor);
+				console.log(vendor);*/
+				
+				
+				
+	var oContract = VendorContract.getUpdateRequestPayload();
+			
 
+		/*	oModelCreate.create("/Vendor_crudSet", oContract, {
+
+				success: this._onCreateEntrySuccess.bind(this),
+				error: this._onCreateEntryError.bind(this)
+
+			});*/
+		
+	var mParameters = {
+				success: this._onCreateEntrySuccess.bind(this),
+				error: this._onCreateEntryError.bind(this)
+				,
+				merge: false
+			};
+			var sVendorCreate = "/Vendor_crudSet('" + vendor + "')";
+			oModelCreate.update(sVendorCreate, oContract, mParameters);
+/*
 			var BankAcct = oVendorModel.oData.BankAcct;
 			var BankCtry = oVendorModel.oData.BankCtry;
 			var BankKey = oVendorModel.oData.BankKey;
@@ -2645,10 +2665,10 @@ sap.ui.define([
 			var Telephone = oVendorModel.oData.Telephone;
 			var Telephone2 = oVendorModel.oData.Telephone2;
 			var ReconciliationAccount = oVendorModel.oData.ReconciliationAccount;
-			var Title = oVendorModel.oData.Title;
+		//	var Title = oVendorModel.oData.Title;
 			var BankRef = oVendorModel.oData.BankRef;
 			var Industrykey = oVendorModel.oData.Industrykey;
-			var ExternalManufacturer = oVendorModel.oData.ExternalManufacturer;
+		var ExternalManufacturer = oVendorModel.oData.ExternalManufacturer;
 			var PlanningGroup = oVendorModel.oData.PlanningGroup;
 			var Taxtype = oVendorModel.oData.Taxtype;
 			var ReleaseApprovalGroup = oVendorModel.oData.ReleaseApprovalGroup;
@@ -2663,10 +2683,10 @@ sap.ui.define([
 			var TaxNumber3 = oVendorModel.oData.TaxNumber3;
 			var TaxNumber4 = oVendorModel.oData.TaxNumber4;
 			var TaxNumberType = oVendorModel.oData.TaxNumberType;
-			var TaxNumber = oVendorModel.oData.TaxNumber;
+		//	var TaxNumber = oVendorModel.oData.TaxNumber;
 			var TeleboxNumber = oVendorModel.oData.TeleboxNumber;
 			var FaxNumber = oVendorModel.oData.FaxNumber;
-			var TelexNumber = oVendorModel.oData.TelexNumber;
+		//	var TelexNumber = oVendorModel.oData.TelexNumber;
 			var AccountingClerkTelephone = oVendorModel.oData.AccountingClerkTelephone;
 			var AccountingClerkFax = oVendorModel.oData.AccountingClerkFax;
 			var TaxJurisdiction = oVendorModel.oData.TaxJurisdiction;
@@ -2681,7 +2701,7 @@ sap.ui.define([
 
 			itemData.push({
 				Akontb: ReconciliationAccount,
-				Anreda: Title,
+			//	Anreda: Title,
 				Bankld: BankKey,
 				Banknd: BankAcct,
 				Banksd: BankCtry,
@@ -2692,14 +2712,16 @@ sap.ui.define([
 				Bvtypd: PartnerBk,
 				Ekgrpc: PurchasingGroup,
 				Ekorgc: PurchasingOrg,
-				Emnfra: ExternalManufacturer,
-				Fdgrvb: PlanningGroup,
+			Emnfra: ExternalManufacturer,
+			//	Fdgrvb: PlanningGroup,
 				Fitypa: Taxtype,
 				Frgrpb: ReleaseApprovalGroup,
 				Intadb: InternetAddrs,
-				Koinhd: AccountHolderName,
+			//	Koinhd: AccountHolderName,
 				Ktokka: VendorAccountGroup,
 				Land1a: Country,
+				Lifnra: vendor,
+			
 				Lzonea: TransportationZone,
 				Meprfc: PriceDetermination,
 				Name1a: Name,
@@ -2720,13 +2742,13 @@ sap.ui.define([
 				Stcd3a: TaxNumber3,
 				Stcd4a: TaxNumber4,
 				Stcdta: TaxNumberType,
-				Stenra: TaxNumber,
+			//	Stenra: TaxNumber,
 				Strasa: Street,
 				Telbxa: TeleboxNumber,
 				Telf1a: Telephone,
 				Telf2a: Telephone2,
 				Teltxa: FaxNumber,
-				Telx1a: TelexNumber,
+			//	Telx1a: TelexNumber,
 				Tlfnsb: AccountingClerkTelephone,
 				Tlfxsb: AccountingClerkFax,
 				Txjcda: TaxJurisdiction,
@@ -2737,7 +2759,7 @@ sap.ui.define([
 			console.log(itemData);
 			
 			
-				var mParameters = {
+			var mParameters = {
 				success: this._onCreateEntrySuccess.bind(this),
 				error: this._onCreateEntryError.bind(this)
 				,
@@ -2747,6 +2769,7 @@ sap.ui.define([
 			oModelCreate.update(sVendorCreate, itemData, mParameters);
 
 
+			*/
 			
 			
 			
@@ -2754,28 +2777,8 @@ sap.ui.define([
 			
 			
 			
-			
-
-			/*	var oContract = VendorContract.getCreateRequestPayload();
 
 		
-			//	var Lifnra = oContractUpdate.Vendor;
-
-			oModelCreate.create("/Vendor_crudSet", oContract, {
-
-				success: this._onCreateEntrySuccess.bind(this),
-				error: this._onCreateEntryError.bind(this)
-
-			});*/
-			/*else {
-				
-
-			
-
-
-			}
-*/
-
 		},
 
 		_onCreateEntrySuccess: function(oObject, oResponse) {
