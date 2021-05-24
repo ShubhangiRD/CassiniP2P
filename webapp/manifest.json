@@ -142,8 +142,8 @@
 			"VHeader": {
 				"dataSource": "vendorGetService"
 			},
-			"Vendorf4Model":{
-				"dataSource":"Vendorf4Service"
+			"Vendorf4Model": {
+				"dataSource": "Vendorf4Service"
 			}
 		},
 		"resources": {
@@ -160,8 +160,7 @@
 				"controlAggregation": "pages",
 				"async": true
 			},
-			"routes": [
-				{
+			"routes": [{
 				"pattern": "",
 				"name": "LoginPage",
 				"target": "LoginPage"
@@ -333,6 +332,10 @@
 				"name": "AdminPanel",
 				"pattern": "AdminPanel",
 				"target": ["AdminPanel"]
+			}, {
+				"pattern": "POForm-screen",
+				"name": "POForm",
+				"target": "POForm"
 			}],
 			"targets": {
 				"LoginPage": {
@@ -492,7 +495,12 @@
 				"AdminPanel": {
 					"viewType": "XML",
 					"viewName": "AdminPanel"
+				},
+				"POForm": {
+					"viewId": "POForm",
+					"viewName": "POForm"
 				}
+
 			}
 		}
 	}

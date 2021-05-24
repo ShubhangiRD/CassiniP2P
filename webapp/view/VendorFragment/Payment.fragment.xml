@@ -15,7 +15,7 @@
 				</t:extension>
 				<t:columns>
 					<t:Column width="5rem" hAlign="Center">
-						<Label text="Ctry "/>
+						<Label text="Country "/>
 						<t:template>
 							<Input id="idCtry" class="mtid" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
 								value="{VendorModel>BankCtry}" valueHelpRequest="handleValueHelpCountryCode" suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }"

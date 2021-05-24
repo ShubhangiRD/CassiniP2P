@@ -2608,7 +2608,7 @@ sap.ui.define([
 
 	
 		var vendor = oVendorModel.oData.Vendor;
-		/*		var zero1 = "";
+		/*	var zero1 = "";
 				//	var no;
 
 				var len = vendor.length;
@@ -2626,25 +2626,26 @@ sap.ui.define([
 				
 				
 				
-	var oContract = VendorContract.getUpdateRequestPayload();
+//	var oContract = VendorContract.getUpdateRequestPayload();
 			
-
-		/*	oModelCreate.create("/Vendor_crudSet", oContract, {
+/*var oContract = VendorContract.getCreateRequestPayload();
+console.log(oContract);   
+	oModelCreate.create("/Vendor_crudSet", oContract, {
 
 				success: this._onCreateEntrySuccess.bind(this),
 				error: this._onCreateEntryError.bind(this)
 
-			});*/
-		
-	var mParameters = {
+			});
+		*/
+/*	var mParameters = {
 				success: this._onCreateEntrySuccess.bind(this),
 				error: this._onCreateEntryError.bind(this)
 				,
 				merge: false
 			};
-			var sVendorCreate = "/Vendor_crudSet('" + vendor + "')";
-			oModelCreate.update(sVendorCreate, oContract, mParameters);
-/*
+			var sVendorCreate = "/Vendor_crudSet(Lifnra  '" + vendor + "')";
+			oModelCreate.update(sVendorCreate, oContract,  mParameters);*/
+
 			var BankAcct = oVendorModel.oData.BankAcct;
 			var BankCtry = oVendorModel.oData.BankCtry;
 			var BankKey = oVendorModel.oData.BankKey;
@@ -2765,11 +2766,12 @@ sap.ui.define([
 				,
 				merge: false
 			};
-			var sVendorCreate = "/Vendor_crudSet('" + vendor + "')";
+			var sVendorCreate = "/Vendor_crudSet(Lifnra='" + vendor + "')";
+		//	var sVendorCreate = "/Vendor_crudSet(Lifnra eq '" + vendor + "' )";
 			oModelCreate.update(sVendorCreate, itemData, mParameters);
 
 
-			*/
+	
 			
 			
 			

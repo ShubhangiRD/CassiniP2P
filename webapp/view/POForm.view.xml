@@ -1,0 +1,335 @@
+<mvc:View controllerName="com.cassiniProcureToPay.controller.POForm" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+ xmlns="sap.uxap" xmlns:layout="sap.ui.layout" xmlns:m="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+class="sapUiSizeCompact" 
+>
+		
+					
+		<ObjectPageLayout id="ObjectPageLayout"
+		enableLazyLoading="true"
+		useIconTabBar="true"
+		showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="Purchase Order Details" wrapping="true"/>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox fitContainer="true" alignItems="Center">
+						<m:Title text="Purchase Order Details" wrapping="true"/>
+					
+		
+						
+					</m:FlexBox>
+				</snappedHeading>
+
+			
+				
+
+				<actions>
+					<ObjectPageHeaderActionButton text="Cancel" type="Transparent" hideText="false" press="onedit"/>
+					<ObjectPageHeaderActionButton  type="Emphasized" text="Save" hideText="false" hideIcon="true" press="ondisplay"/>
+				
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true" >
+			
+
+
+						<f:SimpleForm id="sForm" class="sapUiSmallMargin" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+				adjustLabelSpan="false" columnsXL="3" columnsL="3" columnsM="1"  singleContainerFullSize="false">
+				<f:content>
+					
+					<m:Label text="Order Type" />
+	  <m:Select id="OrdType" selectedKey="OrdType"  width="80%"  editable="{EditM>/isEditable}" value="{Podata>OrderType}" >
+							<m:items>
+							
+								<core:Item text="Adv.Returns ccSTO" />
+								<core:Item text="Advanced Returns PO" />
+								<core:Item text="Direct Procurem. SRM" />
+								<core:Item text="Dummy Purchase Order" />
+								<core:Item text="EC PO Direct 300" />
+								<core:Item text="Electronic Comm. SRM" />
+								<core:Item text="Extended Classic CRM" />
+								<core:Item text="Framework Order" />
+								<core:Item text="GTS Standard PO(old)" />
+								<core:Item text="GTS Stock Tr PO(old)" />
+								<core:Item text="IDES- GTS PO" />
+								<core:Item text="Internat.purchasing" />
+								<core:Item text="Internet Commerce" />
+								<core:Item text="Purchase Order SNC" />
+								<core:Item text="RMC - Standard PO" />
+								<core:Item text="S.T.O" />
+								<core:Item text="SNC COMA PO" />
+								<core:Item text="Standard PO" />
+								<core:Item text="Standard PO DFES" />
+								<core:Item text="Standard PO GPco" />
+								<core:Item text="STO TYPE" />
+								<core:Item text="Stock Transp. Order" />
+								<core:Item text="TestVB" />
+								<core:Item text="TM Standard PO" />
+								<core:Item text="TM-DIT: Standard PO" />
+								<core:Item text="TM-KF: Standard PO" />
+								<core:Item text="" />
+						
+	
+							</m:items>
+						</m:Select>
+					
+			<m:Label text="Purchasing Document" />
+			<m:Input editable="{EditM>/isEditable}" type="Text" width="80%"  value="{Podata>/PurchasingDocument}"  ></m:Input>
+		
+		
+				<m:Label text="Vendor"/>
+			<m:Input editable="{EditM>/isEditable}" type="Text" width="80%"  value="{Podata>/Vendor}" id="CC"  showValueHelp="true" showSuggestion="true"	
+			suggestionItems="" valueHelpRequest="handleVendorName">
+				<m:suggestionItems>
+				<core:Item key="" text=""/>
+							</m:suggestionItems>
+							</m:Input>
+				</f:content>			
+			   </f:SimpleForm>
+			    
+			    
+            	<m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<m:Title text="" class="sapUiTinyMarginBottom" />
+					<m:Title text="Status" class="sapUiTinyMarginBottom" />
+					<m:ObjectStatus text="Ordered"
+						state="Success"
+						class="sapUiTinyMarginBottom" />
+					<m:ObjectStatus text="Deliverd"
+						state="Success"
+						class="sapUiTinyMarginBottom" />
+					<m:ObjectStatus text="Still to Deliv."
+						state="Success"
+						class="sapUiTinyMarginBottom" />
+					<m:ObjectStatus text="Invoiced"
+						state="Success"
+						class="sapUiTinyMarginBottom" />
+					<m:ObjectStatus text="Down Payments"
+						state="Success"
+						class="sapUiTinyMarginBottom" />
+						
+				</m:VBox>
+
+				<m:VBox class="sapUiLargeMarginEnd">
+						<m:Title text="" class="sapUiTinyMarginBottom" />
+					<m:Title text="Count" class="sapUiTinyMarginBottom" />
+					<m:ObjectNumber number="0,00"
+						
+						emphasized="false"
+						class=" sapUiTinyMarginBottom" />
+					<m:ObjectNumber number="0,00"
+						
+						emphasized="false"
+						class=" sapUiTinyMarginBottom" />
+					<m:ObjectNumber number="0,00"
+						
+						emphasized="false"
+						class=" sapUiTinyMarginBottom" />
+					<m:ObjectNumber number="0,00"
+						
+						emphasized="false"
+						class=" sapUiTinyMarginBottom" />
+					<m:ObjectNumber number="0,00"
+						
+						emphasized="false"
+						class=" sapUiTinyMarginBottom" />
+				</m:VBox>
+				
+						<m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<m:Title text="" class="sapUiTinyMarginBottom" />
+					<m:ObjectStatus text="Not yet deliverd"
+						icon="sap-icon://shipping-status"
+					 />
+					<m:ObjectStatus text="Not yet sent"
+						icon="sap-icon://paper-plane"
+					/>
+					<m:ObjectStatus text="Not yet Invoiced"
+						icon="sap-icon://my-sales-order"
+						/>
+				</m:VBox>
+
+			
+			
+
+			
+				
+				
+			</m:FlexBox>
+		</headerContent>
+
+		<sections>
+			
+		<!--Tabs-->	
+			
+			
+			<ObjectPageSection titleUppercase="false" id="orgD" title="Org Data">
+			<subSections>
+				<ObjectPageSubSection titleUppercase="false">
+					<blocks>
+						
+						
+				<f:SimpleForm class="sapUiSmallMargin" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+				adjustLabelSpan="false" columnsXL="3" columnsL="3" columnsM="1"  singleContainerFullSize="false">
+				<f:content>
+			
+				
+					<m:Label text="Purchase Org" required="true"/>
+					<m:Input id="idPurchaseOrg" textFormatMode="KeyValue" placeholder=" Purchase Org " showSuggestion="true"
+						value="{PurchaseModel>/TempContract/Ekorg}" showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"
+						suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
+						<m:suggestionItems>
+							<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
+						</m:suggestionItems>
+					</m:Input>
+					
+					<m:Label text="Purchase Group" required="true"/>
+					<m:Input id="pg" textFormatMode="KeyValue" placeholder="Purchase Group " showSuggestion="true" value="{PurchaseModel>/TempContract/Ekgrp}"
+						editable="true" showValueHelp="true" valueHelpRequest="handlePurchaseGroupVendor" suggestionItems="{ path: 'Lookup>/PurchaseGroupList' }"
+						suggestionItemSelected="onSuggest">
+						<m:suggestionItems>
+							<core:ListItem key="{Lookup>Ekgrp}" text="{Lookup>Eknam}" additionalText="{Lookup>Ekgrp}"/>
+						</m:suggestionItems>
+					</m:Input>
+				
+					<m:Label text="Company Code" required="true"/>
+					<m:Input id="cc" textFormatMode="KeyValue" placeholder="Company Code " showSuggestion="true" value="{PurchaseModel>/TempContract/Bukrs}"
+						showValueHelp="true" valueHelpRequest="handleCompanyCodeVendor" suggestionItems="{ path: 'Lookup>/CountryCode' }"
+						suggestionItemSelected="onSuggest">
+						<m:suggestionItems>
+							<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
+						</m:suggestionItems>
+					</m:Input>
+				
+				</f:content>
+			</f:SimpleForm>
+		
+			
+			
+					</blocks>
+				</ObjectPageSubSection>
+			</subSections>
+			</ObjectPageSection>
+
+		
+
+					<ObjectPageSection titleUppercase="false" id="DI" title="DeliveryInvoice">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+						<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.DeliveryInvoice" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		
+				<ObjectPageSection titleUppercase="false" id="Address" title="Address">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+						<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.AddressHeader" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<ObjectPageSection titleUppercase="false" id="communi" title="Communication">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+						<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.CommunicationHeader" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<ObjectPageSection titleUppercase="false" id="Partners" title="Partenrs">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+						<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.Partners" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<ObjectPageSection titleUppercase="false" id="Additionaldata" title="Additional Data">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+						<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.AdditionalData" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		
+
+			<ObjectPageSection titleUppercase="false" id="Status" title="Status">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+						<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.Status" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<ObjectPageSection titleUppercase="false" id="PP" title="PaymentProcessing">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+						<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.PaymentProcessing" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>	
+			
+			
+			
+			
+			
+		</sections>
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</ObjectPageLayout>
+					
+
+
+</mvc:View>

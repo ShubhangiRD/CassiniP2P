@@ -1344,8 +1344,45 @@ sap.ui.define([
 				if (this.pressDeliveryScheduleDialog) {
 					this.pressDeliveryScheduleDialog.destroy();
 				}
-			}
+			},
 			/*Table DeliverySchedule header item fragment end*/
+			
+// dialog code start
+onOpenDialog : function () {
+			var View = this.getView();
+
+		
+			if (!this.pDialog) {
+				this.pDialog = Fragment.load({
+					id: View.getId(),
+					name: "com.cassiniProcureToPay.view.CreatePo",
+					controller: this
+				}).then(function (oDialog) {
+				
+					View.addDependent(oDialog);
+					return oDialog;
+				});
+			} 
+			this.pDialog.then(function(oDialog) {
+				oDialog.open();
+			});
+			
+			
+		},
+	
+
+		onCloseDialog : function () {
+		
+			this.byId("CreatePoDialog1").close();
+		},
+		
+		NavtoNext:function(){
+			this.byId("CreatePoDialog1").close();
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("POForm");
+		}
+
+// dialog code end
 
 	});
 
