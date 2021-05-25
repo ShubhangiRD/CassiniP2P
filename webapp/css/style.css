@@ -72,10 +72,9 @@
 
 
 /*rebate table header part*/
-
 html.sap-desktop .sapContrast .sapMIBar.sapMFooter-CTX, html.sap-desktop .sapContrast.sapMIBar.sapMFooter-CTX {
-   background-color: #2f3c48;
-    border-top: 1px solid #475b6d;
+    background-color: #ffffff;
+    border-top: 1px solid #ffffff;
 }
 
 .sapContrast.sapTntSideNavigationFlexible, .sapContrast .sapTntSideNavigationFlexible {

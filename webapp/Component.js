@@ -5,12 +5,12 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"com/cassiniProcureToPay/service/Application",
 	"sap/ui/core/IconPool",
-		"com/cassiniProcureToPay/model/GetPurchaseVendor",
-		"com/cassiniProcureToPay/model/Vendor",
+	"com/cassiniProcureToPay/model/GetPurchaseVendor",
+	"com/cassiniProcureToPay/model/Vendor",
 
-	"com/cassiniProcureToPay/model/VendorMaster",
-		
-], function(UIComponent, Device, models, JSONModel, Application, IconPool,GetPurchaseVendor,Vendor,VendorMaster) {
+	"com/cassiniProcureToPay/model/VendorMaster"
+
+], function(UIComponent, Device, models, JSONModel, Application, IconPool, GetPurchaseVendor, Vendor, VendorMaster) {
 	"use strict";
 
 	return UIComponent.extend("com.cassiniProcureToPay.Component", {
@@ -45,27 +45,27 @@ sap.ui.define([
 				MaterialDiscription: [],
 				PurchaseGroupList: [],
 				AdminPanelList: [],
-				IndustrySet:[],
-				CustomerList:[],
-				BankKeyList:[],
-				ExemptionAuthorityList:[],
-				PaymentTermsList:[],
-				ToleranceGroupList:[],
-				HouseBankList:[],
-				Tradingp:[],
-				InterestlndicList:[],
-				LanguageList:[],
-				
-						TransportZoneList:[],
-				InstructionKeyList:[],
-				ReleaseGroupList:[],
-				OrderCurrencyList:[],
-				IncotermsList:[],
-				CustomerOfficeEntryList:[],
-				ShippingConditionList:[],
-				ActivityCodeList:[],
-				ModeOfTransportList : []
-			
+				IndustrySet: [],
+				CustomerList: [],
+				BankKeyList: [],
+				ExemptionAuthorityList: [],
+				PaymentTermsList: [],
+				ToleranceGroupList: [],
+				HouseBankList: [],
+				Tradingp: [],
+				InterestlndicList: [],
+				LanguageList: [],
+
+				TransportZoneList: [],
+				InstructionKeyList: [],
+				ReleaseGroupList: [],
+				OrderCurrencyList: [],
+				IncotermsList: [],
+				CustomerOfficeEntryList: [],
+				ShippingConditionList: [],
+				ActivityCodeList: [],
+				ModeOfTransportList: []
+
 			};
 			var oLookupModel = new JSONModel(oLookupData);
 			this.setModel(oLookupModel, "Lookup");
@@ -77,28 +77,19 @@ sap.ui.define([
 			var oPurchaseModel = new JSONModel(oPurchaseData);
 			this.setModel(oPurchaseModel, "PurchaseModel");
 
-			var CreateVendorData = {
-				VendorContracqt: new Vendor()
-			};
-			var CreateVendorModel = new JSONModel(CreateVendorData);
-			this.setModel(CreateVendorModel, "CreateVendor");
+			var oVendorData =	{
+			VendorTemp: new Vendor() 
 			
-			
-			
-			
-			var VendorModelData = {
-				VendorTemp : new Vendor()
-			};
-			var oVendorModel = new JSONModel(VendorModelData);
-			this.setModel(oVendorModel, "VendorModelModel");
-
-
+		};
+	
+			var VendorModel = new JSONModel(oVendorData);
+				this.setModel(VendorModel, "VendorModel");
 
 		
-				
-/*			this.loadIconLibraries();
-			Application.getInstance().Component = this;
-*/
+
+			/*			this.loadIconLibraries();
+						Application.getInstance().Component = this;
+			*/
 			//getCountrymodel defined here
 
 			var oGetCountryModel = new JSONModel();

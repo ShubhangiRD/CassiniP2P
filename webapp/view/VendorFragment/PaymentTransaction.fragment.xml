@@ -14,7 +14,7 @@
 					<f:formElements>
 						<f:FormElement label="Payment Terms">
 							<f:fields>
-								<Input id="idpaymentterms" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/TermsPaymentKey}" showValueHelp="true"
+								<Input id="idpaymentterms" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/TermsPaymentKey}" showValueHelp="true"
 									valueHelpRequest="handlePaymenttermsHelp" suggestionItems="{ path: 'Lookup>/PaymentTermsList' }"
 									suggestionItemSelected="onSuggestpaymentterms">
 									<suggestionItems>
@@ -75,7 +75,7 @@
 					<f:formElements>
 						<f:FormElement label="Payment Methods">
 							<f:fields>
-								<Input id="idpaymethod" maxLength="2" value="{VendorModel>/PaymentMethods}" showValueHelp="true" class="sapUiSmallMarginTop"
+								<Input id="idpaymethod" maxLength="2" value="{VendorModel>/VendorTemp/PaymentMethods}" showValueHelp="true" class="sapUiSmallMarginTop"
 									valueHelpRequest="handlePaymentmethod" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestPaymentMethod">
 									<suggestionItems>

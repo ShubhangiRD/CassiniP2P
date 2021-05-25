@@ -14,7 +14,7 @@
 					<f:formElements>
 						<f:FormElement label="Recon Account">
 							<f:fields>
-								<Input id="ReconAccount" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/ReconciliationAccount}" showValueHelp="true"
+								<Input id="ReconAccount" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/ReconciliationAccount}" showValueHelp="true"
 									valueHelpRequest="handleReconAccountValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestReconAccount">
 									<suggestionItems>
@@ -42,7 +42,7 @@
 						<f:FormElement label="Certification Date">
 							<f:fields>
 									<DatePicker id="idcertificatindate" />
-							<!--	<Input id="idcertificatindate" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Lifnr}"
+							<!--	<Input id="idcertificatindate" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Lifnr}"
 									showValueHelp="true" valueHelpRequest="handlecertdateValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestcertdate">
 									<suggestionItems>
@@ -68,7 +68,7 @@
 					<f:formElements>
 						<f:FormElement label="Sort Key.">
 							<f:fields>
-								<Input id="idsortkey" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Sortfield}" showValueHelp="true"
+								<Input id="idsortkey" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Sortfield}" showValueHelp="true"
 									valueHelpRequest="handleSorkeyValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestsortkey">
 									<suggestionItems>
 										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -100,7 +100,7 @@
 						</f:FormElement>
 						<f:FormElement label="Release Group ">
 							<f:fields>
-								<Input id="Releasegrp" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/ReleaseApprovalGroup}" showValueHelp="true"
+								<Input id="Releasegrp" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/ReleaseApprovalGroup}" showValueHelp="true"
 									valueHelpRequest="handleReleasegrpValueHelp" suggestionItems="{ path: 'Lookup>/ReleaseGroupList' }"
 									suggestionItemSelected="onSuggestReleasegrp">
 									<suggestionItems>
@@ -151,7 +151,7 @@
 						<f:FormElement label="Last Key Date ">
 							<f:fields>
 								<DatePicker id="idLastKeydate" />
-							<!--	<Input id="idLastKeydate" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Lifnr}" showValueHelp="true"
+							<!--	<Input id="idLastKeydate" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Lifnr}" showValueHelp="true"
 									valueHelpRequest="handlekeydate" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestkeydate">
 									<suggestionItems>
 										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -162,7 +162,7 @@
 						<f:FormElement label="Last Interest run ">
 							<f:fields>
 								<DatePicker id="idLastInterest" />
-							<!--	<Input id="idLastInterest" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Lifnr}" showValueHelp="true"
+							<!--	<Input id="idLastInterest" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Lifnr}" showValueHelp="true"
 									valueHelpRequest="handleLastInterestrun" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestLastInterestrun">
 									<suggestionItems>
@@ -207,7 +207,7 @@
 				<Input id="expnum" class="sapUiSmallMarginTopBottom"/>
 				<Label text="Valid Until"/>
 				<DatePicker id="idvaliduntil"/>
-				<!--<Input id="idvaliduntil" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Lifnr}" showValueHelp="true"
+				<!--<Input id="idvaliduntil" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Lifnr}" showValueHelp="true"
 					valueHelpRequest="handlevaliduntil" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestvaliduntil">
 					<suggestionItems>
 						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>

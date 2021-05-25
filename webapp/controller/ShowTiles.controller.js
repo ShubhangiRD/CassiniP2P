@@ -18,7 +18,7 @@ sap.ui.define([
 
 	"sap/ui/export/Spreadsheet",
 	"sap/ui/export/library"
-
+	
 ], function(Controller, JSONModel, Filter, FilterOperator, BusyIndicator, MessageToast, Export, ExportTypeCSV, MessageBox, Sorter,
 	library, jQuery, RowAction, RowActionItem, RowSettings, Fragment, Spreadsheet, exportLibrary) {
 	"use strict";
@@ -196,11 +196,12 @@ sap.ui.define([
 		getVendorCountListByPO: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//BusyIndicator.show(0);
+			BusyIndicator.show(0);
 			return new Promise(function(resolve1, reject1) {
 				oModel.read("/POHeaderSet", {
 					//	oModel.read("/POItemSet",{
 					success: function(oData) {
+						BusyIndicator.hide();
 						//		console.log(oData);
 						var item = oData.results.length;
 						var ListofVendoritem = [];
@@ -350,7 +351,7 @@ sap.ui.define([
 						console.log(ListofVendorTopThreeModel);
 					},
 					error: function(oError) {
-						//BusyIndicator.hide();
+						BusyIndicator.hide();
 						var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 						MessageToast.show(errorMsg);
 					}
@@ -378,6 +379,7 @@ sap.ui.define([
 				oModel.read("/Fetch_Vendor_DetailsSet", {
 					filters: aFilter,
 					success: function(suc) {
+						BusyIndicator.hide();
 						console.log(suc);
 						var item = suc.results.length;
 
@@ -411,9 +413,10 @@ sap.ui.define([
 		getVendorLisat: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//BusyIndicator.show(0);
+			BusyIndicator.show(0);
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
+					BusyIndicator.hide();
 					var item = oData.results.length;
 					var ListofVendor = [];
 
@@ -437,7 +440,7 @@ sap.ui.define([
 					});
 					oView.setModel(Count, "Count");
 
-					//BusyIndicator.hide();
+					BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/DisplyaVendorList", ListofVendor);
 					oLookupModel.refresh(true);
@@ -453,7 +456,7 @@ sap.ui.define([
 		getVendorList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//BusyIndicator.show(0);
+			BusyIndicator.show(0);
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
 					var item = oData.results.length;
@@ -576,10 +579,11 @@ sap.ui.define([
 			var that = this;
 
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//	BusyIndicator.show(0);
+				BusyIndicator.show(0);
 			oModel.read("/just_poheader2Set ", {
 				//	oModel.read("/just_poheaderSet", {
 				success: function(oData) {
+					
 					console.log(oData);
 					BusyIndicator.hide();
 					var itemPO = oData.results.length;
@@ -789,7 +793,7 @@ sap.ui.define([
 					oView.setModel(CountPo, "CountPo");
 
 					//	console.log(oData);
-
+					BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/POOrderList", ListofPurchaseOrders);
 					oLookupModel.refresh(true);
@@ -809,7 +813,7 @@ sap.ui.define([
 			var that = this;
 
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//	BusyIndicator.show(0);
+				BusyIndicator.show(0);
 			oModel.read("/just_poheader2Set ", {
 				//	oModel.read("/just_poheaderSet", {
 				success: function(oData) {
@@ -827,15 +831,17 @@ sap.ui.define([
 					
 					
 				var Purchaseorder = Ebeln;
+					BusyIndicator.show(0);
 						oModel.read("/fetch_openPOSet(Purchaseorder='" + Purchaseorder + "')",{
 							urlParameters: {
 							    "$expand": "fpoItemSet"
 							  },
 					success: function(oDatas) {
-				
+				BusyIndicator.hide();
 					console.log(oDatas);
 					},
 					error: function(oError) {
+							BusyIndicator.hide();
 						console.log(oError);
 					}
 				});
@@ -867,11 +873,12 @@ sap.ui.define([
 		getTopProductsSecond: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//BusyIndicator.show(0);
+	BusyIndicator.show(0);
 			oModel.read("/POHeaderSet", {
 				//	oModel.read("/POItemSet",{
 				success: function(oData) {
 					//		console.log(oData);
+						BusyIndicator.hide();
 					var item = oData.results.length;
 					var ListofVendoritem = [];
 
@@ -1009,7 +1016,7 @@ sap.ui.define([
 					console.log(ListofVendorTopThreeModel);
 				},
 				error: function(oError) {
-					//BusyIndicator.hide();
+			BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1017,11 +1024,14 @@ sap.ui.define([
 		},
 		getTopProductsFirst: function() {
 			var oModel1 = this.getOwnerComponent().getModel("VHeader");
+				
+					BusyIndicator.show(0);
 			oModel1.read("/Max_MaterialSet", {
 
 				//	oModel.read("/PO_DetailsSet()", {
 				//filters: aFilter,
 				success: function(odata) {
+						BusyIndicator.hide();
 					console.log(odata);
 					var arr = [];
 					arr = odata.results;
@@ -1080,6 +1090,7 @@ sap.ui.define([
 			//		console.log(top5productsModel);
 				},
 				error: function(er) {
+					BusyIndicator.hide();
 					console.log(er);
 				}
 			});
@@ -1093,7 +1104,7 @@ sap.ui.define([
 		getServiceHeader: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//	BusyIndicator.show(0);
+			
 			var po = "4500004837";
 
 			// Mi ithe po chi value hard code ghetli ahe, but tula ithe loop firvaych ahe.  count, material and disription eka model made print kar.
@@ -1112,9 +1123,11 @@ sap.ui.define([
 				})
 
 			];
+				BusyIndicator.show(0);
 			oModel.read("/PO_DetailsSet", {
 				filters: aFilter,
 				success: function(oData) {
+					BusyIndicator.hide();
 					console.log(oData);
 
 					var resultlengrh = oData.results.length;
@@ -1404,15 +1417,18 @@ sap.ui.define([
 				];
 
 				var Purchaseorder = Ebeln;
+					BusyIndicator.show(0);
 				oModel.read("/fetch_openPOSet(Purchaseorder='" + Purchaseorder + "')", {
 					urlParameters: {
 						"$expand": "fpoItemSet"
 					},
 					success: function(oData) {
+							BusyIndicator.hide();
 						console.log(oData);
 
 					},
 					error: function(oError) {
+							BusyIndicator.hide();
 						console.log(oError);
 					}
 				});

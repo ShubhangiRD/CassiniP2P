@@ -154,12 +154,12 @@
 					<f:formElements>
 						<f:FormElement label="AcountClrk tel no">
 							<f:fields>
-								<Input id="clrtelno" value="{VendorModel>/AccountingClerkTelephone}"/>
+								<Input id="clrtelno" value="{VendorModel>/VendorTemp/AccountingClerkTelephone}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Clerk Fax no">
 							<f:fields>
-								<Input id="clrkatfax" value="{VendorModel>/AccountingClerkFax}"/>
+								<Input id="clrkatfax" value="{VendorModel>/VendorTemp/AccountingClerkFax}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Clerk Internet ">

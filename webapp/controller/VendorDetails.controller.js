@@ -65,18 +65,19 @@ sap.ui.define([
 			var oHierarchyModel = new sap.ui.model.json.JSONModel();
 			oView.setModel(oHierarchyModel, "hierarchy");
 
-			/*	// Define the models
-			var UpdateContract = new VendorMasters();
-			this.getView().setModel(UpdateContract.getModel(), "VendorContract");
-*/
-		/*	var VendorData = new Vendor();
+
+
+	
+
+
+			/*	var VendorData = new Vendor();
 			var oVendorModel = new JSONModel(VendorData);
 			this.getView().setModel(oVendorModel, "Vendor");*/
 
-		var	VendorContract = new Vendor();
+	/*	var	VendorContract = new Vendor();
 			var VendorContractModel = new JSONModel(VendorContract);
 			this.getView().setModel(VendorContractModel, "VendorModel");
-
+*/
 			var PaymentModel = new JSONModel();
 			oView.setModel(PaymentModel, "PaymentModel");
 			var oEditModel = new JSONModel({
@@ -271,8 +272,9 @@ sap.ui.define([
 					success: function(oData) {
 						console.log(oData);
 						var item = oData.results.length;
-						oView.getModel("VendorModel").setData(oData.results[0]);
-
+				//	oView.getModel("VendorModel").setData(oData.results[0]);
+	oView.getModel("VendorModel").setProperty("/VendorTemp", oData.results[0]); // setData(oData.results);
+					
 					},
 					error: function(oError) {
 						//console.log(oError);
@@ -2601,15 +2603,14 @@ sap.ui.define([
 
 		},
 		onSaveContract: function(oEvt) {
-			
-				var	VendorContract = new Vendor();
-			var VendorContractModel = new JSONModel(VendorContract);
-			this.getView().setModel(VendorContractModel, "VendorModel");
-
+				var oVendorModel = this.getOwnerComponent().getModel("VendorModel");
+				var oTempContract = oVendorModel.getProperty("/VendorTemp");
+			var oModel = this.getView().getModel("VHeader");
+		
+			var oContract = oTempContract.getCreateRequestPayload();
+				console.log(oContract);
 			//define and bind the model
-				var oModelCreate = this.getView().getModel("VHeader");
-			var oVendorModel = oView.getModel("VendorModel");
-
+			
 	
 	//	var vendor = oVendorModel.oData.Vendor;
 	var oVendor =	oVendorModel.getData(); 
@@ -2632,25 +2633,16 @@ sap.ui.define([
 				
 				
 				
-	var oContract = VendorContract.getUpdateRequestPayload();
 			
-/*var oContract = VendorContract.getCreateRequestPayload();
-console.log(oContract);   
-	oModelCreate.create("/Vendor_crudSet", oContract, {
+	
+	oModel.create("/Vendor_crudSet", oContract, {
 
 				success: this._onCreateEntrySuccess.bind(this),
 				error: this._onCreateEntryError.bind(this)
 
 			});
-		*/
-/*	var mParameters = {
-				success: this._onCreateEntrySuccess.bind(this),
-				error: this._onCreateEntryError.bind(this)
-				,
-				merge: false
-			};
-			var sVendorCreate = "/Vendor_crudSet(Lifnra  '" + vendor + "')";
-			oModelCreate.update(sVendorCreate, oContract,  mParameters);*/
+		
+
 
 		/*	var BankAcct = oVendorModel.oData.BankAcct;
 			var BankCtry = oVendorModel.oData.BankCtry;
@@ -2766,7 +2758,7 @@ console.log(oContract);
 			console.log(itemData);
 			*/
 			
-			var mParameters = {
+/*			var mParameters = {
 				success: this._onCreateEntrySuccess.bind(this),
 				error: this._onCreateEntryError.bind(this)
 				,
@@ -2774,8 +2766,8 @@ console.log(oContract);
 			};
 			var sVendorCreate = "/Vendor_crudSet(Lifnra='" + oVendor.vendor + "')";
 		//	var sVendorCreate = "/Vendor_crudSet(Lifnra eq '" + vendor + "' )";
-			oModelCreate.update(sVendorCreate, oContract, mParameters);
-
+			oModel.update(sVendorCreate, oContract, mParameters);
+*/
 
 	
 			

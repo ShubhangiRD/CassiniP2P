@@ -14,7 +14,7 @@
 					<f:formElements>
 						<f:FormElement label="Order Currency">
 							<f:fields>
-								<Input id="idOrderCur" maxLength="5" value="{VendorModel>/PurchaseOrderCurrency}" class="InputBoxContainer" type="Text"
+								<Input id="idOrderCur" maxLength="5" value="{VendorModel>/VendorTemp/PurchaseOrderCurrency}" class="InputBoxContainer" type="Text"
 									placeholder="Select Order Currency" showValueHelp="true" valueHelpRequest="handleOrderCurrencyValue"
 									suggestionItems="{ path: 'Lookup>/OrderCurrencyList' }" suggestionItemSelected="onSuggestOrderCurrency">
 									<suggestionItems>
@@ -25,7 +25,7 @@
 						</f:FormElement>
 						<f:FormElement label="Terms of Payment">
 							<f:fields>
-								<Input maxLength="4" id="idtermsofpayment" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/TermsPaymentKey}"
+								<Input maxLength="4" id="idtermsofpayment" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/TermsPaymentKey}"
 									showValueHelp="true" valueHelpRequest="handlePaymenttermsHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggesttermsofpayment">
 									<suggestionItems>
@@ -68,7 +68,7 @@
 						</f:FormElement>
 						<f:FormElement label="Pricing date control">
 							<f:fields>
-								<Input maxLength="1" id="Pricingdatecontrol" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/PriceDetermination}"
+								<Input maxLength="1" id="Pricingdatecontrol" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/PriceDetermination}"
 									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handlePricingdatecontrol"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestPricingdatecontrol">
 									<suggestionItems>
@@ -99,7 +99,7 @@
 						</f:FormElement>
 						<f:FormElement label="Telephone">
 							<f:fields>
-								<Input maxLength="16" value="{VendorModel>/FirstTelephone}" id="Telephonepur"></Input>
+								<Input maxLength="16" value="{VendorModel>/VendorTemp/FirstTelephone}" id="Telephonepur"></Input>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Acc. With vendor ">
@@ -266,7 +266,7 @@
 					<f:formElements>
 						<f:FormElement label="Purchasing Group ">
 							<f:fields>
-								<Input id="idpurgroupp" maxLength="3" value="{VendorModel>/PurchasingGroup}" class="InputBoxContainer" type="Text"
+								<Input id="idpurgroupp" maxLength="3" value="{VendorModel>/VendorTemp/PurchasingGroup}" class="InputBoxContainer" type="Text"
 									showValueHelp="true" valueHelpRequest="handlePurchaseGroupVendor" suggestionItems="{ path: 'Lookup>/PurchaseGroupList' }"
 									suggestionItemSelected="onSuggestPurchasing">
 									<suggestionItems>

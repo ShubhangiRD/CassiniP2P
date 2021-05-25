@@ -6,7 +6,7 @@
 			<form:content>
 				<core:Title text="Office"/>
 				<!--<Label text="VendorModel" required="true"/>-->
-				<!--<Input id="idVendorModelno" value="{VendorModel>/VendorModelNumber}" change="changeVenodr" type="Text" class="searchBox"-->
+				<!--<Input id="idVendorModelno" value="{VendorModel>/VendorTemp/VendorModelNumber}" change="changeVenodr" type="Text" class="searchBox"-->
 				<!--	placeholder="VendorModel Number"></Input>-->
 				<Label text="Title" required="true"/>
 				<Select id="vtitle1" selectedKey="vtitle" class="sapclassinputbox" >
@@ -24,14 +24,14 @@
 						<l:GridData span="XL2 L3 M4 S4"/>
 					</layoutData>
 				</Select>
-				<Input value="{VendorModel>/Name}" id="idFsname" maxLength="35" placeholder="Firstname"></Input>
+				<Input value="{VendorModel>/VendorTemp/Name}" id="idFsname" maxLength="35" placeholder="Firstname"></Input>
 				<Label text="LastName" required="true"/>
-				<Input maxLength="35" value="{VendorModel>/Name2}" id="idLname" placeholder="LastName"/>
+				<Input maxLength="35" value="{VendorModel>/VendorTemp/Name2}" id="idLname" placeholder="LastName"/>
 		<Label text="Search Term" required="true"/>
 				<Input maxLength="25" id="idSearchTerm" placeholder="Search Term" />
 	<Label text="Country Code" required="true"/>
 				<Input maxLength="3" id="idCountryCode" textFormatMode="KeyValue" placeholder="Country Code" showSuggestion="true"
-					value="{VendorModel>/Country}" showValueHelp="true" valueHelpRequest="handleValueHelpCountryCode"
+					value="{VendorModel>/VendorTemp/Country}" showValueHelp="true" valueHelpRequest="handleValueHelpCountryCode"
 					suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }" suggestionItemSelected="onSuggest">
 					<suggestionItems>
 						<core:ListItem key="{Lookup>Land1}" text="{Lookup>Landx}" additionalText="{Lookup>Land1}"/>
@@ -44,19 +44,19 @@
 						<core:Item key="{hierarchy>Bezei}" text="{hierarchy>Bland}"/>
 					</suggestionItems>
 				</Input><Label text="POBoxPostalCode"/>
-				<Input maxLength="35" value="{VendorModel>/POBoxPostalCode}" id="idPOBoxPostalCode" >
+				<Input maxLength="35" value="{VendorModel>/VendorTemp/POBoxPostalCode}" id="idPOBoxPostalCode" >
 				
 				</Input>
 				<core:Title text=" "/>
 				<Label text="Street/House no"/>
-				<Input maxLength="35" value="{VendorModel>/Street}" id="idStreet" placeholder=" Your Street">
+				<Input maxLength="35" value="{VendorModel>/VendorTemp/Street}" id="idStreet" placeholder=" Your Street">
 				
 				</Input>
-		<!--		<Input maxLength="10" id="idAddno" value="{VendorModel>/AddressNum}" type="Text" placeholder="Address Number"></Input>
+		<!--		<Input maxLength="10" id="idAddno" value="{VendorModel>/VendorTemp/AddressNum}" type="Text" placeholder="Address Number"></Input>
 			-->	<Label text="City"/>
-				<Input maxLength="35" value="{VendorModel>/City}" id="idCity" class="InputBoxContainer" placeholder=" City"/>
+				<Input maxLength="35" value="{VendorModel>/VendorTemp/City}" id="idCity" class="InputBoxContainer" placeholder=" City"/>
 				<Label text="Region "/>
-				<Input id="idRegion" maxLength="3" value="{VendorModel>/Region}" placeholder="Select Region" type="Text"
+				<Input id="idRegion" maxLength="3" value="{VendorModel>/VendorTemp/Region}" placeholder="Select Region" type="Text"
 					showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelpCust" suggestionItems="{ path: 'hierarchy>/results'}"
 					suggestionItemSelected="suggestionItemRegion">
 					<suggestionItems>
@@ -66,11 +66,11 @@
 						<l:GridData span="XL2 L3 M4 S4"/>
 					</layoutData>
 				</Input>
-				<Input maxLength="11" value="{VendorModel>/District}" class="InputBoxContainer" id="idDistin" placeholder="Distinct"></Input>
+				<Input maxLength="11" value="{VendorModel>/VendorTemp/District}" class="InputBoxContainer" id="idDistin" placeholder="Distinct"></Input>
 				<Label text="Pox Box" />
-				<Input maxLength="10" value="{VendorModel>/PoBox}" class="InputBoxContainer" id="idPostbox" placeholder="Post Box"></Input>
+				<Input maxLength="10" value="{VendorModel>/VendorTemp/PoBox}" class="InputBoxContainer" id="idPostbox" placeholder="Post Box"></Input>
 				<Label text="Postal Code"/>
-				<Input maxLength="10" value="{VendorModel>/PostlCode}" class="InputBoxContainer" change="changePostalCode" id="idPostcode"
+				<Input maxLength="10" value="{VendorModel>/VendorTemp/PostlCode}" class="InputBoxContainer" change="changePostalCode" id="idPostcode"
 					placeholder="Postal Code"/>
 			</form:content>
 		</form:SimpleForm>
@@ -80,7 +80,7 @@
 			<form:content>
 				<core:Title text=" "/>
 				<Label text="Language"/>
-					<Input id="idlanguage"  value="{VendorModel>/Langu}" placeholder="Language" type="Text"
+					<Input id="idlanguage"  value="{VendorModel>/VendorTemp/Langu}" placeholder="Language" type="Text"
 					showSuggestion="true" showValueHelp="true" valueHelpRequest="handleLanguage" suggestionItems="{ path: 'Lookup>/LanguageList'}"
 					suggestionItemSelected="suggestionItemLanguage">
 					<suggestionItems>
@@ -90,20 +90,20 @@
 				</Input>
 		
 				<Label text="Telphone"/>
-				<Input maxLength="16" value="{VendorModel>/Telephone}" id="idTel" class="InputBoxContainer"/>
+				<Input maxLength="16" value="{VendorModel>/VendorTemp/Telephone}" id="idTel" class="InputBoxContainer"/>
 				<Label text="Fax"/>
-				<Input maxLength="31" id="idfax" class="InputBoxContainer" value="{VendorModel>/FaxNumber}"/>
+				<Input maxLength="31" id="idfax" class="InputBoxContainer" value="{VendorModel>/VendorTemp/FaxNumber}"/>
 				<Label text="Email"/>
-				<Input id="idEmails" class="InputBoxContainer" value="{VendorModel>/InternetAddrs}"/>
+				<Input id="idEmails" class="InputBoxContainer" value="{VendorModel>/VendorTemp/InternetAddrs}"/>
 				<core:Title text=" "/>
 				<Label text="Data Line"/>
 				<Input maxLength="14" id="idDataline"  class="InputBoxContainer" placeholder="Enter Data Line"/>
 				<Label text="Tel Ext"/>
-				<Input id="TelExtension" class="InputBoxContainer" value="{VendorModel>/TelexNumber}" placeholder="Enter Extension"/>
+				<Input id="TelExtension" class="InputBoxContainer" value="{VendorModel>/VendorTemp/TelexNumber}" placeholder="Enter Extension"/>
 				<Label text="Fax Ext"/>
-				<Input id="FaxExtension" class="InputBoxContainer" value="{VendorModel>/TelexNumber}" placeholder="Enter Extension"/>
+				<Input id="FaxExtension" class="InputBoxContainer" value="{VendorModel>/VendorTemp/TelexNumber}" placeholder="Enter Extension"/>
 				<Label text="Tele Box"/>
-				<Input id="TeleboxNumber" class="InputBoxContainer" value="{VendorModel>/TeleboxNumber}" placeholder="Enter Extension"/>
+				<Input id="TeleboxNumber" class="InputBoxContainer" value="{VendorModel>/VendorTemp/TeleboxNumber}" placeholder="Enter Extension"/>
 			</form:content>
 		</form:SimpleForm>
 	</VBox>

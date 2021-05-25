@@ -8,7 +8,7 @@
 						<form:content>
 							<core:Title text="Initial"/>
 						<Label text="Vendor" required="true"/>
-						<Input  id="idVendor" value="{VendorModel>/VendorNo}"   textFormatMode="KeyValue" placeholder="Vendor Number" showSuggestion="true"
+						<Input  id="idVendor" value="{VendorModel>/VendorTemp/VendorNo}"   textFormatMode="KeyValue" placeholder="Vendor Number" showSuggestion="true"
 							showValueHelp="true" valueHelpRequest="handleVendorValueHelpBox" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 							suggestionItemSelected="onSuggest" width="70%">
 							<suggestionItems>
@@ -19,14 +19,14 @@
 							
 							<!--<Input  value="{Vendor>/FirstName}" id="idFname" placeholder="Name ..."></Input>
 							--><Label text="Purchase Org" required="true"/>
-							<Input  id="idPurOrg"  value="{VendorModel>/PurchasingOrg}" textFormatMode="KeyValue" placeholder=" Purchase Org" showSuggestion="true" showValueHelp="true"
+							<Input  id="idPurOrg"  value="{VendorModel>/VendorTemp/PurchasingOrg}" textFormatMode="KeyValue" placeholder=" Purchase Org" showSuggestion="true" showValueHelp="true"
 								valueHelpRequest="handlePurchaseOrgVendor" width="70%" suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
 								</suggestionItems>
 							</Input>
 							<Label text="Company Code" required="true"/>
-							<Input id="idCompCode"   value="{VendorModel>/CompanyCode}" textFormatMode="KeyValue" placeholder="Company Code" showSuggestion="true" showValueHelp="true"
+							<Input id="idCompCode"   value="{VendorModel>/VendorTemp/CompanyCode}" textFormatMode="KeyValue" placeholder="Company Code" showSuggestion="true" showValueHelp="true"
 							 	valueHelpRequest="handleCompanyCodeVendor" width="70%" suggestionItems="{ path: 'Lookup>/CountryCode' }" suggestionItemSelected="onSuggest">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
@@ -35,7 +35,7 @@
 							
 								<Label text="Account Group" required="true"/>
 							<Input id="idAccGp" textFormatMode="KeyValue" placeholder="Account Group ..." showSuggestion="true" showValueHelp="true"
-									value="{VendorModel>/VendorAccountGroup}"		valueHelpRequest="handleAccountCodeVendor" width="70%" suggestionItems="{ path: 'Lookup>/AccountGroup' }" suggestionItemSelected="onSuggest">
+									value="{VendorModel>/VendorTemp/VendorAccountGroup}"		valueHelpRequest="handleAccountCodeVendor" width="70%" suggestionItems="{ path: 'Lookup>/AccountGroup' }" suggestionItemSelected="onSuggest">
 											<suggestionItems>
 												<core:ListItem key="{Lookup>Ktokk}" text="{Lookup>Ktokk}" additionalText="{Lookup>Ktokk}"/>
 											</suggestionItems>

@@ -68,22 +68,22 @@
 						</f:FormElement>
 						<f:FormElement label="Tax Number 3">
 							<f:fields>
-								<Input  value="{VendorModel>/TaxNumber3}" maxLength="18"/>
+								<Input  value="{VendorModel>/VendorTemp/TaxNumber3}" maxLength="18"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Tax Number 4 ">
 							<f:fields>
-								<Input  value="{VendorModel>/TaxNumber4}" maxLength="18"/>
+								<Input  value="{VendorModel>/VendorTemp/TaxNumber4}" maxLength="18"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Tax Number ">
 							<f:fields>
-								<Input value="{VendorModel>/TaxAuthority}" maxLength="18"/>
+								<Input value="{VendorModel>/VendorTemp/TaxAuthority}" maxLength="18"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Tax Jur.">
 							<f:fields>
-								<Input maxLength="15" id="idTaxJur" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/TaxJurisdiction}"
+								<Input maxLength="15" id="idTaxJur" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/TaxJurisdiction}"
 									showValueHelp="true" valueHelpRequest="handleMaterialValueHelp" suggestionItems=" "
 									suggestionItemSelected="onSuggest">
 									<suggestionItems>
@@ -140,7 +140,7 @@
 					<f:formElements>
 						<f:FormElement label="Tax no type ">
 							<f:fields>
-								<Input maxLength="2" id="Taxnotype" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/TaxNumberType}"
+								<Input maxLength="2" id="Taxnotype" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/TaxNumberType}"
 									showValueHelp="true" valueHelpRequest="handleTaxnotype" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestTaxnotype">
 									<suggestionItems>
@@ -151,7 +151,7 @@
 						</f:FormElement>
 						<f:FormElement label="Tax type">
 							<f:fields>
-								<Input maxLength="2" id="Taxtype" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Taxtype}"
+								<Input maxLength="2" id="Taxtype" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Taxtype}"
 									showValueHelp="true" valueHelpRequest="handleTaxtype" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestTaxtype">
 									<suggestionItems>
@@ -213,7 +213,7 @@
 						</f:FormElement>
 						<f:FormElement label="Industry ">
 							<f:fields>
-								<Input maxLength="4" id="Industry1" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Industrykey}"
+								<Input maxLength="4" id="Industry1" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Industrykey}"
 									showValueHelp="true" valueHelpRequest="handleValueHelpIndustry" suggestionItems="{ path: 'Lookup>/IndustrySet' }"
 									suggestionItemSelected="onSuggestIndustry">
 									<suggestionItems>
@@ -224,12 +224,12 @@
 						</f:FormElement>
 						<f:FormElement label="SCAC ">
 							<f:fields>
-								<Input id="idSCAC" placeholder="Standard Code" maxLength="4" value="{VendorModel>/StandardCode}"/>
+								<Input id="idSCAC" placeholder="Standard Code" maxLength="4" value="{VendorModel>/VendorTemp/StandardCode}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Transport Zone">
 							<f:fields>
-								<Input id="idTransportzone"  value="{VendorModel>/TransportationZone}"  showSuggestion="true"
+								<Input id="idTransportzone"  value="{VendorModel>/VendorTemp/TransportationZone}"  showSuggestion="true"
 									showValueHelp="true" valueHelpRequest="handleTransportZone" suggestionItems="{ path: 'Lookup>/TransportZoneList' }"
 									suggestionItemSelected="onSuggestidTransportzone">
 									<suggestionItems>
@@ -245,7 +245,7 @@
 						</f:FormElement>
 						<f:FormElement label="Acutal QM sys">
 							<f:fields>
-								<Input maxLength="4" id="idAcutalQMsys" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorQMSystem}"
+								<Input maxLength="4" id="idAcutalQMsys" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/VendorQMSystem}"
 									showValueHelp="true" valueHelpRequest="handleidAcutalQMsys" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestidAcutalQMsys">
 									<suggestionItems>
@@ -256,7 +256,7 @@
 						</f:FormElement>
 						<f:FormElement label="External Maufac">
 							<f:fields>
-								<Input id="idExternal" value="{VendorModel>/ExternalManufacturer}"  maxLength="10"/>
+								<Input id="idExternal" value="{VendorModel>/VendorTemp/ExternalManufacturer}"  maxLength="10"/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
