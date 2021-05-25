@@ -9,10 +9,8 @@ sap.ui.define([
 		"com/cassiniProcureToPay/model/Vendor",
 
 	"com/cassiniProcureToPay/model/VendorMaster",
-		"com/cassiniProcureToPay/model/Contract"
-
-
-], function(UIComponent, Device, models, JSONModel, Application, IconPool,GetPurchaseVendor,Vendor,VendorMaster,Contract) {
+		
+], function(UIComponent, Device, models, JSONModel, Application, IconPool,GetPurchaseVendor,Vendor,VendorMaster) {
 	"use strict";
 
 	return UIComponent.extend("com.cassiniProcureToPay.Component", {

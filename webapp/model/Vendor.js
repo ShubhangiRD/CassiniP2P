@@ -1,13 +1,12 @@
 sap.ui.define([
 	"sap/ui/base/Object",
 	"sap/ui/model/json/JSONModel"
+
 ], function(Object, JSONModel) {
 	"use strict";
 	return Object.extend("com.cassiniProcureToPay.model.Vendor", {
 		constructor: function(data) {
-		
-		
-		
+
 			this.BankAcct = (data) ? data.BankAcct : "";
 			this.BankCtry = (data) ? data.BankCtry : "";
 			this.BankKey = (data) ? data.BankKey : "";
@@ -16,7 +15,7 @@ sap.ui.define([
 			this.CompCode = (data) ? data.CompCode : "";
 			this.CompanyCode = (data) ? data.CompanyCode : "";
 			this.Country = (data) ? data.Country : "";
-			this.Countryiso = (data) ? data.Countryiso : "";
+		
 			this.CtrlKey = (data) ? data.CtrlKey : "";
 			this.District = (data) ? data.District : "";
 			this.Formofaddr = (data) ? data.Formofaddr : "";
@@ -43,13 +42,53 @@ sap.ui.define([
 			this.Type = (data) ? data.Type : "";
 			this.Vendor = (data) ? data.Vendor : "";
 			this.Vendorno = (data) ? data.Vendorno : "";
+
+			this.ReconciliationAccount = (data) ? data.ReconciliationAccount : "";
+			this.Title = (data) ? data.Title : "";
+			this.ReferenceSpecifications = (data) ? data.ReferenceSpecifications : "";
+			this.Industrykey = (data) ? data.Industrykey : "";
+			this.PartnerBankType = (data) ? data.BvtyPartnerBankTypepd : "";
+			this.PurchasingGroup = (data) ? data.PurchasingGroup : "";
+			this.PurchasingOrg = (data) ? data.PurchasingOrg : "";
+			this.ExternalManufacturer = (data) ? data.ExternalManufacturer : "";
+			this.PlanningGroup = (data) ? data.PlanningGroup : "";
+			this.Taxtype = (data) ? data.Taxtype : "";
+			this.ReleaseApprovalGroup = (data) ? data.ReleaseApprovalGroup : "";
+			this.InternetAddrs = (data) ? data.InternetAddrs : "";
+			this.AccountHolderName = (data) ? data.AccountHolderName : "";
+			this.VendorAccountGroup = (data) ? data.VendorAccountGroup : "";
+			this.CountryKey = (data) ? data.CountryKey : "";
+			this.TransportationZone = (data) ? data.TransportationZone : "";
+			this.PriceDetermination = (data) ? data.PriceDetermination : "";
+			this.MiddleName = (data) ? data.MiddleName : "";
+
+			this.ExtraName = (data) ? data.ExtraName : "";
+
+			this.POBoxPostalCode = (data) ? data.POBoxPostalCode : "";
+			this.VendorQMSystem = (data) ? data.VendorQMSystem : "";
+			this.StandardCode = (data) ? data.StandardCode : "";
+			this.Sortfield = (data) ? data.Sortfield : "";
+			this.TaxNumber3 = (data) ? data.TaxNumber3 : "";
+			this.TaxNumber4 = (data) ? data.TaxNumber4 : "";
+			this.TaxNumberType = (data) ? data.TaxNumberType : "";
+			this.TaxAuthority = (data) ? data.TaxAuthority : "";
+		
+			this.TeleboxNumber = (data) ? data.TeleboxNumber : "";
+			this.FaxNumber = (data) ? data.FaxNumber : "";
+			this.TelexNumber = (data) ? data.Telx1a : "";
+			this.AccountingClerkTelephone = (data) ? data.AccountingClerkTelephone : "";
+			this.AccountingClerkFax = (data) ? data.AccountingClerkFax : "";
+			this.TaxJurisdiction = (data) ? data.TaxJurisdiction : "";
+			this.PurchaseOrderCurrency = (data) ? data.PurchaseOrderCurrency : "";
+			this.TermsPaymentKey = (data) ? data.TermsPaymentKey : "";
+
+			//	: "";setQuarterDates(oData);
 			this.model = new JSONModel();
 			this.model.setData(this);
-		},
-		isBlank: function() {
-			return null;
+
 		},
 		setObjectData: function(data) {
+		
 			this.BankAcct = (data) ? data.BankAcct : "";
 			this.BankCtry = (data) ? data.BankCtry : "";
 			this.BankKey = (data) ? data.BankKey : "";
@@ -58,7 +97,7 @@ sap.ui.define([
 			this.CompCode = (data) ? data.CompCode : "";
 			this.CompanyCode = (data) ? data.CompanyCode : "";
 			this.Country = (data) ? data.Country : "";
-			this.Countryiso = (data) ? data.Countryiso : "";
+		
 			this.CtrlKey = (data) ? data.CtrlKey : "";
 			this.District = (data) ? data.District : "";
 			this.Formofaddr = (data) ? data.Formofaddr : "";
@@ -85,105 +124,169 @@ sap.ui.define([
 			this.Type = (data) ? data.Type : "";
 			this.Vendor = (data) ? data.Vendor : "";
 			this.Vendorno = (data) ? data.Vendorno : "";
-		},
 
-		getVendorRequestPayload: function() {
+			this.ReconciliationAccount = (data) ? data.ReconciliationAccount : "";
+			this.Title = (data) ? data.Title : "";
+			this.ReferenceSpecifications = (data) ? data.ReferenceSpecifications : "";
+			this.Industrykey = (data) ? data.Industrykey : "";
+			this.PartnerBankType = (data) ? data.BvtyPartnerBankTypepd : "";
+			this.PurchasingGroup = (data) ? data.PurchasingGroup : "";
+			this.PurchasingOrg = (data) ? data.PurchasingOrg : "";
+			this.ExternalManufacturer = (data) ? data.ExternalManufacturer : "";
+			this.PlanningGroup = (data) ? data.PlanningGroup : "";
+			this.Taxtype = (data) ? data.Taxtype : "";
+			this.ReleaseApprovalGroup = (data) ? data.ReleaseApprovalGroup : "";
+			this.InternetAddrs = (data) ? data.InternetAddrs : "";
+			this.AccountHolderName = (data) ? data.AccountHolderName : "";
+			this.VendorAccountGroup = (data) ? data.VendorAccountGroup : "";
+			this.CountryKey = (data) ? data.CountryKey : "";
+			this.TransportationZone = (data) ? data.TransportationZone : "";
+			this.PriceDetermination = (data) ? data.PriceDetermination : "";
+			this.MiddleName = (data) ? data.MiddleName : "";
+			this.ExtraName = (data) ? data.ExtraName : "";
+			this.POBoxPostalCode = (data) ? data.POBoxPostalCode : "";
+			this.VendorQMSystem = (data) ? data.VendorQMSystem : "";
+			this.StandardCode = (data) ? data.StandardCode : "";
+			this.Sortfield = (data) ? data.Sortfield : "";
+			this.TaxNumber3 = (data) ? data.TaxNumber3 : "";
+			this.TaxNumber4 = (data) ? data.TaxNumber4 : "";
+			this.TaxNumberType = (data) ? data.TaxNumberType : "";
+			this.TaxAuthority = (data) ? data.TaxAuthority : "";
+	
+			this.TeleboxNumber = (data) ? data.TeleboxNumber : "";
+			this.FaxNumber = (data) ? data.FaxNumber : "";
+			this.TelexNumber = (data) ? data.Telx1a : "";
+			this.AccountingClerkTelephone = (data) ? data.AccountingClerkTelephone : "";
+			this.AccountingClerkFax = (data) ? data.AccountingClerkFax : "";
+			this.TaxJurisdiction = (data) ? data.TaxJurisdiction : "";
+			this.PurchaseOrderCurrency = (data) ? data.PurchaseOrderCurrency : "";
+			this.TermsPaymentKey = (data) ? data.TermsPaymentKey : "";
+		},
+		getCreateRequestPayload: function() {
 			return {
 
-				BankAcct: this.BankAcct,
-				BankCtry: this.BankCtry,
-				BankKey: this.BankKey,
-				BankRef: this.BankRef,
-				City: this.City,
-				CompCode: this.CompCode,
-				CompanyCode: this.CompanyCode,
-				Country: this.Country,
-				Countryiso: this.Countryiso,
-				CtrlKey: this.CtrlKey,
-				District: this.District,
-				Formofaddr: this.Formofaddr,
-				Id: this.Id,
-				Langu: this.Langu,
-				LanguIso: this.LanguIso,
-				Message: this.Message,
-				MessageV1: this.MessageV1,
-				MessageV2: this.MessageV2,
-				MessageV3: this.MessageV3,
-				MessageV4: this.MessageV4,
-
-				Name2: this.Name2,
-				Number: this.Number,
-				PartnerBk: this.PartnerBk,
-				PaymentMethods: this.PaymentMethods,
-				PoBox: this.PoBox,
-				PobxCty: this.PobxCty,
-				PostlCode: this.PostlCode,
-				Region: this.Region,
-				Street: this.Street,
-				Telephone: this.Telephone,
-				Telephone2: this.Telephone2,
-				Type: this.Type,
-				Vendor: this.Vendor,
-				Vendorno: this.Vendorno
+				Akontb: this.ReconciliationAccount,
+				Anreda: this.Title,
+				Bankld: this.BankKey,
+				Banknd: this.BankAcct,
+				Banksd: this.BankCtry,
+				Bkontd: this.BankControlKey,
+				Bkrefd: this.BankRef,
+				Brscha: this.Industrykey,
+				Bukrsb: this.CompanyCode,
+				Bvtypd: this.PartnerBankType,
+				Ekgrpc: this.PurchasingGroup,
+				Ekorgc: this.PurchasingOrg,
+				Emnfra: this.ExternalManufacturer,
+				Fdgrvb: this.PlanningGroup,
+				Fitypa: this.Taxtype,
+				Frgrpb: this.ReleaseApprovalGroup,
+				Intadb: this.InternetAddrs,
+				Koinhd: this.AccountHolderName,
+				Ktokka: this.VendorAccountGroup,
+				Land1a: this.Country,
+				Lzonea: this.TransportationZone,
+				Meprfc: this.PriceDetermination,
+				Name1a: this.Name,
+				Name2a: this.Name2,
+				Name3a: this.Name,
+				Name4a: this.ExtraName,
+				Ort01a: this.City,
+				Ort02a: this.District,
+				Pfacha: this.PoBox,
+				Pforta: this.PobxCty,
+				Pstl2a: this.POBoxPostalCode,
+				Pstlza: this.PostlCode,
+				Qssysa: this.VendorQMSystem,
+				Regioa: this.Region,
+				Scacda: this.StandardCode,
+				Sortla: this.Sortfield,
+				Sprasa: this.Langu,
+				Stcd3a: this.TaxNumber3,
+				Stcd4a: this.TaxNumber4,
+				Stcdta: this.TaxNumberType,
+				Stenra: this.TaxAuthority,
+				Strasa: this.Street,
+				Telbxa: this.TeleboxNumber,
+				Telf1a: this.Telephone,
+				Telf2a: this.Telephone2,
+				Teltxa: this.FaxNumber,
+				Telx1a: this.TelexNumber,
+				Tlfnsb: this.AccountingClerkTelephone,
+				Tlfxsb: this.AccountingClerkFax,
+				Txjcda: this.TaxJurisdiction,
+				Waersc: this.PurchaseOrderCurrency,
+				Ztermb: this.TermsPaymentKey,
+				Zwelsb: this.PaymentMethods
 
 			};
 		},
-		/*	getRequestPayloadVendor: function() {
-				Akontb: this.Reconciliation Account in General Ledger
-				Anreda: this.
-				Bankld: this.
-				Banknd: this.
-				Banksd: this.
-				Bkontd: this.
-				Bkrefd: this.
-				Brscha: this.
-				Bukrsb: this.
-				Bvtypd: this.
-				Ekgrpc: this.
-				Ekorgc: this.
-				Emnfra: this.
-				Fdgrvb: this.
-				Fitypa: this.
-				Frgrpb: this.
-				Intadb: this.
-				Koinhd: this.
-				Ktokka: this.
-				Land1a: this.
-				Lzonea: this.
-				Meprfc: this.
-				Name1a: this.
-				Name2a: this.
-				Name3a: this.
-				Name4a: this.
-				Ort01a: this.
-				Ort02a: this.
-				Pfacha: this.
-				Pforta: this.
-				Pstl2a: this.
-				Pstlza: this.
-				Qssysa: this.
-				Regioa: this.
-				Scacda: this.
-				Sortla: this.
-				Sprasa: this.
-				Stcd3a: this.
-				Stcd4a: this.
-				Stcdta: this.
-				Stenra: this.
-				Strasa: this.
-				Telbxa: this.
-				Telf1a: this.
-				Telf2a: this.
-				Teltxa: this.
-				Telx1a: this.
-				Tlfnsb: this.
-				Tlfxsb: this.
-				Txjcda: this.
-				Waersc: this.
-				Ztermb: this.
-				Zwelsb: this.
-			},
-		*/
+	getUpdateRequestPayload: function() {
+			return {
+	            Akontb: this.ReconciliationAccount,
+				Anreda: this.Title,
+				Bankld: this.BankKey,
+				Banknd: this.BankAcct,
+				Banksd: this.BankCtry,
+				Bkontd: this.BankControlKey,
+				Bkrefd: this.BankRef,
+				Brscha: this.Industrykey,
+				Bukrsb: this.CompanyCode,
+				Bvtypd: this.PartnerBankType,
+				Ekgrpc: this.PurchasingGroup,
+				Ekorgc: this.PurchasingOrg,
+				Emnfra: this.ExternalManufacturer,
+				Fdgrvb: this.PlanningGroup,
+				Fitypa: this.Taxtype,
+				Frgrpb: this.ReleaseApprovalGroup,
+				Intadb: this.InternetAddrs,
+				Koinhd: this.AccountHolderName,
+				Ktokka: this.VendorAccountGroup,
+				Land1a: this.Country,
+				Lifnra: this.Vendor,
+				Lzonea: this.TransportationZone,
+				Meprfc: this.PriceDetermination,
+				Name1a: this.Name,
+				Name2a: this.Name2,
+				Name3a: this.Name,
+				Name4a: this.ExtraName,
+				Ort01a: this.City,
+				Ort02a: this.District,
+				Pfacha: this.PoBox,
+				Pforta: this.PobxCty,
+				Pstl2a: this.POBoxPostalCode,
+				Pstlza: this.PostlCode,
+				Qssysa: this.VendorQMSystem,
+				Regioa: this.Region,
+				Scacda: this.StandardCode,
+				Sortla: this.Sortfield,
+				Sprasa: this.Langu,
+				Stcd3a: this.TaxNumber3,
+				Stcd4a: this.TaxNumber4,
+				Stcdta: this.TaxNumberType,
+				Stenra: this.TaxAuthority,
+				Strasa: this.Street,
+				Telbxa: this.TeleboxNumber,
+				Telf1a: this.Telephone,
+				Telf2a: this.Telephone2,
+				Teltxa: this.FaxNumber,
+				Telx1a: this.TelexNumber,
+				Tlfnsb: this.AccountingClerkTelephone,
+				Tlfxsb: this.AccountingClerkFax,
+				Txjcda: this.TaxJurisdiction,
+				Waersc: this.PurchaseOrderCurrency,
+				Ztermb: this.TermsPaymentKey,
+				Zwelsb: this.PaymentMethods
+				
+			
+			
+			
+			};
+		},
+
+		isBlank: function() {
+			return null;
+		},
 		getModel: function() {
 			return this.model;
 		}

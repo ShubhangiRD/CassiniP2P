@@ -11,15 +11,14 @@ sap.ui.define([
 	"com/cassiniProcureToPay/model/Vendor",
 
 	"sap/ui/core/routing/History",
-	"sap/ui/core/BusyIndicator",
-	"com/cassiniProcureToPay/model/Contract"
+	"sap/ui/core/BusyIndicator"
 
 ], function(Controller, Filter, JSONModel, MessageBox, FilterOperator, Fragment, displayVendor, MessageToast, Vendor,
 	History,
-	BusyIndicator, Contract) {
+	BusyIndicator) {
 	"use strict";
 	var oView, oComponent;
-	var VendorContract;
+
 	return Controller.extend("com.cassiniProcureToPay.controller.VendorDetails", {
 
 		/**
@@ -70,11 +69,11 @@ sap.ui.define([
 			var UpdateContract = new VendorMasters();
 			this.getView().setModel(UpdateContract.getModel(), "VendorContract");
 */
-			var VendorData = new Vendor();
+		/*	var VendorData = new Vendor();
 			var oVendorModel = new JSONModel(VendorData);
-			this.getView().setModel(oVendorModel, "Vendor");
+			this.getView().setModel(oVendorModel, "Vendor");*/
 
-			VendorContract = new Contract();
+		var	VendorContract = new Vendor();
 			var VendorContractModel = new JSONModel(VendorContract);
 			this.getView().setModel(VendorContractModel, "VendorModel");
 
@@ -2602,12 +2601,19 @@ sap.ui.define([
 
 		},
 		onSaveContract: function(oEvt) {
+			
+				var	VendorContract = new Vendor();
+			var VendorContractModel = new JSONModel(VendorContract);
+			this.getView().setModel(VendorContractModel, "VendorModel");
+
 			//define and bind the model
 				var oModelCreate = this.getView().getModel("VHeader");
 			var oVendorModel = oView.getModel("VendorModel");
 
 	
-		var vendor = oVendorModel.oData.Vendor;
+	//	var vendor = oVendorModel.oData.Vendor;
+	var oVendor =	oVendorModel.getData(); 
+		
 		/*	var zero1 = "";
 				//	var no;
 
@@ -2626,7 +2632,7 @@ sap.ui.define([
 				
 				
 				
-//	var oContract = VendorContract.getUpdateRequestPayload();
+	var oContract = VendorContract.getUpdateRequestPayload();
 			
 /*var oContract = VendorContract.getCreateRequestPayload();
 console.log(oContract);   
@@ -2646,7 +2652,7 @@ console.log(oContract);
 			var sVendorCreate = "/Vendor_crudSet(Lifnra  '" + vendor + "')";
 			oModelCreate.update(sVendorCreate, oContract,  mParameters);*/
 
-			var BankAcct = oVendorModel.oData.BankAcct;
+		/*	var BankAcct = oVendorModel.oData.BankAcct;
 			var BankCtry = oVendorModel.oData.BankCtry;
 			var BankKey = oVendorModel.oData.BankKey;
 			var City = oVendorModel.oData.City;
@@ -2758,7 +2764,7 @@ console.log(oContract);
 				Zwelsb: PaymentMethods
 			});
 			console.log(itemData);
-			
+			*/
 			
 			var mParameters = {
 				success: this._onCreateEntrySuccess.bind(this),
@@ -2766,9 +2772,9 @@ console.log(oContract);
 				,
 				merge: false
 			};
-			var sVendorCreate = "/Vendor_crudSet(Lifnra='" + vendor + "')";
+			var sVendorCreate = "/Vendor_crudSet(Lifnra='" + oVendor.vendor + "')";
 		//	var sVendorCreate = "/Vendor_crudSet(Lifnra eq '" + vendor + "' )";
-			oModelCreate.update(sVendorCreate, itemData, mParameters);
+			oModelCreate.update(sVendorCreate, oContract, mParameters);
 
 
 	
