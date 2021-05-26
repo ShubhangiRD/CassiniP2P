@@ -77,15 +77,13 @@ sap.ui.define([
 			var oPurchaseModel = new JSONModel(oPurchaseData);
 			this.setModel(oPurchaseModel, "PurchaseModel");
 
-			var oVendorData =	{
-			VendorTemp: new Vendor() 
-			
-		};
-	
-			var VendorModel = new JSONModel(oVendorData);
-				this.setModel(VendorModel, "VendorModel");
+			var oVendorData = {
+				VendorTemp: new Vendor()
 
-		
+			};
+
+			var VendorModel = new JSONModel(oVendorData);
+			this.setModel(VendorModel, "VendorModel");
 
 			/*			this.loadIconLibraries();
 						Application.getInstance().Component = this;

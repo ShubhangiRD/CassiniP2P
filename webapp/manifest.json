@@ -172,7 +172,15 @@
 				"name": "PurchaseItemDetails",
 				"pattern": "PurchaseItemDetails/{PoNumber}",
 				"target": "PurchaseItemDetails"
-			}, {
+			},{
+				"name": "POITemDetails",
+				"pattern": "POITemDetails/{PoNo}",
+				"target": "POITemDetails"
+			},
+			
+			
+			
+			{
 				"pattern": "CreateContractVendor",
 				"name": "CreateContractVendor",
 				"target": ["CreateContractVendor"]
@@ -336,6 +344,11 @@
 				"pattern": "POForm-screen",
 				"name": "POForm",
 				"target": "POForm"
+			},
+			{
+				"pattern": "PODetails",
+				"name": "PODetails",
+				"target": "PODetails"
 			}],
 			"targets": {
 				"LoginPage": {
@@ -492,6 +505,12 @@
 					"clearControlAggregation": false,
 					"viewName": "PurchaseItemDetails"
 				},
+					"POITemDetails": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "POITemDetails"
+				},
 				"AdminPanel": {
 					"viewType": "XML",
 					"viewName": "AdminPanel"
@@ -499,6 +518,10 @@
 				"POForm": {
 					"viewId": "POForm",
 					"viewName": "POForm"
+				},
+					"PODetails": {
+					"viewType": "XML",
+					"viewName": "PODetails"
 				}
 
 			}

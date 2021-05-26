@@ -11,7 +11,7 @@
 					
 						<f:FormElement label="Customer">
 							<f:fields>
-								<Input maxLength="10" id="idCustomer" textFormatMode="KeyValue" placeholder="Customer" showSuggestion="true"
+								<Input maxLength="10" id="idCustomer" editable="{EditModel>/isEditable}"  textFormatMode="KeyValue" placeholder="Customer" showSuggestion="true"
 									 showValueHelp="true" valueHelpRequest="handleCustomer"
 									suggestionItems="{ path: 'Lookup>/CustomerList' }" suggestionItemSelected="onSuggestCustomer">
 									<suggestionItems>
@@ -23,7 +23,7 @@
 						<f:FormElement label="Trading Partner">
 							<f:fields>
 						
-								<Input maxLength="6" id="idTrading" textFormatMode="KeyValue" placeholder="Trading" showSuggestion="true"
+								<Input maxLength="6" id="idTrading" editable="{EditModel>/isEditable}" textFormatMode="KeyValue" placeholder="Trading" showSuggestion="true"
 									 showValueHelp="true" valueHelpRequest="handleTradingPartners"
 									suggestionItems="{ path: 'Lookup>/CountryCode' }" suggestionItemSelected="onSuggestTrading">
 									<suggestionItems>
@@ -38,12 +38,12 @@
 					<f:formElements>
 						<f:FormElement label="Authorization">
 							<f:fields>
-								<Input  maxLength="4"/>
+								<Input  maxLength="4" editable="{EditModel>/isEditable}" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Courporate Group">
 							<f:fields>
-								<Input  maxLength="10" class="sapUiSmallMarginTop"/>
+								<Input  maxLength="10" editable="{EditModel>/isEditable}" class="sapUiSmallMarginTop"/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
@@ -63,27 +63,27 @@
 					<f:formElements>
 						<f:FormElement label="Tax Number 1">
 							<f:fields>
-								<Input  maxLength="16"/>
+								<Input  maxLength="16" editable="{EditModel>/isEditable}" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Tax Number 3">
 							<f:fields>
-								<Input  value="{VendorModel>/VendorTemp/TaxNumber3}" maxLength="18"/>
+								<Input  value="{VendorModel>/VendorTemp/TaxNumber3}"  editable="{EditModel>/isEditable}" maxLength="18"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Tax Number 4 ">
 							<f:fields>
-								<Input  value="{VendorModel>/VendorTemp/TaxNumber4}" maxLength="18"/>
+								<Input  value="{VendorModel>/VendorTemp/TaxNumber4}" editable="{EditModel>/isEditable}"  maxLength="18"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Tax Number ">
 							<f:fields>
-								<Input value="{VendorModel>/VendorTemp/TaxAuthority}" maxLength="18"/>
+								<Input value="{VendorModel>/VendorTemp/TaxAuthority}" editable="{EditModel>/isEditable}"  maxLength="18"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Tax Jur.">
 							<f:fields>
-								<Input maxLength="15" id="idTaxJur" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/TaxJurisdiction}"
+								<Input maxLength="15" id="idTaxJur" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" showSuggestion="true" value="{VendorModel>/VendorTemp/TaxJurisdiction}"
 									showValueHelp="true" valueHelpRequest="handleMaterialValueHelp" suggestionItems=" "
 									suggestionItemSelected="onSuggest">
 									<suggestionItems>
@@ -98,12 +98,12 @@
 					<f:formElements>
 						<f:FormElement label="Tax Number 2 ">
 							<f:fields>
-								<Input id="taxno2" maxLength="11"/>
+								<Input id="taxno2" maxLength="11" editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Fiscal Address">
 							<f:fields>
-								<Input maxLength="10" id="idFiscalAddress" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="10" id="idFiscalAddress" editable="{EditModel>/isEditable}" textFormatMode="KeyValue" showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleFiscalAddressValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggest">
 									<suggestionItems>
@@ -114,7 +114,7 @@
 						</f:FormElement>
 						<f:FormElement label="Business Type">
 							<f:fields>
-								<Input maxLength="30" id="TypeofBusiness" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="30" id="TypeofBusiness" editable="{EditModel>/isEditable}"  textFormatMode="KeyValue" showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleTypeofBusiness" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestTypeofBusiness">
 									<suggestionItems>
@@ -125,7 +125,7 @@
 						</f:FormElement>
 						<f:FormElement label="Industry Type ">
 							<f:fields>
-								<Input maxLength="30" id="TypeofIndustry" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="30" id="TypeofIndustry" editable="{EditModel>/isEditable}" textFormatMode="KeyValue" showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleTypeofIndustry" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestTypeofIndustry">
 									<suggestionItems>
@@ -140,7 +140,7 @@
 					<f:formElements>
 						<f:FormElement label="Tax no type ">
 							<f:fields>
-								<Input maxLength="2" id="Taxnotype" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/TaxNumberType}"
+								<Input maxLength="2" id="Taxnotype" textFormatMode="KeyValue" editable="{EditModel>/isEditable}"  showSuggestion="true" value="{VendorModel>/VendorTemp/TaxNumberType}"
 									showValueHelp="true" valueHelpRequest="handleTaxnotype" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestTaxnotype">
 									<suggestionItems>
@@ -151,7 +151,7 @@
 						</f:FormElement>
 						<f:FormElement label="Tax type">
 							<f:fields>
-								<Input maxLength="2" id="Taxtype" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Taxtype}"
+								<Input maxLength="2" id="Taxtype" textFormatMode="KeyValue" editable="{EditModel>/isEditable}"  showSuggestion="true" value="{VendorModel>/VendorTemp/Taxtype}"
 									showValueHelp="true" valueHelpRequest="handleTaxtype" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestTaxtype">
 									<suggestionItems>
@@ -162,7 +162,7 @@
 						</f:FormElement>
 						<f:FormElement label="Social code">
 							<f:fields>
-								<Input id="Socinccode" textFormatMode="KeyValue" showSuggestion="true"  showValueHelp="true"
+								<Input id="Socinccode" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
 									valueHelpRequest="handleSocinccode" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestSocinccode">
 									<suggestionItems>
 										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -172,12 +172,12 @@
 						</f:FormElement>
 						<f:FormElement label="Rep's Name ">
 							<f:fields>
-								<Input id="RepName" value="{Twitter}"/>
+								<Input id="RepName" editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Tax Office ">
 							<f:fields>
-								<Input maxLength="10" id="TaxOffice" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="10" id="TaxOffice" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleTaxOfficeValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggest">
 									<suggestionItems>
@@ -203,17 +203,17 @@
 					<f:formElements>
 						<f:FormElement label="Location no1">
 							<f:fields>
-								<Input id="Location1" maxLength="7"/>
+								<Input id="Location1" editable="{EditModel>/isEditable}"  maxLength="7"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Credit no Info">
 							<f:fields>
-								<Input id="Credit1" maxLength="11"/>
+								<Input id="Credit1" editable="{EditModel>/isEditable}"  maxLength="11"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Industry ">
 							<f:fields>
-								<Input maxLength="4" id="Industry1" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Industrykey}"
+								<Input maxLength="4" editable="{EditModel>/isEditable}"  id="Industry1" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Industrykey}"
 									showValueHelp="true" valueHelpRequest="handleValueHelpIndustry" suggestionItems="{ path: 'Lookup>/IndustrySet' }"
 									suggestionItemSelected="onSuggestIndustry">
 									<suggestionItems>
@@ -224,12 +224,12 @@
 						</f:FormElement>
 						<f:FormElement label="SCAC ">
 							<f:fields>
-								<Input id="idSCAC" placeholder="Standard Code" maxLength="4" value="{VendorModel>/VendorTemp/StandardCode}"/>
+								<Input id="idSCAC" placeholder="Standard Code" editable="{EditModel>/isEditable}"  maxLength="4" value="{VendorModel>/VendorTemp/StandardCode}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Transport Zone">
 							<f:fields>
-								<Input id="idTransportzone"  value="{VendorModel>/VendorTemp/TransportationZone}"  showSuggestion="true"
+								<Input id="idTransportzone" editable="{EditModel>/isEditable}" value="{VendorModel>/VendorTemp/TransportationZone}"  showSuggestion="true"
 									showValueHelp="true" valueHelpRequest="handleTransportZone" suggestionItems="{ path: 'Lookup>/TransportZoneList' }"
 									suggestionItemSelected="onSuggestidTransportzone">
 									<suggestionItems>
@@ -240,12 +240,12 @@
 						</f:FormElement>
 						<f:FormElement label="Train Station">
 							<f:fields>
-								<Input id="idTrain" maxLength="25" placeholder="Train Station"/>
+								<Input id="idTrain" maxLength="25" editable="{EditModel>/isEditable}" placeholder="Train Station"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Acutal QM sys">
 							<f:fields>
-								<Input maxLength="4" id="idAcutalQMsys" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/VendorQMSystem}"
+								<Input maxLength="4" id="idAcutalQMsys" editable="{EditModel>/isEditable}"  textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/VendorQMSystem}"
 									showValueHelp="true" valueHelpRequest="handleidAcutalQMsys" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestidAcutalQMsys">
 									<suggestionItems>
@@ -256,7 +256,7 @@
 						</f:FormElement>
 						<f:FormElement label="External Maufac">
 							<f:fields>
-								<Input id="idExternal" value="{VendorModel>/VendorTemp/ExternalManufacturer}"  maxLength="10"/>
+								<Input id="idExternal" editable="{EditModel>/isEditable}" value="{VendorModel>/VendorTemp/ExternalManufacturer}"  maxLength="10"/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
@@ -265,12 +265,12 @@
 					<f:formElements>
 						<f:FormElement label="Location no2">
 							<f:fields>
-								<Input id="Location2" maxLength="5"/>
+								<Input id="Location2" maxLength="5" editable="{EditModel>/isEditable}" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Last ext review">
 							<f:fields>
-									<DatePicker id="idLasextreview" />
+									<DatePicker id="idLasextreview"  editable="{EditModel>/isEditable}" />
 								
 							<!--	<Input maxLength="8" id="idLasextreview" textFormatMode="KeyValue" showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleidLasextreview" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
@@ -283,7 +283,7 @@
 						</f:FormElement>
 						<f:FormElement label="POD-Relevent">
 							<f:fields>
-								<Input maxLength="1" id="idPOD-Relevent" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="1" id="idPOD-Relevent" textFormatMode="KeyValue" editable="{EditModel>/isEditable}"  showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleididPODReleven" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestididPODReleven">
 									<suggestionItems>
@@ -294,7 +294,7 @@
 						</f:FormElement>
 						<f:FormElement label="Car freight grp">
 							<f:fields>
-								<Input maxLength="4" id="idCarfreightgro" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="4" id="idCarfreightgro" editable="{EditModel>/isEditable}"  textFormatMode="KeyValue" showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleidCarfreightgro" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestidCarfreightgro">
 									<suggestionItems>
@@ -305,12 +305,12 @@
 						</f:FormElement>
 						<f:FormElement label="Check Digit">
 							<f:fields>
-								<Input id="idCheckDigit" maxLength="1"/>
+								<Input id="idCheckDigit" maxLength="1" editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="SAPG">
 							<f:fields>
-								<Input maxLength="4" id="idSAPG" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="4" id="idSAPG" editable="{EditModel>/isEditable}" textFormatMode="KeyValue" showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleSAPG" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestSAPG">
 									<suggestionItems>
@@ -321,7 +321,7 @@
 						</f:FormElement>
 						<f:FormElement label="QM System to">
 							<f:fields>	
-							<DatePicker id="QMSystemto" />
+							<DatePicker id="QMSystemto" editable="{EditModel>/isEditable}"/>
 							<!--	<Input maxLength="4" id="QMSystemto" textFormatMode="KeyValue" showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleQMSystemto" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestQMSystemto">
@@ -370,7 +370,7 @@
 			<f:content>
 				<core:Title text=" "/>
 				<Label text="DOB"/>
-					<DatePicker id="idDOB" />
+					<DatePicker id="idDOB" editable="{EditModel>/isEditable}" />
 			<!--	<Input maxLength="8" id="idDOB" textFormatMode="KeyValue" showSuggestion="true" 
 					showValueHelp="true" valueHelpRequest="handleidDOB" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 					suggestionItemSelected="onSuggestidDOB">
@@ -379,7 +379,7 @@
 					</suggestionItems>
 				</Input>-->
 				<Label text="Sex"/>
-				<Input maxLength="1" id="idsex" textFormatMode="KeyValue" showSuggestion="true" 
+				<Input maxLength="1" id="idsex" editable="{EditModel>/isEditable}" textFormatMode="KeyValue" showSuggestion="true" 
 					showValueHelp="true" valueHelpRequest="handleiidsex" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 					suggestionItemSelected="onSuggestidsex">
 					<suggestionItems>
@@ -388,9 +388,9 @@
 				</Input>
 				<core:Title text=" "/>
 				<Label text="BirthPlace"/>
-				<Input id="idbirthplace"/>
+				<Input id="idbirthplace" editable="{EditModel>/isEditable}" />
 				<Label text="Profession"/>
-				<Input id="idProfession"></Input>
+				<Input id="idProfession" editable="{EditModel>/isEditable}" ></Input>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

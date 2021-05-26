@@ -14,7 +14,7 @@
 					<f:formElements>
 						<f:FormElement label="Dunn Procedure ">
 							<f:fields>
-								<Input id="iddunprodc" maxLength="4" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input id="iddunprodc"   maxLength="4" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									showValueHelp="true" valueHelpRequest="handleDunprocHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestDunproc">
 									<suggestionItems>
@@ -25,7 +25,7 @@
 						</f:FormElement>
 						<f:FormElement label="Dunn Recipient">
 							<f:fields>
-								<Input maxLength="10" id="iddunreceipt" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="10"   id="iddunreceipt" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									showValueHelp="true" valueHelpRequest="handledunnreceipt" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestdunreceipt">
 									<suggestionItems>
@@ -36,8 +36,8 @@
 						</f:FormElement>
 						<f:FormElement label="Last Dunned">
 							<f:fields>
-									<DatePicker id="idlastdun" />
-							<!--	<Input maxLength="8" id="idlastdun" textFormatMode="KeyValue" showSuggestion="true" 
+									<DatePicker id="idlastdun" editable="{EditModel>/isEditable}"/>
+							<!--	<Input maxLength="8" id="idlastdun" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									showValueHelp="true" valueHelpRequest="handlelastdunHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestlastdun">
 									<suggestionItems>
@@ -48,7 +48,7 @@
 						</f:FormElement>
 						<f:FormElement label="Dunning Clerk">
 							<f:fields>
-								<Input maxLength="2" id="iddunclerk" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="2" id="iddunclerk" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									showValueHelp="true" valueHelpRequest="handleiddunclerkHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestiddunclerk">
 									<suggestionItems>
@@ -65,7 +65,7 @@
 					<f:formElements>
 						<f:FormElement label="Dunning Block">
 							<f:fields>
-								<Input maxLength="1" id="iddunblock" textFormatMode="KeyValue" showSuggestion="true"
+								<Input maxLength="1" id="iddunblock" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
 									 showValueHelp="true" valueHelpRequest="handleiddunblockkHelp"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestiddunblockk">
 									<suggestionItems>
@@ -76,8 +76,8 @@
 						</f:FormElement>
 						<f:FormElement label="Legal Dunn Proc">
 							<f:fields>
-									<DatePicker id="idlegaldunpro" />
-							<!--	<Input maxLength="8"  id="idlegaldunpro" textFormatMode="KeyValue" showSuggestion="true"
+									<DatePicker id="idlegaldunpro" editable="{EditModel>/isEditable}"/>
+							<!--	<Input maxLength="8"  id="idlegaldunpro" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
 									 showValueHelp="true" valueHelpRequest="handlelegaldunproHelp"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestlegaldunpro">
 									<suggestionItems>
@@ -88,7 +88,7 @@
 						</f:FormElement>
 						<f:FormElement label="Dunning Level">
 							<f:fields>
-								<Input maxLength="1"  id="iddunlevel" textFormatMode="KeyValue" showSuggestion="true"
+								<Input maxLength="1"  id="iddunlevel" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
 									 showValueHelp="true" valueHelpRequest="handleiddunlevelHelp"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestiddunlevel">
 									<suggestionItems>
@@ -99,7 +99,7 @@
 						</f:FormElement>
 						<f:FormElement label="Grouping Key ">
 							<f:fields>
-								<Input maxLength="1"  id="iddungrpkey" textFormatMode="KeyValue" showSuggestion="true"
+								<Input maxLength="1"  id="iddungrpkey" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
 									 showValueHelp="true" valueHelpRequest="handledungrpkey"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestiddungrpkey">
 									<suggestionItems>
@@ -130,7 +130,7 @@
 						</f:FormElement>
 						<f:FormElement label="Acctg clerk">
 							<f:fields>
-								<Input maxLength="2" id="idAcctgclrk"  showValueHelp="true" valueHelpRequest="handleAcctgClerk"
+								<Input maxLength="2" id="idAcctgclrk"  showValueHelp="true" showSuggestion="true" editable="{EditModel>/isEditable}" valueHelpRequest="handleAcctgClerk"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestAcctgclerk">
 									<suggestionItems>
 										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -140,12 +140,12 @@
 						</f:FormElement>
 						<f:FormElement label="Acct W vendor ">
 							<f:fields>
-								<Input id="accwvendor"/>
+								<Input id="accwvendor"  editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Clerk At Vendor ">
 							<f:fields>
-								<Input id="clrkatvendor"/>
+								<Input id="clrkatvendor"  editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
@@ -154,22 +154,22 @@
 					<f:formElements>
 						<f:FormElement label="AcountClrk tel no">
 							<f:fields>
-								<Input id="clrtelno" value="{VendorModel>/VendorTemp/AccountingClerkTelephone}"/>
+								<Input id="clrtelno" value="{VendorModel>/VendorTemp/AccountingClerkTelephone}"  editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Clerk Fax no">
 							<f:fields>
-								<Input id="clrkatfax" value="{VendorModel>/VendorTemp/AccountingClerkFax}"/>
+								<Input id="clrkatfax" value="{VendorModel>/VendorTemp/AccountingClerkFax}"  editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Clerk Internet ">
 							<f:fields>
-								<Input id="clrkatinternet"/>
+								<Input id="clrkatinternet"  editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Account Memo ">
 							<f:fields>
-								<Input id="idaccmemo"/>
+								<Input id="idaccmemo"  editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>

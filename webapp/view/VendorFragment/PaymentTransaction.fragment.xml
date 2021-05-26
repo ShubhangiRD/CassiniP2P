@@ -14,7 +14,7 @@
 					<f:formElements>
 						<f:FormElement label="Payment Terms">
 							<f:fields>
-								<Input id="idpaymentterms" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/TermsPaymentKey}" showValueHelp="true"
+								<Input id="idpaymentterms" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" value="{VendorModel>/VendorTemp/TermsPaymentKey}" showValueHelp="true"
 									valueHelpRequest="handlePaymenttermsHelp" suggestionItems="{ path: 'Lookup>/PaymentTermsList' }"
 									suggestionItemSelected="onSuggestpaymentterms">
 									<suggestionItems>
@@ -25,7 +25,7 @@
 						</f:FormElement>
 						<f:FormElement label="Cr Memo Terms">
 							<f:fields>
-								<Input id="idmemoterms" textFormatMode="KeyValue" showSuggestion="true"  showValueHelp="true"
+								<Input id="idmemoterms" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
 									valueHelpRequest="handlePaymenttermsHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestmemoterms">
 									<suggestionItems>
 										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -35,7 +35,7 @@
 						</f:FormElement>
 						<f:FormElement label="Chk Cashing time">
 							<f:fields>
-								<Input id="idchkcashingtime" value="{Sms}"/>
+								<Input id="idchkcashingtime" editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
@@ -44,7 +44,7 @@
 					<f:formElements>
 						<f:FormElement label="Tolerance Group ">
 							<f:fields>
-								<Input id="idtolerencegp" textFormatMode="KeyValue" showSuggestion="true"  showValueHelp="true"
+								<Input id="idtolerencegp" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
 									valueHelpRequest="handleToleranceGrpValueHelp" suggestionItems="{ path: 'Lookup>/ToleranceGroupList' }"
 									suggestionItemSelected="onSuggestTolerence">
 									<suggestionItems>
@@ -75,7 +75,7 @@
 					<f:formElements>
 						<f:FormElement label="Payment Methods">
 							<f:fields>
-								<Input id="idpaymethod" maxLength="2" value="{VendorModel>/VendorTemp/PaymentMethods}" showValueHelp="true" class="sapUiSmallMarginTop"
+								<Input id="idpaymethod" maxLength="2" value="{VendorModel>/VendorTemp/PaymentMethods}"   editable="{EditModel>/isEditable}" showValueHelp="true" class="sapUiSmallMarginTop"
 									valueHelpRequest="handlePaymentmethod" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestPaymentMethod">
 									<suggestionItems>
@@ -86,7 +86,7 @@
 						</f:FormElement>
 						<f:FormElement label="Alternate.Payee">
 							<f:fields>
-								<Input id="idAlternate.Payee" maxLength="10"  showValueHelp="true"
+								<Input id="idAlternate.Payee" maxLength="10"   editable="{EditModel>/isEditable}" showValueHelp="true"
 									valueHelpRequest="handleAlternatePayee" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestAlternatePayee">
 									<suggestionItems>
@@ -97,12 +97,12 @@
 						</f:FormElement>
 						<f:FormElement label="B/Exch/Limit ">
 							<f:fields>
-								<Input id="BExchLimit" maxLength="13"/>
+								<Input id="BExchLimit" maxLength="13"  editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label=" ">
 							<f:fields>
-								<CheckBox id="idindividualpmnt" text="Individual Pmnt"/>
+								<CheckBox id="idindividualpmnt" text="Individual Pmnt"   />
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
@@ -111,7 +111,7 @@
 					<f:formElements>
 						<f:FormElement label="Payment Block">
 							<f:fields>
-								<Input id="idpayBlock" maxLength="1"  showValueHelp="true" valueHelpRequest="handlePaymentBlock"
+								<Input id="idpayBlock" maxLength="1"  showValueHelp="true"  editable="{EditModel>/isEditable}" valueHelpRequest="handlePaymentBlock"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestPaymentBlock">
 									<suggestionItems>
 										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -121,7 +121,7 @@
 						</f:FormElement>
 						<f:FormElement label="House Bank ">
 							<f:fields>
-								<Input id="idHousebank" maxLength="5"  showValueHelp="true" valueHelpRequest="handleHousebank"
+								<Input id="idHousebank" maxLength="5"  editable="{EditModel>/isEditable}"  showValueHelp="true" valueHelpRequest="handleHousebank"
 									suggestionItems="{ path: 'Lookup>/HouseBankList' }" suggestionItemSelected="onSuggesthousebank">
 									<suggestionItems>
 										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -131,7 +131,7 @@
 						</f:FormElement>
 						<f:FormElement label=" Grouping Key">
 							<f:fields>
-								<Input id="idHGrouping" maxLength="2"  showValueHelp="true" valueHelpRequest="handleGrouping"
+								<Input id="idHGrouping" maxLength="2"  showValueHelp="true"   editable="{EditModel>/isEditable}" valueHelpRequest="handleGrouping"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestGrouping">
 									<suggestionItems>
 										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -141,7 +141,7 @@
 						</f:FormElement>
 						<f:FormElement label=" Tolerence Group">
 							<f:fields>
-								<Input id="ifTolerencegrp" maxLength="4" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input id="ifTolerencegrp" maxLength="4"  editable="{EditModel>/isEditable}" textFormatMode="KeyValue" showSuggestion="true" 
 									showValueHelp="true" valueHelpRequest="handleToleranceGrpValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestTolerence">
 									<suggestionItems>

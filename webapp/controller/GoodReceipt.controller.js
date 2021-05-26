@@ -207,7 +207,10 @@ sap.ui.define([
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
 			//	BusyIndicator.show(0);
-			oModel.read("/POListSet", {
+			
+		//	oModel.read("/POListSet", {
+				oModel.read("/just_poheader2Set", {
+			
 				success: function(oData) {
 					console.log(oData);
 					
@@ -351,12 +354,7 @@ sap.ui.define([
 				oView.byId("idvendorno").setValue(oModellookup.getProperty(sBindPath + "/Lifnr"));
 				oView.getModel("VisibleModel").setProperty("/isVisibleable", true);
 
-				/*	oView.byId("idOrderCur").setValue(oModellookup.getProperty(sBindPath + "/Ekorg"));
-					oView.byId("idCompCode").setValue(oModellookup.getProperty(sBindPath + "/Bukrs"));
-					oView.byId("idCountryCode").setValue(oModellookup.getProperty(sBindPath + "/Waers"));
-					oView.byId("idPurGrg").setValue(oModellookup.getProperty(sBindPath + "/Ekgrp"));
-				*/ //	oView.byId("productPO").setValue(oModellookup.getProperty(sBindPath + "/Ebeln"));
-				Ebeln = oModellookup.getProperty(sBindPath + "/Ebeln");
+					Ebeln = oModellookup.getProperty(sBindPath + "/Ebeln");
 				var Vendorname1 = oModellookup.getProperty(sBindPath + "/Lifnr");
 				Vendorname = oModellookup.getProperty(sBindPath + "/Name1");
 				console.log(Vendorname1);
@@ -914,10 +912,6 @@ sap.ui.define([
 				*/
 			
 					success: this._onUpdateProdEntrySuccess.bind(this),
-					
-						
-					
-					
 					
 					error: this._onCreateEntryError.bind(this)
 			});

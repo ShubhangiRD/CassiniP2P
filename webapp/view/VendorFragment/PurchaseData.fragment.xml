@@ -14,7 +14,7 @@
 					<f:formElements>
 						<f:FormElement label="Order Currency">
 							<f:fields>
-								<Input id="idOrderCur" maxLength="5" value="{VendorModel>/VendorTemp/PurchaseOrderCurrency}" class="InputBoxContainer" type="Text"
+								<Input id="idOrderCur" maxLength="5" value="{VendorModel>/VendorTemp/PurchaseOrderCurrency}" editable="{EditModel>/isEditable}"  type="Text"
 									placeholder="Select Order Currency" showValueHelp="true" valueHelpRequest="handleOrderCurrencyValue"
 									suggestionItems="{ path: 'Lookup>/OrderCurrencyList' }" suggestionItemSelected="onSuggestOrderCurrency">
 									<suggestionItems>
@@ -25,7 +25,7 @@
 						</f:FormElement>
 						<f:FormElement label="Terms of Payment">
 							<f:fields>
-								<Input maxLength="4" id="idtermsofpayment" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/TermsPaymentKey}"
+								<Input maxLength="4" id="idtermsofpayment" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" value="{VendorModel>/VendorTemp/TermsPaymentKey}"
 									showValueHelp="true" valueHelpRequest="handlePaymenttermsHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggesttermsofpayment">
 									<suggestionItems>
@@ -36,19 +36,19 @@
 						</f:FormElement>
 						<f:FormElement label="Incoterms">
 							<f:fields>
-								<Input maxLength="28" id="idIncoterms1" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="28" id="idIncoterms1" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									showValueHelp="true" valueHelpRequest="handleIncotermsValue" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestIncoterms">
 									<suggestionItems>
 										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
 									</suggestionItems>
 								</Input>
-								<Input maxLength="28" value="{Vendor>/FirstName}" id="idIncoterms2" placeholder=" Incoterms ..."></Input>
+								<Input maxLength="28" value="{Vendor>/FirstName}" id="idIncoterms2" editable="{EditModel>/isEditable}" placeholder=" Incoterms ..."></Input>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Minimum Order Value">
 							<f:fields>
-								<Input maxLength="13" class="sapUiSmallMarginTop" id="Minimumorder"></Input>
+								<Input maxLength="13" class="sapUiSmallMarginTop" editable="{EditModel>/isEditable}"  id="Minimumorder"></Input>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
@@ -57,7 +57,7 @@
 					<f:formElements>
 						<f:FormElement label="Schema Groupvendor">
 							<f:fields>
-								<Input maxLength="2" id="Schemagroupvendor" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="2" id="Schemagroupvendor" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handleSchemagroupvendor"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestSchemagroupvendor">
 									<suggestionItems>
@@ -68,7 +68,7 @@
 						</f:FormElement>
 						<f:FormElement label="Pricing date control">
 							<f:fields>
-								<Input maxLength="1" id="Pricingdatecontrol" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/PriceDetermination}"
+								<Input maxLength="1" id="Pricingdatecontrol" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" value="{VendorModel>/VendorTemp/PriceDetermination}"
 									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handlePricingdatecontrol"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestPricingdatecontrol">
 									<suggestionItems>
@@ -79,7 +79,7 @@
 						</f:FormElement>
 						<f:FormElement label="Order Optim Rest">
 							<f:fields>
-								<Input id="OrderOptimrest" textFormatMode="KeyValue" showSuggestion="true" value="{Vendor>/FirstTelephone}" showValueHelp="true"
+								<Input id="OrderOptimrest" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" value="{Vendor>/FirstTelephone}" showValueHelp="true"
 									class="sapUiSmallMarginTop" valueHelpRequest="handleOrderOptimrest" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestOrderOptimrest">
 									<suggestionItems>
@@ -94,17 +94,17 @@
 					<f:formElements>
 						<f:FormElement label=" Sales Person">
 							<f:fields>
-								<Input id="idsalesperson" maxLength="30"/>
+								<Input id="idsalesperson" editable="{EditModel>/isEditable}" maxLength="30"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Telephone">
 							<f:fields>
-								<Input maxLength="16" value="{VendorModel>/VendorTemp/FirstTelephone}" id="Telephonepur"></Input>
+								<Input maxLength="16" value="{VendorModel>/VendorTemp/FirstTelephone}" editable="{EditModel>/isEditable}"  id="Telephonepur"></Input>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Acc. With vendor ">
 							<f:fields>
-								<Input id="accwvendorpur"/>
+								<Input id="accwvendorpur" editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
@@ -124,12 +124,12 @@
 					<f:formElements>
 						<f:FormElement label="ABC indicator">
 							<f:fields>
-								<Input id="idindicator" maxLength="1"/>
+								<Input id="idindicator" maxLength="1" editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="ModeOfTrnsprt-Border">
 							<f:fields>
-								<Input maxLength="2" id="ModeOfTrnsprtBorder" showSuggestion="true"  showValueHelp="true"
+								<Input maxLength="2" id="ModeOfTrnsprtBorder" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
 									class="sapUiSmallMarginTop" valueHelpRequest="handleModeOfTrnsprtBorder" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestModeOfTrnsprtBorder">
 									<suggestionItems>
@@ -140,7 +140,7 @@
 						</f:FormElement>
 						<f:FormElement label="Office of Entry">
 							<f:fields>
-								<Input  id="OfficeofEntry" showSuggestion="true"  showValueHelp="true"
+								<Input  id="OfficeofEntry" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
 									valueHelpRequest="handleCustomerOfficeofEntry" suggestionItems="{ path: 'Lookup>/CustomerOfficeEntryList' }"
 									suggestionItemSelected="onSuggestOfficeofEntry">
 									<suggestionItems>
@@ -151,7 +151,7 @@
 						</f:FormElement>
 						<f:FormElement label="Sort Criterion">
 							<f:fields>
-								<Input maxLength="1" id="SortCriterion" showSuggestion="true"  showValueHelp="true"
+								<Input maxLength="1" id="SortCriterion" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
 									valueHelpRequest="handleSortCriterion" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestSortCriterion">
 									<suggestionItems>
@@ -162,7 +162,7 @@
 						</f:FormElement>
 						<f:FormElement label="PROACT Control Prof">
 							<f:fields>
-								<Input maxLength="4" id="PROACTcontrolprof" showSuggestion="true"  showValueHelp="true"
+								<Input maxLength="4" id="PROACTcontrolprof" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
 									class="sapUiSmallMarginTop" valueHelpRequest="handlePROACTcontrolprof" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestPROACTcontrolprof">
 									<suggestionItems>
@@ -266,7 +266,7 @@
 					<f:formElements>
 						<f:FormElement label="Purchasing Group ">
 							<f:fields>
-								<Input id="idpurgroupp" maxLength="3" value="{VendorModel>/VendorTemp/PurchasingGroup}" class="InputBoxContainer" type="Text"
+								<Input id="idpurgroupp" maxLength="3" value="{VendorModel>/VendorTemp/PurchasingGroup}" editable="{EditModel>/isEditable}"  class="InputBoxContainer" type="Text"
 									showValueHelp="true" valueHelpRequest="handlePurchaseGroupVendor" suggestionItems="{ path: 'Lookup>/PurchaseGroupList' }"
 									suggestionItemSelected="onSuggestPurchasing">
 									<suggestionItems>
@@ -277,7 +277,7 @@
 						</f:FormElement>
 						<f:FormElement label="Planned Delivery time">
 							<f:fields>
-								<Input maxLength="3" id="udplanneddelvry" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="3" id="udplanneddelvry" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handleplanneddelevry"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestplanneddelery">
 									<suggestionItems>
@@ -288,7 +288,7 @@
 						</f:FormElement>
 						<f:FormElement label="Confirmation Control">
 							<f:fields>
-								<Input maxLength="4" id="ConfirmationControl" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="4" id="ConfirmationControl" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handleConfirmationControl"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestConfirmationControl">
 									<suggestionItems>
@@ -299,7 +299,7 @@
 						</f:FormElement>
 						<f:FormElement label="Unit of measure grp">
 							<f:fields>
-								<Input maxLength="4" id="Unitofmeasuregrp" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="4" id="Unitofmeasuregrp" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handleUnitofmeasuregrp"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestUnitofmeasuregrp">
 									<suggestionItems>
@@ -310,7 +310,7 @@
 						</f:FormElement>
 						<f:FormElement label="Rouding profile">
 							<f:fields>
-								<Input maxLength="4" id="Roudingprofile" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="4" id="Roudingprofile" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									showValueHelp="true" valueHelpRequest="handleRoudingprofile" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="onSuggestRoudingprofile">
 									<suggestionItems>
@@ -325,7 +325,7 @@
 					<f:formElements>
 						<f:FormElement label=" Price marking agreed">
 							<f:fields>
-								<Input maxLength="2" id="Pricemarkingagreed" textFormatMode="KeyValue" showSuggestion="true" 
+								<Input maxLength="2" id="Pricemarkingagreed" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" 
 									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handlePricemarkingagreed"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestPricemarkingagreed">
 									<suggestionItems>
@@ -346,12 +346,12 @@
 						</f:FormElement>
 						<f:FormElement label="Serv level">
 							<f:fields>
-								<Input id="Servlevel"/>
+								<Input id="Servlevel" editable="{EditModel>/isEditable}"/>
 							</f:fields>
 						</f:FormElement>
 							<f:FormElement label="Shipping Conditions">
 							<f:fields>
-								<Input maxLength="3" id="ShippingConditions" showSuggestion="true"  showValueHelp="true"
+								<Input maxLength="3" id="ShippingConditions" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
 								class="sapUiSmallMarginTop" valueHelpRequest="handleShippingCondition" suggestionItems="{path: 'Lookup>/ShippingConditionList' }"
 								suggestionItemSelected="onSuggestShippingConditions">
 									<suggestionItems>

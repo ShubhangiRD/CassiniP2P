@@ -9,7 +9,7 @@
 						<Title text="Contact Person  "/>
 						<ToolbarSpacer/>
 						<Button icon="sap-icon://add" type="Transparent" id="idAddbuttonContatPersn" class="remove-attr" tooltip="Add Row" press="onAddNewContactDetils"/>
-						<Button icon="sap-icon://delete" enabled="{=${VendorModel>/VendorTemp//TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+						<Button icon="sap-icon://delete" enabled="{=${VendorModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
 							tooltip="Delete Row" press="onDeleteItemBank"/>
 					</OverflowToolbar>
 				</t:extension>
@@ -17,8 +17,8 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Form Of Address "/>
 						<t:template>
-							<Input id="formofaddcontp" class="mtid" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
-								value="{VendorModel>/VendorTemp/Formofaddr}" valueHelpRequest="handleformofadd" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+							<Input id="formofaddcontp"  textFormatMode="KeyValue"  showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+								value="{VendorModel>Formofaddr}" valueHelpRequest="handleformofadd" suggestionItems="{ path: 'Lookup>/MaterialList' }"
 								suggestionItemSelected="onSuggestFormofadd" liveChange="formofaddcontperson">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
@@ -29,8 +29,8 @@
 					<t:Column hAlign="Center" width="9rem">
 						<Label text="First Name"/>
 						<t:template>
-							<Input class="desc1" id="idfirstcontname" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
-								valueHelpRequest="handleNameContatPerson" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{VendorModel>/VendorTemp/Name}"
+							<Input  id="idfirstcontname" textFormatMode="KeyValue"  showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+								valueHelpRequest="handleNameContatPerson" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{VendorModel>Name}"
 								suggestionItemSelected="onSuggestnameContatctPerson">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
@@ -41,19 +41,19 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Name"/>
 						<t:template>
-							<Input id="Namecontper" value="{VendorModel>/VendorTemp/Name2}" editable="{EditModel>/isEditable}" />
+							<Input id="Namecontper" value="{VendorModel>Name2}" editable="{EditModel>/isEditable}" />
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Telephone1"/>
 						<t:template>
-							<Input id="idTelephone1" class="measure1" value="{VendorModel>/VendorTemp/Telephone}" editable="{EditModel>/isEditable}"/>
+							<Input id="idTelephone1" class="measure1" value="{VendorModel>Telephone}" editable="{EditModel>/isEditable}"/>
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Department"/>
 						<t:template>
-							<Input id="iddeptcp" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" 
+							<Input id="iddeptcp" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" 
 								valueHelpRequest="handleValueHelpiddeptcp" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestiddeptcp">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
@@ -64,13 +64,13 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Description"/>
 						<t:template>
-							<Input id="iddescrptn2" value="{VendorModel>/VendorTemp/Descrptn2}" editable="{EditModel>/isEditable}" />
+							<Input id="iddescrptn2" value="{VendorModel>Descrptn2}" editable="{EditModel>/isEditable}" />
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Function"/>
 						<t:template>
-							<Input id="idfunctn" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" 
+							<Input id="idfunctn" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" 
 								valueHelpRequest="handleValueHelpidfunctn" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestidfunctn">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
@@ -81,7 +81,7 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Description"/>
 						<t:template>
-							<Input id="iddescriptionF" value="{VendorModel>/VendorTemp/DescriptionF}" editable="{EditModel>/isEditable}" />
+							<Input id="iddescriptionF" value="{VendorModel>DescriptionF}" editable="{EditModel>/isEditable}" />
 						</t:template>
 					</t:Column>
 				
@@ -90,7 +90,7 @@
 			</t:Table>
 			
 			<Label class="myFormMargin" text="Name:"/>
-				<Input id="contnameperson" width="30%" maxLength="35" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true"
+				<Input id="contnameperson" width="30%" maxLength="35" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" editable="{EditModel>/isEditable}"
 								 showValueHelp="true" valueHelpRequest="handleContPersonValueHelp"
 									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestcontnameperson">
 									<suggestionItems>

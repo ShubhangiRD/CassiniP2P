@@ -1,11 +1,11 @@
 sap.ui.define([
-  "sap/ui/base/Object",
-  "sap/ui/model/json/JSONModel"
+	"sap/ui/base/Object",
+	"sap/ui/model/json/JSONModel"
 ], function(Object, JSONModel) {
-  "use strict" ;
-  return Object.extend("com.cassiniProcureToPay.model.VendorMaster", {
-    constructor: function(oData) {
-    	
+	"use strict";
+	return Object.extend("com.cassiniProcureToPay.model.VendorMaster", {
+		constructor: function(oData) {
+
 			this.BankAcct = (oData && oData.BankAcct) ? oData.BankAcct : "";
 			this.BankCtry = (oData && oData.BankCtry) ? oData.BankCtry : "";
 			this.BankKey = (oData && oData.BankKey) ? oData.BankKey : "";
@@ -77,10 +77,9 @@ sap.ui.define([
 			this.TaxJurisdiction = (oData && oData.TaxJurisdiction) ? oData.TaxJurisdiction : "";
 			this.PurchaseOrderCurrency = (oData && oData.PurchaseOrderCurrency) ? oData.PurchaseOrderCurrency : "";
 			this.TermsPaymentKey = (oData && oData.TermsPaymentKey) ? oData.TermsPaymentKey : "";
-	this.BankControlKey = (oData && oData.BankControlKey) ? oData.BankControlKey : "";
+			this.BankControlKey = (oData && oData.BankControlKey) ? oData.BankControlKey : "";
 
-    },
-
+		},
 
 		setObjectData: function(oData) {
 
@@ -155,10 +154,10 @@ sap.ui.define([
 			this.TaxJurisdiction = (oData && oData.TaxJurisdiction) ? oData.TaxJurisdiction : "";
 			this.PurchaseOrderCurrency = (oData && oData.PurchaseOrderCurrency) ? oData.PurchaseOrderCurrency : "";
 			this.TermsPaymentKey = (oData && oData.TermsPaymentKey) ? oData.TermsPaymentKey : "";
-		this.BankControlKey = (oData && oData.BankControlKey) ? oData.BankControlKey : "";
+			this.BankControlKey = (oData && oData.BankControlKey) ? oData.BankControlKey : "";
 
 		},
-			getUpdateRequestPayload: function() {
+		getUpdateRequestPayload: function() {
 			return {
 				Akontb: this.ReconciliationAccount,
 				Anreda: this.Title,
@@ -168,7 +167,7 @@ sap.ui.define([
 				Bkontd: this.BankControlKey,
 				Bkrefd: this.BankRef,
 				Brscha: this.Industrykey,
-				Bukrsb: this.CompanyCode,
+				Bukrsb: this.CompCode,
 				Bvtypd: this.PartnerBankType,
 				Ekgrpc: this.PurchasingGroup,
 				Ekorgc: this.PurchasingOrg,
@@ -228,7 +227,7 @@ sap.ui.define([
 				Bkontd: this.BankControlKey,
 				Bkrefd: this.BankRef,
 				Brscha: this.Industrykey,
-				Bukrsb: this.CompanyCode,
+				Bukrsb: this.CompCode,
 				Bvtypd: this.PartnerBankType,
 				Ekgrpc: this.PurchasingGroup,
 				Ekorgc: this.PurchasingOrg,
@@ -240,7 +239,7 @@ sap.ui.define([
 				Koinhd: this.AccountHolderName,
 				Ktokka: this.VendorAccountGroup,
 				Land1a: this.Country,
-				
+
 				Lzonea: this.TransportationZone,
 				Meprfc: this.PriceDetermination,
 				Name1a: this.Name,
@@ -276,11 +275,77 @@ sap.ui.define([
 				Zwelsb: this.PaymentMethods
 
 			};
+
 		},
 
- getModel: function() {
-      return this.model ;
-    }
+		getRequestPayload: function(isCreate) {
+				var oRequest = {
+
+				Akontb: this.ReconciliationAccount,
+				Anreda: this.Title,
+				Bankld: this.BankKey,
+				Banknd: this.BankAcct,
+				Banksd: this.BankCtry,
+				Bkontd: this.BankControlKey,
+				Bkrefd: this.BankRef,
+				Brscha: this.Industrykey,
+				Bukrsb: this.CompCode,
+				Bvtypd: this.PartnerBankType,
+				Ekgrpc: this.PurchasingGroup,
+				Ekorgc: this.PurchasingOrg,
+				Emnfra: this.ExternalManufacturer,
+				Fdgrvb: this.PlanningGroup,
+				Fitypa: this.Taxtype,
+				Frgrpb: this.ReleaseApprovalGroup,
+				Intadb: this.InternetAddrs,
+				Koinhd: this.AccountHolderName,
+				Ktokka: this.VendorAccountGroup,
+				Land1a: this.Country,
+
+				Lzonea: this.TransportationZone,
+				Meprfc: this.PriceDetermination,
+				Name1a: this.Name,
+				Name2a: this.Name2,
+				Name3a: this.Name,
+				Name4a: this.ExtraName,
+				Ort01a: this.City,
+				Ort02a: this.District,
+				Pfacha: this.PoBox,
+				Pforta: this.PobxCty,
+				Pstl2a: this.POBoxPostalCode,
+				Pstlza: this.PostlCode,
+				Qssysa: this.VendorQMSystem,
+				Regioa: this.Region,
+				Scacda: this.StandardCode,
+				Sortla: this.Sortfield,
+				Sprasa: this.Langu,
+				Stcd3a: this.TaxNumber3,
+				Stcd4a: this.TaxNumber4,
+				Stcdta: this.TaxNumberType,
+				Stenra: this.TaxAuthority,
+				Strasa: this.Street,
+				Telbxa: this.TeleboxNumber,
+				Telf1a: this.Telephone,
+				Telf2a: this.Telephone2,
+				Teltxa: this.FaxNumber,
+				Telx1a: this.TelexNumber,
+				Tlfnsb: this.AccountingClerkTelephone,
+				Tlfxsb: this.AccountingClerkFax,
+				Txjcda: this.TaxJurisdiction,
+				Waersc: this.PurchaseOrderCurrency,
+				Ztermb: this.TermsPaymentKey,
+				Zwelsb: this.PaymentMethods
+
+			};
+			if(!isCreate){
+					oRequest.Lifnra = this.Vendor;
+			}
+			return oRequest;
+		
+		},
+		getModel: function() {
+			return this.model;
+		}
 	});
 
 });

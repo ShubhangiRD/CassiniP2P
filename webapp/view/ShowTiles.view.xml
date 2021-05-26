@@ -162,34 +162,10 @@
 						</viz:VizFrame>
 					</l:flexContent>
 				</l:FixFlex>
-				<!--	<l:FixFlex id='chartFixFlex3' minFlexSize="300">
-		
-				<l:flexContent>
-					<viz:Popover id="idPopOver3"></viz:Popover>
-					<viz:VizFrame id="idVizFrame3"  vizProperties="{ title: {text : 'Line Charts', visible : true}}" uiConfig="{applicationSet:'fiori'}" vizType='line'>
-						<viz:dataset>
-							<viz.data:FlattenedDataset data="{jsonData>/Reports}">
-								<viz.data:dimensions>
-									<viz.data:DimensionDefinition name="Week" value="{jsonData>SAP}"/>
-								</viz.data:dimensions>
-								<viz.data:measures>
-									<viz.data:MeasureDefinition name="Revenue" value="{jsonData>SAPUI5}"/>
-									<viz.data:MeasureDefinition name="Cost" value="{jsonData>Year}"/>
-								</viz.data:measures>
-							</viz.data:FlattenedDataset>
-						</viz:dataset>
-						<viz:feeds>
-							<viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="Revenue"/>
-							<viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="Week"/>
-						</viz:feeds>
-					</viz:VizFrame>
-				</l:flexContent>	<Label text="Rating Indicator default size" labelFor="RI_default"/>
-		<RatingIndicator id="RI_default" maxValue="5" class="sapUiSmallMarginBottom" value="4" tooltip="Rating Tooltip" />
-	
-			</l:FixFlex>-->
+				
 			</f:content>
 		</f:Card>
-		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">
+	<!--	<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">
 			<f:layoutData>
 				<f:GridContainerItemLayoutData columns="3"/>
 			</f:layoutData>
@@ -208,6 +184,21 @@
 						</HBox>
 					</CustomListItem>
 				</List>
+			</f:content>
+		</f:Card>
+	-->		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">
+			<f:layoutData>
+				<f:GridContainerItemLayoutData rows="6" columns="3"/>
+			</f:layoutData>
+			<f:header>
+				<card:Header title="Vendors Action List" class="fcardsclasstitle"/>
+			</f:header>
+			<f:content>
+			
+			<core:Fragment fragmentName="com.cassiniProcureToPay.view.fragment.VendorListDash" type="XML"/>
+
+				
+		
 			</f:content>
 		</f:Card>
 		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">

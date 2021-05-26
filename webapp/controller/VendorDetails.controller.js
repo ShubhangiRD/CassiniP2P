@@ -2,14 +2,12 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/Filter",
 	"sap/ui/model/json/JSONModel",
-
 	"sap/m/MessageBox",
 	"sap/ui/model/FilterOperator",
 	"sap/ui/core/Fragment",
 	"com/cassiniProcureToPay/model/displayVendor",
 	"sap/m/MessageToast",
 	"com/cassiniProcureToPay/model/Vendor",
-
 	"sap/ui/core/routing/History",
 	"sap/ui/core/BusyIndicator"
 
@@ -34,12 +32,7 @@ sap.ui.define([
 			this.getView().setModel(oModel);
 			console.log(oModel);
 			// Define the models
-
-			var oModel1 = this.getOwnerComponent().getModel("VHeader");
-			//set the model on view to be used by the UI controls
-			this.getView().setModel(oModel1);
-			console.log(oModel1);
-
+		oView.byId("iddEditt").setVisible(false);
 			this.getVendorList();
 			/*
 				this.getCustomerOfficeEntryList();
@@ -65,23 +58,14 @@ sap.ui.define([
 			var oHierarchyModel = new sap.ui.model.json.JSONModel();
 			oView.setModel(oHierarchyModel, "hierarchy");
 
-
-
-	
-
-
-			/*	var VendorData = new Vendor();
-			var oVendorModel = new JSONModel(VendorData);
-			this.getView().setModel(oVendorModel, "Vendor");*/
-
-	/*	var	VendorContract = new Vendor();
+			/*	var	VendorContract = new Vendor();
 			var VendorContractModel = new JSONModel(VendorContract);
 			this.getView().setModel(VendorContractModel, "VendorModel");
 */
 			var PaymentModel = new JSONModel();
 			oView.setModel(PaymentModel, "PaymentModel");
 			var oEditModel = new JSONModel({
-				isEditable: false
+				isEditable: true
 			});
 
 			this.getView().setModel(oEditModel, "EditModel");
@@ -272,9 +256,10 @@ sap.ui.define([
 					success: function(oData) {
 						console.log(oData);
 						var item = oData.results.length;
-				//	oView.getModel("VendorModel").setData(oData.results[0]);
-	oView.getModel("VendorModel").setProperty("/VendorTemp", oData.results[0]); // setData(oData.results);
-					
+						//	oView.getModel("VendorModel").setData(oData.results[0]);
+						var oVendor = new Vendor(oData.results[0]);
+						oView.getModel("VendorModel").setProperty("/VendorTemp", oVendor); // setData(oData.results);
+
 					},
 					error: function(oError) {
 						//console.log(oError);
@@ -2513,7 +2498,6 @@ sap.ui.define([
 		},
 
 		/*Time zone f4 functionality end here*/
-		// Industry code starts here
 
 		/*BankKey List code starts here*/
 		getBankKeyList: function() {
@@ -2590,195 +2574,58 @@ sap.ui.define([
 		},
 		/*BankKey List code ends here*/
 
-		/*company code end*/
-
 		onCreatePress: function() {
 			var oComponent1 = this.getOwnerComponent();
 			oComponent1.getRouter().navTo("CreateContractVendor");
 		},
-		onEditPress: function(oEvent) {
-			oView.byId("idEdit").setVisible(false);
-			oView.byId("idSave").setVisible(true);
-			oView.getModel("EditModel").setProperty("/isEditable", true);
+		onDisplayPress: function(oEvent) {
+			oView.byId("btn_display").setVisible(false);
+			oView.byId("iddEditt").setVisible(true);
+			oView.getModel("EditModel").setProperty("/isEditable", false);
+
+		},
+		onEditPress : function(oEvent){
+				oView.byId("iddEditt").setVisible(false);
+				oView.getModel("EditModel").setProperty("/isEditable", true);
 
 		},
 		onSaveContract: function(oEvt) {
-				var oVendorModel = this.getOwnerComponent().getModel("VendorModel");
-				var oTempContract = oVendorModel.getProperty("/VendorTemp");
 			var oModel = this.getView().getModel("VHeader");
-		
-			var oContract = oTempContract.getCreateRequestPayload();
-				console.log(oContract);
+
+			var oVendorModel = this.getOwnerComponent().getModel("VendorModel");
+			var oTempContract = oVendorModel.getProperty("/VendorTemp");
+
+			//	var vendor = oVendorModel.oData.Vendor;
+			//	var oVendor =	oVendorModel.getData(); 
+
+			var oVendor = oTempContract.Vendor;
+			console.log(oVendor)
+
 			//define and bind the model
-			
-	
-	//	var vendor = oVendorModel.oData.Vendor;
-	var oVendor =	oVendorModel.getData(); 
-		
-		/*	var zero1 = "";
-				//	var no;
 
-				var len = vendor.length;
-				if (len !== undefined) {
-					var zz = 10 - len;
-					for (var i = 0; i < zz; i++) {
-						zero1 += "0";
-					}
-				}
+			var oContract = oTempContract.getUpdateRequestPayload();
+			console.log(oContract);
 
-				console.log(len);
-				console.log(zero1);
-				vendor = zero1 + vendor;
-				console.log(vendor);*/
-				
-				
-				
-			
-	
-	oModel.create("/Vendor_crudSet", oContract, {
+			if (oVendor === null || oVendor === undefined || oVendor === "") {
 
-				success: this._onCreateEntrySuccess.bind(this),
-				error: this._onCreateEntryError.bind(this)
+				oModel.create("/Vendor_crudSet", oContract, {
 
-			});
-		
+					success: this._onCreateEntrySuccess.bind(this),
+					error: this._onCreateEntryError.bind(this)
 
+				});
 
-		/*	var BankAcct = oVendorModel.oData.BankAcct;
-			var BankCtry = oVendorModel.oData.BankCtry;
-			var BankKey = oVendorModel.oData.BankKey;
-			var City = oVendorModel.oData.City;
-			var CompCode = oVendorModel.oData.CompCode;
-			var CtrlKey = oVendorModel.oData.CtrlKey;
-			var District = oVendorModel.oData.District;
-			var Langu = oVendorModel.oData.Langu;
-			var Name = oVendorModel.oData.Name;
-			var Name2 = oVendorModel.oData.Name2;
-			var PartnerBk = oVendorModel.oData.PartnerBk;
-			var PaymentMethods = oVendorModel.oData.PaymentMethods;
-			var PoBox = oVendorModel.oData.PoBox;
-			var PobxCty = oVendorModel.oData.PobxCty;
-			var PostlCode = oVendorModel.oData.PostlCode;
-			var Region = oVendorModel.oData.Region;
-			var Street = oVendorModel.oData.Street;
-			var Telephone = oVendorModel.oData.Telephone;
-			var Telephone2 = oVendorModel.oData.Telephone2;
-			var ReconciliationAccount = oVendorModel.oData.ReconciliationAccount;
-		//	var Title = oVendorModel.oData.Title;
-			var BankRef = oVendorModel.oData.BankRef;
-			var Industrykey = oVendorModel.oData.Industrykey;
-		var ExternalManufacturer = oVendorModel.oData.ExternalManufacturer;
-			var PlanningGroup = oVendorModel.oData.PlanningGroup;
-			var Taxtype = oVendorModel.oData.Taxtype;
-			var ReleaseApprovalGroup = oVendorModel.oData.ReleaseApprovalGroup;
-			var InternetAddrs = oVendorModel.oData.InternetAddrs;
-			var AccountHolderName = oVendorModel.oData.AccountHolderName;
-			var VendorAccountGroup = oVendorModel.oData.VendorAccountGroup;
-			var TransportationZone	 = oVendorModel.oData.TransportationZone;
-			var PriceDetermination = oVendorModel.oData.PriceDetermination;
-			var VendorQMSystem = oVendorModel.oData.VendorQMSystem;
-			var StandardCode = oVendorModel.oData.StandardCode;
-			var Sortfield = oVendorModel.oData.Sortfield;
-			var TaxNumber3 = oVendorModel.oData.TaxNumber3;
-			var TaxNumber4 = oVendorModel.oData.TaxNumber4;
-			var TaxNumberType = oVendorModel.oData.TaxNumberType;
-		//	var TaxNumber = oVendorModel.oData.TaxNumber;
-			var TeleboxNumber = oVendorModel.oData.TeleboxNumber;
-			var FaxNumber = oVendorModel.oData.FaxNumber;
-		//	var TelexNumber = oVendorModel.oData.TelexNumber;
-			var AccountingClerkTelephone = oVendorModel.oData.AccountingClerkTelephone;
-			var AccountingClerkFax = oVendorModel.oData.AccountingClerkFax;
-			var TaxJurisdiction = oVendorModel.oData.TaxJurisdiction;
-			var PurchaseOrderCurrency = oVendorModel.oData.PurchaseOrderCurrency;
-			var TermsPaymentKey = oVendorModel.oData.TermsPaymentKey;
-			var PurchasingGroup = oVendorModel.oData.PurchasingGroup;
-			var PurchasingOrg = oVendorModel.oData.PurchasingOrg;
-			var Country = oVendorModel.oData.Country;
-			var POBoxPostalCode = oVendorModel.oData.POBoxPostalCode;
+			} else {
 
-			var itemData = [];
+				var mParameters = {
+					success: this._onCreateEntrySuccess.bind(this),
+					error: this._onCreateEntryError.bind(this),
+					merge: false
+				};
+				var sVendorCreate = "/Vendor_crudSet(Lifnra='" + oVendor + "')";
+				oModel.update(sVendorCreate, oContract, mParameters);
+			}
 
-			itemData.push({
-				Akontb: ReconciliationAccount,
-			//	Anreda: Title,
-				Bankld: BankKey,
-				Banknd: BankAcct,
-				Banksd: BankCtry,
-				Bkontd: CtrlKey,
-				Bkrefd: BankRef,
-				Brscha: Industrykey,
-				Bukrsb: CompCode,
-				Bvtypd: PartnerBk,
-				Ekgrpc: PurchasingGroup,
-				Ekorgc: PurchasingOrg,
-			Emnfra: ExternalManufacturer,
-			//	Fdgrvb: PlanningGroup,
-				Fitypa: Taxtype,
-				Frgrpb: ReleaseApprovalGroup,
-				Intadb: InternetAddrs,
-			//	Koinhd: AccountHolderName,
-				Ktokka: VendorAccountGroup,
-				Land1a: Country,
-				Lifnra: vendor,
-			
-				Lzonea: TransportationZone,
-				Meprfc: PriceDetermination,
-				Name1a: Name,
-				Name2a: Name2,
-				Name3a: Name2,
-				Name4a: Name2,
-				Ort01a: City,
-				Ort02a: District,
-				Pfacha: PoBox,
-				Pforta: PobxCty,
-				Pstl2a: POBoxPostalCode,
-				Pstlza: PostlCode,
-				Qssysa: VendorQMSystem,
-				Regioa: Region,
-				Scacda: StandardCode,
-				Sortla: Sortfield,
-				Sprasa: Langu,
-				Stcd3a: TaxNumber3,
-				Stcd4a: TaxNumber4,
-				Stcdta: TaxNumberType,
-			//	Stenra: TaxNumber,
-				Strasa: Street,
-				Telbxa: TeleboxNumber,
-				Telf1a: Telephone,
-				Telf2a: Telephone2,
-				Teltxa: FaxNumber,
-			//	Telx1a: TelexNumber,
-				Tlfnsb: AccountingClerkTelephone,
-				Tlfxsb: AccountingClerkFax,
-				Txjcda: TaxJurisdiction,
-				Waersc: PurchaseOrderCurrency,
-				Ztermb: TermsPaymentKey,
-				Zwelsb: PaymentMethods
-			});
-			console.log(itemData);
-			*/
-			
-/*			var mParameters = {
-				success: this._onCreateEntrySuccess.bind(this),
-				error: this._onCreateEntryError.bind(this)
-				,
-				merge: false
-			};
-			var sVendorCreate = "/Vendor_crudSet(Lifnra='" + oVendor.vendor + "')";
-		//	var sVendorCreate = "/Vendor_crudSet(Lifnra eq '" + vendor + "' )";
-			oModel.update(sVendorCreate, oContract, mParameters);
-*/
-
-	
-			
-			
-			
-			
-			
-			
-			
-
-		
 		},
 
 		_onCreateEntrySuccess: function(oObject, oResponse) {
@@ -2807,20 +2654,6 @@ sap.ui.define([
 
 			//if getting the issue while posting the accruls call the _onCreateEntryError
 			//sap.ui.core.BusyIndicator.hide();
-			MessageBox.error(
-				"Error creating entry: " + oError.statusCode + " (" + oError.statusText + ")", {
-					details: oError.responseText
-				}
-			);
-		},
-
-		_onCreateEntrySucc: function(oObject, oResponse) {
-
-			MessageBox.success("Successfully Updated Contract #" + oResponse.data.LIFNR);
-			this.getView().getModel("VHeader").refresh();
-		},
-		_onCreateEntryErr: function(oError) {
-
 			MessageBox.error(
 				"Error creating entry: " + oError.statusCode + " (" + oError.statusText + ")", {
 					details: oError.responseText

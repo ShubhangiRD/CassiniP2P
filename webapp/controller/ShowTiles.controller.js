@@ -17,10 +17,11 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
 
 	"sap/ui/export/Spreadsheet",
-	"sap/ui/export/library"
+	"sap/ui/export/library",
+		"com/cassiniProcureToPay/model/Vendor"
 	
 ], function(Controller, JSONModel, Filter, FilterOperator, BusyIndicator, MessageToast, Export, ExportTypeCSV, MessageBox, Sorter,
-	library, jQuery, RowAction, RowActionItem, RowSettings, Fragment, Spreadsheet, exportLibrary) {
+	library, jQuery, RowAction, RowActionItem, RowSettings, Fragment, Spreadsheet, exportLibrary,Vendor) {
 	"use strict";
 			var Purchaseordernumber;
 	var oView, oComponent, oController;
@@ -177,7 +178,7 @@ sap.ui.define([
 			if (evt.getSource().getProperty("header") === "Vendor Master") {
 				oComponent.getRouter().navTo("VendorDetails");
 			} else if (evt.getSource().getProperty("header") === "Purchase Order") {
-				oComponent.getRouter().navTo("PurchaseOrderTable");
+				oComponent.getRouter().navTo("PODetails");
 			} else if (evt.getSource().getProperty("header") === "Post Goods Receipt") {
 				oComponent.getRouter().navTo("GoodReceipt");
 			} else if (evt.getSource().getProperty("header") === "Book Vendor Invoice") {
@@ -291,44 +292,7 @@ sap.ui.define([
 								})
 
 							];
-							/*		oModel.read("/Fetch_Vendor_DetailsSet", {
-										filters: aFilter,
-										success: function(suc) {
-											console.log(suc);
-											var item = suc.results.length;
-													var VendorssList = [];
-													var itemsc = CountModel.oData.length;
-												for (var iRowIndex = 0; iRowIndex < item; iRowIndex++) {
-													var i=0 
-										//		for (; i<itemsc ; i++ ){
-												var lifnr = suc.results[iRowIndex].Lifnr;
-												var vendorname = suc.results[iRowIndex].Name1;
-												
-																
-																while (i < itemsc) {
-																		if (Lifnrr == lifnr) {
-														 	VendorssList.push({
-																		Lifnr: lifnr,
-																		Name1: vendorname
-										
-																	});
-																
-																		}
-																		  i++;
-																}
-												
-												
-											
-												console.log(vendorname);
-
-											
-										}
-											console.log(VendorssList);
-										},
-										error: function(err) {
-											console.log(err);
-										}
-									});*/
+						
 						}
 
 						var ListofVendorTopThree = [];
@@ -410,53 +374,11 @@ sap.ui.define([
 			}
 		},
 
-		getVendorLisat: function() {
-			var that = this;
-			var oModel = this.getOwnerComponent().getModel("VHeader");
-			BusyIndicator.show(0);
-			oModel.read("/Fetch_Vendor_DetailsSet", {
-				success: function(oData) {
-					BusyIndicator.hide();
-					var item = oData.results.length;
-					var ListofVendor = [];
-
-					for (var iRowIndex = 1300; iRowIndex <= 1399; iRowIndex++) {
-						var odata = oData.results[iRowIndex];
-
-						var Lifnrr = odata.Lifnr;
-						var Name1r = odata.Name1;
-						ListofVendor.push({
-							Lifnr: Lifnrr,
-							Name1: Name1r
-
-						});
-
-					}
-				//	console.log(ListofVendor);
-
-					var Count = new sap.ui.model.json.JSONModel({
-						item: item
-
-					});
-					oView.setModel(Count, "Count");
-
-					BusyIndicator.hide();
-					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
-					oLookupModel.setProperty("/DisplyaVendorList", ListofVendor);
-					oLookupModel.refresh(true);
-					//that.getMaterialList();
-				},
-				error: function(oError) {
-					//BusyIndicator.hide();
-					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
-					MessageToast.show(errorMsg);
-				}
-			});
-		},
+	
 		getVendorList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
 					var item = oData.results.length;
@@ -493,7 +415,93 @@ sap.ui.define([
 				}
 			});
 		},
+searchFieldVendor : function(evt){
+		var sValue = evt.getSource().getValue();
+	
+			var oFilter = new Filter([new Filter(
+				"Name1",
+				FilterOperator.Contains, sValue
+			), new Filter(
+				"Lifnr",
+				FilterOperator.Contains, sValue
+			)]);
+		
+		var list = this.getView().byId("VendorList");
+			var binding = list.getBinding("items");
+			binding.filter(oFilter, "Application");
+	
+	
+	
+	
+},
+onSelectionChange : function(oEvent){
+		var oModelRe = this.getOwnerComponent().getModel("VHeader");
+	var oModel = oView.getModel("Lookup");
+			var oSelectedItem = oEvent.getParameter("listItem");
+			if (oSelectedItem) {
+				var VendorNumber = oSelectedItem.getTitle();
+			
+				console.log(VendorNumber);
+			
+	var zero = "";
+				//	var no;
 
+				var len = VendorNumber.length;
+				if (len !== undefined) {
+					var z = 10 - len;
+					for (var i = 0; i < z; i++) {
+						zero += "0";
+					}
+				}
+
+				console.log(len);
+				console.log(zero);
+				VendorNumber = zero + VendorNumber;
+				console.log(VendorNumber);
+
+			
+				var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
+
+				var ComCode = oModel.getProperty(sBindPath + "/Bukrs");
+				console.log(VendorNumber);
+				console.log(ComCode)
+
+				var aFilter = [
+					new sap.ui.model.Filter({
+						path: "Vendorno",
+						operator: sap.ui.model.FilterOperator.EQ,
+						value1: VendorNumber
+					}),
+					new sap.ui.model.Filter({
+						path: "Companycode",
+						operator: sap.ui.model.FilterOperator.EQ,
+						value1: ComCode
+					})
+
+				];
+
+				oModelRe.read("/bapi_vendor_getdetailSet", {
+					//oModel.read("/POItemSet", {
+					filters: aFilter,
+					success: function(oData) {
+						console.log(oData);
+						var item = oData.results.length;
+						//	oView.getModel("VendorModel").setData(oData.results[0]);
+						var oVendor = new Vendor(oData.results[0]);
+						oView.getModel("VendorModel").setProperty("/VendorTemp", oVendor); // setData(oData.results);
+	oComponent.getRouter().navTo("VendorDetails");
+					},
+					error: function(oError) {
+						//console.log(oError);
+					}
+				});
+		
+			
+		
+			}
+
+		
+},
 		headercolumn: function() {
 
 			var Columnheadermodel = this.getOwnerComponent().getModel("HeaderModel");

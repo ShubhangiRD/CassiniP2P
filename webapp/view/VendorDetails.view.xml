@@ -21,10 +21,11 @@
                     </m:FlexBox>
                 </snappedHeading>
                 <actions>
-                    <!-- <ObjectPageHeaderActionButton text="Edit" type="Transparent" hideText="false" tooltip="edit" press="onEditPress"/> -->
+                 <ObjectPageHeaderActionButton text="Edit" id="iddEditt"  type="Transparent" hideText="false" tooltip="edit" press="onEditPress"/> 
+                     <ObjectPageHeaderActionButton id="btn_display" type="Transparent" hideText="false" text="Display" press="onDisplayPress" tooltip="display"/> 
+             
                     <ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline"/>
                     <ObjectPageHeaderActionButton  hideText="false" type="Emphasized" text="Save" tooltip="save" press="onSaveContract"/>
-                    <!-- <ObjectPageHeaderActionButton id="btn_display"  hideText="false" text="Display" press="onDisplayPress" tooltip="display"/> -->
                 </actions>
             </ObjectPageDynamicHeaderTitle>
         </headerTitle>
@@ -43,7 +44,7 @@
 
 					<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 				 <m:Label text="Vendor : "  required="true"/>
-                        <m:Input id="idVendor" value="{VendorModel>/Vendor}" textFormatMode="KeyValue" placeholder="Vendor Number" showSuggestion="true"
+                        <m:Input id="idVendor" value="{VendorModel>/VendorTemp/Vendor}" textFormatMode="KeyValue" placeholder="Vendor Number" showSuggestion="true"
                             showValueHelp="true" valueHelpRequest="handleVendorValueHelpBox" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
                             suggestionItemSelected="onSuggest" >
                                 <m:suggestionItems>
@@ -52,7 +53,7 @@
                         </m:Input>
 						   <m:Label text="Purchase Org :" required="true"/>
                         <m:Input id="idPurOrg"  value="{VendorModel>/VendorTemp/PurchasingOrg}" textFormatMode="KeyValue" placeholder=" Purchase Org" showSuggestion="true"
-                             showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"  suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }"
+                             showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"  editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }"
                             suggestionItemSelected="onSuggest">
                             <m:suggestionItems>     <core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
                             </m:suggestionItems>
@@ -66,7 +67,7 @@
 			<m:Label text="Company Code:" required="true"/>
                     
 						      <m:Input id="idCompCode"    value="{VendorModel>/VendorTemp/CompCode}" textFormatMode="KeyValue" placeholder="Company Code" showSuggestion="true" showValueHelp="true"
-                                valueHelpRequest="handleCompanyCodeVendor"  suggestionItems="{ path: 'Lookup>/CountryCode' }" suggestionItemSelected="onSuggest">
+                                valueHelpRequest="handleCompanyCodeVendor" editable="{EditModel>/isEditable}"  suggestionItems="{ path: 'Lookup>/CountryCode' }" suggestionItemSelected="onSuggest">
                                 <m:suggestionItems>
                                     <core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
                                 </m:suggestionItems>
@@ -75,7 +76,7 @@
 					<m:VBox>
 					<m:Label  text="Account Group:" required="true" />
                             <m:Input id="idAccGp"   textFormatMode="KeyValue" placeholder="Account Group ..." showSuggestion="true" showValueHelp="true"
-                                    value="{VendorModel>/VendorTemp/VendorAccountGroup}"       valueHelpRequest="handleAccountCodeVendor"  suggestionItems="{ path: 'Lookup>/AccountGroup' }" suggestionItemSelected="onSuggest">
+                                    value="{VendorModel>/VendorTemp/VendorAccountGroup}"   editable="{EditModel>/isEditable}"    valueHelpRequest="handleAccountCodeVendor"  suggestionItems="{ path: 'Lookup>/AccountGroup' }" suggestionItemSelected="onSuggest">
                                         <m:suggestionItems>
                                                 <core:ListItem key="{Lookup>Ktokk}" text="{Lookup>Ktokk}" additionalText="{Lookup>Ktokk}"/>
                                         </m:suggestionItems>
