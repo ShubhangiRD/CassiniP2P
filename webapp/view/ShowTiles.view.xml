@@ -3,48 +3,7 @@
 	xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls" 
 	controllerName="com.cassiniProcureToPay.controller.ShowTiles" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:w="sap.ui.integration.widgets" xmlns:t="sap.ui.table" 	xmlns:form="sap.ui.layout.form">
-	<tnt:ToolHeader>
-		<Button icon="sap-icon://menu2" type="Transparent" press="onMenuButtonPress">
-			<layoutData>
-				<FlexItemData growFactor="1"/>
-			</layoutData>
-		</Button>
-		<!--	<Button id="btn_back" icon="sap-icon://nav-back" type="Emphasized" press="onNavBackNav">
-		<layoutData>
-				<OverflowToolbarLayoutData priority="NeverOverflow" />
-			</layoutData>
-		
-		</Button>
-		-->
-		<Image src="./images/Cassini-logo.png" densityAware="false" class="logo" width="9rem">
-			<layoutData>
-				<FlexItemData growFactor="1"/>
-			</layoutData>
-		</Image>
-		<FlexBox direction="Column" alignItems="Start">
-			<items></items>
-		</FlexBox>
-		<ToolbarSpacer/>
-		<FlexBox class="logoContent" direction="Column" alignItems="Start">
-			<items></items>
-		</FlexBox>
-		<ToolbarSpacer/>
-	<!--	<Button icon="sap-icon://collections-management" type="Transparent" press="onPressCalculator">
-			<layoutData>
-				<OverflowToolbarLayoutData priority="NeverOverflow"/>
-			</layoutData>
-		</Button>-->
-		<Button icon="sap-icon://comment" type="Transparent">
-			<layoutData>
-				<OverflowToolbarLayoutData />
-			</layoutData>
-		</Button>
-		<Switch state="true" customTextOn="EN" customTextOff="DE" change="onChangeLanguage">
-			<layoutData>
-				<FlexItemData growFactor="1"/>
-			</layoutData>
-		</Switch>
-	</tnt:ToolHeader>
+
 	<f:GridContainer id="grid12" borderReached=".onBorderReached">
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout casTiles" header="Vendor Master" press="pressGenericTile">
 			<layoutData>

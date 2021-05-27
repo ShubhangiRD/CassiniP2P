@@ -8,6 +8,7 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"com/cassiniProcureToPay/model/RebateConditionItemPO",
+	"com/cassiniProcureToPay/model/VendorRebateCondition",
 	"com/cassiniProcureToPay/model/CreateContract",
 	"sap/m/ColumnListItem",
 	"jquery.sap.global",
@@ -18,16 +19,14 @@ sap.ui.define([
 	"sap/m/DatePicker",
 	"sap/ui/model/FilterType",
 	"sap/ui/core/BusyIndicator",
-	"sap/ui/core/routing/History",
-	"com/cassiniProcureToPay/model/PODetail",
-		"com/cassiniProcureToPay/model/GetPurchaseVendor"
+	"sap/ui/core/routing/History"
 ], function(Formatter, Controller, JSONModel, mobileLibrary, Input, Fragment, Filter, FilterOperator, RebateConditionItemPO,
-	CreateContract, ColumnListItem, jQuery, MessageToast, MessageBox, Text, TextArea, DatePicker, FilterType,
-	BusyIndicator, History, PODetail,GetPurchaseVendor) {
+	VendorRebateCondition, CreateContract, ColumnListItem, jQuery, MessageToast, MessageBox, Text, TextArea, DatePicker, FilterType,
+	BusyIndicator, History) {
 	"use strict";
 	var oView;
 	var Ebeln, oComponent;
-	return Controller.extend("com.cassiniProcureToPay.view.controller.PODetails", {
+	return Controller.extend("com.cassiniProcureToPay.view.controller.POCreation", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -46,214 +45,13 @@ sap.ui.define([
 			this.getView().setModel(createContract.getModel(), "CreateContract");
 
 			this.oRouter = this.getOwnerComponent().getRouter();
-			this.oRouter.getRoute("PODetails").attachPatternMatched(this._onRouteMatched2, this);
+			this.oRouter.getRoute("POCreation").attachPatternMatched(this._onRouteMatched2, this);
 			//window.location.reload();
-
-			this.getPurchaseOrderList();
 		},
 		_onRouteMatched2: function() {
 			//window.location.reload();
-		},	onCreatePurchaseOrder : function(){
-					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("POCreation");
-		},
-		onSearchEbeln: function(oEvent) {
-
-			// build filter array
-			var aFilter = [];
-			var sQuery = oEvent.getSource().getValue();
-			if (sQuery) {
-				aFilter.push(
-					new Filter("Ebeln", FilterOperator.EQ, sQuery));
-
-			}
-			// update list binding
-			var list = this.getView().byId("PurchaseTableDisplay");
-			var binding = list.getBinding("items");
-			binding.filter(aFilter, "Application");
-
-		},		OnNavigateDetails: function(oEvent) {
-
-			try {
-				var PurchaseNumber = oEvent.getSource().data("Ebeln");
-				oComponent.getRouter().navTo("POITemDetails", {
-					PoNo: PurchaseNumber
-				});
-			} catch (ex) {
-				MessageBox.error(ex);
-			}
-
-			//oComponent.getRouter().navTo("Dashboard2");
 		},
 
-		/*start purchase order f4 click*/
-		getPurchaseOrderList: function() {
-			var that = this;
-			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//	BusyIndicator.show(0);
-			//oModel.read("/POListSet", {
-			oModel.read("/openpo_headerSet", {
-				success: function(oData) {
-					console.log(oData);
-					BusyIndicator.hide();
-					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
-					oLookupModel.setProperty("/PoDocumentNumber", oData.results);
-					oLookupModel.refresh(true);
-					//that.getMaterialList();
-					var oPOHeaderData = new PODetail(oData.results);
-					oView.getModel("POHeaderModel", oPOHeaderData); // setData(oData.results);
-
-				},
-				error: function(oError) {
-					BusyIndicator.hide();
-					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
-					MessageToast.show(errorMsg);
-				}
-			});
-		},
-		handlePursOrderValueHelp: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialog) {
-				this._valueHelpDialog = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.PurchaseDocument",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialog);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialog.getBinding("items").filter(new Filter([new Filter(
-				"Ebeln",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"Lifnr",
-				FilterOperator.Contains, sInputValue
-			)]));
-			//
-			// open value help dialog filtered by the input value
-			this._valueHelpDialog.open(sInputValue);
-
-		},
-		_handleValueHelpSearchPurs: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"Ebeln",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"Lifnr",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		_handleValueHelpClosePurs1: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			var oModel = oView.getModel("Lookup");
-
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sDescription = oSelectedItem.getInfo(),
-					sTitle = oSelectedItem.getTitle();
-				productInput.setSelectedKey(sDescription);
-				productInput.setValue("(" + sDescription + ") " + sTitle);
-				if (sDescription !== "") {
-					//	this.getVendorDetails(sDescription);
-					var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
-					oView.byId("idVendor").setValue(oModel.getProperty(sBindPath + "/Lifnr"));
-					oView.byId("idCountryCode").setValue(oModel.getProperty(sBindPath + "/Land1"));
-					oView.byId("idRegion").setValue(oModel.getProperty(sBindPath + "/Regio"));
-					oView.byId("idFname").setValue(oModel.getProperty(sBindPath + "/Name1"));
-					oView.byId("idLname").setValue(oModel.getProperty(sBindPath + "/Name2"));
-					oView.byId("idCity").setValue(oModel.getProperty(sBindPath + "/Ort01"));
-					oView.byId("idTel").setValue(oModel.getProperty(sBindPath + "/Telf1"));
-					oView.byId("idDis").setValue(oModel.getProperty(sBindPath + "/Ort02"));
-					oView.byId("idBirth").setValue(oModel.getProperty(sBindPath + "/Gbort"));
-					oView.byId("idStreet").setValue(oModel.getProperty(sBindPath + "/Stras"));
-					oView.byId("idPostcode").setValue(oModel.getProperty(sBindPath + "/Pstlz"));
-					oView.byId("idAddno").setValue(oModel.getProperty(sBindPath + "/Adrnr"));
-					oView.byId("idAccGp").setValue(oModel.getProperty(sBindPath + "/Ktokk"));
-					oView.byId("idPurOrg").setValue(oModel.getProperty(sBindPath + "/Ekorg"));
-					oView.byId("idPurGrp").setValue(oModel.getProperty(sBindPath + "/Ekgrp"));
-					oView.byId("idCompCode").setValue(oModel.getProperty(sBindPath + "/Bukrs"));
-					oView.byId("idOrderCur").setValue(oModel.getProperty(sBindPath + "/Waers"));
-					//		oView.byId("gendor").setValue(oModel.getProperty(sBindPath + "/idGender"));
-
-				}
-			}
-			evt.getSource().getBinding("items").filter([]);
-
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sDescription = oSelectedItem.getInfo(),
-					sTitle = oSelectedItem.getTitle();
-				productInput.setSelectedKey(sDescription);
-				productInput.setValue("(" + sDescription + ") " + sTitle);
-				if (sDescription !== "") {
-					this.getVendorDetails(sDescription);
-				}
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
-		_handleValueHelpClosePurs: function(oEvent) {
-
-			var oSelectedItem = oEvent.getParameter("selectedItem");
-			var oModel = this.getOwnerComponent().getModel("VHeader");
-
-			var oModellookup = oView.getModel("Lookup");
-
-			//		console.log(oModel);
-			if (oSelectedItem) {
-
-				var productInput = this.byId(this.inputId);
-				var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
-				productInput.setValue(oSelectedItem.getTitle());
-				var eelnvalue = oSelectedItem.getTitle();
-				console.log(eelnvalue);
-				oView.byId("vnumber").setValue(oModellookup.getProperty(sBindPath + "/Lifnr"));
-				oView.byId("idPurOrg").setValue(oModellookup.getProperty(sBindPath + "/Ekorg"));
-				oView.byId("idCompCode").setValue(oModellookup.getProperty(sBindPath + "/Bukrs"));
-				oView.byId("idCountryCode").setValue(oModellookup.getProperty(sBindPath + "/Waers"));
-				oView.byId("idPurGrg").setValue(oModellookup.getProperty(sBindPath + "/Ekgrp"));
-				oView.byId("productPO").setValue(oModellookup.getProperty(sBindPath + "/Ebeln"));
-				Ebeln = oModellookup.getProperty(sBindPath + "/Ebeln");
-
-				console.log(Ebeln);
-				var aFilter = [
-					new sap.ui.model.Filter({
-						path: "Purchaseorder",
-						operator: sap.ui.model.FilterOperator.EQ,
-						value1: Ebeln
-					})
-
-				];
-
-				oModel.read("/PO_DetailsSet", {
-					//oModel.read("/POItemSet", {
-					filters: aFilter,
-					success: function(oData) {
-						//	console.log(oData.results);
-						//	oView.getModel("PurchaseModelITem").setData(oData.results);
-						oView.getModel("PurchaseModel").setProperty("/TempContract/POItem", oData.results); // setData(oData.results);
-						//console.log(oData);
-
-					},
-					error: function(oError) {
-						//console.log(oError);
-					}
-				});
-				this.byId("idPOItemsTab").setModel(oView.getModel("PurchaseModelITem"), "PurchaseModelITem");
-
-			}
-			oEvent.getSource().getBinding("items").filter([]);
-
-		},
 		getVendorList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
@@ -273,49 +71,8 @@ sap.ui.define([
 				}
 			});
 		},
-		onSelectTab: function(evt) {
-			//navigate the property is selected subheader.
 
-			var selectedTab = evt.getParameter("key");
-			console.log(selectedTab);
 
-			if (selectedTab === "Vendor Master") {
-				oComponent.getRouter().navTo("VendorCreate");
-			} else if (selectedTab === "Purchase Order") {
-				oComponent.getRouter().navTo("PODetails");
-			} else if (selectedTab === "Post Goods Receipt") {
-				oComponent.getRouter().navTo("GoodReceipt");
-			} else if (selectedTab === "Book Vendor Invoice") {
-				oComponent.getRouter().navTo("Dashboard");
-			} else if (selectedTab === "Vendor Rebate Management") {
-				oComponent.getRouter().navTo("DashboardVendor");
-			}
-
-		},
-
-		onMenuButtonPress: function() {
-			var oPurchaseModel = this.getOwnerComponent().getModel("PurchaseModel");
-			var oTempContract = oPurchaseModel.getProperty("/TempContract");
-			oTempContract.setData();
-
-			//	oPurchaseModel.setData([]);
-			var sss = oPurchaseModel.oData.TempContract.destroy;
-			var s = oPurchaseModel.oData.TempContract.setData;
-			//	s.refresh(true);
-
-			oPurchaseModel.refresh(true);
-			this.getView().getModel("VHeader").refresh();
-
-			oView.byId("idPurchaseOrg").setValue("");
-			oView.byId("pg").setValue("");
-			oView.byId("cc").setValue("");
-			oView.byId("vnumber").setValue("");
-			oView.byId("cu").setValue("");
-			oView.byId("VendorName").setValue("");
-
-			var oComponent2 = this.getOwnerComponent();
-			oComponent2.getRouter().navTo("ShowTiles");
-		},
 		handleMaterialValueHelp: function(oEvent) {
 			var sInputValue = oEvent.getSource().getValue();
 
@@ -345,7 +102,7 @@ sap.ui.define([
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
-		_handleMaterialValueHelpSearch: function(evt) {
+		_handleValueVendorHelpSearch: function(evt) {
 			var sValue = evt.getParameter("value");
 			var oFilter = new Filter([new Filter(
 				"Name1",
@@ -356,7 +113,7 @@ sap.ui.define([
 			)]);
 			evt.getSource().getBinding("items").filter(oFilter);
 		},
-		_handleValueHelpClose1: function(evt) {
+		_handleValueVendorHelpClose: function(evt) {
 			var oSelectedItem = evt.getParameter("selectedItem");
 			var oModel = oView.getModel("Lookup");
 
@@ -386,31 +143,7 @@ sap.ui.define([
 			evt.getSource().getBinding("items").filter([]);
 
 		},
-		_handleValueHelpClose1v: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			var oModel = oView.getModel("Lookup");
-
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sDescription = oSelectedItem.getInfo(),
-					sTitle = oSelectedItem.getTitle();
-				productInput.setSelectedKey(sDescription);
-				productInput.setValue(sDescription);
-				if (sDescription !== "") {
-					//	this.getVendorDetails(sDescription);
-					var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
-					oView.byId("idPurchaseOrg").setValue(oModel.getProperty(sBindPath + "/Ekorg"));
-					oView.byId("cc").setValue(oModel.getProperty(sBindPath + "/Bukrs"));
-					oView.byId("pg").setValue(oModel.getProperty(sBindPath + "/Ekgrp"));
-					oView.byId("cu").setValue(oModel.getProperty(sBindPath + "/Waers"));
-					oView.byId("cu").setValue(oModel.getProperty(sBindPath + "/Name1"));
-
-				}
-			}
-			evt.getSource().getBinding("items").filter([]);
-
-		},
-
+		
 		/*Po Search*/
 		getPurchaseOrgList: function() {
 			var that = this;
@@ -1520,13 +1253,15 @@ sap.ui.define([
 			this.pressPartnerDialog.destroy();
 		},
 		onExitPartner: function() {
-			if (this.pressPartnerDialog) {
-				this.pressPartnerDialog.destroy();
-			}
-		},
-		/*Table Partner header item fragment end*/
-
-		/*Table DeliverySchedule header item fragement*/
+				if (this.pressPartnerDialog) {
+					this.pressPartnerDialog.destroy();
+				}
+			},
+			/*Table Partner header item fragment end*/
+			
+			
+			
+				/*Table DeliverySchedule header item fragement*/
 		AddDeliveryScheduleHeaderItems: function() {
 			this.pressDeliveryScheduleDialog = this.getView().byId("idDeliveryScheduleITems");
 			if (!this.pressDeliveryScheduleDialog) {
@@ -1542,45 +1277,11 @@ sap.ui.define([
 			this.pressDeliveryScheduleDialog.destroy();
 		},
 		onExitDeliverySchedule: function() {
-			if (this.pressDeliveryScheduleDialog) {
-				this.pressDeliveryScheduleDialog.destroy();
+				if (this.pressDeliveryScheduleDialog) {
+					this.pressDeliveryScheduleDialog.destroy();
+				}
 			}
-		},
-		/*Table DeliverySchedule header item fragment end*/
-
-		// dialog code start
-		onOpenDialog: function() {
-			var View = this.getView();
-
-			if (!this.pDialog) {
-				this.pDialog = Fragment.load({
-					id: View.getId(),
-					name: "com.cassiniProcureToPay.view.CreatePo",
-					controller: this
-				}).then(function(oDialog) {
-
-					View.addDependent(oDialog);
-					return oDialog;
-				});
-			}
-			this.pDialog.then(function(oDialog) {
-				oDialog.open();
-			});
-
-		},
-
-		onCloseDialog: function() {
-
-			this.byId("CreatePoDialog1").close();
-		},
-
-		NavtoNext: function() {
-			this.byId("CreatePoDialog1").close();
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("POForm");
-		}
-
-		// dialog code end
+			/*Table DeliverySchedule header item fragment end*/
 
 	});
 

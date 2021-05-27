@@ -8,9 +8,10 @@ sap.ui.define([
 	"com/cassiniProcureToPay/model/GetPurchaseVendor",
 	"com/cassiniProcureToPay/model/Vendor",
 
-	"com/cassiniProcureToPay/model/VendorMaster"
+	"com/cassiniProcureToPay/model/PODetail",
+		"com/cassiniProcureToPay/model/POItem"
 
-], function(UIComponent, Device, models, JSONModel, Application, IconPool, GetPurchaseVendor, Vendor, VendorMaster) {
+], function(UIComponent, Device, models, JSONModel, Application, IconPool, GetPurchaseVendor, Vendor, PODetail,POItem) {
 	"use strict";
 
 	return UIComponent.extend("com.cassiniProcureToPay.Component", {
@@ -64,7 +65,8 @@ sap.ui.define([
 				CustomerOfficeEntryList: [],
 				ShippingConditionList: [],
 				ActivityCodeList: [],
-				ModeOfTransportList: []
+				ModeOfTransportList: [],
+				PoDocumentNumber : []
 
 			};
 			var oLookupModel = new JSONModel(oLookupData);
@@ -84,6 +86,24 @@ sap.ui.define([
 
 			var VendorModel = new JSONModel(oVendorData);
 			this.setModel(VendorModel, "VendorModel");
+			
+			var POHeaderData = new PODetail();
+				
+			var POHeaderModel = new JSONModel(POHeaderData);
+			this.setModel(POHeaderModel, "POHeaderModel");
+
+			
+				
+			var POItemData = new POItem();
+				
+			var POItemModel = new JSONModel(POItemData);
+			this.setModel(POItemModel, "POItemModel");
+
+			
+			
+			
+			
+			
 
 			/*			this.loadIconLibraries();
 						Application.getInstance().Component = this;

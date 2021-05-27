@@ -15,7 +15,7 @@
 				<Label text="Furchase Function "/>
 				<t:template>
 					<Input id="idpurchasefun" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Material}"
-						valueHelpRequest="handlepurchasefunction" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestpurchasefunc"
+						valueHelpRequest="handlepurchasefunction" editable="{EditModel>/isEditable}"  suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestpurchasefunc"
 						liveChange="purchasefunctionchange">
 						<suggestionItems>
 							<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
@@ -27,7 +27,7 @@
 				<Label text="Name"/>
 				<t:template>
 					<Input class="desc1" id="idnamepf" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleidnamepf"
-						suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{PurchaseModel>ShortText}" suggestionItemSelected="onSuggestidnamepf">
+						suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" editable="{EditModel>/isEditable}"   value="{PurchaseModel>ShortText}" suggestionItemSelected="onSuggestidnamepf">
 						<suggestionItems>
 							<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
 						</suggestionItems>

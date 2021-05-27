@@ -2,8 +2,7 @@
 	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards"  class="sapUiSizeCompact"
 	xmlns:mvc="sap.ui.core.mvc" height="100%" controllerName="com.cassiniProcureToPay.controller.VendorDetails">
 	
-	<core:Fragment fragmentName="com.cassiniProcureToPay.view.fragment.Header" type="XML"/>
-
+	
 
 
 <ObjectPageLayout id="OPL1" enableLazyLoading="true" useIconTabBar="true" showTitleInHeaderContent="true" upperCaseAnchorBar="false">

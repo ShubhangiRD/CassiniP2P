@@ -258,14 +258,13 @@ border: none !important;
 
 
 
-.CustomTilesClassForVendor{
- box-shadow: 1px 1px 1px #272c4d;
- margin-top :0rem;
-  margin-left :1rem;
- width: 90rem;
- height: 27rem;
-  border: 0.3px solid #272c4d!important;
+.poc{
+ 
+ margin-top :-10rem;
+ 
 
+ height: 27rem;
+ 
 }
 .loginFormInput .sapMInputBaseContentWrapper {
  height: 2.3rem;

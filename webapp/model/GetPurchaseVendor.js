@@ -36,6 +36,34 @@ sap.ui.define([
 			this.Ekorg = (oData && oData.Ekorg) ? oData.Ekorg : "";
 			this.Matnr = (oData && oData.Matnr) ? oData.Matnr : "";
 			this.Waers = (oData && oData.Waers) ? oData.Waers : "";
+			
+			
+		
+
+				this.CompCode = (oData && oData.CompCode) ? oData.CompCode : "";
+			this.CreatDate = (oData && oData.CreatDate) ? oData.CreatDate : "";
+			this.CreatedBy  = (oData && oData.CreatedBy) ? oData.CreatedBy : "";
+			this.Currency = (oData && oData.Currency) ? oData.Currency : "";
+			this.DocDate = (oData && oData.DocDate) ? oData.DocDate : "";
+			this.DocType = (oData && oData.DocType) ? oData.DocType : "";
+			this.Ind = (oData && oData.Ind) ? oData.Ind : "";
+			this.PoNumber = (oData && oData.PoNumber) ? oData.PoNumber : "";
+			this.PurGroup = (oData && oData.PurGroup) ? oData.PurGroup : "";
+			this.PurchOrg = (oData && oData.PurchOrg) ? oData.PurchOrg : "";
+			this.Vendor = (oData && oData.Vendor) ? oData.Vendor : "";
+			
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			this.POItem = (oData && oData.ConditionItems) ? oData.ConditionItems : [];
 			
 			
@@ -62,16 +90,7 @@ sap.ui.define([
 			
 			});
 			return {
-			//	Rcont: this.ContractNo,
-			/*	Ebeln: this.Ebeln,
-				Bukrs: this.CompanyCode,
-				Bsart : "EC",
-				Lifnr: this.VendorNo,
-				Ekorg: this.PurchaseOrg,
-				Ekgrp: this.PurchaseGroup,
-				Waers: this.Currency,
-				POItem: aRebateConditionItems
-		*/
+		
 				Ebeln: this.Ebeln,
 				Bukrs: this.Bukrs,
 				Bsart : "EC",

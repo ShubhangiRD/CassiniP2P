@@ -52,7 +52,7 @@
 						</f:FormElement>
 							<f:FormElement label="Collective No" class="sapUiTinyMarginTop">
 							<f:fields>
-								<Input id="collecno" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="collecno"  editable="{EditModel>/isEditable}"  textFormatMode="KeyValue"/>
 							</f:fields>
 						</f:FormElement>
 					

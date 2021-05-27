@@ -349,16 +349,28 @@
 				"pattern": "PODetails",
 				"name": "PODetails",
 				"target": "PODetails"
+			},
+			{
+				"pattern": "POCreation",
+				"name": "POCreation",
+				"target": "POCreation"
 			}],
 			"targets": {
 				"LoginPage": {
 					"viewLevel": 1,
-					"viewId": "idApp",
+					"viewId": "idAppView",
 					"controlAggregation": "pages",
-					"viewName": "LoginPage"
+					"viewName": "LoginPage",
+					"controlId": "idApp"
 				},
 				"ShowTiles": {
-					"viewName": "ShowTiles"
+					"viewName": "ShowTiles",
+						"controlId": "idApp"
+					
+				},"POCreation": {
+					"viewName": "POCreation",
+						"controlId": "idApp"
+					
 				},
 				"TileDashboard": {
 					"viewName": "TileDashboard"
@@ -379,7 +391,8 @@
 					"viewName": "Home"
 				},
 				"VendorDetails": {
-					"viewName": "VendorDetails"
+					"viewName": "VendorDetails",
+						"controlId": "idApp"
 				},
 				"CreateContract": {
 					"viewName": "CreateContract"
@@ -497,19 +510,22 @@
 				},
 				"GoodReceipt": {
 					"viewType": "XML",
-					"viewName": "GoodReceipt"
+					"viewName": "GoodReceipt",
+						"controlId": "idApp"
 				},
 				"PurchaseItemDetails": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "PurchaseItemDetails"
+					"viewName": "PurchaseItemDetails",
+						"controlId": "idApp"
 				},
 					"POITemDetails": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "POITemDetails"
+					"viewName": "POITemDetails",
+						"controlId": "idApp"
 				},
 				"AdminPanel": {
 					"viewType": "XML",
@@ -517,11 +533,13 @@
 				},
 				"POForm": {
 					"viewId": "POForm",
-					"viewName": "POForm"
+					"viewName": "POForm",
+						"controlId": "idApp"
 				},
 					"PODetails": {
 					"viewType": "XML",
-					"viewName": "PODetails"
+					"viewName": "PODetails",
+						"controlId": "idApp"
 				}
 
 			}

@@ -1,88 +1,58 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
 	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
-xmlns:t="sap.ui.table"
-	controllerName="com.cassiniProcureToPay.controller.POITemDetails">
-	<core:Fragment fragmentName="com.cassiniProcureToPay.view.fragment.Header" type="XML"/>
-	<ObjectPageLayout id="POHeader" enableLazyLoading="true" useIconTabBar="true" showTitleInHeaderContent="true" upperCaseAnchorBar="false">
+	xmlns:t="sap.ui.table" controllerName="com.cassiniProcureToPay.controller.POITemDetails">
+
+
+<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false"  preserveHeaderStateOnScroll="true">
 		<headerTitle>
-			<ObjectPageDynamicHeaderTitle>
-				<expandedHeading>
-					<m:Title text="Purchase Details" wrapping="true"/>
-				</expandedHeading>
-				<snappedHeading>
-					<m:FlexBox fitContainer="true" alignItems="Center">
-						<m:Avatar src="sap-icon://picture" class="sapUiTinyMarginEnd"/>
-						<m:Title text="Purchase Details" wrapping="true"/>
-					</m:FlexBox>
-				</snappedHeading>
+			<ObjectPageHeader id="headerForTest" objectTitle="Purchase Order : {pomodel>/PurchaseO}" objectSubtitle="Standard PO">
 				<actions>
-					<ObjectPageHeaderActionButton text="Edit" id="iddEditt" type="Transparent" hideText="false" tooltip="edit" press="onEditPress"/>
-					<ObjectPageHeaderActionButton id="btn_display" type="Transparent" hideText="false" text="Display" press="onDisplayPress" tooltip="display"/>
-					<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline"/>
-					<ObjectPageHeaderActionButton hideText="false" type="Emphasized" text="Save" tooltip="save" press="onSaveContract"/>
+						<ObjectPageHeaderActionButton text="Edit" id="iddEdit" type="Emphasized" hideText="false" tooltip="edit" press="onEditPress"/>
+						<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline" press="OnCancel"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Emphasized"  id="idSave" text="Save" tooltip="save" press="onSavePurchaseOrder"/>
+		
 				</actions>
-			</ObjectPageDynamicHeaderTitle>
+			</ObjectPageHeader>
 		</headerTitle>
 		<headerContent>
-			<m:FlexBox wrap="Wrap" fitContainer="true">
-				<!--	<m:Avatar src="sap-icon://picture" displaySize="L" class="sapUiTinyMarginEnd"/>
-		-->
-				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-					<m:Label text="Vendor : " required="true"/>
-					<m:Input id="vnumber" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
-						value="{PurchaseModel>/TempContract/Lifnr}" valueHelpRequest="handleMaterialValueHelp"
-						suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVebor">
-						<m:suggestionItems>
-							<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
-						</m:suggestionItems>
-					</m:Input>
-					<m:Label text="Purchase Org :" required="true"/>
-					<m:Input id="idPurchaseOrg" textFormatMode="KeyValue" placeholder=" Purchase Org .." showSuggestion="true"
-						value="{PurchaseModel>/TempContract/Ekorg}" showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"
-						suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
-						<m:suggestionItems>
-							<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
-						</m:suggestionItems>
-					</m:Input>
-					<l:HorizontalLayout class="sapUiSmallMarginEnd"></l:HorizontalLayout >
-				</l:VerticalLayout>
-				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-					<m:Label text=" Vendor Name"/>
-					<m:Input type="Text" id="VendorName" editable="false"></m:Input>
-					<m:Label text="Purchase Group:"/>
-					<m:Input id="pg" textFormatMode="KeyValue" placeholder="Purchase Group ..." showSuggestion="true"
-						value="{PurchaseModel>/TempContract/Ekgrp}" editable="true" showValueHelp="true" valueHelpRequest="handlePurchaseGroupVendor"
-						suggestionItems="{ path: 'Lookup>/PurchaseGroupList' }" suggestionItemSelected="onSuggest">
-						<m:suggestionItems>
-							<core:ListItem key="{Lookup>Ekgrp}" text="{Lookup>Eknam}" additionalText="{Lookup>Ekgrp}"/>
-						</m:suggestionItems>
-					</m:Input>
-				</l:VerticalLayout>
-				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-					<m:Label text="Company Code:" required="true"/>
-					<m:Input id="cc" textFormatMode="KeyValue" placeholder="Company Code ..." showSuggestion="true" value="{PurchaseModel>/TempContract/Bukrs}"
-						showValueHelp="true" valueHelpRequest="handleCompanyCodeVendor" suggestionItems="{ path: 'Lookup>/CountryCode' }"
-						suggestionItemSelected="onSuggest">
-						<m:suggestionItems>
-							<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
-						</m:suggestionItems>
-					</m:Input>
-					<m:VBox>
-						<m:Label text="Currency:" required="true"/>
-						<m:Input type="Text" id="cu" value="{PurchaseModel>/TempContract/Waers}" editable="true"></m:Input>
-					</m:VBox>
-				</l:VerticalLayout>
-				<!-- <m:FlexBox wrap="wrap" fitContainer="true"> -->
-			</m:FlexBox>
+			<l:VerticalLayout>
+			
+				<m:ObjectNumber class="sapMObjectNumberLarge" number="Vendor: {oHeaderDataModel>/Number}" />
+					<m:Label text="{oHeaderDataModel>/Name}"/>
+			</l:VerticalLayout>
+			<l:VerticalLayout>
+				<m:Label  text="Created by : {oHeaderDataModel>/createdby}"/>
+			
+		<m:ObjectAttribute text="Created Date :{oHeaderDataModel>/createddate}"/>
+			</l:VerticalLayout>
+			<l:VerticalLayout>
+				<m:Label text="Company Code: {oHeaderDataModel>/CompCodeno}"/>
+				<m:ObjectAttribute text="{oHeaderDataModel>/CompCodename}"/>
+			</l:VerticalLayout>
+				<l:VerticalLayout>
+				<m:Label text="NetValue"/>
+				<m:ObjectAttribute text="{oHeaderDataModel>/CompCodename}"/>
+			</l:VerticalLayout>
 		</headerContent>
-		<sections>
-		
+			<sections>
 			<!--Tabs-->
 			<ObjectPageSection titleUppercase="false" id="orgD" title="Org Data">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.EditTable" type="XML"/>
-			
+						<blocks>
+										<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.OrgData" type="XML"/>
+				
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+					<ObjectPageSection titleUppercase="false"  title="Items">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+								<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.EditTable" type="XML"/>
+					
+								</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
@@ -151,44 +121,22 @@ xmlns:t="sap.ui.table"
 			</ObjectPageSection>
 		</sections>
 	
+	
+	
+	
+	
 	</ObjectPageLayout>
-			<OverflowToolbar>
-				<Title text="Items Details"/>
-			</OverflowToolbar>
-			<IconTabBar id="idIconPO" expanded="false" class="sapUiResponsiveContentPadding">
-				<items>
-					<IconTabFilter text="Material Data" key="materialdate">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.MaterialData" type="XML"/>
-					</IconTabFilter>
-					<IconTabFilter class="hide" text="Quantities Weight" key="Quantities">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.Quantities" type="XML"/>
-					</IconTabFilter>
-					<IconTabFilter text="Delivery Schedule" key="DeliverySchedule">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.DeliverySchedule" type="XML"/>
-					</IconTabFilter>
-					<IconTabFilter text="Delivery " key="Delivery">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.Delivery" type="XML"/>
-					</IconTabFilter>
-					<IconTabFilter text="Invoice" key="Invoice">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.Invoice" type="XML"/>
-					</IconTabFilter>
-					<IconTabFilter text="Conditions" key="Conditions">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.Conditions" type="XML"/>
-					</IconTabFilter>
-					<IconTabFilter text="Texts" key="Texts"></IconTabFilter>
-					<IconTabFilter text="Delivery Address " key="DeliveryAddress">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.DeliveryAddress" type="XML"/>
-					</IconTabFilter>
-					<IconTabFilter text="Confirmations" key="Confirmations">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.Confirmation" type="XML"/>
-					</IconTabFilter>
-					<IconTabFilter text="Condition Control" key="ConditionControl">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.ConditionControl" type="XML"/>
-					</IconTabFilter>
-					<IconTabFilter text="Retails" key="Retails">
-						<core:Fragment fragmentName="com.cassiniProcureToPay.view.PurchaseOrderFragment.Retails" type="XML"/>
-					</IconTabFilter>
-				</items>
-			</IconTabBar>
-		
+
 </mvc:View>
+
+
+
+
+
+
+
+
+
+
+
+

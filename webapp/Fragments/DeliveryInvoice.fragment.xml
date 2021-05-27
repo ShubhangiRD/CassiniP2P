@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
-	<VBox class="sapUiSmallMargin">
-		<f:Form id="DeliveryInvoice" editable="true" class="sapUiSmallMargin">
+	<VBox >
+		<f:Form id="DeliveryInvoice" editable="true" >
 			<f:layout>
 				<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
 					emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>
@@ -8,7 +8,7 @@
 			<f:formContainers>
 				<f:FormContainer>
 					<f:formElements>
-						<f:FormElement label="Payment Terms" class="sapUiSmallMargin">
+						<f:FormElement label="Payment Terms" >
 							<f:fields>
 								<Input id="PaymentTermsH"  textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
 									valueHelpRequest="handlePaymentTermsH" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
@@ -20,19 +20,19 @@
 							
 							</f:fields>
 						</f:FormElement>
-						<f:FormElement label="Payment In" class="sapUiTinyMarginTop">
+						<f:FormElement label="Payment In" >
 							<f:fields>
-								<Input id="paymentin1" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="paymentin1" editable="{EditModel>/isEditable}"   textFormatMode="KeyValue"/>
 							</f:fields>
 						</f:FormElement>
-							<f:FormElement label="Payment In" class="sapUiTinyMarginTop">
+							<f:FormElement label="Payment In" >
 							<f:fields>
-								<Input id="paymentin2" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="paymentin2"  editable="{EditModel>/isEditable}"  textFormatMode="KeyValue"/>
 							</f:fields>
 						</f:FormElement>
-							<f:FormElement label="Payment In" class="sapUiTinyMarginTop">
+							<f:FormElement label="Payment In" >
 							<f:fields>
-								<Input id="paymentin3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="paymentin3"  editable="{EditModel>/isEditable}"  textFormatMode="KeyValue"/>
 							</f:fields>
 						</f:FormElement>
 					
@@ -43,9 +43,9 @@
 			<f:formContainers>
 				<f:FormContainer>
 					<f:formElements>
-						<f:FormElement label="Currency" class="sapUiTinyMarginTop">
+						<f:FormElement label="Currency" >
 							<f:fields>
-								<Input id="CurrencyHeader" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+								<Input id="CurrencyHeader"  textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
 									valueHelpRequest="handleCurrencyHeader" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="suggestionCurrencyHeader"  editable="{EditModel>/isEditable}">
 									<suggestionItems>
@@ -54,9 +54,9 @@
 								</Input>
 							</f:fields>
 						</f:FormElement>
-							<f:FormElement label="Exchange Rate" class="sapUiTinyMarginTop">
+							<f:FormElement label="Exchange Rate" >
 							<f:fields>
-								<Input id="ExhangeRateHeader" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+								<Input id="ExhangeRateHeader"  textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
 									valueHelpRequest="handleExhangeRateHeader" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 									suggestionItemSelected="suggestionExhangeRateHeader"  editable="{EditModel>/isEditable}">
 									<suggestionItems>
@@ -65,21 +65,21 @@
 								</Input>
 										</f:fields>
 						</f:FormElement>
-							<f:FormElement label="Incoterms" class="sapUiTinyMarginTop">
+							<f:FormElement label="Incoterms" >
 							<f:fields>
-								<Input id="IncotermsHeader" maxLength="3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
-								<Input id="IncotermsHeader2" maxLength="28" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="IncotermsHeader" maxLength="3" editable="{EditModel>/isEditable}"   textFormatMode="KeyValue"/>
+								<Input id="IncotermsHeader2" maxLength="28"  editable="{EditModel>/isEditable}"   textFormatMode="KeyValue"/>
 							</f:fields>
 						</f:FormElement>
-							<f:FormElement label=" " class="sapUiTinyMarginTop">
+							<f:FormElement label=" " >
 							<f:fields>
-								<CheckBox id="ExchangeRateC" class="sapUiTinyMarginTop" text="Exch.Rate Fixed"/>
+								<CheckBox id="ExchangeRateC"   text="Exch.Rate Fixed"/>
 						
 					</f:fields>
 						</f:FormElement>
-								<f:FormElement label=" " class="sapUiTinyMarginTop">
+								<f:FormElement label=" " >
 							<f:fields>
-							<CheckBox id="GrmsgC" class="sapUiTinyMarginTop" text="GR Message"/>
+							<CheckBox id="GrmsgC"  text="GR Message"/>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
