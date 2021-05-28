@@ -24,7 +24,7 @@ sap.ui.define([
 	POItem) {
 	"use strict";
 	var oView, oComponent;
-	var Ebeln, 	 PurchaseOno;
+	var Ebeln, PurchaseOno;
 	var ListofVendor = [],
 		ListofCompanycode = [],
 		ListofPurchaseOrg = [];
@@ -66,7 +66,7 @@ sap.ui.define([
 			var oModel = this.getOwnerComponent().getModel("VHeader");
 
 			var sPath = oEvent.getParameter("arguments");
-		 PurchaseOno = sPath.PoNo;
+			PurchaseOno = sPath.PoNo;
 			console.log(PurchaseOno);
 			this.getVendorList();
 			this.getCompanyList();
@@ -87,7 +87,7 @@ sap.ui.define([
 			];
 			return new Promise(function(resolve1, reject1) {
 
-	/*			oModel.read("/fetch_openPOSet(Purchaseorder='" + PurchaseOno + "')", {
+				/*			oModel.read("/fetch_openPOSet(Purchaseorder='" + PurchaseOno + "')", {
 					urlParameters: {
 						"$expand": "fpoItemSet"
 					},
@@ -104,16 +104,16 @@ sap.ui.define([
 					}
 				});
 */
-					oModel.read("/PO_DetailsSet()", {
-						filters: aFilter,
-						success: function(odata) {
-							console.log(odata);
-							
-								oView.getModel("PurchaseModel").setProperty("/TempContract/POItem", odata.results); // setData(oData.results);
+				oModel.read("/PO_DetailsSet()", {
+					filters: aFilter,
+					success: function(odata) {
+						console.log(odata);
 
-							var item = odata.results.length;
-							var PoDetailsItems = [];
-							for (var iRowIndex = 0; iRowIndex < item; iRowIndex++) {
+						oView.getModel("PurchaseModel").setProperty("/TempContract/POItem", odata.results); // setData(oData.results);
+
+						var item = odata.results.length;
+						var PoDetailsItems = [];
+						for (var iRowIndex = 0; iRowIndex < item; iRowIndex++) {
 
 							var PoNumber = odata.results[iRowIndex].PoNo;
 							var Vendor = odata.results[iRowIndex].Vendor;
@@ -123,118 +123,112 @@ sap.ui.define([
 							var Quantity = odata.results[iRowIndex].Quantity;
 							var CreatedBy = odata.results[iRowIndex].CreatedBy;
 							var CreatDate = odata.results[iRowIndex].CreatDate;
-							
+
 							var CompCode = odata.results[iRowIndex].CompCode;
 							var PurchOrg = odata.results[iRowIndex].PurchOrg;
 							var PurGroup = odata.results[iRowIndex].PurGroup;
 							var Currency = odata.results[iRowIndex].Currency;
 							var PoItem = odata.results[iRowIndex].PoItem;
 							var Plant = odata.results[iRowIndex].Plant;
-						
-									if (Vendor !== "" || Vendor !== undefined) {
-									for(var y = 0; y < ListofVendor.length; y++)
-									{
-										if(Vendor==ListofVendor[y].Lifnr)
-										{
-											var vendorname = ListofVendor[y].Name1;
-											console.log(vendorname);
-										
-										}
+
+							if (Vendor !== "" || Vendor !== undefined) {
+								for (var y = 0; y < ListofVendor.length; y++) {
+									if (Vendor == ListofVendor[y].Lifnr) {
+										var vendorname = ListofVendor[y].Name1;
+										console.log(vendorname);
+
 									}
 								}
-									if (CompCode !== "" || CompCode !== undefined) {
-									for(var z = 0; z < ListofCompanycode.length; z++)
-									{
-										if(CompCode==ListofCompanycode[z].Bukrs)
-										{
-											var compcodename = ListofCompanycode[z].Butxt;
-											console.log(compcodename);
-										
-										}
-									}
-								}
-										if (PurchOrg !== "" || PurchOrg !== undefined) {
-									for(var w = 0; w < ListofPurchaseOrg.length; w++)
-									{
-										if(PurchOrg==ListofPurchaseOrg[w].Ekorg)
-										{
-											var PurchOrgname = ListofPurchaseOrg[w].Ekotx;
-											console.log(PurchOrgname);
-										
-										}
-									}
-								}
-							
-							
-								var Dateon = CreatDate.getFullYear() + "/" +CreatDate.getMonth() +"/"+  CreatDate.getDate() + " " ;
-								//Header model 
-										var oHeaderDataModel = new JSONModel({
-										Name : vendorname,
-										Number : Vendor,
-										createdby: CreatedBy,
-										createddate : Dateon,
-										CompCodeno : CompCode,
-										CompCodename : compcodename,
-										PurchOrgno : PurchOrg,
-										PurchOrgname :PurchOrgname
-										});
-
-										oView.setModel(oHeaderDataModel, "oHeaderDataModel");
-										console.log(oHeaderDataModel)
-
-
-
-								var oHeaderDataCodePurOrg = new JSONModel({
-									
-										CompCode : compcodename,
-										PurchOrg :PurchOrgname
-										});
-
-										oView.setModel(oHeaderDataCodePurOrg, "oHeaderDataCodePurOrg");
-										console.log(oHeaderDataCodePurOrg)
-
-
-
-					
-								PoDetailsItems.push({
-								PoNumber:PoNumber,
-								Vendor:Vendor,
-								Name : vendorname,
-								Material: Material,
-								ShortText:ShortText,
-								NetPrice:NetPrice,
-								Quantity:Quantity,
-								CreatedBy:CreatedBy,
-								CreatDate:CreatDate,
-								CompCode : CompCode,
-								PurchOrg : PurchOrg,
-								PurGroup: PurGroup ,
-								Currency: Currency,
-								PoItem : PoItem,
-								Plant: Plant
-								});
-
 							}
-							console.log(PoDetailsItems);
-								//	oView.getModel("PurchaseModel").setProperty("/TempContract/POItem", odata.results);
-							},
-						error: function(oError) {
-							console.log(oError);
+							if (CompCode !== "" || CompCode !== undefined) {
+								for (var z = 0; z < ListofCompanycode.length; z++) {
+									if (CompCode == ListofCompanycode[z].Bukrs) {
+										var compcodename = ListofCompanycode[z].Butxt;
+										console.log(compcodename);
+
+									}
+								}
+							}
+							if (PurchOrg !== "" || PurchOrg !== undefined) {
+								for (var w = 0; w < ListofPurchaseOrg.length; w++) {
+									if (PurchOrg == ListofPurchaseOrg[w].Ekorg) {
+										var PurchOrgname = ListofPurchaseOrg[w].Ekotx;
+										console.log(PurchOrgname);
+
+									}
+								}
+							}
+
+							oView.byId("vnumber").setValue(Vendor);
+							oView.byId("idPurchaseOrg").setValue(PurchOrg);
+							oView.byId("cc").setValue(CompCode);
+							oView.byId("cu").setValue(Currency);
+							oView.byId("pg").setValue(PurGroup);
+
+							var Dateon = CreatDate.getFullYear() + "/" + CreatDate.getMonth() + "/" + CreatDate.getDate() + " ";
+							//Header model 
+							var oHeaderDataModel = new JSONModel({
+								Name: vendorname,
+								Number: Vendor,
+								createdby: CreatedBy,
+								createddate: Dateon,
+								CompCodeno: CompCode,
+								CompCodename: compcodename,
+								PurchOrgno: PurchOrg,
+								PurchOrgname: PurchOrgname
+							});
+
+							oView.setModel(oHeaderDataModel, "oHeaderDataModel");
+							console.log(oHeaderDataModel)
+
+							var oHeaderDataCodePurOrg = new JSONModel({
+
+								CompCode: compcodename,
+								PurchOrg: PurchOrgname
+							});
+
+							oView.setModel(oHeaderDataCodePurOrg, "oHeaderDataCodePurOrg");
+							console.log(oHeaderDataCodePurOrg)
+
+							PoDetailsItems.push({
+								PoNumber: PoNumber,
+								Vendor: Vendor,
+								Name: vendorname,
+								Material: Material,
+								ShortText: ShortText,
+								NetPrice: NetPrice,
+								Quantity: Quantity,
+								CreatedBy: CreatedBy,
+								CreatDate: CreatDate,
+								CompCode: CompCode,
+								PurchOrg: PurchOrg,
+								PurGroup: PurGroup,
+								Currency: Currency,
+								PoItem: PoItem,
+								Plant: Plant
+							});
+
 						}
-					});
+						console.log(PoDetailsItems);
+						//	oView.getModel("PurchaseModel").setProperty("/TempContract/POItem", odata.results);
+					},
+					error: function(oError) {
+						console.log(oError);
+					}
+				});
 
 			});
 		},
-	
+
 		onEditPress: function() {
 			oView.byId("iddEdit").setVisible(false);
 			oView.byId("idSave").setVisible(true);
 			oView.getModel("EditModel").setProperty("/isEditable", true);
 		},
-			OnCancel: function(event) {
+		OnCancel: function(event) {
 			oView.getModel("EditModel").setProperty("/isEditable", false);
-				oView.byId("iddEdit").setVisible(true);
-					oView.byId("idSave").setVisible(false);
+			oView.byId("iddEdit").setVisible(true);
+			oView.byId("idSave").setVisible(false);
 			var oPurchaseModel = this.getOwnerComponent().getModel("PurchaseModel");
 			var oTempContract = oPurchaseModel.getProperty("/TempContract");
 			oTempContract.setData();
@@ -246,7 +240,7 @@ sap.ui.define([
 			this.getView().getModel("VHeader").refresh();
 
 			oView.byId("idPurOrg").setValue("");
-		
+
 			oView.byId("idCountryCode").setValue("");
 			oView.byId("vnumber").setValue("");
 			oView.byId("idCompCode").setValue("");
@@ -600,7 +594,7 @@ sap.ui.define([
 				oView.byId("idCompCode").setValue(oModellookup.getProperty(sBindPath + "/Bukrs"));
 				oView.byId("idCountryCode").setValue(oModellookup.getProperty(sBindPath + "/Waers"));
 				oView.byId("idPurGrg").setValue(oModellookup.getProperty(sBindPath + "/Ekgrp"));
-		//		oView.byId("productPO").setValue(oModellookup.getProperty(sBindPath + "/Ebeln"));
+				//		oView.byId("productPO").setValue(oModellookup.getProperty(sBindPath + "/Ebeln"));
 				Ebeln = oModellookup.getProperty(sBindPath + "/Ebeln");
 
 				console.log(Ebeln);
@@ -691,7 +685,7 @@ sap.ui.define([
 			//BusyIndicator.show(0);
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
-			//		console.log(oData);
+					//		console.log(oData);
 					var item = oData.results.length;
 
 					for (var iRowIndex = 0; iRowIndex <= 2600; iRowIndex++) {
@@ -706,7 +700,7 @@ sap.ui.define([
 						}
 
 					}
-			//		console.log(ListofVendor);
+					//		console.log(ListofVendor);
 
 					var Count = new sap.ui.model.json.JSONModel({
 						item: item
@@ -878,7 +872,7 @@ sap.ui.define([
 				oView.byId("idCompCode").setValue(oModel.getProperty(sBindPath + "/Bukrs"));
 				oView.byId("idCountryCode").setValue(oModel.getProperty(sBindPath + "/Waers"));
 				oView.byId("idPurGrg").setValue(oModel.getProperty(sBindPath + "/Ekgrp"));
-			//	oView.byId("productPO").setValue(oModel.getProperty(sBindPath + "/Ebeln"));
+				//	oView.byId("productPO").setValue(oModel.getProperty(sBindPath + "/Ebeln"));
 				Ebeln = oModel.getProperty(sBindPath + "/Ebeln");
 				console.log(Ebeln);
 
@@ -1540,13 +1534,12 @@ sap.ui.define([
 		},
 		/*Material Description fragment end*/
 
-	
 		onSavePurchaseOrder: function() {
 			var oPurchaseModel = this.getView().getModel("PurchaseModel");
 			var oPurchaseContract = oPurchaseModel.getProperty("/TempContract");
-				console.log(oPurchaseModel);
+			console.log(oPurchaseModel);
 
-		//	var Ebeln = oView.byId("productPO").getValue();
+			//	var Ebeln = oView.byId("productPO").getValue();
 			console.log(PurchaseOno);
 			//	Ebeln = oPurchaseContract.Ebeln;
 			var Bukrs = oPurchaseContract.Bukrs;
@@ -1652,7 +1645,7 @@ sap.ui.define([
 			var s = oPurchaseModel.oData.TempContract.destroy;
 			//	s.refresh(true);
 			oView.byId("vnumber").setValue("");
-		
+
 			oPurchaseModel.refresh(true);
 			//
 			//	this.getView().getModel("VHeader").refresh();

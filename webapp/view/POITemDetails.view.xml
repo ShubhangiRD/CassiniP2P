@@ -1,58 +1,56 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
 	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
 	xmlns:t="sap.ui.table" controllerName="com.cassiniProcureToPay.controller.POITemDetails">
-
-
-<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false"  preserveHeaderStateOnScroll="true">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true">
 		<headerTitle>
-			<ObjectPageHeader id="headerForTest" objectTitle="Purchase Order : {pomodel>/PurchaseO}" objectSubtitle="Standard PO">
+			<ObjectPageHeader id="headerForTest" objectTitle="Purchase Order : {pomodel>/PurchaseO}"  objectSubtitle="Standard PO">
 				<actions>
-						<ObjectPageHeaderActionButton text="Edit" id="iddEdit" type="Emphasized" hideText="false" tooltip="edit" press="onEditPress"/>
-						<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline" press="OnCancel"/>
-					<ObjectPageHeaderActionButton hideText="false" type="Emphasized"  id="idSave" text="Save" tooltip="save" press="onSavePurchaseOrder"/>
-		
+					<ObjectPageHeaderActionButton text="Edit" id="iddEdit" type="Emphasized" hideText="false" tooltip="edit" press="onEditPress"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline" press="OnCancel"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Emphasized" id="idSave" text="Save" tooltip="save" press="onSavePurchaseOrder"/>
 				</actions>
 			</ObjectPageHeader>
-		</headerTitle>
+				</headerTitle>
 		<headerContent>
-			<l:VerticalLayout>
 			
-				<m:ObjectNumber class="sapMObjectNumberLarge" number="Vendor: {oHeaderDataModel>/Number}" />
-					<m:Label text="{oHeaderDataModel>/Name}"/>
-			</l:VerticalLayout>
 			<l:VerticalLayout>
-				<m:Label  text="Created by : {oHeaderDataModel>/createdby}"/>
+					<m:ObjectStatus text="Document {pomodel>/PurchaseO}  does not contain any selectable items" state="Error"/>
+				
+				<m:ObjectAttribute text="Vendor: {oHeaderDataModel>/Number}"/>
+				<m:ObjectAttribute  text="{oHeaderDataModel>/Name}"/>
 			
-		<m:ObjectAttribute text="Created Date :{oHeaderDataModel>/createddate}"/>
-			</l:VerticalLayout>
-			<l:VerticalLayout>
-				<m:Label text="Company Code: {oHeaderDataModel>/CompCodeno}"/>
-				<m:ObjectAttribute text="{oHeaderDataModel>/CompCodename}"/>
 			</l:VerticalLayout>
 				<l:VerticalLayout>
-				<m:Label text="NetValue"/>
+				<m:ObjectAttribute text="Created by   : {oHeaderDataModel>/createdby}"/>
+				<m:ObjectAttribute text="Created Date :{oHeaderDataModel>/createddate}"/>
+				<m:ObjectAttribute text="Company Code : {oHeaderDataModel>/CompCodeno}"/>
+			
+			</l:VerticalLayout>
+			<l:VerticalLayout>
 				<m:ObjectAttribute text="{oHeaderDataModel>/CompCodename}"/>
 			</l:VerticalLayout>
+			<!--<l:VerticalLayout>
+				<m:Label text="NetValue"/>
+				<m:ObjectAttribute text="{oHeaderDataModel>/CompCodename}"/>
+			</l:VerticalLayout>-->
 		</headerContent>
-			<sections>
+		<sections>
 			<!--Tabs-->
 			<ObjectPageSection titleUppercase="false" id="orgD" title="Org Data">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-										<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.OrgData" type="XML"/>
-				
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.OrgData" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-					<ObjectPageSection titleUppercase="false"  title="Items">
+			<ObjectPageSection titleUppercase="false" title="Items">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-								<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.EditTable" type="XML"/>
-					
-								</blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.EditTable" type="XML"/>
+						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
@@ -120,23 +118,5 @@
 				</subSections>
 			</ObjectPageSection>
 		</sections>
-	
-	
-	
-	
-	
 	</ObjectPageLayout>
-
 </mvc:View>
-
-
-
-
-
-
-
-
-
-
-
-

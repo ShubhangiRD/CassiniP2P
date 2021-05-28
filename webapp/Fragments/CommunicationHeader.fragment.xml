@@ -11,12 +11,12 @@
 			
 						<f:FormElement label="SalesPerson" class="sapUiTinyMarginTop">
 							<f:fields>
-								<Input id="salePersn" class="sapUiTinyMarginTop" editable="{EditModel>/isEditable}"  textFormatMode="KeyValue"/>
+								<Input id="salePersn"  editable="{EditModel>/isEditable}"  textFormatMode="KeyValue"/>
 							</f:fields>
 						</f:FormElement>
 							<f:FormElement label="Telephone" class="sapUiTinyMarginTop">
 							<f:fields>
-								<Input id="idTelphn" class="sapUiTinyMarginTop" editable="{EditModel>/isEditable}"   textFormatMode="KeyValue"/>
+								<Input id="idTelphn" editable="{EditModel>/isEditable}"   textFormatMode="KeyValue"/>
 							</f:fields>
 						</f:FormElement>
 									<f:FormElement label="Language" class="sapUiTinyMarginTop">
@@ -40,13 +40,13 @@
 					<f:formElements>
 						<f:FormElement label="Your Reference" class="sapUiTinyMarginTop">
 							<f:fields>
-								<Input id="urRef" editable="{EditModel>/isEditable}"   class="sapUiTinyMarginTop" ></Input>
+								<Input id="urRef" editable="{EditModel>/isEditable}"    ></Input>
 						
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Our Reference" class="sapUiTinyMarginTop">
 							<f:fields>
-								<Input id="ourRef" editable="{EditModel>/isEditable}"  class="sapUiTinyMarginTop" ></Input>
+								<Input id="ourRef" editable="{EditModel>/isEditable}"   ></Input>
 						
 							</f:fields>
 						</f:FormElement>

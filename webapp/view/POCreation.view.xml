@@ -85,386 +85,385 @@
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
 							<t:Table id="idTableitem" class="sapUiMediumMarginTop" rows="{PurchaseModel>/TempContract/POItem}" visibleRowCount="5"
-				selectionMode="MultiToggle">
-				<t:extension>
-						<m:OverflowToolbar >
-						<m:Title id="title" text="PO Items"/>
-						<m:ToolbarSpacer/>
-						<m:Button icon="sap-icon://add" type="Transparent" tooltip="Add Row" press="onAddNewConditionItem"/>
-						<m:Button icon="sap-icon://delete" enabled="{=${PurchaseModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
-							tooltip="Delete Row" press="onDeleteConditionItem"/>
-					</m:OverflowToolbar>
-			
-				</t:extension>
-				<t:columns>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Status"/>
-						<t:template>
-							<m:Input id="idstatuss" class="price1"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Item"/>
-						<t:template>
-							<m:Input id="iditems" class="price1"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="A"/>
-						<t:template>
-							<m:Input id="idAa" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOAA" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestAA">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="I"/>
-						<t:template>
-							<m:Input id="idii" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOII" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestII">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Date Cat."/>
-						<t:template>
-							<m:Input id="iddatecat" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePODateCate" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestDateCate">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Deliv.Date "/>
-						<t:template>
-							<m:Input id="iddelivDate" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePODateDeliv" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestDateDeliv">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Order Unit"/>
-						<t:template>
-							<m:Input id="idorderUnit" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handleOrderUnit" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestOrderUnit">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Currency"/>
-						<t:template>
-							<m:Input id="idCurrencyPO" class="price1"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Per"/>
-						<t:template>
-							<m:Input id="idPer" class="price1"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Store Location"/>
-						<t:template>
-							<m:Input id="idstoreLocation" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOStoreLocation" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestStoreLocation">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Batch "/>
-						<t:template>
-							<m:Input id="idbatch" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOBatchPo" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestBatchPO">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Requestment Number"/>
-						<t:template>
-							<m:Input id="idReqnumber" class="price1"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Requisitoner "/>
-						<t:template>
-							<m:Input id="idRequisitonerr" class="price1"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Type Of Subcontracting "/>
-						<t:template>
-							<m:Input id="idsubcontracting" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOSubcontracting" suggestionItems="{ path: 'Lookup>/MaterialList' }"
-								suggestionItemSelected="onSuggestSubcontracting">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Inventory Managed Material "/>
-						<t:template>
-							<m:Input id="idinventrymaterial" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOInventrymaterial" suggestionItems="{ path: 'Lookup>/MaterialList' }"
-								suggestionItemSelected="onSuggestInventrymaterial">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Info Rec "/>
-						<t:template>
-							<m:Input id="idInfoRec" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOInfoRec" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestInfoRec">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="5rem" hAlign="Center">
-						<m:Label text="Returns Items "/>
-						<t:template>
-							<m:CheckBox id="ReturnsItems"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="5rem" hAlign="Center">
-						<m:Label text="Free "/>
-						<t:template>
-							<m:CheckBox id="idFrees"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="5rem" hAlign="Center">
-						<m:Label text="Texts "/>
-						<t:template>
-							<m:Input id="idtextss"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Purchase Request "/>
-						<t:template>
-							<m:Input id="idPurcReq" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOPurcReq" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestPurcReq">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Requisn Item "/>
-						<t:template>
-							<m:Input id="Requisnitem"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="OutLine Agreement "/>
-						<t:template>
-							<m:Input id="idOutLineAgmnt" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOOutLineAgmnt" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestOutLineAgmnt">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Contract Item"/>
-						<t:template>
-							<m:Input id="idContractitem"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Central Contract "/>
-						<t:template>
-							<m:Input id="idCentralcontract" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOCentralContract" suggestionItems="{ path: 'Lookup>/MaterialList' }"
-								suggestionItemSelected="onSuggestCentralContract">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Cent Contract Item"/>
-						<t:template>
-							<m:Input id="idCentContractitem"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="RFQ "/>
-						<t:template>
-							<m:Input id="idRGQ" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePORFQ" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestRFQ">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="RFQ Item"/>
-						<t:template>
-							<m:Input id="idRFQitem"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Purchasing Document "/>
-						<t:template>
-							<m:Input id="idPurchasingDocument" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOPurDoc" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestPurcDoc">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="PO Document Item"/>
-						<t:template>
-							<m:Input id="idpodocumentitem"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="ISS Store Location "/>
-						<t:template>
-							<m:Input id="idissStorLoc" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOissStorLoc" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestissStorLoc">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Higher Level Item"/>
-						<t:template>
-							<m:Input id="idHigherLevItem"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="SubItem Category"/>
-						<t:template>
-							<m:Input id="idSubitemCate" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
-								valueHelpRequest="handlePOSubitemCate" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestSubitemCate">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="RFX Number /Ext Doc"/>
-						<t:template>
-							<m:Input id="idextDoc"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Ext Item"/>
-						<t:template>
-							<m:Input id="itExtItem"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="IUID "/>
-						<t:template>
-							<m:CheckBox id="idIUID"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Fixed Date"/>
-						<t:template>
-							<m:CheckBox id="idFixedDate"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="11rem" hAlign="Center">
-						<m:Label text="Material Number"/>
-						<t:template>
-							<m:Input id="idMaterialNumber" class="mtid" textFormatMode="KeyValue" placeholder=" Material No" showSuggestion="true" showValueHelp="true"
-								value="{PurchaseModel>Matnr}" valueHelpRequest="handlePOMaterialHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
-								suggestionItemSelected="onSuggest">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column hAlign="Center" width="12rem">
-						<m:Label text="Material Description"/>
-						<t:template>
-							<m:Input class="desc1" id="nDescription" textFormatMode="KeyValue" placeholder=" Material Description" showSuggestion="true"
-								showValueHelp="true" valueHelpRequest="handleMaterialDisVendor" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }"
-								suggestionItemSelected="onSuggest">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="11rem" hAlign="Center">
-						<m:Label text="PO Quantity"/>
-						<t:template>
-							<m:Input id="Quantity" value="{PurchaseModel>Menge}" textAlign="End" placeholder="Enter PO Quantity"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="11rem" hAlign="Center">
-						<m:Label text="Unit of Measure"/>
-						<t:template>
-							<m:Input id="uom1" class="measure1"/>
-						</t:template>
-					</t:Column>
-					<t:Column width="9rem" hAlign="Center">
-						<m:Label text="Plant"/>
-						<t:template>
-							<m:Input id="Plant" textFormatMode="KeyValue" placeholder=" Enter Plant No" showSuggestion="true" showValueHelp="true"
-								value="{PurchaseModel>Werks}" valueHelpRequest="handleValueHelpPlant" suggestionItems="{ path: 'Lookup>/POPlant' }"
-								suggestionItemSelected="onSuggest">
-								<m:suggestionItems>
-									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
-								</m:suggestionItems>
-							</m:Input>
-						</t:template>
-					</t:Column>
-					<t:Column width="11rem" hAlign="Center">
-						<m:Label text="Price"/>
-						<t:template>
-							<m:Input id="Price" class="price1"/>
-						</t:template>
-					</t:Column>
-				</t:columns>
-			
-			</t:Table>
-	
-					<!--		<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.EditTable" type="XML"/>
-					-->	</blocks>
+								selectionMode="MultiToggle">
+								<t:extension>
+									<m:OverflowToolbar >
+										<m:Title id="title" text="PO Items"/>
+										<m:ToolbarSpacer/>
+										<m:Button icon="sap-icon://add" type="Transparent" tooltip="Add Row" press="onAddNewConditionItem"/>
+										<m:Button icon="sap-icon://delete" enabled="{=${PurchaseModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+											tooltip="Delete Row" press="onDeleteConditionItem"/>
+									</m:OverflowToolbar>
+								</t:extension>
+								<t:columns>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Status"/>
+										<t:template>
+											<m:Input id="idstatuss" class="price1"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Item"/>
+										<t:template>
+											<m:Input id="iditems" class="price1"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="A"/>
+										<t:template>
+											<m:Input id="idAa" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOAA" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestAA">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="I"/>
+										<t:template>
+											<m:Input id="idii" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOII" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestII">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Date Cat."/>
+										<t:template>
+											<m:Input id="iddatecat" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePODateCate" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestDateCate">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Deliv.Date "/>
+										<t:template>
+											<m:Input id="iddelivDate" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePODateDeliv" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestDateDeliv">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Order Unit"/>
+										<t:template>
+											<m:Input id="idorderUnit" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handleOrderUnit" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestOrderUnit">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Currency"/>
+										<t:template>
+											<m:Input id="idCurrencyPO" class="price1"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Per"/>
+										<t:template>
+											<m:Input id="idPer" class="price1"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Store Location"/>
+										<t:template>
+											<m:Input id="idstoreLocation" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOStoreLocation" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestStoreLocation">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Batch "/>
+										<t:template>
+											<m:Input id="idbatch" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOBatchPo" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestBatchPO">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Requestment Number"/>
+										<t:template>
+											<m:Input id="idReqnumber" class="price1"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Requisitoner "/>
+										<t:template>
+											<m:Input id="idRequisitonerr" class="price1"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Type Of Subcontracting "/>
+										<t:template>
+											<m:Input id="idsubcontracting" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOSubcontracting" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+												suggestionItemSelected="onSuggestSubcontracting">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Inventory Managed Material "/>
+										<t:template>
+											<m:Input id="idinventrymaterial" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOInventrymaterial" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+												suggestionItemSelected="onSuggestInventrymaterial">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Info Rec "/>
+										<t:template>
+											<m:Input id="idInfoRec" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOInfoRec" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestInfoRec">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="5rem" hAlign="Center">
+										<m:Label text="Returns Items "/>
+										<t:template>
+											<m:CheckBox id="ReturnsItems"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="5rem" hAlign="Center">
+										<m:Label text="Free "/>
+										<t:template>
+											<m:CheckBox id="idFrees"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="5rem" hAlign="Center">
+										<m:Label text="Texts "/>
+										<t:template>
+											<m:Input id="idtextss"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Purchase Request "/>
+										<t:template>
+											<m:Input id="idPurcReq" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOPurcReq" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestPurcReq">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Requisn Item "/>
+										<t:template>
+											<m:Input id="Requisnitem"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="OutLine Agreement "/>
+										<t:template>
+											<m:Input id="idOutLineAgmnt" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOOutLineAgmnt" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestOutLineAgmnt">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Contract Item"/>
+										<t:template>
+											<m:Input id="idContractitem"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Central Contract "/>
+										<t:template>
+											<m:Input id="idCentralcontract" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOCentralContract" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+												suggestionItemSelected="onSuggestCentralContract">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Cent Contract Item"/>
+										<t:template>
+											<m:Input id="idCentContractitem"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="RFQ "/>
+										<t:template>
+											<m:Input id="idRGQ" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePORFQ" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestRFQ">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="RFQ Item"/>
+										<t:template>
+											<m:Input id="idRFQitem"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Purchasing Document "/>
+										<t:template>
+											<m:Input id="idPurchasingDocument" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+												value="{PurchaseModel>}" valueHelpRequest="handlePOPurDoc" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+												suggestionItemSelected="onSuggestPurcDoc">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="PO Document Item"/>
+										<t:template>
+											<m:Input id="idpodocumentitem"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="ISS Store Location "/>
+										<t:template>
+											<m:Input id="idissStorLoc" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOissStorLoc" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestissStorLoc">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Higher Level Item"/>
+										<t:template>
+											<m:Input id="idHigherLevItem"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="SubItem Category"/>
+										<t:template>
+											<m:Input id="idSubitemCate" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>}"
+												valueHelpRequest="handlePOSubitemCate" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestSubitemCate">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="RFX Number /Ext Doc"/>
+										<t:template>
+											<m:Input id="idextDoc"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Ext Item"/>
+										<t:template>
+											<m:Input id="itExtItem"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="IUID "/>
+										<t:template>
+											<m:CheckBox id="idIUID"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Fixed Date"/>
+										<t:template>
+											<m:CheckBox id="idFixedDate"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<m:Label text="Material Number"/>
+										<t:template>
+											<m:Input id="idMaterialNumber" class="mtid" textFormatMode="KeyValue" placeholder=" Material No" showSuggestion="true" showValueHelp="true"
+												value="{PurchaseModel>Matnr}" valueHelpRequest="handlePOMaterialHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+												suggestionItemSelected="onSuggest">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column hAlign="Center" width="12rem">
+										<m:Label text="Material Description"/>
+										<t:template>
+											<m:Input class="desc1" id="nDescription" textFormatMode="KeyValue" placeholder=" Material Description" showSuggestion="true"
+												showValueHelp="true" valueHelpRequest="handleMaterialDisVendor" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }"
+												suggestionItemSelected="onSuggest">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<m:Label text="PO Quantity"/>
+										<t:template>
+											<m:Input id="Quantity" value="{PurchaseModel>Menge}" textAlign="End" placeholder="Enter PO Quantity"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<m:Label text="Unit of Measure"/>
+										<t:template>
+											<m:Input id="uom1" class="measure1"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Plant"/>
+										<t:template>
+											<m:Input id="Plant" textFormatMode="KeyValue" placeholder=" Enter Plant No" showSuggestion="true" showValueHelp="true"
+												value="{PurchaseModel>Werks}" valueHelpRequest="handleValueHelpPlant" suggestionItems="{ path: 'Lookup>/POPlant' }"
+												suggestionItemSelected="onSuggest">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<m:Label text="Price"/>
+										<t:template>
+											<m:Input id="Price" class="price1"/>
+										</t:template>
+									</t:Column>
+								</t:columns>
+							</t:Table>
+							<!--		<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.EditTable" type="XML"/>
+					-->
+						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<ObjectPageSection titleUppercase="false" id="DI" title="DeliveryInvoice">
+			<ObjectPageSection titleUppercase="false"  title="DeliveryInvoice">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
@@ -473,7 +472,7 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<ObjectPageSection titleUppercase="false" id="Address" title="Address">
+			<ObjectPageSection titleUppercase="false"  title="Address">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
@@ -482,7 +481,7 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<ObjectPageSection titleUppercase="false" id="communi" title="Communication">
+			<ObjectPageSection titleUppercase="false"  title="Communication">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
@@ -491,7 +490,7 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<ObjectPageSection titleUppercase="false" id="Partners" title="Partenrs">
+			<ObjectPageSection titleUppercase="false"  title="Partenrs">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
@@ -500,7 +499,7 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<ObjectPageSection titleUppercase="false" id="Additionaldata" title="Additional Data">
+			<ObjectPageSection titleUppercase="false"  title="Additional Data">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
@@ -509,7 +508,7 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<ObjectPageSection titleUppercase="false" id="Status" title="Status">
+			<ObjectPageSection titleUppercase="false"  title="Status">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
@@ -518,7 +517,7 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<ObjectPageSection titleUppercase="false" id="PP" title="PaymentProcessing">
+			<ObjectPageSection titleUppercase="false"  title="PaymentProcessing">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>

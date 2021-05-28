@@ -6,9 +6,9 @@
 				<Title text="Purchase Order" level="H2"/>
 				<ToolbarSpacer></ToolbarSpacer>
 					<SearchField id="searchField" width="20%" placeholder="Search..." search=".onSearchEbeln"/>
-						
+			<!--			
 				<Button icon="sap-icon://paper-plane" text="Post" press="onPostItems" type="Accept" ariaLabelledBy="editButtonLabel"/>
-			</OverflowToolbar>
+		-->	</OverflowToolbar>
 		</headerToolbar>
 		<columns>
 			<Column>
