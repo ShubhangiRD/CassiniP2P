@@ -87,19 +87,9 @@ sap.ui.define([
 			var VendorModel = new JSONModel(oVendorData);
 			this.setModel(VendorModel, "VendorModel");
 			
-			var POHeaderData = new PODetail();
-				
-			var POHeaderModel = new JSONModel(POHeaderData);
-			this.setModel(POHeaderModel, "POHeaderModel");
-
 			
-				
-			var POItemData = new POItem();
-				
-			var POItemModel = new JSONModel(POItemData);
-			this.setModel(POItemModel, "POItemModel");
-
 			
+	
 			
 			
 			
