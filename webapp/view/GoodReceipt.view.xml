@@ -1,495 +1,171 @@
-<mvc:View controllerName="com.cassiniProcureToPay.controller.GoodReceipt" xmlns:t="sap.ui.table" xmlns:mvc="sap.ui.core.mvc"
-	xmlns:forms="sap.ui.layout.form" xmlns:card="sap.f.cards" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
-	xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:tnt="sap.tnt" displayBlock="true" height="100%" xmlns:u="sap.ui.unified" class="sapUiSizeCompact">
-	<Page showFooter="true"  title="Post Goods Receipt" class="GoodReceiptPageClass">
-		<!--<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">-->
-		<VBox>
-			<VBox class="PurchaseVboxSecond">
-				<f:Form id="FormHeaderContent" editable="false" class="myFormMarginTop">
-					<f:layout>
-						<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
-							emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4" singleContainerFullSize="false"/>
-					</f:layout>
-					<f:formContainers>
-						<f:FormContainer title=" " class="FormContainerVendor">
-							<f:formElements>
-								<f:FormElement label="">
-									<f:fields>
-										<Select id="vtitle" selectedKey="vtitle" class="sapclassinputbox">
-											<items>
-												<core:Item text="Goods Receipt" key="Goods Receipt"/>
-												<core:Item text="Display" key="Display"/>
-												<core:Item text="Cancellation" key="Cancellation"/>
-												<core:Item text="Goods Issue" key="Goods Issue"/>
-												<core:Item text="Place in Storage" key="Place in Storage"/>
-												<core:Item text="Release GR Blocked Stock" key="Release GR Blocked Stock"/>
-												<core:Item text="Remove from Storage" key="Remove from Storage"/>
-												<core:Item text="Return Delivery" key="Return Delivery"/>
-												<core:Item text="Subsequent Adjustment" key="Subsequent Adjustment"/>
-												<core:Item text="Subsequent Delivery" key="Subsequent Delivery"/>
-												<core:Item text="Transfer Posting" key="Transfer Posting"/>
-											</items>
-										</Select>
-									</f:fields>
-								</f:FormElement>
-							</f:formElements>
-						</f:FormContainer>
-						<f:FormContainer title=" ">
-							<f:formElements>
-								<f:FormElement label="">
-									<f:fields>
-										<Select id="idPurchaseOrder" selectedKey="vtitle" class="sapclassinputbox">
-											<items>
-												<core:Item text="Purchase Order" key="Purchase Order"/>
-												<core:Item text="Inbound Delivery" key="Inbound Delivery"/>
-												<core:Item text="Material Document" key="Material Document"/>
-												<core:Item text="Order" key="Order"/>
-												<core:Item text="Other" key="Other"/>
-												<core:Item text="Outbound Delivery" key="Outbound Delivery"/>
-												<core:Item text="Reservation" key="Reservation"/>
-												<core:Item text="Transport" key="Transport"/>
-												<core:Item text="Transport ID Code" key="Transport ID Code"/>
-											</items>
-										</Select>
-									</f:fields>
-								</f:FormElement>
-							</f:formElements>
-						</f:FormContainer>
-						<f:FormContainer title=" ">
-							<f:formElements>
-								<f:FormElement label="">
-									<f:fields>
-										<Input id="idPD" textFormatMode="KeyValue" placeholder="Purchase Order" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
-											valueHelpRequest="handlePursOrderValueHelp" suggestionItems="{ path: 'Lookup>/POOrderList'}"
-											suggestionItemSelected="suggestionItemSelectedPOrder">
-											<suggestionItems>
-												<core:ListItem key="{Lookup>Ebeln}" text="{Lookup>Lifnr}" additionalText="{Lookup>Ebeln}"/>
-											</suggestionItems>
-										</Input>
-									</f:fields>
-								</f:FormElement>
-							</f:formElements>
-						</f:FormContainer>
-						<f:FormContainer title=" ">
-							<f:formElements>
-								<f:FormElement label="">
-									<f:fields>
-										<Input id="idlant" textFormatMode="KeyValue" placeholder="Plant No" showSuggestion="true" width="50%" showValueHelp="true"
-											valueHelpRequest="handleValueHelpPlant" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggest">
-											<suggestionItems>
-												<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
-											</suggestionItems>
-										</Input>
-									</f:fields>
-								</f:FormElement>
-							</f:formElements>
-						</f:FormContainer>
-					</f:formContainers>
-				</f:Form>
-			</VBox>
-			<VBox >
-				<IconTabBar  id="idIconTabBarNoIcons" expanded="false">
-					<items>
-						<IconTabFilter  text="General" key="general">
-							<VBox class="sapUiSmallMargin">
-								<f:Form  id="FormLumpSum" editable="true" >
-									<f:layout >
-										<f:ResponsiveGridLayout  labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
-											emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
-									</f:layout>
-									<f:formContainers>
-										<f:FormContainer>
-											<f:formElements>
-												<f:FormElement label="Document Date">
-													<f:fields>
-														<Input id="idDocDate" value="{Megodate>/CreatDate}" textFormatMode="KeyValue"></Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Posting Date">
-													<f:fields>
-														<Input type="Text" id="idPostDate" value="{Megodate>/CreatDate}" editable="{EditModel>/isEditable}"></Input>
-													</f:fields>
-												</f:FormElement>
-											</f:formElements>
-										</f:FormContainer>
-									</f:formContainers>
-									<f:formContainers>
-										<f:FormContainer >
-											<f:formElements>
-												<f:FormElement label="Delivery Note">
-													<f:fields>
-														<Input id="idDeliDate" textFormatMode="KeyValue"></Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Bill of Landing">
-													<f:fields>
-														<Input type="Text" id="idBillLand" value="{PurchaseModel>/TempContract/Waers}"></Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="GR Slip No">
-													<f:fields>
-														<Input type="Text" id="idGrSlipno" value="{PurchaseModel>/TempContract/Waers}"></Input>
-													</f:fields>
-												</f:FormElement>
-											</f:formElements>
-										</f:FormContainer>
-									</f:formContainers>
-									<f:formContainers>
-										<f:FormContainer>
-											<f:formElements>
-												<f:FormElement label="Header Text">
-													<f:fields>
-														<Input type="Text" id="idHeadertext" value="{PurchaseModel>/TempContract/Bukrs}"></Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Vendor">
-													<f:fields>
-														<Input type="Text" id="idVendor" value=" " visible="{VisibleModel>/isVisibleable}"></Input>
-													</f:fields>
-												</f:FormElement>
-											</f:formElements>
-										</f:FormContainer>
-									</f:formContainers>
-								</f:Form>
-							</VBox>
-						</IconTabFilter>
-						<IconTabFilter class="hide" text="Vendor" key="general">
-							<VBox class="sapUiSmallMargin" visible="{VisibleModel>/isVisibleable}">
-								<f:Form id="idvendorrform" editable="true">
-									<f:layout>
-										<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
-											emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
-									</f:layout>
-									<f:formContainers>
-										<f:FormContainer>
-											<f:formElements>
-												<f:FormElement label="Vendor">
-													<f:fields>
-														<Input id="idvendorno1" textFormatMode="KeyValue"/>
-														<Input id="idvendorno" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
-															valueHelpRequest="handleMaterialValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVebor"
-															width="140px" editable="{EditModel>/isEditable}">
-															<suggestionItems>
-																<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
-															</suggestionItems>
-															<layoutData>
-																<l:GridData span="XL1 L2 M2 S4"/>
-															</layoutData>
-														</Input>
-														<!--	<Input type="Text" id="idvendorno"  width="140px" editable="{EditModel>/isEditable}">	<layoutData>
-										<l:GridData span="XL1 L2 M2 S4" />
-									</layoutData>
-								</Input>-->
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Vendor">
-													<f:fields>
-														<Input id="idPostDateq" textFormatMode="KeyValue"/>
-														<Input type="Text" id="idPostDateq11" visible="false" width="140px" editable="{EditModel>/isEditable}">
-															<layoutData>
-																<l:GridData span="XL1 L2 M2 S4"/>
-															</layoutData>
-														</Input>
-													</f:fields>
-												</f:FormElement>
-											</f:formElements>
-										</f:FormContainer>
-									</f:formContainers>
-								</f:Form>
-							</VBox>
-						</IconTabFilter>
-					</items>
-				</IconTabBar>
-			</VBox>
-			<VBox class="TableBoxClass sapUiSmallMargin" >
-				<t:Table id="idTableitem" rows="{ path: 'PurchaseModel>/TempContract/POItem'}" editable="true" visibleRowCount="5" selectionMode="MultiToggle">
-					<t:extension>
-						<OverflowToolbar>
-							<Title text=" Purchase Order Items"/>
-							<ToolbarSpacer/>
-							<Button icon="sap-icon://delete" enabled="{=${PurchaseModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
-								tooltip="Delete Row" press="onDeleteConditionItem"/>
-						</OverflowToolbar>
-					</t:extension>
-					<t:columns>
-						<t:Column width="7rem" hAlign="Center">
-							<Label text="Line"/>
-							<t:template>
-								<Input id="idMaterialNumber" textFormatMode="KeyValue" value="{PurchaseModel>PoItem}" editable="false"></Input>
-							</t:template>
-						</t:Column>
-						<t:Column hAlign="Center" width="12rem">
-							<Label text="Material Description"/>
-							<t:template>
-								<Input class="desc1" id="nDescription" value="{PurchaseModel>ShortText}" editable="false"></Input>
-							</t:template>
-						</t:Column>
-						<t:Column width="7rem" hAlign="Center">
-							<Label text="Quantity"/>
-							<t:template>
-								<Input id="Quantity" value="{PurchaseModel>Quantity}" textAlign="End"/>
-							</t:template>
-						</t:Column>
-						<t:Column width="7rem" hAlign="Center">
-							<Label text="Unit of Quantity"/>
-							<t:template>
-								<Input id="uom1" value="{PurchaseModel>PoUnit}" class="measure1"/>
-							</t:template>
-						</t:Column>
-						<t:Column width="9rem" hAlign="Center">
-							<Label text="Purchase Orders"/>
-							<t:template>
-								<Input id="idPurchaseOrs" value="{PurchaseModel>Purchaseorder}" textAlign="End" editable="false"></Input>
-							</t:template>
-						</t:Column>
-						<t:Column width="9rem" hAlign="Center">
-							<Label text="Vendor"/>
-							<t:template>
-								<Input id="Price" value="{PurchaseModel>SuppVendor}" class="price1" editable="false"/>
-							</t:template>
-						</t:Column>
-						<t:Column width="9rem" hAlign="Center">
-							<Label text="Plant"/>
-							<t:template>
-								<Input id="idBatch" value="{PurchaseModel>Plant}" editable="false"/>
-							</t:template>
-						</t:Column>
-						<t:Column width="9rem" hAlign="Center">
-							<Label text="Storage Location"/>
-							<t:template>
-								<Input id="idCust" textFormatMode="KeyValue" placeholder="Storage Location" showSuggestion="true" showValueHelp="true"
-									valueHelpRequest="handleStorageLocationValue" suggestionItems="{ path: 'Lookup>/StorageLocationList'}"
-									suggestionItemSelected="suggestionItemStorageLocation">
-									<suggestionItems>
-										<core:ListItem key="{Lookup>Lgort}" text="{Lookup>Lgobe}" additionalText="{Lookup>Lgort}"/>
-									</suggestionItems>
-								</Input>
-							</t:template>
-						</t:Column>
-						<!--	<t:Column width="9rem" hAlign="Center">
-								<Label text="Vendor Name"/>
-								<t:template>
-									<Input id="idVend" value="{PurchaseModel>VendorNameee}"  editable="false"/>
-								</t:template>
-							</t:Column>-->
-						<!--			<t:Column width="9rem" hAlign="Center">
-								<Label text="Sales Order"/>
-								<t:template>
-									<Input id="idSales"/>
-								</t:template>
-							</t:Column>
-							<t:Column width="9rem" hAlign="Center">
-								<Label text="Valuation type"/>
-								<t:template>
-									<Input id="idVal"/>
-								</t:template>
-							</t:Column>-->
-					</t:columns>
-					<!--<t:footer>-->
-					<!--	<Toolbar>-->
-					<!--		<ToolbarSpacer/>-->
-					<!--	</Toolbar>-->
-					<!--</t:footer>-->
-				</t:Table>
-			</VBox>
-			<VBox class="FooterIconBarClass" visible="{VisibleModel>/isVisibleable}">
-				<IconTabBar id="idIconTabPO" expanded="false" class="sapUiResponsiveContentPadding">
-					<items>
-						<IconTabFilter text="Material" key="general">
-							<VBox class="sapUiSmallMargin">
-								<f:Form id="idMaterialForm" editable="true">
-									<f:layout>
-										<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
-											emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
-									</f:layout>
-									<f:formContainers>
-										<f:FormContainer>
-											<f:formElements>
-												<f:FormElement label="Material">
-													<f:fields>
-														<Input id="idMatdis" value=" "/>
-														<Input id="idMatNo" value=" ">
-															<layoutData>
-																<l:GridData span="XL1 L2 M2 S4"/>
-															</layoutData>
-														</Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Vendor Material no">
-													<f:fields>
-														<Input id="VMatNo" value=" "/>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Material Group">
-													<f:fields>
-														<Input id="idMatGrp" value=" ">
-															<layoutData>
-																<l:GridData span="XL1 L2 M2 S4"/>
-															</layoutData>
-														</Input>
-														<Input value=" " id="idmatGrptwo" visible="false"/>
-													</f:fields>
-												</f:FormElement>
-											</f:formElements>
-										</f:FormContainer>
-									</f:formContainers>
-								</f:Form>
-							</VBox>
-						</IconTabFilter>
-						<IconTabFilter class="hide" text="Quantity" key="general">
-							<VBox class="sapUiSmallMargin">
-								<f:Form id="idQuantForm" editable="true">
-									<f:layout>
-										<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
-											emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
-									</f:layout>
-									<f:formContainers>
-										<f:FormContainer>
-											<f:formElements>
-												<f:FormElement label="Qty in Unit Entry">
-													<f:fields>
-														<Input id="ident" value="{Street}"/>
-														<Input id="idQunat" value="{HouseNumber}">
-															<layoutData>
-																<l:GridData span="XL1 L2 M2 S4"/>
-															</layoutData>
-														</Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Qty in SKU">
-													<f:fields>
-														<Input id="idQntS" value="{Street}"/>
-														<Input id="idQuantsku" value="{HouseNumber}">
-															<layoutData>
-																<l:GridData span="XL1 L2 M2 S4"/>
-															</layoutData>
-														</Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Qty in Delivery note">
-													<f:fields>
-														<Input id="idDelNot" value="{City}"/>
-														<Input id="idDelNott" value="{ZIPCode}">
-															<layoutData>
-																<l:GridData span="XL1 L2 M2 S4"/>
-															</layoutData>
-														</Input>
-													</f:fields>
-												</f:FormElement>
-											</f:formElements>
-										</f:FormContainer>
-									</f:formContainers>
-								</f:Form>
-							</VBox>
-						</IconTabFilter>
-						<IconTabFilter class="hide" text="Purchase Order Data" key="general">
-							<VBox class="sapUiSmallMargin">
-								<f:Form id="idPOformDAta" editable="true">
-									<f:layout>
-										<f:ResponsiveGridLayout labelSpanXL="6" labelSpanL="6" labelSpanM="6" labelSpanS="6" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
-											emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
-									</f:layout>
-									<f:formContainers>
-										<f:FormContainer>
-											<f:formElements>
-												<f:FormElement label="Purchase Order">
-													<f:fields>
-														<Input id="idPOrder" textFormatMode="KeyValue"></Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Del Completed IND">
-													<f:fields>
-														<Input type="Text" id="idIND" value=" " editable="{EditModel>/isEditable}"></Input>
-													</f:fields>
-												</f:FormElement>
-											</f:formElements>
-										</f:FormContainer>
-									</f:formContainers>
-								</f:Form>
-							</VBox>
-						</IconTabFilter>
-						<IconTabFilter class="hide" text="Partner" key="general">
-							<VBox class="sapUiSmallMargin">
-								<f:Form id="idPatnrform" editable="true">
-									<!--<f:title>-->
-									<!--	<core:Title text="Address"/>-->
-									<!--</f:title>-->
-									<f:layout>
-										<f:ResponsiveGridLayout labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
-											emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
-									</f:layout>
-									<f:formContainers>
-										<f:FormContainer>
-											<f:formElements>
-												<f:FormElement label="Vendor">
-													<f:fields>
-														<Input id="idpatven" textFormatMode="KeyValue"/>
-														<Input type="Text" id="iddis" value=" " width="50%" editable="{EditModel>/isEditable}">
-															<layoutData>
-																<l:GridData span="XL1 L3 M2 S4"/>
-															</layoutData>
-														</Input>
-													</f:fields>
-												</f:FormElement>
-											</f:formElements>
-										</f:FormContainer>
-									</f:formContainers>
-								</f:Form>
-							</VBox>
-						</IconTabFilter>
-						<IconTabFilter class="hide" text="Account Assingment" key="general">
-							<VBox class="sapUiSmallMargin">
-								<f:Form id="idPOAccountAssignment" editable="true">
-									<f:layout>
-										<f:ResponsiveGridLayout labelSpanXL="6" labelSpanL="6" labelSpanM="6" labelSpanS="6" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
-											emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
-									</f:layout>
-									<f:formContainers>
-										<f:FormContainer>
-											<f:formElements>
-												<f:FormElement label="G/L Account">
-													<f:fields>
-														<Input id="idGLAccount" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"></Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Business Area">
-													<f:fields>
-														<Input type="Text" id="idBUsinessArea" value=" " showSuggestion="true" showValueHelp="true" editable="{EditModel>/isEditable}"></Input>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Cost Center">
-													<f:fields>
-														<Input type="Text" id="idCostCenter" showSuggestion="true" showValueHelp="true"/>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Profit Center">
-													<f:fields>
-														<Input type="Text" id="idProfitCenter" showSuggestion="true" showValueHelp="true"/>
-													</f:fields>
-												</f:FormElement>
-												<f:FormElement label="Functional Area">
-													<f:fields>
-														<Input type="Text" id="idFunctionalArea" showSuggestion="true" showValueHelp="true"/>
-													</f:fields>
-												</f:FormElement>
-											</f:formElements>
-										</f:FormContainer>
-									</f:formContainers>
-								</f:Form>
-							</VBox>
-						</IconTabFilter>
-					</items>
-				</IconTabBar>
-			</VBox>
-		</VBox>
-		<!--</ScrollContainer>-->
-		<footer id="appViewFooterId">
-			<OverflowToolbar id="appViewToolbarId">
-				<ToolbarSpacer/>
-				<Button  text="{i18n>cancel}" type="Transparent" press="OnCancel"/>
-				<Button id="idSave" type="Emphasized" text="Post" press="onPostPurchaseOrder"/>
+<mvc:View controllerName="com.cassiniProcureToPay.controller.GoodReceipt" xmlns:t="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:card="sap.f.cards"
+	xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:m="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:u="sap.ui.unified" class="sapUiSizeCompact" height="100%" displayBlock="true">
+
+		<ObjectPageLayout id="ObjectPageLayout"  showFooter="true" showTitleInHeaderContent="true" alwaysShowContentHeader="false"
+			preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+			<headerTitle>
+					<!--	<m:ObjectStatus text="Document {PONO>/Ebeln}  does not contain any selectable items" state="Error"/>
+				-->
+				<ObjectPageDynamicHeaderTitle >
+								<expandedHeading>
+					<m:HBox>
+						<m:Title text="Goods Receipt" wrapping="true"/>
+						<m:ObjectMarker type="Favorite" class="sapUiTinyMarginBegin"/>
+					</m:HBox>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox  fitContainer="true" alignItems="Center">
+						<m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
+						<m:Title text="Goods Receipt" wrapping="true"/>
+					</m:FlexBox>
+				</snappedHeading>
+
+				<expandedContent>
+					<m:ObjectStatus text="Document  {PO>/PONO}  does not contain any selectable items" state="Error"/>
+				</expandedContent>
+
+				<snappedContent>
+					<m:ObjectStatus text="Document  {PO>/PONO}  does not contain any selectable items" state="Error"/>
+				</snappedContent>
+					
+					
 				
-			</OverflowToolbar>
-		</footer>
-	</Page>
+					<actions>
+						<ObjectPageHeaderActionButton text="Cancel" type="Transparent" hideText="false" press="onEditToggleButtonPress"/>
+						<ObjectPageHeaderActionButton text="Save" type="Emphasized" hideText="false" press="onPostPurchaseOrder"/>
+					</actions>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<headerContent>
+				<form:SimpleForm id="FormHeaderContent1"  editable="true" layout="ResponsiveGridLayout" labelSpanXL="3"
+					labelSpanL="3" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" columnsXL="1" columnsL="1" columnsM="1"
+					singleContainerFullSize="false">
+					<form:content>
+						<m:Label text=" "/>
+						<m:Input id="idPD" textFormatMode="KeyValue" placeholder="Purchase Document" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+							width="100%" valueHelpRequest="handlePursOrderValueHelp" suggestionItems="{ path: 'Lookup>/POOrderList'}"
+							suggestionItemSelected="suggestionItemSelectedPOrder">
+							<m:suggestionItems>
+								<core:ListItem key="{Lookup>Ebeln}" text="{Lookup>Lifnr}" additionalText="{Lookup>Ebeln}"/>
+							</m:suggestionItems>
+						</m:Input>
+						<m:Input id="idlant" textFormatMode="KeyValue" placeholder=" Plant No" showSuggestion="true" width="30%" showValueHelp="true"
+							valueHelpRequest="handleValueHelpPlant" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggest">
+							<m:suggestionItems>
+								<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+							</m:suggestionItems>
+						</m:Input>
+					</form:content>
+				</form:SimpleForm>
+				<form:SimpleForm id="FormHeaderContent2"  editable="true" layout="ResponsiveGridLayout" labelSpanXL="2"
+					labelSpanL="2" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" columnsXL="1" columnsL="1" columnsM="1"
+					singleContainerFullSize="false">
+					<form:content>
+						<m:Label text="Vendor "/>
+						<m:Text id="idVendorr" text="{OData>/Vendor}: {OData>/VendorName} "/>
+						<m:Label text="Purchasing Document  "/>
+						<m:Text text ="{OData>/PON}"/>
+					</form:content>
+				</form:SimpleForm>
+			</headerContent>
+			<sections>
+				<ObjectPageSection titleUppercase="false" title="General Information" id="general">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<form:SimpleForm id="FormLumpSum"  editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+									labelSpanS="12" adjustLabelSpan="false" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false">
+									<form:content>
+										<core:Title text=""/>
+										<!--<m:Label text="Printing"/>-->
+										<!--<m:Select id="idPrinting" selectedKey="vtitle" class="sapclassinputbox">-->
+										<!--	<m:items>-->
+										<!--		<core:Item text="No print." key="No print"/>-->
+										<!--	</m:items>-->
+										<!--</m:Select>-->
+										<m:Label text="Bill of Lading"/>
+										<m:Input type="Text" id="idBillLand" value="{PurchaseModel>/TempContract/Waers}"/>
+										<m:Label text="GR Slip No"/>
+										<m:Input type="Text" id="idGrSlipno" value="{PurchaseModel>/TempContract/Waers}"></m:Input>
+										<m:Label text="Delivery Note"/>
+										<m:Input id="idDeliDate" textFormatMode="KeyValue"></m:Input>
+										<core:Title text=" "/>
+										<!--<m:Label text="Note"/>-->
+										<!--<m:Input id="idNote"/>-->
+										<m:Label text="Document Date"/>
+										<m:Input id="idDocDate" value="{Megodate>/CreatDate}" textFormatMode="KeyValue"/>
+										<m:Label text="Posting Date"/>
+										<m:Input type="Text" id="idPostDate" value="{Megodate>/CreatDate}" editable="{EditModel>/isEditable}"/>
+										<core:Title text=" "/>
+										<m:Label text="Header text"/>
+										<m:Input type="Text" id="idHeadertext" value="{OData>/VendorName}"></m:Input>
+										<m:Label text="Vendor"/>
+										<m:Input type="Text" id="idVendor" value=" " visible="{VisibleModel>/isVisibleable}"></m:Input>
+									</form:content>
+								</form:SimpleForm>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<!--<ObjectPageSection titleUppercase="false" title="Vendor">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.cassiniProcureToPay.view.GoodReceipt.Vendor" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>-->
+				<ObjectPageSection titleUppercase="false" title="Items">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								
+								<core:Fragment fragmentName="com.cassiniProcureToPay.view.GoodReceipt.Item" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Additional Information">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<m:IconTabBar id="idIconTabPO">
+									<m:items>
+										<m:IconTabFilter text="Material" key="general">
+											<core:Fragment fragmentName="com.cassiniProcureToPay.view.GoodReceipt.Material" type="XML"/>
+										</m:IconTabFilter>
+										<m:IconTabFilter class="hide" text="Quantity" key="general">
+											<core:Fragment fragmentName="com.cassiniProcureToPay.view.GoodReceipt.Quantity" type="XML"/>
+										</m:IconTabFilter>
+										<m:IconTabFilter text="Where">
+											<core:Fragment fragmentName="com.cassiniProcureToPay.view.GoodReceipt.Where" type="XML"/>
+										</m:IconTabFilter>
+										<m:IconTabFilter text="Purchase Order Data">
+											<core:Fragment fragmentName="com.cassiniProcureToPay.view.GoodReceipt.PurchaseOrderData" type="XML"/>
+										</m:IconTabFilter>
+									<!--	<m:IconTabFilter text="Partner">
+											<core:Fragment fragmentName="com.cassiniProcureToPay.view.GoodReceipt.Partner" type="XML"/>
+										</m:IconTabFilter>-->
+										<m:IconTabFilter text="Account Assignment">
+											<core:Fragment fragmentName="com.cassiniProcureToPay.view.GoodReceipt.AccountAssignment" type="XML"/>
+										</m:IconTabFilter>
+									</m:items>
+								</m:IconTabBar>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+			<!--<footer>-->
+			<!--	<m:OverflowToolbar>-->
+			<!--		<m:ToolbarSpacer/>-->
+			<!--		<m:Button id="idSave" icon="sap-icon://save" text="Save" press="onPostPurchaseOrder"/>-->
+			<!--		<m:Button type="Reject" text="Cancel"/>-->
+			<!--	</m:OverflowToolbar>-->
+			<!--</footer>-->
+		</ObjectPageLayout>
+
 </mvc:View>

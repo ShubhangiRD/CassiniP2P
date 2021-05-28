@@ -14,8 +14,8 @@
 		<headerContent>
 			
 			<l:VerticalLayout>
-					<m:ObjectStatus text="Document {pomodel>/PurchaseO}  does not contain any selectable items" state="Error"/>
-				
+				<!--	<m:ObjectStatus text="Document {pomodel>/PurchaseO}  does not contain any selectable items" state="Error"/>
+				-->
 				<m:ObjectAttribute text="Vendor: {oHeaderDataModel>/Number}"/>
 				<m:ObjectAttribute  text="{oHeaderDataModel>/Name}"/>
 			

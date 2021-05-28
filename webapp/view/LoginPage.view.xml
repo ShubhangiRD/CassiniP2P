@@ -1,7 +1,6 @@
 <mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
-	xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.f" controllerName="com.cassiniProcureToPay.controller.LoginPage" displayBlock="true"
-	xmlns:html="http://www.w3.org/1999/xhtml">
-	
+	xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.f"  controllerName="com.cassiniProcureToPay.controller.LoginPage"
+	displayBlock="true" xmlns:html="http://www.w3.org/1999/xhtml">
 	<!--	<tnt:ToolHeader>
 		<tnt:ToolPage id="toolPage">
 			<tnt:header>
@@ -21,26 +20,17 @@
 			</tnt:header>
 		</tnt:ToolPage>
 	</tnt:ToolHeader>-->
-	<Page id="idLogin" class="loginPage1" showHeader="false" enableScrolling="false">
+	<Page id="idLogin" showHeader="false" enableScrolling="false">
 		<content>
-	
-			
-			
-						<VBox  fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
-							<items>
-							
-								<Title class="loginTitle" level="H1" text="LOGIN"/>
-								<Title class="loginTitle" level="H3" text="Procure-To-Pay Portal"/>
-								<Input id="idInput" width="18rem" class="loginFormInput" placeholder="Username" liveChange="onChangeValue"/>
-								<Input id="idPassword" width="18rem" class="loginFormInput" type="Password" placeholder="Password" liveChange="onChangeValue"/>
-								<Button width="18rem" type="Emphasized" text="Login" press="onLogin" class="LoginButtonClass"/></items>
-						</VBox>
-		
-				
-		
-			
+			<VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+				<items>
+					<Title class="loginTitle" level="H1" text="LOGIN"/>
+					<Title class="loginTitle" level="H3" text="Procure-To-Pay Portal"/>
+					<Input id="idInput" width="18rem" placeholder="Username" liveChange="onChangeValue"/>
+					<Input id="idPassword" width="18rem" type="Password" placeholder="Password" liveChange="onChangeValue"/>
+					<Button width="18rem" type="Emphasized" text="Login" press="onLogin" class="LoginButtonClass"/></items>
+			</VBox>
 		</content>
-	
 		<footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>

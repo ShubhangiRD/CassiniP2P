@@ -525,55 +525,7 @@ sap.ui.define([
 			)]);
 			evt.getSource().getBinding("items").filter(oFilter);
 		},
-		_handleValueHelpClosePurs1: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			var oModel = oView.getModel("Lookup");
-
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sDescription = oSelectedItem.getInfo(),
-					sTitle = oSelectedItem.getTitle();
-				productInput.setSelectedKey(sDescription);
-				productInput.setValue("(" + sDescription + ") " + sTitle);
-				if (sDescription !== "") {
-					//	this.getVendorDetails(sDescription);
-					var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
-					oView.byId("idVendor").setValue(oModel.getProperty(sBindPath + "/Lifnr"));
-					oView.byId("idCountryCode").setValue(oModel.getProperty(sBindPath + "/Land1"));
-					oView.byId("idRegion").setValue(oModel.getProperty(sBindPath + "/Regio"));
-					oView.byId("idFname").setValue(oModel.getProperty(sBindPath + "/Name1"));
-					oView.byId("idLname").setValue(oModel.getProperty(sBindPath + "/Name2"));
-					oView.byId("idCity").setValue(oModel.getProperty(sBindPath + "/Ort01"));
-					oView.byId("idTel").setValue(oModel.getProperty(sBindPath + "/Telf1"));
-					oView.byId("idDis").setValue(oModel.getProperty(sBindPath + "/Ort02"));
-					oView.byId("idBirth").setValue(oModel.getProperty(sBindPath + "/Gbort"));
-					oView.byId("idStreet").setValue(oModel.getProperty(sBindPath + "/Stras"));
-					oView.byId("idPostcode").setValue(oModel.getProperty(sBindPath + "/Pstlz"));
-					oView.byId("idAddno").setValue(oModel.getProperty(sBindPath + "/Adrnr"));
-					oView.byId("idAccGp").setValue(oModel.getProperty(sBindPath + "/Ktokk"));
-					oView.byId("idPurOrg").setValue(oModel.getProperty(sBindPath + "/Ekorg"));
-					oView.byId("idPurGrp").setValue(oModel.getProperty(sBindPath + "/Ekgrp"));
-					oView.byId("idCompCode").setValue(oModel.getProperty(sBindPath + "/Bukrs"));
-					oView.byId("idOrderCur").setValue(oModel.getProperty(sBindPath + "/Waers"));
-					//		oView.byId("gendor").setValue(oModel.getProperty(sBindPath + "/idGender"));
-
-				}
-			}
-			evt.getSource().getBinding("items").filter([]);
-
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sDescription = oSelectedItem.getInfo(),
-					sTitle = oSelectedItem.getTitle();
-				productInput.setSelectedKey(sDescription);
-				productInput.setValue("(" + sDescription + ") " + sTitle);
-				if (sDescription !== "") {
-					this.getVendorDetails(sDescription);
-				}
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
+	
 		_handleValueHelpClosePurs: function(oEvent) {
 
 			var oSelectedItem = oEvent.getParameter("selectedItem");
