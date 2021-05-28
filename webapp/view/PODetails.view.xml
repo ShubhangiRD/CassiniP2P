@@ -1,5 +1,5 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified" xmlns:form="sap.ui.layout.form" xmlns:f="sap.f"
-	xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
+<mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
 	controllerName="com.cassiniProcureToPay.controller.PODetails">
 	<ObjectPageLayout id="POHeader" enableLazyLoading="true" useIconTabBar="true" showTitleInHeaderContent="true" upperCaseAnchorBar="false">
 		<headerTitle>
@@ -14,10 +14,8 @@
 					</m:FlexBox>
 				</snappedHeading>
 				<actions>
-					  	<ObjectPageHeaderActionButton icon="sap-icon://add"  type="Emphasized" press="onCreatePurchaseOrder" />
-		
-					<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline"/>
-				
+					<ObjectPageHeaderActionButton icon="sap-icon://add" type="Emphasized" press="onCreatePurchaseOrder"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" press="OnCancel" tooltip="decline"/>
 				</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
@@ -28,16 +26,15 @@
 				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 					<m:Label text="Vendor : " required="true"/>
 					<m:Input id="vnumber" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
-						value="{PurchaseModel>/TempContract/Lifnr}" valueHelpRequest="handleMaterialValueHelp"
+						value="{PurchaseModel>/TempContract/Lifnr}" valueHelpRequest="handleVendorValueHelp"
 						suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVebor">
 						<m:suggestionItems>
 							<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
 						</m:suggestionItems>
 					</m:Input>
-				
 					<l:HorizontalLayout class="sapUiSmallMarginEnd"></l:HorizontalLayout >
 				</l:VerticalLayout>
-				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+			<!--	<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 					<m:Label text="Purchase Group:"/>
 					<m:Input id="pg" textFormatMode="KeyValue" placeholder="Purchase Group ..." showSuggestion="true"
 						value="{PurchaseModel>/TempContract/Ekgrp}" editable="true" showValueHelp="true" valueHelpRequest="handlePurchaseGroupVendor"
@@ -46,7 +43,7 @@
 							<core:ListItem key="{Lookup>Ekgrp}" text="{Lookup>Eknam}" additionalText="{Lookup>Ekgrp}"/>
 						</m:suggestionItems>
 					</m:Input>
-				</l:VerticalLayout>
+				</l:VerticalLayout>-->
 				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 					<m:Label text="Company Code:" required="true"/>
 					<m:Input id="cc" textFormatMode="KeyValue" placeholder="Company Code ..." showSuggestion="true" value="{PurchaseModel>/TempContract/Bukrs}"
@@ -56,10 +53,9 @@
 							<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
 						</m:suggestionItems>
 					</m:Input>
-				
 				</l:VerticalLayout>
-					<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-						<m:Label text="Purchase Org :" required="true"/>
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text="Purchase Org :" required="true"/>
 					<m:Input id="idPurchaseOrg" textFormatMode="KeyValue" placeholder=" Purchase Org .." showSuggestion="true"
 						value="{PurchaseModel>/TempContract/Ekorg}" showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"
 						suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
@@ -67,43 +63,29 @@
 							<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
 						</m:suggestionItems>
 					</m:Input>
-				
 				</l:VerticalLayout>
-					<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-						<m:Label text="Purchase Order :" required="true"/>
-					<m:Input id="idpurorder" textFormatMode="KeyValue" placeholder=" Purchase Order .." showSuggestion="true"
-					 showValueHelp="true" 
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text="Purchase Order :" required="true"/>
+					<m:Input id="idpurorder" textFormatMode="KeyValue" placeholder=" Purchase Order .." showSuggestion="true" showValueHelp="true"
 						suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
 						<m:suggestionItems>
 							<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
 						</m:suggestionItems>
 					</m:Input>
-				
 				</l:VerticalLayout>
 				<!-- <m:FlexBox wrap="wrap" fitContainer="true"> -->
 			</m:FlexBox>
 		</headerContent>
-			<sections>
-			<!--Tabs-->
-		<!--		<ObjectPageSection titleUppercase="false"  title="Org Data">
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="Purchase Order">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-			<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.OrgData" type="XML"/>
-			
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>-->
-			<ObjectPageSection titleUppercase="false"  title="Purchase Order">
-				<subSections>
-					<ObjectPageSubSection titleUppercase="false">
-						<blocks>
-				<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.DisplayPOTable" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.DisplayPOTable" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			</sections>
+		</sections>
 	</ObjectPageLayout>
 </mvc:View>

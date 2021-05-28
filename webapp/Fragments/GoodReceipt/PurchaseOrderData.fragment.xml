@@ -10,7 +10,7 @@
 											<f:formElements>
 												<f:FormElement label="Purchase Order">
 													<f:fields>
-														<Input id="idPOrder" textFormatMode="KeyValue"></Input>
+														<Input id="idPOrder" editable="{EditModel>/isEditable}" textFormatMode="KeyValue"></Input>
 													</f:fields>
 												</f:FormElement>
 												<f:FormElement label="Del Completed IND">

@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" 
-xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
 <VBox class="TableBoxClass sapUiSmallMargin">
 				<t:Table id="idTableitem"  rows="{ path: 'PurchaseModel>/TempContract/POItem'}" editable="true" visibleRowCount="4"
 					selectionMode="MultiToggle">
@@ -15,19 +15,19 @@ xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" x
 						<t:Column width="7rem" hAlign="Center">
 							<Label text="Line"/>
 							<t:template>
-								<Input id="idMaterialNumber" textFormatMode="KeyValue" value="{PurchaseModel>PoItem}" editable="false"></Input>
+								<Input id="idMaterialNumber" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" value="{PurchaseModel>PoItem}" ></Input>
 							</t:template>
 						</t:Column>
 							<t:Column hAlign="Center" width="12rem">
 							<Label text="Material Number"/>
 							<t:template>
-								<Input class="desc1" id="Material" value="{PurchaseModel>Material}" editable="false"></Input>
+								<Input class="desc1" id="Material" value="{PurchaseModel>Material}" editable="{EditModel>/isEditable}"></Input>
 							</t:template>
 						</t:Column>
 						<t:Column hAlign="Center" width="12rem">
 							<Label text="Material Description"/>
 							<t:template>
-								<Input class="desc1" id="nDescription" value="{PurchaseModel>ShortText}" editable="false"></Input>
+								<Input class="desc1" id="nDescription" value="{PurchaseModel>ShortText}" editable="{EditModel>/isEditable}" ></Input>
 							</t:template>
 						</t:Column>
 						<!--<t:Column width="4rem" hAlign="Center">-->
@@ -56,7 +56,7 @@ xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" x
 						<t:Column width="9rem" hAlign="Center">
 							<Label text="Storage Location"/>
 							<t:template>
-								<Input id="idCust" value="{PurchaseModel>StgeLoc}"  textFormatMode="KeyValue" placeholder="Storage Location" showSuggestion="true" showValueHelp="true"
+								<Input id="idCust" value="{PurchaseModel>StgeLoc}" editable="{EditModel>/isEditable}"  textFormatMode="KeyValue" placeholder="Storage Location" showSuggestion="true" showValueHelp="true"
 									valueHelpRequest="handleStorageLocationValue" suggestionItems="{ path: 'Lookup>/StorageLocationList'}"
 									suggestionItemSelected="suggestionItemStorageLocation">
 									<suggestionItems>
@@ -69,25 +69,29 @@ xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" x
 							<t:Column width="9rem" hAlign="Center">
 								<Label text="Plant"/>
 								<t:template>
-									<Input id="idBatch" value="{PurchaseModel>Plant}" editable="false"/>
+									<Input id="idBatch" value="{PurchaseModel>Plant}" editable="{EditModel>/isEditable}"/>
 								</t:template>
 							</t:Column>
 						<t:Column width="7rem" hAlign="Center">
 							<Label text="Quantity"/>
 							<t:template>
-								<Input id="Quantity" value="{PurchaseModel>Quantity}" textAlign="End"/>
-							</t:template>
+								<u:Currency id="Quantity" textAlign="Center" stringValue="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}" currency="{ }" useSymbol="true"/>
+						
+							<!--	<Input id="Quantity" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}"  textAlign="End"/>
+						-->	</t:template>
 						</t:Column>
 							<t:Column width="9rem" hAlign="Center">
 							<Label text="NetPrice"/>
 							<t:template>
-								<Input id="idNetprice" value="{PurchaseModel>NetPrice}" textAlign="End" editable="false"></Input>
-							</t:template>
+										<u:Currency id="idNetprice" textAlign="Center" stringValue="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}" currency="{ }" useSymbol="true"/>
+						
+						<!--		<Input id="idNetprice" value="{PurchaseModel>NetPrice}" textAlign="End" editable="{EditModel>/isEditable}"></Input>
+						-->	</t:template>
 						</t:Column>
 						<t:Column width="7rem" hAlign="Center">
 							<Label text="Unit of Quantity"/>
 							<t:template>
-								<Input id="uom1" value="{PurchaseModel>PoUnit}" class="measure1"/>
+								<Input id="uom1" value="{PurchaseModel>PoUnit}"  editable="{EditModel>/isEditable}" class="measure1"/>
 							</t:template>
 						</t:Column>
 						<!--<t:Column width="4rem" hAlign="Center">-->

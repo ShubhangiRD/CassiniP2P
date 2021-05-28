@@ -3,7 +3,7 @@
 	<Table id="PurchaseTableDisplay" class="sapUiSizeCompact" items="{ path: 'Lookup>/PoDocumentNumber' }">
 		<headerToolbar>
 			<OverflowToolbar>
-				<Title text="Purchase Order" level="H2"/>
+				<Title text="Purchase Order( {CountPo>/item})" level="H2"/>
 				<ToolbarSpacer></ToolbarSpacer>
 					<SearchField id="searchField" width="20%" placeholder="Search..." search=".onSearchEbeln"/>
 			<!--			

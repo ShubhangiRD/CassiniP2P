@@ -44,11 +44,6 @@ sap.ui.define([
 			var createContract = new CreateContract();
 			this.getView().setModel(createContract.getModel(), "CreateContract");
 
-			this.oRouter = this.getOwnerComponent().getRouter();
-			this.oRouter.getRoute("POCreation").attachPatternMatched(this._onRouteMatched2, this);
-			//window.location.reload();
-		},
-		_onRouteMatched2: function() {
 			//window.location.reload();
 		},
 
@@ -72,8 +67,7 @@ sap.ui.define([
 			});
 		},
 
-
-		handleMaterialValueHelp: function(oEvent) {
+		handleVendorValuehelp: function(oEvent) {
 			var sInputValue = oEvent.getSource().getValue();
 
 			this.inputId = oEvent.getSource().getId();
@@ -143,7 +137,7 @@ sap.ui.define([
 			evt.getSource().getBinding("items").filter([]);
 
 		},
-		
+
 		/*Po Search*/
 		getPurchaseOrgList: function() {
 			var that = this;
@@ -537,16 +531,6 @@ sap.ui.define([
 
 				});
 
-				/*	var oMaterial = oModel.getProperty(sBindPath + "/Materialno");
-					$("#__xmlview1--idMaterialNumber-__clone0-inner").val(oMaterial);
-					$("#__xmlview1--idMaterialNumber-__clone0-inner").val(oMaterial);	
-
-					var oUnitODm = oModel.getProperty(sBindPath + "/UOM");
-					$("#__xmlview1--idUOM-__clone3-inner").val(oUnitODm);
-					*/
-
-				//	getPurchase.getData().Bwkey = oSelectedItem.getTitle();
-				//	getPurchase.getData().Bwkey = oModel.getProperty(sBindPath + "/Bwkey");
 				evt.getSource().getBinding("items").filter([]);
 			}
 		},
@@ -623,20 +607,9 @@ sap.ui.define([
 				var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
 				productInput.setValue(oSelectedItem.getTitle());
 
-				//		oView.byId("nDescription").setValue(oModel.getProperty(sBindPath + "/Description"));
-
-				//		oView.byId("idUOM").setValue(oModel.getProperty(sBindPath + "PurchaseModel>/TempContract/UOM"));
-				//	oView.byId(" ").setValue(oModel.getProperty(sBindPath + "/ "));
 				var oDiscription = oModel.getProperty(sBindPath + "/Description");
 				var uom = oModel.getProperty(sBindPath + "/UOM");
 
-				/*	var oMat = oModel.getProperty(sBindPath + "/Materialno");
-				var ab1 = $(this)[0].inputId;
-				var id1 = $("#" + ab1).closest("tr").find(".mtid").attr("id");
-				$("#" + id1 + "-inner").val(oMat);
-*/
-				//$(this).closest(".desc1").val(oDiscription);
-				//$(this).closest(".desc1").find("input").val(oDiscription);
 				var ab = $(this)[0].inputId;
 				var id = $("#" + ab).closest("tr").find(".desc1").attr("id");
 				$("#" + id + "-inner").val(oDiscription);
@@ -644,11 +617,6 @@ sap.ui.define([
 				getPurchase.getData().Materialno = oSelectedItem.getTitle();
 				var a = getPurchase.getData().Description = oModel.getProperty(sBindPath + "/Description");
 				var UOM = getPurchase.getData().UOM = oModel.getProperty(sBindPath + "/UOM");
-
-				//	oView.byId("nDescription").setValue(a);
-				//$(this).closest("#__xmlview1--nDescription-__clone1-inner").val(a);
-				//$(this).closest(".desc1").find("input").val(a);
-				//this.getView().byId("nDescription").setValue(a);
 
 				var b = oModel.getProperty(sBindPath + "/UOM");
 				//this.getView().byId("measure1").setValue(b); getPurchase.getData().UOM = 
@@ -660,19 +628,6 @@ sap.ui.define([
 			}
 			evt.getSource().getBinding("items").filter([]);
 
-			/*		
-				var oSelectedItem = evt.getParameter("selectedItem");
-				if (oSelectedItem) {
-					var productInput = this.byId(this.inputId),
-						sDescription = oSelectedItem.getInfo(),
-						sTitle = oSelectedItem.getTitle();
-					productInput.setSelectedKey(sDescription);
-					productInput.setValue("(" + sDescription + ") " + sTitle);
-					if (sDescription !== "") {
-						this.getVendorDetails(sDescription);
-					}
-				}
-				evt.getSource().getBinding("items").filter([]);*/
 		},
 
 		/*Material SEarch end*/
@@ -757,12 +712,6 @@ sap.ui.define([
 				//var productInput = this.byId(this.inputId);
 				var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
 				productInput.setValue(sTitle);
-				//productInput2.setValue(sDescription);
-
-				//		oView.byId("nDescription").setValue(oModel.getProperty(sBindPath + "/Description"));
-
-				//		oView.byId("idUOM").setValue(oModel.getProperty(sBindPath + "PurchaseModel>/TempContract/UOM"));
-				//	oView.byId(" ").setValue(oModel.getProperty(sBindPath + "/ "));
 
 				var oMat = oModel.getProperty(sBindPath + "/Materialno");
 				var ab = $(this)[0].inputId;
@@ -772,15 +721,7 @@ sap.ui.define([
 				var oDiscription = oModel.getProperty(sBindPath + "/Description");
 				var uom = oModel.getProperty(sBindPath + "/UOM");
 
-				/*		var ab = $(this)[0].inputId;
-				var id = $("#" + ab).closest("tr").find(".desc1").attr("id");
-				$("#" + id + "-inner").val(oDiscription);
-*/
 				getPurchase.getData().Materialno = sDescription;
-
-				//	getPurchase.getData().Materialno = oModel.getProperty(sBindPath + "/Materialno");
-				//	var a = getPurchase.getData().Description = oModel.getProperty(sBindPath + "/Description");
-				//	var UOM = getPurchase.getData().UOM = oModel.getProperty(sBindPath + "/UOM");
 
 				var b = oModel.getProperty(sBindPath + "/UOM");
 				//this.getView().byId("measure1").setValue(b); getPurchase.getData().UOM = 
@@ -799,78 +740,6 @@ sap.ui.define([
 			evt.getSource().getBinding("items").filter([]);
 		},
 		/*Company SEarch end*/
-
-		handleValueHelpMaterialDiscription: function(oEvent) {
-			var sValue = oEvent.getParameter("value");
-
-			//	var sInputValue = oEvent.getSource().getValue();
-			this.MaterialDesinputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogMaterialDes) {
-				this._valueHelpDialogMaterialDes = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.MaterialDescription",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogMaterialDes);
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogMaterialDes.getBinding("items").filter([
-				new Filter("Description", sap.ui.model.FilterOperator.Contains, sValue),
-				new Filter("Materialno", sap.ui.model.FilterOperator.Contains, sValue)
-
-			]);
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogMaterialDes.open(sValue);
-
-		},
-
-		_handleMaterialDescriptionValueHelpSearch: function(evt) {
-			var sValue = evt.getParameter("value");
-			//Filter the Bukrs and Butxt via vendor number
-
-			var oFilterd = new Filter("Description", sap.ui.model.FilterOperator.Contains, sValue);
-			var oFiltern = new Filter("Materialno", sap.ui.model.FilterOperator.Contains, sValue);
-
-			evt.getSource().getBinding("items").filter([oFilterd, oFiltern]);
-		},
-		_handleMaterialDescriptionValueHelpClose: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			var getPurchase = this.getView().getModel("VendorContract");
-			var oModel = oView.getModel("VHeader");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.MaterialDesinputId);
-				var sBindPath = oSelectedItem.getBindingContext("VHeader").sPath;
-				productInput.setValue(oSelectedItem.getTitle());
-				var no = oSelectedItem.getTitle();
-				/*	var MaterialData = new JSONModel();
-					MaterialData.setData(oModel);
-					
-					console.log(no);
-			var a=	oView.byId("idUOM").setValue(oModel.getProperty("/UOM"));
-			var b=	oView.byId("idMaterialNumber").setValue(MaterialData.getProperty("/Materialno"));
-			console.log(a);
-			console.log(b);*/
-				//		oView.byId("idUOM").setValue(oModel.getProperty("/UOM"));
-
-				var oMaterial = oModel.getProperty(sBindPath + "/Materialno");
-				$("#__xmlview1--idMaterialNumber-__clone0-inner").val(oMaterial);
-				//		oView.byId("idMaterialNumber").setValue(oMaterial);
-				//	$(selector).val(value)
-				//		$("#__xmlview1--idMaterialNumber-__clone0-inner").val(oMaterial);	
-
-				var oUnitODm = oModel.getProperty(sBindPath + "/UOM");
-				$("#__xmlview1--idUOM-__clone3-inner").val(oUnitODm);
-				//	getPurchase.getData().CustomerID = oSelectedItem.getKey();
-				getPurchase.getData().Description = oSelectedItem.getTitle();
-				getPurchase.getData().Materialno = oModel.getProperty(sBindPath + "/Materialno");
-				//		getPurchase.getData().PurchaseGroup = oModel.getProperty(sBindPath + "/ ");
-			}
-			evt.getSource().getBinding("items").filter([]);
-
-		},
-		/*Material Description fragment end*/
 
 		onAddNewConditionItem: function() {
 			var oVendorModel = this.getOwnerComponent().getModel("PurchaseModel");
@@ -1041,33 +910,8 @@ sap.ui.define([
 			for (var iRowIndex = 0; iRowIndex < aItems.length; iRowIndex++) {
 
 				var l_Ebelp = oPurchaseContract.POItem[iRowIndex].Ebelp;
-				/*	var ei = "";
-							var elen = l_Ebelp.length;
-						if (elen !== undefined) {
-							var z = 5 - elen;
-							for (var i = 0; i < z; i++) {
-								ei += "0";
-							}
-						}
-					
-					console.log(elen);
-					console.log(ei);
-					l_Ebelp = ei + l_Ebelp;
-					console.log(l_Ebelp);
-					*/
 
 				var l_material = oPurchaseContract.POItem[iRowIndex].Matnr;
-				/*	var zi = "";
-						var len1 = l_material.length;
-						if (len1 !== undefined) {
-						var a = 18 - len1;
-						for (var i = 0; i < a; i++) {
-							zi += "0";
-						}
-					}console.log(len1);
-						console.log(zi);
-						l_material = zi + l_material;
-						console.log(l_material);*/
 
 				var l_Menge = oPurchaseContract.POItem[iRowIndex].Menge;
 				var l_Werks = oPurchaseContract.POItem[iRowIndex].Werks;
@@ -1253,15 +1097,13 @@ sap.ui.define([
 			this.pressPartnerDialog.destroy();
 		},
 		onExitPartner: function() {
-				if (this.pressPartnerDialog) {
-					this.pressPartnerDialog.destroy();
-				}
-			},
-			/*Table Partner header item fragment end*/
-			
-			
-			
-				/*Table DeliverySchedule header item fragement*/
+			if (this.pressPartnerDialog) {
+				this.pressPartnerDialog.destroy();
+			}
+		},
+		/*Table Partner header item fragment end*/
+
+		/*Table DeliverySchedule header item fragement*/
 		AddDeliveryScheduleHeaderItems: function() {
 			this.pressDeliveryScheduleDialog = this.getView().byId("idDeliveryScheduleITems");
 			if (!this.pressDeliveryScheduleDialog) {

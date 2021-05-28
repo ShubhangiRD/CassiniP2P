@@ -1,52 +1,67 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m" controllerName="com.cassiniProcureToPay.controller.PurchaseItemDetails" xmlns:html="http://www.w3.org/1999/xhtml">
-	<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" showNavButton="true" navButtonPress="onNavBack"
-		toggleHeaderOnTitleClick="{/titleClickable}">
-		<!-- DynamicPage Title -->
-		<f:title>
-			<f:DynamicPageTitle>
-				<f:heading>
-					<Title text="Purchase Order : {pomodel>/PurchaseO}"/>
-				</f:heading>
-				<f:expandedContent>
-					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" 	xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.cassiniProcureToPay.controller.PurchaseItemDetails"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	
+			<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" showNavButton="true" navButtonPress="onNavBack" toggleHeaderOnTitleClick="{/titleClickable}">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Purchase Order : {pomodel>/PurchaseO}"/>
+					</f:heading>
+				
+					<f:expandedContent>
+							<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						
 						<Label text="{oHeaderDataCodePurOrg>/CompCode}"/>
 						<Label text="{oHeaderDataCodePurOrg>/PurchOrg}"/>
-					</layout:VerticalLayout>
-				</f:expandedContent>
-				<f:snappedContent>
-					<Label text="Expanded Header"/>
-				</f:snappedContent>
-				<f:snappedTitleOnMobile></f:snappedTitleOnMobile>
-				<f:actions>
-					<Button icon="sap-icon://refresh" press="onRefresh" tooltip="Refresh"/>
-				</f:actions>
-				<f:navigationActions>
-					<Button icon="sap-icon://decline" type="Transparent"/>
-				</f:navigationActions>
-			</f:DynamicPageTitle>
-		</f:title>
-		<!-- DynamicPage Header -->
-		<f:header>
-			<f:DynamicPageHeader pinnable="true">
-				<layout:HorizontalLayout allowWrapping="true">
-					<layout:VerticalLayout class="sapUiMediumMarginEnd">
-						<ObjectAttribute title="Company Code" text="{oHeaderDataModel>/CompCodeno}|{oHeaderDataModel>/CompCodename}"/>
-						<ObjectAttribute title="Purchase Org" text="{oHeaderDataModel>/PurchOrgno}|{oHeaderDataModel>/PurchOrgname}"/>
-					</layout:VerticalLayout>
-					<layout:VerticalLayout class="sapUiMediumMarginEnd">
-						<ObjectAttribute title="Vendor Number" text="{oHeaderDataModel>/Name}"/>
-						<ObjectAttribute title="Created On" text="{oHeaderDataModel>/createddate}"/>
-					</layout:VerticalLayout>
-					<layout:VerticalLayout>
-						<ObjectAttribute title="Vendor Name" text="{oHeaderDataModel>/Number}"/>
-						<ObjectAttribute title="Created By" text="{oHeaderDataModel>/createdby}"/>
-					</layout:VerticalLayout>
-				</layout:HorizontalLayout>
-			</f:DynamicPageHeader>
-		</f:header>
-		<f:content>
-			<Table id="PurchaseTable" class="sapUiSizeCompact" items="{ path: 'PurchaseItemDetailsModel>/' }">
+									</layout:VerticalLayout>
+					</f:expandedContent>
+					<f:snappedContent>
+						<Label text="Expanded Header"/>
+					</f:snappedContent>
+					<f:snappedTitleOnMobile>
+					
+					</f:snappedTitleOnMobile>
+				
+					<f:actions>
+						<Button icon="sap-icon://refresh" press="onRefresh" tooltip="Refresh"/>
+					
+					</f:actions>
+					<f:navigationActions>
+					
+						<Button
+								icon="sap-icon://decline"
+								type="Transparent" />
+					</f:navigationActions>
+				</f:DynamicPageTitle>
+			</f:title>
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<layout:HorizontalLayout allowWrapping="true">
+								<layout:VerticalLayout class="sapUiMediumMarginEnd">
+								<ObjectAttribute title="Company Code" text="{oHeaderDataModel>/CompCodeno}|{oHeaderDataModel>/CompCodename}"/>
+						
+							<ObjectAttribute title="Purchase Org" text="{oHeaderDataModel>/PurchOrgno}|{oHeaderDataModel>/PurchOrgname}"/>
+						
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+								<ObjectAttribute title="Vendor Number" text="{oHeaderDataModel>/Name}"/>
+						
+							<ObjectAttribute title="Created On" text="{oHeaderDataModel>/createddate}"/>
+						
+						</layout:VerticalLayout>
+
+						<layout:VerticalLayout>
+								<ObjectAttribute title="Vendor Name" text="{oHeaderDataModel>/Number}"/>
+							<ObjectAttribute title="Created By" text="{oHeaderDataModel>/createdby}"/>
+						
+						</layout:VerticalLayout>
+					</layout:HorizontalLayout>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+				<Table id="PurchaseTable" class="sapUiSizeCompact" items="{ path: 'PurchaseItemDetailsModel>/' }">
 				<headerToolbar>
 					<OverflowToolbar>
 						<Title text="Purchase Order Items" level="H2"/>
@@ -79,6 +94,7 @@
 					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
 						<Text text="Document Date"/>
 					</Column>
+				
 				</columns>
 				<items>
 					<ColumnListItem>
@@ -87,8 +103,9 @@
 							<ObjectIdentifier title="{PurchaseItemDetailsModel>Vendor}" text="{PurchaseItemDetailsModel>Name}"/>
 							<ObjectIdentifier title="{PurchaseItemDetailsModel>Material}"/>
 							<ObjectIdentifier title="{PurchaseItemDetailsModel>ShortText}"/>
-							<u:Currency textAlign="Center" stringValue="{PurchaseItemDetailsModel>NetPrice}" currency="{ }" useSymbol="true"/>
+								<u:Currency textAlign="Center" stringValue="{PurchaseItemDetailsModel>NetPrice}" currency="{ }" useSymbol="true"/>
 							<u:Currency textAlign="Center" stringValue="{PurchaseItemDetailsModel>Quantity}" currency="{ }" useSymbol="true"/>
+						
 							<ObjectIdentifier title="{PurchaseItemDetailsModel>CreatedBy}"/>
 							<ObjectIdentifier
 								title="{path: 'PurchaseItemDetailsModel>CreatDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd' } }"/>
@@ -96,18 +113,25 @@
 					</ColumnListItem>
 				</items>
 			</Table>
-		</f:content>
-		<!-- DynamicPage Footer -->
-		<f:footer>
-			<OverflowToolbar>
-				<Button icon="sap-icon://message-popup" text="{/messagesLength}" type="Emphasized" press="onMessageButtonPress"
-					visible="{= !!${/messagesLength}}"/>
-				<ToolbarSpacer/>
-				<Button type="Accept" text="Accept"/>
-				<Button type="Reject" text="Reject"/>
-			</OverflowToolbar>
-		</f:footer>
-	</f:DynamicPage>
+			</f:content>
+			<!-- DynamicPage Footer -->
+			<f:footer>
+				<OverflowToolbar>
+					<Button icon="sap-icon://message-popup"
+							text="{/messagesLength}"
+							type="Emphasized"
+							press="onMessageButtonPress"
+							visible="{= !!${/messagesLength}}"/>
+					<ToolbarSpacer/>
+					<Button type="Accept" text="Accept"/>
+					<Button type="Reject" text="Reject"/>
+				</OverflowToolbar>
+			</f:footer>
+		</f:DynamicPage>
+
+	
+	
+	
 	<!--<Page title="Purchase Items Detail" showNavButton="true" navButtonPress="onNavBack">
 		<headerContent>
 			<Button icon="sap-icon://refresh" press="onRefresh" tooltip="Refresh"/>
@@ -167,6 +191,7 @@
 			</Table>
 		</content>
 	</Page>-->
+	
 	<!--
 		<f:DynamicPage id="listidpage" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
 				<f:title>

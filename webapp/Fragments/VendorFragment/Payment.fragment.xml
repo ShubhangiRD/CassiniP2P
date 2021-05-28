@@ -1,0 +1,134 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table" xmlns:u="sap.ui.unified">
+	<VBox class="sapUiSmallMargin">
+		
+		<VBox>
+			<t:Table id="idBankDetails" rows="{ path: 'VendorModel>/'}"  visibleRowCount="5" selectionMode="MultiToggle" firstVisibleRow="3" >
+				<t:extension>
+					<OverflowToolbar>
+						<Title text="Bank Details"/>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" type="Transparent" id="idAddbutton" class="remove-attr" tooltip="Add Row" press="onAddNewItemBnk"/>
+						<Button icon="sap-icon://delete" enabled="{=${VendorModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+							tooltip="Delete Row" press="onDeleteItemBank"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="5rem" hAlign="Center">
+						<Label text="Country "/>
+						<t:template>
+							<Input id="idCtry" class="mtid" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+								value="{VendorModel>BankCtry}" valueHelpRequest="handleValueHelpCountryCode" suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }"
+								suggestionItemSelected="onSuggestCtry" >
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Land1}" text="{Lookup>Landx}" additionalText="{Lookup>Land1}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column hAlign="Center" width="9rem">
+						<Label text="Bank Key "/>
+						<t:template>
+							<Input class="desc1" id="nBankKey" textFormatMode="KeyValue" placeholder="Enter Bank Key" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+								valueHelpRequest="handleBankKey" suggestionItems="{ path: 'Lookup>/BankKeyList' }" value="{VendorModel>BankKey}"
+								suggestionItemSelected="onSuggestBankKey">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Bank Account "/>
+						<t:template>
+							<Input id="BankAccount" value="{VendorModel>BankAcct}" editable="{EditModel>/isEditable}" placeholder="Enter Bank Account"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Account Holder"/>
+						<t:template>
+							<Input id="AccountHolder" class="measure1" value="{VendorModel>AccountHolderName}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="AK"/>
+						<t:template>
+							<Input id="idAK" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" value="{VendorModel>idAK}"
+								valueHelpRequest="handleValueHelpAK" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestAK">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="IBAN Value"/>
+						<t:template>
+							<Input id="IBANValue"  value="{VendorModel>bankname}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="BnkT"/>
+						<t:template>
+							<Input id="BnkT"  value="{VendorModel>IBANValue}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Reference Details"/>
+						<t:template>
+							<Input id="Referencedetails"  value="{VendorModel>BankRef}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Bank Name "/>
+						<t:template>
+							<Input id="bankname"  value="{VendorModel>Referencedetails}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+		</VBox>
+		<form:SimpleForm id="SimpleForm3" title="Payment Transactions" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+			columnsL="3" columnsM="1" class="myFormMargin" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=" "/>
+				<Label text="Alternate Pay"/>
+				<Input id="AlternatePay" maxLength="10"  change="changeVenodr" type="Text"
+					class="searchBox" placeholder="Alternate Pay" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" valueHelpRequest="handleAlternatePayee"
+					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestAlternatePay">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="ISR Number"/>
+				<Input id="ISRNumber" maxLength="11" class="InputBoxContainer" editable="{EditModel>/isEditable}"  placeholder="ISR Number"/>
+				<Label text="DME indicator"/>
+				<Input id="DMEindicator" maxLength="1"  change="changeVenodr" type="Text"
+					class="searchBox" placeholder="DME indicator" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" valueHelpRequest="handleDMEindicator"
+					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestDMEindicator">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Instruction Key"/>
+				<Input id="idInstructionKey" maxLength="4"  change="changeVenodr" type="Text"
+					class="searchBox" placeholder="InstructionKey" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" valueHelpRequest="handleInstructionKey"
+					suggestionItems="{ path: 'Lookup>/InstructionKeyList' }" suggestionItemSelected="onSuggestidInstructionKey">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=" "/>
+				
+				<CheckBox id="IndividualEntries" text="Individual Entries">
+				</CheckBox>
+				<CheckBox id="ReferenceEntries" text="Entries for Reference.">
+				
+				</CheckBox>
+				<!--<CheckBox text="Individual Entries"></CheckBox>-->
+				<!--	<CheckBox text="Entries for Reference"></CheckBox>-->
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

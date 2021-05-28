@@ -10,7 +10,7 @@
 											<f:formElements>
 												<f:FormElement label="G/L Account">
 													<f:fields>
-														<Input id="idGLAccount1" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"></Input>
+														<Input id="idGLAccount1" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" showSuggestion="true" showValueHelp="true"></Input>
 													</f:fields>
 												</f:FormElement>
 												<f:FormElement label="Business Area">
@@ -21,17 +21,17 @@
 												</f:FormElement>
 												<f:FormElement label="Cost Center">
 													<f:fields>
-														<Input type="Text" maxLength="4" id="idCostCenter1" showSuggestion="true" showValueHelp="true"/>
+														<Input type="Text" maxLength="4" id="idCostCenter1" editable="{EditModel>/isEditable}" showSuggestion="true" showValueHelp="true"/>
 													</f:fields>
 												</f:FormElement>
 												<f:FormElement label="Profit Center">
 													<f:fields>
-														<Input type="Text" maxLength="4" id="idProfitCenter1" showSuggestion="true" showValueHelp="true"/>
+														<Input type="Text" maxLength="4" id="idProfitCenter1" editable="{EditModel>/isEditable}" showSuggestion="true" showValueHelp="true"/>
 													</f:fields>
 												</f:FormElement>
 												<f:FormElement label="Functional Area">
 													<f:fields>
-														<Input type="Text" id="idFunctionalArea" showSuggestion="true" showValueHelp="true"/>
+														<Input type="Text" id="idFunctionalArea" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"/>
 													</f:fields>
 												</f:FormElement>
 											</f:formElements>

@@ -10,7 +10,7 @@
 												<f:formElements>
 													<f:FormElement label="Vendor">
 														<f:fields>
-															<Input id="idvendorno1" textFormatMode="KeyValue"/>
+															<Input id="idvendorno1" editable="{EditModel>/isEditable}" textFormatMode="KeyValue"/>
 															<Input id="idvendorno" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
 																valueHelpRequest="handleMaterialValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVebor"
 																width="140px" editable="{EditModel>/isEditable}">
@@ -29,7 +29,7 @@
 													</f:FormElement>
 													<f:FormElement label="Vendor">
 														<f:fields>
-															<Input id="idPostDateq" textFormatMode="KeyValue"/>
+															<Input id="idPostDateq"  editable="{EditModel>/isEditable}" textFormatMode="KeyValue"/>
 															<Input type="Text" id="idPostDateq11" visible="false" width="140px" editable="{EditModel>/isEditable}">
 																<layoutData>
 																	<l:GridData span="XL1 L2 M2 S4"/>

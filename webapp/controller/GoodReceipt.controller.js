@@ -42,11 +42,11 @@ sap.ui.define([
 			var POItemsModel = new JSONModel();
 			oView.setModel(POItemsModel, "POItemsModel");
 
-			var oVisibleModel = new JSONModel({
-				isVisibleable: false
+			var oEditModel = new JSONModel({
+				isEditable: true
 			});
 
-			this.getView().setModel(oVisibleModel, "VisibleModel");
+			this.getView().setModel(oEditModel, "EditModel");
 
 		},
 	
@@ -63,8 +63,7 @@ sap.ui.define([
 			oView.byId("idPD").setValue("");
 			oView.byId("idlant").setValue("");
 			oView.byId("idVendor").setValue("");
-			oView.byId("idvendorno").setValue("");
-
+	
 			oView.byId("idMatdis").setValue("");
 			oView.byId("idMatNo").setValue("");
 			oView.byId("VMatNo").setValue("");
@@ -78,12 +77,6 @@ sap.ui.define([
 			oView.byId("idDelNot").setValue("");
 			oView.byId("idDelNott").setValue("");
 			oView.byId("idPOrder").setValue("");
-			oView.byId("iddis").setValue("");
-
-			oView.byId("idvendorno1").setValue(" ");
-			oView.byId("idpatven").setValue(" ");
-			oView.byId("idPostDateq").setValue(" ");
-
 			var oComponent2 = this.getOwnerComponent();
 			oComponent2.getRouter().navTo("ShowTiles");
 		},
@@ -263,7 +256,7 @@ sap.ui.define([
 				VendorNum = oModellookup.getProperty(sBindPath + "/Lifnr");
 				oView.byId("idVendor").setValue(VendorNum);
 				//	oView.byId("idvendorno").setValue(oModellookup.getProperty(sBindPath + "/Lifnr"));
-				oView.getModel("VisibleModel").setProperty("/isVisibleable", true);
+				oView.getModel("EditModel").setProperty("/isEditable", true);
 
 				Ebeln = oModellookup.getProperty(sBindPath + "/Ebeln");
 				var Vendorname1 = oModellookup.getProperty(sBindPath + "/Lifnr");
@@ -294,6 +287,8 @@ sap.ui.define([
 								var Quantity = oData.fpoItemSet.results[quant].Quantity;
 
 								if (Quantity === "0.000") {
+									oView.getModel("EditModel").setProperty("/isEditable", false);
+
 									console.log('value starts with zero');
 									var PO = new JSONModel({
 										PONO: Ebeln
@@ -538,7 +533,7 @@ sap.ui.define([
 		getVendorList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//	BusyIndicator.show(0);
+		BusyIndicator.show(0);
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
 					var item = oData.results.length;
@@ -563,7 +558,7 @@ sap.ui.define([
 					});
 					oView.setModel(Count, "Count");
 
-					//BusyIndicator.hide();
+				BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/DisplyaVendorList", ListofVendor);
 					oLookupModel.refresh(true);
@@ -713,12 +708,9 @@ sap.ui.define([
 			oEntry1.GRITEMSet = itemData;
 
 			console.log(oEntry1);
-			BusyIndicator.show(0);
-	var Megodate = oView.getModel("Megodate");
-		var se = Megodate.setData();
-			var OData = oView.getModel("OData");
-		var se = OData.setData();
 	
+
+			BusyIndicator.show(0);
 			oModel.create("/GRHEADSet", oEntry1, {
 
 				success: this._onUpdateProdEntrySuccess.bind(this),
@@ -792,9 +784,8 @@ sap.ui.define([
 
 		},
 
-		OnCancel: function(event) {
-				MessageToast.show("Cancel Purchase Order");
-
+		onCancelPRess: function(event) {
+			
 				var oPurchaseModel = this.getOwnerComponent().getModel("PurchaseModel");
 				var oTempContract = oPurchaseModel.getProperty("/TempContract");
 				oTempContract.setData();
@@ -810,8 +801,7 @@ sap.ui.define([
 				oView.byId("idPD").setValue("");
 				oView.byId("idlant").setValue("");
 				oView.byId("idVendor").setValue("");
-				oView.byId("idvendorno").setValue("");
-
+		
 				oView.byId("idMatdis").setValue("");
 				oView.byId("idMatNo").setValue("");
 				oView.byId("VMatNo").setValue("");
@@ -825,11 +815,7 @@ sap.ui.define([
 				oView.byId("idDelNot").setValue("");
 				oView.byId("idDelNott").setValue("");
 				oView.byId("idPOrder").setValue("");
-				oView.byId("iddis").setValue("");
-				oView.byId("idvendorno1").setValue(" ");
-				oView.byId("idpatven").setValue(" ");
-				oView.byId("idPostDateq").setValue(" ");
-
+			
 				//redirect the page	frot view
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.navTo("ShowTiles");

@@ -10,7 +10,7 @@
 											<f:formElements>
 												<f:FormElement label="Vendor" class="sapUiTinyMarginTop">
 													<f:fields>
-														<Input id="idpatven" class="sapUiTinyMarginTop"  textFormatMode="KeyValue"/>
+														<Input id="idpatven" class="sapUiTinyMarginTop"  editable="{EditModel>/isEditable}" textFormatMode="KeyValue"/>
 														<Input type="Text" class="sapUiTinyMarginTop" id="iddis" value=" " width="50%" editable="{EditModel>/isEditable}">
 															<layoutData>
 																<l:GridData span="XL1 L3 M2 S4"/>

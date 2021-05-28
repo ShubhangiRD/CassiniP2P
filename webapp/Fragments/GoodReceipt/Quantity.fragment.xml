@@ -10,8 +10,8 @@
 											<f:formElements>
 												<f:FormElement label="Qty in Unit Entry">
 													<f:fields>
-														<Input id="ident" value="{Street}"/>
-														<Input id="idQunat" value="{HouseNumber}">
+														<Input id="ident" editable="{EditModel>/isEditable}" value=""/>
+														<Input id="idQunat" editable="{EditModel>/isEditable}" value="">
 															<layoutData>
 																<l:GridData span="XL1 L2 M2 S4"/>
 															</layoutData>
@@ -20,8 +20,8 @@
 												</f:FormElement>
 												<f:FormElement label="Qty in SKU">
 													<f:fields>
-														<Input id="idQntS" value="{Street}"/>
-														<Input id="idQuantsku" value="{HouseNumber}">
+														<Input id="idQntS" editable="{EditModel>/isEditable}" value=""/>
+														<Input id="idQuantsku" editable="{EditModel>/isEditable}" value="">
 															<layoutData>
 																<l:GridData span="XL1 L2 M2 S4"/>
 															</layoutData>
@@ -30,8 +30,8 @@
 												</f:FormElement>
 												<f:FormElement label="Qty in Delivery note">
 													<f:fields>
-														<Input id="idDelNot" value="{City}"/>
-														<Input id="idDelNott" value="{ZIPCode}">
+														<Input id="idDelNot" editable="{EditModel>/isEditable}" value=""/>
+														<Input id="idDelNott" editable="{EditModel>/isEditable}" value="">
 															<layoutData>
 																<l:GridData span="XL1 L2 M2 S4"/>
 															</layoutData>

@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Partner Function Details" id="idPartnerFunction" afterClose="onAfterClose" class="sapUiSizeCompact" contentHeight="400px"
+		contentWidth="800px">
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="idPartnerFunctionForms" editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Partner Function">
+								<f:fields>
+									<Input id="idpurchasefun" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Material}"
+										valueHelpRequest="handlepurchasefunction" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestpurchasefunc"
+										liveChange="purchasefunctionchange">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label=" Name">
+								<f:fields>
+									<Input class="desc1" id="idnamepf" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleidnamepf"
+										suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{PurchaseModel>ShortText}" suggestionItemSelected="onSuggestidnamepf">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Number ">
+								<f:fields>
+									<Input id="idnumberpf" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="DP">
+								<f:fields>
+									<Input id="iddppf" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Plant}"
+										valueHelpRequest="handleValueHelppurfundp" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestpurchdp">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+								<f:FormElement label="Name">
+								<f:fields>
+									<Input id="idnamepurfunc" class="measure1" value="{PurchaseModel>PoUnit}" editable="{EditModel>/isEditable}"/>
+							</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+				<Button text="Close"  press="onExitPartnerFunction"/>
+		
+			</beginButton>
+		<endButton>
+				<Button text="Save" type="Emphasized" press="onClosePartnerFunction"/>
+	
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

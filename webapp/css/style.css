@@ -54,12 +54,15 @@
     line-height: 3rem;
 }
 
-
+html.sap-desktop .sapMIBar.sapMFooter-CTX {
+    background-color: #330707;
+    border-top: 1px solid #d9d9d9;
+}
 /*rebate table header part*/
-html.sap-desktop .sapContrast .sapMIBar.sapMFooter-CTX, html.sap-desktop .sapContrast.sapMIBar.sapMFooter-CTX {
+/*html.sap-desktop .sapContrast .sapMIBar.sapMFooter-CTX, html.sap-desktop .sapContrast.sapMIBar.sapMFooter-CTX {
     background-color: #ffffff;
     border-top: 1px solid #ffffff;
-}
+}*/
 
 .sapContrast.sapTntSideNavigationFlexible, .sapContrast .sapTntSideNavigationFlexible {
    background-color:#ffffff;
@@ -565,10 +568,7 @@ body {
 	font-size: 36px;
 }
 
-.ocrCassini h2 {
-	font-family: 'Source Sans Pro', "72",Arial,Helvetica,sans-serif;
-	font-size: 24px;
-}
+
 
 .ocrCassini h3 {
 	font-family: 'Source Sans Pro', "72",Arial,Helvetica,sans-serif;

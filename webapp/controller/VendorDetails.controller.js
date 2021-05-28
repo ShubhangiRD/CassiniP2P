@@ -32,7 +32,7 @@ sap.ui.define([
 			this.getView().setModel(oModel);
 			console.log(oModel);
 			// Define the models
-		oView.byId("iddEditt").setVisible(false);
+			oView.byId("iddEditt").setVisible(false);
 			this.getVendorList();
 			/*
 				this.getCustomerOfficeEntryList();
@@ -142,18 +142,18 @@ sap.ui.define([
 		getVendorList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//BusyIndicator.show(0);
+			BusyIndicator.show(0);
 
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
-					//BusyIndicator.hide();
+					BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/DisplyaVendorList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					//BusyIndicator.hide();
+					BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -233,6 +233,15 @@ sap.ui.define([
 				var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
 
 				var ComCode = oModel.getProperty(sBindPath + "/Bukrs");
+				var Lifnr = oModel.getProperty(sBindPath + "/Lifnr");
+				var Ekorg = oModel.getProperty(sBindPath + "/Ekorg");
+				var Ktokk = oModel.getProperty(sBindPath + "/Ktokk");
+				oView.byId("idVendor").setValue(Lifnr);
+
+				oView.byId("idCompCode").setValue(ComCode);
+				oView.byId("idAccGp").setValue(Ktokk);
+				oView.byId("idPurOrg").setValue(Ekorg);
+
 				console.log(sDescription);
 				console.log(ComCode)
 
@@ -249,7 +258,7 @@ sap.ui.define([
 					})
 
 				];
-
+				//	BusyIndicator.show(0);
 				oModelRe.read("/bapi_vendor_getdetailSet", {
 					//oModel.read("/POItemSet", {
 					filters: aFilter,
@@ -259,6 +268,8 @@ sap.ui.define([
 						//	oView.getModel("VendorModel").setData(oData.results[0]);
 						var oVendor = new Vendor(oData.results[0]);
 						oView.getModel("VendorModel").setProperty("/VendorTemp", oVendor); // setData(oData.results);
+						oView.byId("idAccGp").setValue(Ktokk);
+						oView.byId("idPurOrg").setValue(Ekorg);
 
 					},
 					error: function(oError) {
@@ -276,7 +287,7 @@ sap.ui.define([
 		getPurchaseOrgList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/get_purchaseorg_f4helpSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -353,7 +364,7 @@ sap.ui.define([
 		getCompanyList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/get_companycode_f4helpSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -503,7 +514,7 @@ sap.ui.define([
 		getCountryList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/country_keySet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -660,7 +671,7 @@ sap.ui.define([
 		getLanguages: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+			BusyIndicator.show(0);
 			oModel.read("/LanguageSet", {
 				success: function(oData) {
 					console.log(oData)
@@ -728,7 +739,7 @@ sap.ui.define([
 		getCustomerList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+			BusyIndicator.show(0);
 			oModel.read("/getcustomerSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -863,7 +874,7 @@ sap.ui.define([
 		getIndustryList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/industrysSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -1177,7 +1188,7 @@ sap.ui.define([
 		getInstructionKeyList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/InstructionsKeysSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -1306,7 +1317,7 @@ sap.ui.define([
 		getReleaseGroupList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/ReleaseGroupSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -1373,7 +1384,7 @@ sap.ui.define([
 		getExemptionAuthorityList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/ExemptionAuthoritySet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -1447,7 +1458,7 @@ sap.ui.define([
 		getPaymentTermsList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/PaymentTemsSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -1595,7 +1606,7 @@ sap.ui.define([
 		getHouseBankList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/HouseBankSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -1723,7 +1734,7 @@ sap.ui.define([
 		getOrderCurrencyList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/OrderCurrencySet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -1948,7 +1959,7 @@ sap.ui.define([
 		getShippingConditionList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/ShippingConditionsSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -2085,7 +2096,7 @@ sap.ui.define([
 		getCustomerOfficeEntryList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/CustomerOfficeSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -2162,7 +2173,7 @@ sap.ui.define([
 		getActivityCodeList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/ActivityGroupSet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -2423,7 +2434,7 @@ sap.ui.define([
 		getTimeZone: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 
 			oModel.read("/TimeZoneSet", {
 				success: function(oData) {
@@ -2503,7 +2514,7 @@ sap.ui.define([
 		getBankKeyList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/bankkeySet", {
 				success: function(oData) {
 					//BusyIndicator.hide();
@@ -2584,9 +2595,9 @@ sap.ui.define([
 			oView.getModel("EditModel").setProperty("/isEditable", false);
 
 		},
-		onEditPress : function(oEvent){
-				oView.byId("iddEditt").setVisible(false);
-				oView.getModel("EditModel").setProperty("/isEditable", true);
+		onEditPress: function(oEvent) {
+			oView.byId("iddEditt").setVisible(false);
+			oView.getModel("EditModel").setProperty("/isEditable", true);
 
 		},
 		onSaveContract: function(oEvt) {
@@ -2607,7 +2618,7 @@ sap.ui.define([
 			console.log(oContract);
 
 			if (oVendor === null || oVendor === undefined || oVendor === "") {
-
+				BusyIndicator.show(0);
 				oModel.create("/Vendor_crudSet", oContract, {
 
 					success: this._onCreateEntrySuccess.bind(this),
@@ -2623,6 +2634,7 @@ sap.ui.define([
 					merge: false
 				};
 				var sVendorCreate = "/Vendor_crudSet(Lifnra='" + oVendor + "')";
+				BusyIndicator.show(0);
 				oModel.update(sVendorCreate, oContract, mParameters);
 			}
 

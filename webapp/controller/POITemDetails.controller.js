@@ -744,166 +744,8 @@ sap.ui.define([
 
 		},
 
-		getVendorList1: function() {
-			var that = this;
-			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//BusyIndicator.show(0);
-			oModel.read("/POHeaderSet", {
-				success: function(oData) {
-					//BusyIndicator.hide();
-					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
-					oLookupModel.setProperty("/POVendorList", oData.results);
-					oLookupModel.refresh(true);
-					//that.getMaterialList();
-				},
-				error: function(oError) {
-					//BusyIndicator.hide();
-					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
-					MessageToast.show(errorMsg);
-				}
-			});
-		},
-		handlePOVHelpVendor: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogg) {
-				this._valueHelpDialogg = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.GetPOHeader",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogg);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogg.getBinding("items").filter(new Filter([new Filter(
-				"Name1",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"Lifnr",
-				FilterOperator.Contains, sInputValue
-			)]));
-			this.getVendorList();
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogg.open(sInputValue);
-		},
-		_handlePOVendorSearch: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"Name1",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"Lifnr",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		_handlePOVendorHelpClose: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			//	var oModel = this.getOwnerComponent().getModel("Lookup");
-			var oModelRead = this.getOwnerComponent().getModel("VHeader");
-
-			var oModel = oView.getModel("Lookup");
-
-			console.log(oModel);
-			if (oSelectedItem) {
-
-				var productInput = this.byId(this.inputId);
-				var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
-				productInput.setValue(oSelectedItem.getTitle());
-
-				var no = oSelectedItem.getTitle();
-
-				oView.byId("vnumber").setValue(oModel.getProperty(sBindPath + "/Lifnr"));
-				oView.byId("idPurOrg").setValue(oModel.getProperty(sBindPath + "/Ekorg"));
-				oView.byId("idCompCode").setValue(oModel.getProperty(sBindPath + "/Bukrs"));
-				oView.byId("idCountryCode").setValue(oModel.getProperty(sBindPath + "/Waers"));
-				oView.byId("idPurGrg").setValue(oModel.getProperty(sBindPath + "/Ekgrp"));
-				//	oView.byId("productPO").setValue(oModel.getProperty(sBindPath + "/Ebeln"));
-				Ebeln = oModel.getProperty(sBindPath + "/Ebeln");
-				console.log(Ebeln);
-
-				Ebeln = oModel.getProperty(sBindPath + "/Ebeln");
-				console.log(Ebeln);
-				var aFilter = [
-					new sap.ui.model.Filter({
-						path: "Purchaseorder",
-						operator: sap.ui.model.FilterOperator.EQ,
-						value1: Ebeln
-					})
-
-				];
-
-				oModelRead.read("/POItemSet", {
-					filters: aFilter,
-					success: function(oData) {
-						console.log(oData.results);
-						oView.getModel("PurchaseModelITem").setData(oData.results);
-						//console.log(oData);
-
-					},
-					error: function(oError) {
-						//console.log(oError);
-					}
-				});
-				this.byId("idPOItemsTab").setModel(oView.getModel("PurchaseModelITem"), "PurchaseModelITem");
-
-			}
-			evt.getSource().getBinding("items").filter([]);
-
-		},
-		suggestionItemSelectedVendor: function(oEvent) {
-			var oSelectedItem = oEvent.getParameter("selectedItem");
-			//get the all data for selected values
-			var oModel = this.getOwnerComponent().getModel("VHeader");
-			if (oSelectedItem) {
-
-				var productInput = this.byId(this.inputId);
-				var sBindPath = oSelectedItem.getBindingContext("VHeader").sPath;
-				//	productInput.setValue(oSelectedItem.getText());
-				var no = oSelectedItem.getText();
-
-				oView.byId("vnumber").setValue(oModel.getProperty(sBindPath + "/Lifnr"));
-				oView.byId("idPurOrg").setValue(oModel.getProperty(sBindPath + "/Ekorg"));
-				oView.byId("idCompCode").setValue(oModel.getProperty(sBindPath + "/Bukrs"));
-				oView.byId("idCountryCode").setValue(oModel.getProperty(sBindPath + "/Waers"));
-				oView.byId("idPurGrg").setValue(oModel.getProperty(sBindPath + "/Ekgrp"));
-				oView.byId("idPoOrder").setValue(oModel.getProperty(sBindPath + "/Ebeln"));
-
-				Ebeln = oModel.getProperty(sBindPath + "/Ebeln");
-				console.log(Ebeln);
-				var aFilter = [
-					new sap.ui.model.Filter({
-						path: "Ebeln",
-						operator: sap.ui.model.FilterOperator.EQ,
-						value1: Ebeln
-					})
-
-				];
-
-				oModel.read("/POItemSet", {
-					filters: aFilter,
-					success: function(oData) {
-						console.log(oData.results);
-						oView.getModel("PurchaseModelITem").setData(oData.results);
-						//console.log(oData);
-
-					},
-					error: function(oError) {
-						//console.log(oError);
-					}
-				});
-				this.byId("idPOItemsTab").setModel(oView.getModel("PurchaseModelITem"), "PurchaseModelITem");
-
-			}
-
-		},
-
+	
+		
 		/*search vendor end*/
 
 		onPOITemDetailss: function(oEvent) {
@@ -1084,48 +926,7 @@ sap.ui.define([
 				}
 			});
 		},
-		handleValueHelpPlant1: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogpp) {
-				this._valueHelpDialogpp = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.Plant",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogpp);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogpp.getBinding("items").filter(new Filter([new Filter(
-				"Bwkey",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"Bwkey",
-				FilterOperator.Contains, sInputValue
-			)]));
-			this.getPOPlant();
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogpp.open(sInputValue);
-
-		},
-		_handlePlantSearch1: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"Bwkey",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"Bwkey",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-
+	
 		_handlePlantClose: function(evt) {
 			var zero = "";
 			var oSelectedItem = evt.getParameter("selectedItem");
@@ -1235,36 +1036,7 @@ sap.ui.define([
 
 						}
 
-						/*	console.log(oData);
-
-						if (!oData.results.length) {
-							alert("No price found for given material number and plant combination. Add the price manually.");
-							var aaas = "0.00"
-							console.log(aaas);
-							var ab = $(that)[0].inputId;
-							var id = $("#" + ab).closest("tr").find(".price1").attr("id");
-							$("#" + id + "-inner").val(aaas);
-						} else {
-							console.log("array having values");
-							var PriceJson = new JSONModel();
-							PriceJson.setData(oData.results);
-							oView.setModel(PriceJson);
-							var oHierarchyModel = new sap.ui.model.json.JSONModel();
-							oView.setModel(oHierarchyModel, "hierarchy");
-							oView.getModel("hierarchy").setData(oData);
-							var aaas = oHierarchyModel.oData.results[0].Netpr;
-
-							console.log(aaas);
-							var ab = $(that)[0].inputId;
-							var id = $("#" + ab).closest("tr").find(".price1").attr("id");
-							$("#" + id + "-inner").val(aaas);
-
-						}
-*/
-						/*
-							var ab = $(that)[0].inputId;
-							var id = $("#" + ab).closest("tr").find(".price1").attr("id");
-							$("#" + id + "-inner").val(PriceJson.getProperty("/Stprs"));*/
+					
 
 					},
 					error: function(oError) {
@@ -1320,171 +1092,8 @@ sap.ui.define([
 			evt.getSource().getBinding("items").filter(oFilter);
 		},
 
-		_handlePlantClose11: function(evt) {
-			var zero = "";
-			var oSelectedItem = evt.getParameter("selectedItem");
-			var getPurchase = this.getView().getModel("CreateContract");
-			var vendorModel = this.getView().getModel("PurchaseModel");
-			var Materialno = getPurchase.getProperty("/Materialno");
-			var VendorNumber = vendorModel.oData.TempContract.Lifnr;
-			console.log(Materialno);
-
-			console.log(VendorNumber);
-
-			var oModel = oView.getModel("VHeader");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId);
-				var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
-				productInput.setValue(oSelectedItem.getTitle());
-				var PlantNumber = oSelectedItem.getTitle();
-				console.log(PlantNumber);
-				console.log(Materialno);
-				oView.byId("Price").setValue(getPurchase.getProperty("/Stprs"));
-				var s = "This";
-				var a = oView.byId("Price").setValue(s);
-				if ($.isNumeric((Materialno)) == true) {
-					var len = Materialno.length;
-					if (len !== undefined) {
-						var z = 18 - len;
-						for (var i = 0; i < z; i++) {
-							zero += "0";
-						}
-					}
-					console.log(len);
-					console.log(zero);
-					Materialno = zero + Materialno;
-					console.log(Materialno)
-				}
-
-				var oFilter = new sap.ui.model.Filter('Lifnr', sap.ui.model.FilterOperator.EQ, VendorNumber);
-				var oFilterV = new sap.ui.model.Filter('Matnr', sap.ui.model.FilterOperator.EQ, Materialno);
-				var that = this;
-				oModel.read("/fetch_matpriceSet?$filter=(Lifnr eq '" + VendorNumber + "',Matnr eq '" + Materialno + "')", {
-					filters: [oFilter, oFilterV],
-
-					/*		oModel.read("/fetch_matpriceSet(Matnr='" + Materialno + "',Bwkey='" + PlantNumber + "')", {
-					 */ //	oModel.read("/fetch_matpriceSet(Lifnr='" + VendorNumber + "',Matnr ='" + Materialno + "')", {
-
-					//	oModel.read("/fetch_matpriceSet?$filter=(Lifnr eq + VendorNumber + and Matnr eq + Materialno + ))",{
-
-					success: function(oData) {
-
-						console.log(oData);
-
-						if (!oData.results.length) {
-							alert("No price found for given material number and plant combination. Add the price manually.");
-							var aaas = "0.00"
-							console.log(aaas);
-							var ab = $(that)[0].inputId;
-							var id = $("#" + ab).closest("tr").find(".price1").attr("id");
-							$("#" + id + "-inner").val(aaas);
-						} else {
-							console.log("array having values");
-							var PriceJson = new JSONModel();
-							PriceJson.setData(oData.results);
-							oView.setModel(PriceJson);
-							var oHierarchyModel = new sap.ui.model.json.JSONModel();
-							oView.setModel(oHierarchyModel, "hierarchy");
-							oView.getModel("hierarchy").setData(oData);
-							var aaas = oHierarchyModel.oData.results[0].Netpr;
-
-							console.log(aaas);
-							var ab = $(that)[0].inputId;
-							var id = $("#" + ab).closest("tr").find(".price1").attr("id");
-							$("#" + id + "-inner").val(aaas);
-							//	$("#" + id + "-inner").val(oHierarchyModel.getProperty("/Netpr"));
-
-							//var price = oView.byId("idPrice").setValue(PriceJson.getProperty("/Stprs"));
-
-						}
-
-					},
-					error: function(oError) {
-						console.log(oError);
-
-					}
-
-				});
-
-				/*	var oMaterial = oModel.getProperty(sBindPath + "/Materialno");
-					$("#__xmlview1--idMaterialNumber-__clone0-inner").val(oMaterial);
-					$("#__xmlview1--idMaterialNumber-__clone0-inner").val(oMaterial);	
-
-					var oUnitODm = oModel.getProperty(sBindPath + "/UOM");
-					$("#__xmlview1--idUOM-__clone3-inner").val(oUnitODm);
-					*/
-
-				//	getPurchase.getData().Bwkey = oSelectedItem.getTitle();
-				//	getPurchase.getData().Bwkey = oModel.getProperty(sBindPath + "/Bwkey");
-				evt.getSource().getBinding("items").filter([]);
-			}
-		},
 		/*plant search end*/
 
-		/*material ddiscription start*/
-
-		handleValueHelpMaterialDiscription: function(oEvent) {
-			var sValue = oEvent.getParameter("value");
-
-			//	var sInputValue = oEvent.getSource().getValue();
-			this.MaterialDesinputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogMaterialDes) {
-				this._valueHelpDialogMaterialDes = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.MaterialDescription",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogMaterialDes);
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogMaterialDes.getBinding("items").filter([
-				new Filter("Description", sap.ui.model.FilterOperator.Contains, sValue),
-				new Filter("Materialno", sap.ui.model.FilterOperator.Contains, sValue)
-
-			]);
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogMaterialDes.open(sValue);
-
-		},
-
-		_handleMaterialDescriptionValueHelpSearch: function(evt) {
-			var sValue = evt.getParameter("value");
-			//Filter the Bukrs and Butxt via vendor number
-
-			var oFilterd = new Filter("Description", sap.ui.model.FilterOperator.Contains, sValue);
-			var oFiltern = new Filter("Materialno", sap.ui.model.FilterOperator.Contains, sValue);
-
-			evt.getSource().getBinding("items").filter([oFilterd, oFiltern]);
-		},
-		_handleMaterialDescriptionValueHelpClose: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			var getPurchase = this.getView().getModel("VendorContract");
-			var oModel = oView.getModel("VHeader");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.MaterialDesinputId);
-				var sBindPath = oSelectedItem.getBindingContext("VHeader").sPath;
-				productInput.setValue(oSelectedItem.getTitle());
-				var no = oSelectedItem.getTitle();
-
-				var oMaterial = oModel.getProperty(sBindPath + "/Materialno");
-				$("#__xmlview1--idMaterialNumber-__clone0-inner").val(oMaterial);
-				//		oView.byId("idMaterialNumber").setValue(oMaterial);
-				//	$(selector).val(value)
-				//		$("#__xmlview1--idMaterialNumber-__clone0-inner").val(oMaterial);	
-
-				var oUnitODm = oModel.getProperty(sBindPath + "/UOM");
-				$("#__xmlview1--idUOM-__clone3-inner").val(oUnitODm);
-				//	getPurchase.getData().CustomerID = oSelectedItem.getKey();
-				getPurchase.getData().Description = oSelectedItem.getTitle();
-				getPurchase.getData().Materialno = oModel.getProperty(sBindPath + "/Materialno");
-				//		getPurchase.getData().PurchaseGroup = oModel.getProperty(sBindPath + "/ ");
-			}
-			evt.getSource().getBinding("items").filter([]);
-
-		},
-		/*Material Description fragment end*/
 
 		onSavePurchaseOrder: function() {
 			var oPurchaseModel = this.getView().getModel("PurchaseModel");
@@ -1590,7 +1199,7 @@ sap.ui.define([
 		},
 		_onUpdateProdEntrySuccess: function(oObject, oResponse) {
 			BusyIndicator.hide();
-
+var UpdatedPO = oResponse.data.Ebeln;
 			var oPurchaseModel = this.getOwnerComponent().getModel("PurchaseModel");
 			var oTempContract = oPurchaseModel.getProperty("/TempContract");
 			oTempContract.setData();
@@ -1602,7 +1211,7 @@ sap.ui.define([
 			//
 			//	this.getView().getModel("VHeader").refresh();
 			jQuery.sap.require("sap.m.MessageBox");
-			sap.m.MessageBox.show("Standard PO updated under the number  #" + Ebeln + " ", {
+			sap.m.MessageBox.show("Standard PO updated under the number  #" + UpdatedPO + " ", {
 
 				icon: sap.m.MessageBox.Icon.INFORMATION,
 

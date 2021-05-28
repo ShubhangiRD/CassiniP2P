@@ -10,13 +10,13 @@
 											<f:formElements>
 												<f:FormElement label="Movement Type">
 													<f:fields>
-														<Input id="idMovementType" showValueHelp="true" showSuggestion="true"/>
+														<Input id="idMovementType" editable="{EditModel>/isEditable}" showValueHelp="true" showSuggestion="true"/>
 													</f:fields>
 												</f:FormElement>
 												<f:FormElement label="Plant">
 													<f:fields>
-														<Input id="idPlant" value=" "/>
-														<Input id="idPlantNo" value=" ">
+														<Input id="idPlant" editable="{EditModel>/isEditable}"  value=" "/>
+														<Input id="idPlantNo" editable="{EditModel>/isEditable}" value=" ">
 															<layoutData>
 																<l:GridData span="XL1 L2 M2 S4"/>
 															</layoutData>
@@ -25,17 +25,17 @@
 												</f:FormElement>
 												<f:FormElement label="Goods Recipient">
 													<f:fields>
-														<Input id="idGoodsRecipient" value=" "/>
+														<Input id="idGoodsRecipient" editable="{EditModel>/isEditable}" value=" "/>
 													</f:fields>
 												</f:FormElement>
 												<f:FormElement label="Unloading Point">
 													<f:fields>
-														<Input id="idUnloadingPoint" value=" "/>
+														<Input id="idUnloadingPoint" editable="{EditModel>/isEditable}" value=" "/>
 													</f:fields>
 												</f:FormElement>
 												<f:FormElement label="Text">
 													<f:fields>
-														<Input id="idText" />
+														<Input id="idText" editable="{EditModel>/isEditable}" />
 													</f:fields>
 												</f:FormElement>
 											</f:formElements>

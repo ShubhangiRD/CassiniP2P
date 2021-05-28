@@ -1,18 +1,4 @@
-<!--<core:FragmentDefinition
-	xmlns="sap.m"
-	xmlns:core="sap.ui.core">
-	<SelectDialog
-		title="Material List"
-		class="sapUiPopupWithPadding"
-		items="{VHeader>/MaterialmasterSet}"
-		search="_handleMaterialDescriptionValueHelpSearch"
-		confirm="_handleMaterialDescriptionValueHelpClose"
-		cancel="_handleMaterialDescriptionValueHelpClose">
-		<StandardListItem
-			title="{VHeader>Description}"
-			description="{VHeader>Materialno}" />
-	</SelectDialog>
-</core:FragmentDefinition>-->
+
 
 
 <core:FragmentDefinition

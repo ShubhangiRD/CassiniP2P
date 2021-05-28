@@ -443,7 +443,7 @@ onSelectionChange : function(oEvent){
 			
 				console.log(VendorNumber);
 			
-	var zero = "";
+				var zero = "";
 				//	var no;
 
 				var len = VendorNumber.length;
@@ -487,9 +487,10 @@ onSelectionChange : function(oEvent){
 						console.log(oData);
 						var item = oData.results.length;
 						//	oView.getModel("VendorModel").setData(oData.results[0]);
+						
 						var oVendor = new Vendor(oData.results[0]);
 						oView.getModel("VendorModel").setProperty("/VendorTemp", oVendor); // setData(oData.results);
-	oComponent.getRouter().navTo("VendorDetails");
+						oComponent.getRouter().navTo("VendorDetails");
 					},
 					error: function(oError) {
 						//console.log(oError);
@@ -595,6 +596,12 @@ onSelectionChange : function(oEvent){
 					console.log(oData);
 					BusyIndicator.hide();
 					var itemPO = oData.results.length;
+					var CountPo1 = new sap.ui.model.json.JSONModel({
+						item: itemPO
+
+					});
+					oView.setModel(CountPo1, "CountPo1");
+					
 				 ListofPurchaseOrders = [];
 
 					for (var iRowIndex = 0; iRowIndex < itemPO; iRowIndex++) {
@@ -828,6 +835,10 @@ onSelectionChange : function(oEvent){
 					console.log(oData);
 					BusyIndicator.hide();
 					var itemPO = oData.results.length;
+					
+					
+					console.log(oData);
+					
 				 var ListofPurchaseOrde = [];
 
 					for (var iRowIndex = 0; iRowIndex < itemPO; iRowIndex++) {

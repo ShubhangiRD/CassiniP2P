@@ -40,7 +40,7 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.OrgData" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.OrgData" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -49,7 +49,7 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.EditTable" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.EditTable" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -58,7 +58,7 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.DeliveryInvoice" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.DeliveryInvoice" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -67,7 +67,7 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.AddressHeader" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.AddressHeader" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -76,7 +76,7 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.CommunicationHeader" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.CommunicationHeader" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -85,7 +85,7 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.Partners" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.Partners" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -94,7 +94,7 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.AdditionalData" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.AdditionalData" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -103,7 +103,7 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.Status" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.Status" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -112,7 +112,7 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.PaymentProcessing" type="XML"/>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.PaymentProcessing" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

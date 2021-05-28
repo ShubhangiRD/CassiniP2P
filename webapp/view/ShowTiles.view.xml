@@ -37,8 +37,8 @@
 			<tileContent>
 				<TileContent unit=" ">
 						<ImageContent class="iconCollection icon-activity-items size"/>
-			<!--		<NumericContent scale=" " value="{ }" valueColor="Error" indicator="Up" withMargin="false"/>
-		-->		</TileContent>
+				<NumericContent scale=" " value="{CountPo1>item}" valueColor="Error" indicator="Up" withMargin="false"/>
+		</TileContent>
 			</tileContent>
 		</GenericTile>
 		<GenericTile header="Book Vendor Invoice" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout"

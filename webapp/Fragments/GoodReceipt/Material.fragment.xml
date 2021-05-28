@@ -10,8 +10,8 @@
 											<f:formElements>
 												<f:FormElement label="Material"  >
 													<f:fields>
-														<Input id="idMatdis" value=" " />
-														<Input id="idMatNo" value=" "  >
+														<Input id="idMatdis" value=" " editable="{EditModel>/isEditable}"/>
+														<Input id="idMatNo" value=" " editable="{EditModel>/isEditable}" >
 															<layoutData>
 																<l:GridData span="XL1 L2 M2 S4"/>
 															</layoutData>
@@ -20,17 +20,17 @@
 												</f:FormElement>
 												<f:FormElement label="Vendor Material no"  >
 													<f:fields>
-														<Input id="VMatNo" value=" " />
+														<Input id="VMatNo" value=" " editable="{EditModel>/isEditable}"/>
 													</f:fields>
 												</f:FormElement>
 												<f:FormElement label="Material Group" >
 													<f:fields>
-														<Input id="idMatGrp" value=" " >
+														<Input id="idMatGrp" value=" " editable="{EditModel>/isEditable}" >
 															<layoutData>
 																<l:GridData span="XL1 L2 M2 S4"/>
 															</layoutData>
 														</Input>
-														<Input value=" " id="idmatGrptwo" visible="false" />
+														<Input value=" " id="idmatGrptwo" editable="{EditModel>/isEditable}" />
 													</f:fields>
 												</f:FormElement>
 											</f:formElements>
