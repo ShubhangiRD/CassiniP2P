@@ -44,7 +44,7 @@
 						<core:Item key="{hierarchy>Bezei}" text="{hierarchy>Bland}"/>
 					</suggestionItems>
 				</Input><Label text="POBoxPostalCode" fieldGroupIds="Pstl2a" />
-				<Input maxLength="6" value="{VendorModel>/VendorTemp/POBoxPostalCode}" id="idPOBoxPostalCode" editable="{EditModel>/isEditable}">
+				<Input maxLength="35" value="{VendorModel>/VendorTemp/POBoxPostalCode}" id="idPOBoxPostalCode" editable="{EditModel>/isEditable}">
 				
 				</Input>
 				<core:Title text=" "/>
@@ -68,9 +68,9 @@
 				</Input>
 				<Input maxLength="11" value="{VendorModel>/VendorTemp/District}" class="InputBoxContainer" id="idDistin" placeholder="Distinct" editable="{EditModel>/isEditable}"></Input>
 				<Label text="Pox Box" fieldGroupIds="Pfacha" />
-				<Input maxLength="6" value="{VendorModel>/VendorTemp/PoBox}" class="InputBoxContainer" id="idPostbox" placeholder="Post Box" editable="{EditModel>/isEditable}"></Input>
+				<Input maxLength="10" value="{VendorModel>/VendorTemp/PoBox}" class="InputBoxContainer" id="idPostbox" placeholder="Post Box" editable="{EditModel>/isEditable}"></Input>
 				<Label text="Postal Code" fieldGroupIds="Pstlza"/>
-				<Input maxLength="6" value="{VendorModel>/VendorTemp/PostlCode}" class="InputBoxContainer" change="changePostalCode" id="idPostcode"
+				<Input maxLength="10" value="{VendorModel>/VendorTemp/PostlCode}" class="InputBoxContainer" change="changePostalCode" id="idPostcode"
 					placeholder="Postal Code" editable="{EditModel>/isEditable}"/>
 			</form:content>
 		</form:SimpleForm>
@@ -81,7 +81,7 @@
 				<core:Title text=" "/>
 				<Label text="Language" fieldGroupIds="Sprasa" />
 					<Input id="idlanguage"  value="{VendorModel>/VendorTemp/Langu}" placeholder="Language" type="Text"
-					showSuggestion="true"  maxLength="1" showValueHelp="true" valueHelpRequest="handleLanguage" suggestionItems="{ path: 'Lookup>/LanguageList'}"
+					showSuggestion="true" showValueHelp="true" valueHelpRequest="handleLanguage" suggestionItems="{ path: 'Lookup>/LanguageList'}"
 					suggestionItemSelected="suggestionItemLanguage" editable="{EditModel>/isEditable}">
 					<suggestionItems>
 						<core:Item key="{Lookup>Sptxt}" text="{Lookup>Sptxt}"/>
@@ -90,7 +90,7 @@
 				</Input>
 		
 				<Label text="Telphone" fieldGroupIds="Telf1a"/>
-				<Input maxLength="10" value="{VendorModel>/VendorTemp/Telephone}" id="idTel" class="InputBoxContainer" editable="{EditModel>/isEditable}"/>
+				<Input maxLength="16" value="{VendorModel>/VendorTemp/Telephone}" id="idTel" class="InputBoxContainer" editable="{EditModel>/isEditable}"/>
 				<Label text="Fax" fieldGroupIds="Teltxa"/>
 				<Input maxLength="31" id="idfax" class="InputBoxContainer" value="{VendorModel>/VendorTemp/FaxNumber}" editable="{EditModel>/isEditable}"/>
 				<Label text="Email"/>

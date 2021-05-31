@@ -26,7 +26,7 @@
 				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 					<m:Label text="Vendor : " required="true"/>
 					<m:Input id="vnumber" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
-						value="{PurchaseModel>/TempContract/Lifnr}" valueHelpRequest="handleVendorValueHelp"
+					 valueHelpRequest="handleVendorValueHelp"
 						suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVebor">
 						<m:suggestionItems>
 							<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -46,7 +46,7 @@
 				</l:VerticalLayout>-->
 				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 					<m:Label text="Company Code:" required="true"/>
-					<m:Input id="cc" textFormatMode="KeyValue" placeholder="Company Code ..." showSuggestion="true" value="{PurchaseModel>/TempContract/Bukrs}"
+					<m:Input id="cc" textFormatMode="KeyValue" placeholder="Company Code ..." showSuggestion="true" 
 						showValueHelp="true" valueHelpRequest="handleCompanyCodeVendor" suggestionItems="{ path: 'Lookup>/CountryCode' }"
 						suggestionItemSelected="onSuggest">
 						<m:suggestionItems>
@@ -57,7 +57,7 @@
 				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 					<m:Label text="Purchase Org :" required="true"/>
 					<m:Input id="idPurchaseOrg" textFormatMode="KeyValue" placeholder=" Purchase Org .." showSuggestion="true"
-						value="{PurchaseModel>/TempContract/Ekorg}" showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"
+					 showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"
 						suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
 						<m:suggestionItems>
 							<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
@@ -66,7 +66,8 @@
 				</l:VerticalLayout>
 				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 					<m:Label text="Purchase Order :" required="true"/>
-					<m:Input id="idpurorder" textFormatMode="KeyValue" placeholder=" Purchase Order .." showSuggestion="true" showValueHelp="true"
+					<m:Input id="idpurorder" textFormatMode="KeyValue" placeholder=" Purchase Order .."  valueHelpRequest="handlePursOrderValueHelp" 
+					showSuggestion="true" showValueHelp="true"
 						suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
 						<m:suggestionItems>
 							<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>

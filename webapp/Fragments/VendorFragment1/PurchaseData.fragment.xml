@@ -1,0 +1,367 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="FormChange2purchase" editable="true" class="myFormMarginBottom">
+			<f:title>
+				<core:Title text="Conditions Data "/>
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="Conditions Data1 ">
+					<f:formElements>
+						<f:FormElement label="Order Currency">
+							<f:fields>
+								<Input id="idOrderCur" maxLength="5" value="{VendorModel>/VendorTemp/PurchaseOrderCurrency}" editable="{EditModel>/isEditable}" type="Text"
+									placeholder="Select Order Currency" showValueHelp="true" valueHelpRequest="handleOrderCurrencyValue"
+									suggestionItems="{ path: 'Lookup>/OrderCurrencyList' }" suggestionItemSelected="onSuggestOrderCurrency">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Payment Terms">
+							<f:fields>
+								<Input maxLength="4" id="idtermsofpayment" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									value="{VendorModel>/VendorTemp/TermsPaymentKey}" showValueHelp="true" valueHelpRequest="handlePaymenttermsHelp"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggesttermsofpayment">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Incoterms">
+							<f:fields>
+								<Input maxLength="28" id="idIncoterms1" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									showValueHelp="true" valueHelpRequest="handleIncotermsValue" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="onSuggestIncoterms">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+								<Input maxLength="28" value="{Vendor>/FirstName}" id="idIncoterms2" editable="{EditModel>/isEditable}" placeholder=" Incoterms ..."></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Minimum Order Value">
+							<f:fields>
+								<Input maxLength="13" editable="{EditModel>/isEditable}" id="Minimumorder"></Input>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title="">
+					<f:formElements>
+						<f:FormElement label="Schema Groupvendor">
+							<f:fields>
+								<Input maxLength="2" id="Schemagroupvendor" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handleSchemagroupvendor"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestSchemagroupvendor">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Pricing date control">
+							<f:fields>
+								<Input maxLength="1" id="Pricingdatecontrol" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									value="{VendorModel>/VendorTemp/PriceDetermination}" showValueHelp="true" valueHelpRequest="handlePricingdatecontrol"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestPricingdatecontrol">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Order Optim Rest">
+							<f:fields>
+								<Input id="OrderOptimrest" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									value="{Vendor>/FirstTelephone}" showValueHelp="true" valueHelpRequest="handleOrderOptimrest"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestOrderOptimrest">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title="Sales Data">
+					<f:formElements>
+						<f:FormElement label=" Sales Person">
+							<f:fields>
+								<Input id="idsalesperson" editable="{EditModel>/isEditable}" maxLength="30"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Telephone">
+							<f:fields>
+								<Input maxLength="16" value="{VendorModel>/VendorTemp/FirstTelephone}" editable="{EditModel>/isEditable}" id="Telephonepur"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Acc. With vendor ">
+							<f:fields>
+								<Input id="accwvendorpur" editable="{EditModel>/isEditable}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<f:Form id="FormChange3purchase" editable="true">
+			<f:title>
+				<core:Title text="Correspondence"/>
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="ABC indicator">
+							<f:fields>
+								<Input id="idindicator" maxLength="1" editable="{EditModel>/isEditable}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="ModeOfTrnsprt-Border">
+							<f:fields>
+								<Input maxLength="2" id="ModeOfTrnsprtBorder" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+									valueHelpRequest="handleModeOfTrnsprtBorder" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="onSuggestModeOfTrnsprtBorder">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Vktra}" text="{Lookup>Vktra}" additionalText="{Lookup>Vktra}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Office of Entry">
+							<f:fields>
+								<Input id="OfficeofEntry" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+									valueHelpRequest="handleCustomerOfficeofEntry" suggestionItems="{ path: 'Lookup>/CustomerOfficeEntryList' }"
+									suggestionItemSelected="onSuggestOfficeofEntry">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Land1}" text="{Lookup>Zolla}" additionalText="{Lookup>Land1}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Sort Criterion">
+							<f:fields>
+								<Input maxLength="1" id="SortCriterion" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+									valueHelpRequest="handleSortCriterion" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="onSuggestSortCriterion">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="PROACT Control Prof">
+							<f:fields>
+								<Input maxLength="4" id="PROACTcontrolprof" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+									valueHelpRequest="handlePROACTcontrolprof" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="onSuggestPROACTcontrolprof">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="GRasedInvVerif" text="GR Based Inv.Verif"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="AutoEvalGRSetmtDel" text="AutoEvalGRSetmt Del"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="AutoEvalGRSetmtRet" text="AutoEvalGRSetmt Ret"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="AcknowlegmentReqd" text="Acknowlegment Reqd"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="Automaticpurchaseorder" text="Automatic purchase order"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="SubsequentSettlement" text="Subsequent Settlement"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="SubseqsettIndex" text="Subseq Sett.Index"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="Revolutionallowed" text="Revolution allowed"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="Granddiscountinkind" text="Grand discount in kind"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="Releventpricedet" text="Relevent price det"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="Releventagencybusiness" text="Relevent agency business"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="Bvolcompag.nec" text="B.vol.comp./ag.nec"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="Docindexactive" text="Doc.index active"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<CheckBox id="ReturnVendor" text="Return Vendor"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<f:Form id="FormChange4purchase" editable="true" class="myFormMarginBottom">
+			<f:title>
+				<core:Title text="Default Data Material "/>
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Purchasing Group ">
+							<f:fields>
+								<Input id="idpurgroupp" maxLength="3" value="{VendorModel>/VendorTemp/PurchasingGroup}" editable="{EditModel>/isEditable}"
+									class="InputBoxContainer" type="Text" showValueHelp="true" valueHelpRequest="handlePurchaseGroupVendor"
+									suggestionItems="{ path: 'Lookup>/PurchaseGroupList' }" suggestionItemSelected="onSuggestPurchasing">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Ekgrp}" text="{Lookup>Eknam}" additionalText="{Ekgrp}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Planned Delivery time">
+							<f:fields>
+								<Input maxLength="3" id="udplanneddelvry" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handleplanneddelevry"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestplanneddelery">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Confirmation Control">
+							<f:fields>
+								<Input maxLength="4" id="ConfirmationControl" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handleConfirmationControl"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestConfirmationControl">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Unit of measure grp">
+							<f:fields>
+								<Input maxLength="4" id="Unitofmeasuregrp" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handleUnitofmeasuregrp"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestUnitofmeasuregrp">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Rouding profile">
+							<f:fields>
+								<Input maxLength="4" id="Roudingprofile" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									showValueHelp="true" valueHelpRequest="handleRoudingprofile" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="onSuggestRoudingprofile">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label=" Price marking agreed">
+							<f:fields>
+								<Input maxLength="2" id="Pricemarkingagreed" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+									class="sapUiSmallMarginTop" showValueHelp="true" valueHelpRequest="handlePricemarkingagreed"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestPricemarkingagreed">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" ">
+							<f:fields>
+								<CheckBox text="Rack-jobbing service agreed" id="Rackjobbingserviceagreed"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" ">
+							<f:fields>
+								<CheckBox text="Order entry by vendor " id="Orderentrybyvendor"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Serv level">
+							<f:fields>
+								<Input id="Servlevel" editable="{EditModel>/isEditable}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Shipping Conditions">
+							<f:fields>
+								<Input maxLength="3" id="ShippingConditions" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+									class="sapUiSmallMarginTop" valueHelpRequest="handleShippingCondition" suggestionItems="{path: 'Lookup>/ShippingConditionList' }"
+									suggestionItemSelected="onSuggestShippingConditions">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

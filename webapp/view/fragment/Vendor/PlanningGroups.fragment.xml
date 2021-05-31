@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Planning Groups"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/PlanningGroups}"
+		search="handlePlanningSearchGroup"
+		confirm="handlePlaningGroupsClose"
+		cancel="handlePlaningGroupsClose">
+		<StandardListItem
+			title="{Lookup>Grupp}"
+			info="{Lookup>Grupp}" />
+	</SelectDialog>
+</core:FragmentDefinition>

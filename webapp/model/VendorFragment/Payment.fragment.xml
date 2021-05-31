@@ -17,7 +17,7 @@
 					<t:Column width="5rem" hAlign="Center">
 						<Label text="Country " fieldGroupIds="Land1a"/>
 						<t:template>
-							<Input id="idCtry" class="mtid" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
+							<Input id="idCtry" class="mtid" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
 								value="{VendorModel>BankCtry}" valueHelpRequest="handleValueHelpCountryCode" suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }"
 								suggestionItemSelected="onSuggestCtry" >
 								<suggestionItems>
@@ -29,7 +29,7 @@
 					<t:Column hAlign="Center" width="9rem">
 						<Label text="Bank Key " fieldGroupIds="Bankld"/>
 						<t:template>
-							<Input class="desc1" id="nBankKey" textFormatMode="KeyValue" editable="{EditModel>/isEditable}"  placeholder="Enter Bank Key" showSuggestion="true" showValueHelp="true"
+							<Input class="desc1" id="nBankKey" textFormatMode="KeyValue" placeholder="Enter Bank Key" showSuggestion="true" showValueHelp="true"
 								valueHelpRequest="handleBankKey" suggestionItems="{ path: 'Lookup>/BankKeyList' }" value="{VendorModel>BankKey}"
 								suggestionItemSelected="onSuggestBankKey">
 								<suggestionItems>
@@ -53,7 +53,7 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="AK"/>
 						<t:template>
-							<Input id="idAK" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" showSuggestion="true" showValueHelp="true" value="{VendorModel>idAK}"
+							<Input id="idAK" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{VendorModel>idAK}"
 								valueHelpRequest="handleValueHelpAK" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestAK">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>

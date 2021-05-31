@@ -1,0 +1,32 @@
+{
+	"results": [{
+
+			"taxType": "01",
+
+			"Description": "Special Person resp. for sales"
+
+		}, {
+
+			"taxType": "02",
+
+			"Description": "unSpecial Person resp. for sales"
+
+		}, {
+
+			"taxType": "03",
+			"Description": "No Person resp. for sales"
+
+		}, {
+
+			"taxType": "04",
+			"Description": "Subject to exemption "
+
+		}, {
+
+			"taxType": "05",
+			"Description": "Sales purchase tax consume"
+
+		}
+
+	]
+}

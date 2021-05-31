@@ -17,8 +17,8 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Partner Function "/>
 						<t:template>
-							<Input id="idpurchasefun" class="mtid" textFormatMode="KeyValue" showSuggestion="false" showValueHelp="false" value="{VendorModel>PartFunct}"
-								valueHelpRequest="handlepurchasefunction" editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestpurchasefunc"
+							<Input id="idpurchasefun" class="mtid" textFormatMode="KeyValue" editable="{EditModel>/isEditable}"  showSuggestion="false" showValueHelp="false" value="{VendorModel>PartFunct}"
+								valueHelpRequest="handlepurchasefunction" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestpurchasefunc"
 								liveChange="purchasefunctionchange">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
@@ -52,8 +52,8 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="DP"/>
 						<t:template>
-							<Input id="iddppf" textFormatMode="KeyValue" showSuggestion="false" showValueHelp="false" value="{VendorModel>DPPF}"
-								valueHelpRequest="handleValueHelppurfundp" editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestpurchdp">
+							<Input id="iddppf" textFormatMode="KeyValue" showSuggestion="false" editable="{EditModel>/isEditable}"  showValueHelp="false" value="{VendorModel>DPPF}"
+								valueHelpRequest="handleValueHelppurfundp" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestpurchdp">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
 								</suggestionItems>

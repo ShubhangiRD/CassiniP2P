@@ -4,7 +4,7 @@
 	<SelectDialog
 		title="Purchase List"
 		class="popx sapUiPopupWithPadding"
-		items="{Lookup>/POOrderList}"
+		items="{Lookup>/PoDocumentNumber}"
 		search="_handleValueHelpSearchPurs"
 		confirm="_handleValueHelpClosePurs"
 		cancel="_handleValueHelpClosePurs">

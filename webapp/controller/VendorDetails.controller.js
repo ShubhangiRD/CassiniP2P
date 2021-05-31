@@ -359,6 +359,94 @@ sap.ui.define([
 
 		/*PO Search end*/
 
+
+
+
+
+
+
+
+
+/*PPlanning Group Search*/
+		getPlanningGroups: function() {
+			var that = this;
+			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
+		//	BusyIndicator.show(0);
+			oModel.read("/PlanningGroupsSet", {
+				success: function(oData) {
+					//BusyIndicator.hide();
+					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
+					oLookupModel.setProperty("/PlanningGroups", oData.results);
+					oLookupModel.refresh(true);
+					//that.getMaterialList();
+				},
+				error: function(oError) {
+					//BusyIndicator.hide();
+					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
+					MessageToast.show(errorMsg);
+				}
+			});
+		},
+		handlePlanningGroups: function(oEvent) {
+			var sInputValue = oEvent.getSource().getValue();
+
+			this.inputIdPGG = oEvent.getSource().getId();
+			// create value help dialog
+			if (!this._valueHelpDialogPlanG) {
+				this._valueHelpDialogPlanG = sap.ui.xmlfragment(
+					"com.cassiniProcureToPay.view.fragment.Vendor.PlanningGroups",
+					this
+				);
+				this.getView().addDependent(this._valueHelpDialogPlanG);
+			}
+			if (sInputValue.includes(")")) {
+				var sSubString = sInputValue.split(")")[1];
+				sInputValue = sSubString.trim();
+			}
+
+			// create a filter for the binding
+			this._valueHelpDialogPlanG.getBinding("items").filter(new Filter([new Filter(
+				"Grupp",
+				FilterOperator.Contains, sInputValue
+			)
+			
+			]));
+
+			// open value help dialog filtered by the input value
+			this._valueHelpDialogPlanG.open(sInputValue);
+			this.getPlanningGroups();
+		},
+		handlePlanningSearchGroup: function(evt) {
+			var sValue = evt.getParameter("value");
+			var oFilter = new Filter([new Filter(
+				"Grupp",
+				FilterOperator.Contains, sValue
+			)]);
+			evt.getSource().getBinding("items").filter(oFilter);
+		},
+		handlePlaningGroupsClose: function(evt) {
+			var oSelectedItem = evt.getParameter("selectedItem");
+			if (oSelectedItem) {
+				var productInput = this.byId(this.inputIdPGG),
+					sDescription = oSelectedItem.getInfo(),
+					sTitle = oSelectedItem.getTitle();
+				productInput.setSelectedKey(sDescription);
+				productInput.setValue(sTitle);
+
+			}
+			evt.getSource().getBinding("items").filter([]);
+		},
+
+		/*Planning Group Search end*/
+
+
+
+
+
+
+
+
+
 		/*Comp Search start*/
 
 		getCompanyList: function() {

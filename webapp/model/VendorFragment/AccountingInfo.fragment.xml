@@ -5,9 +5,9 @@
 			class="myFormMarginBottom" singleContainerFullSize="false" title="Accounting Information">
 			<form:content>
 				<core:Title text=""/>
-				<Label text="Recon Account" required="true"/>
+				<Label text="Recon Account"/>
 				<Input id="ReconAccount" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/ReconciliationAccount}"
-				maxLength="8"	showValueHelp="true" valueHelpRequest="handleReconAccountValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					showValueHelp="true" valueHelpRequest="handleReconAccountValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 					suggestionItemSelected="onSuggestReconAccount" fieldGroupIds="Akontb" editable="{EditModel>/isEditable}">
 					<suggestionItems>
 						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -32,7 +32,7 @@
 					</suggestionItems>
 				</Input>
 				<core:Title text=""/>
-				<Label text="Sort Key."  required="true"/>
+				<Label text="Sort Key."/>
 				<Input id="idsortkey" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/Sortfield}" showValueHelp="true"
 					valueHelpRequest="handleSorkeyValueHelp" fieldGroupIds="Sortla" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
 					suggestionItemSelected="onSuggestsortkey" editable="{EditModel>/isEditable}">
@@ -56,7 +56,7 @@
 						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="Release Group "  required="true"/>
+				<Label text="Release Group "/>
 				<Input id="Releasegrp" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/VendorTemp/ReleaseApprovalGroup}"
 					showValueHelp="true" valueHelpRequest="handleReleasegrpValueHelp" suggestionItems="{ path: 'Lookup>/ReleaseGroupList' }"
 					suggestionItemSelected="onSuggestReleasegrp" editable="{EditModel>/isEditable}" fieldGroupIds="Frgrpb">

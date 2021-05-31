@@ -571,7 +571,7 @@ sap.ui.define([
 			});
 		},
 
-		handleMaterialValueHelp: function(oEvent) {
+		handleVendorValueHelp: function(oEvent) {
 			var sInputValue = oEvent.getSource().getValue();
 
 			this.inputId = oEvent.getSource().getId();

@@ -18,12 +18,12 @@ sap.ui.define([
 
 	"sap/ui/export/Spreadsheet",
 	"sap/ui/export/library",
-		"com/cassiniProcureToPay/model/Vendor"
-	
+	"com/cassiniProcureToPay/model/Vendor"
+
 ], function(Controller, JSONModel, Filter, FilterOperator, BusyIndicator, MessageToast, Export, ExportTypeCSV, MessageBox, Sorter,
-	library, jQuery, RowAction, RowActionItem, RowSettings, Fragment, Spreadsheet, exportLibrary,Vendor) {
+	library, jQuery, RowAction, RowActionItem, RowSettings, Fragment, Spreadsheet, exportLibrary, Vendor) {
 	"use strict";
-			var Purchaseordernumber;
+	var Purchaseordernumber;
 	var oView, oComponent, oController;
 	var SortOrder = library.SortOrder;
 
@@ -75,10 +75,10 @@ sap.ui.define([
 			this.getVendorList();
 			this.getPurchaseOrderList();
 			this.getVendorCountListByPO();
-	//		this.getOpenPurchaseOrder();
+			//		this.getOpenPurchaseOrder();
 			this.getTopFiveVendorsNames();
 			this.getTopProductsFirst();
-		//	this.getpur();
+			//	this.getpur();
 
 			// set explored app's demo model on this sample
 
@@ -292,7 +292,7 @@ sap.ui.define([
 								})
 
 							];
-						
+
 						}
 
 						var ListofVendorTopThree = [];
@@ -374,11 +374,10 @@ sap.ui.define([
 			}
 		},
 
-	
 		getVendorList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-		//	BusyIndicator.show(0);
+			//	BusyIndicator.show(0);
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
 					var item = oData.results.length;
@@ -395,7 +394,7 @@ sap.ui.define([
 						}
 
 					}
-				//	console.log(ListofVendor);
+					//	console.log(ListofVendor);
 
 					var Count = new sap.ui.model.json.JSONModel({
 						item: item
@@ -415,9 +414,9 @@ sap.ui.define([
 				}
 			});
 		},
-searchFieldVendor : function(evt){
-		var sValue = evt.getSource().getValue();
-	
+		searchFieldVendor: function(evt) {
+			var sValue = evt.getSource().getValue();
+
 			var oFilter = new Filter([new Filter(
 				"Name1",
 				FilterOperator.Contains, sValue
@@ -425,24 +424,21 @@ searchFieldVendor : function(evt){
 				"Lifnr",
 				FilterOperator.Contains, sValue
 			)]);
-		
-		var list = this.getView().byId("VendorList");
+
+			var list = this.getView().byId("VendorList");
 			var binding = list.getBinding("items");
 			binding.filter(oFilter, "Application");
-	
-	
-	
-	
-},
-onSelectionChange : function(oEvent){
-		var oModelRe = this.getOwnerComponent().getModel("VHeader");
-	var oModel = oView.getModel("Lookup");
+
+		},
+		onSelectionChange: function(oEvent) {
+			var oModelRe = this.getOwnerComponent().getModel("VHeader");
+			var oModel = oView.getModel("Lookup");
 			var oSelectedItem = oEvent.getParameter("listItem");
 			if (oSelectedItem) {
 				var VendorNumber = oSelectedItem.getTitle();
-			
+
 				console.log(VendorNumber);
-			
+
 				var zero = "";
 				//	var no;
 
@@ -459,7 +455,6 @@ onSelectionChange : function(oEvent){
 				VendorNumber = zero + VendorNumber;
 				console.log(VendorNumber);
 
-			
 				var sBindPath = oSelectedItem.getBindingContext("Lookup").sPath;
 
 				var ComCode = oModel.getProperty(sBindPath + "/Bukrs");
@@ -487,7 +482,7 @@ onSelectionChange : function(oEvent){
 						console.log(oData);
 						var item = oData.results.length;
 						//	oView.getModel("VendorModel").setData(oData.results[0]);
-						
+
 						var oVendor = new Vendor(oData.results[0]);
 						oView.getModel("VendorModel").setProperty("/VendorTemp", oVendor); // setData(oData.results);
 						oComponent.getRouter().navTo("VendorDetails");
@@ -496,13 +491,10 @@ onSelectionChange : function(oEvent){
 						//console.log(oError);
 					}
 				});
-		
-			
-		
+
 			}
 
-		
-},
+		},
 		headercolumn: function() {
 
 			var Columnheadermodel = this.getOwnerComponent().getModel("HeaderModel");
@@ -588,11 +580,11 @@ onSelectionChange : function(oEvent){
 			var that = this;
 
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-				BusyIndicator.show(0);
+			BusyIndicator.show(0);
 			oModel.read("/just_poheader2Set ", {
 				//	oModel.read("/just_poheaderSet", {
 				success: function(oData) {
-					
+
 					console.log(oData);
 					BusyIndicator.hide();
 					var itemPO = oData.results.length;
@@ -601,14 +593,14 @@ onSelectionChange : function(oEvent){
 
 					});
 					oView.setModel(CountPo1, "CountPo1");
-					
-				 ListofPurchaseOrders = [];
+
+					ListofPurchaseOrders = [];
 
 					for (var iRowIndex = 0; iRowIndex < itemPO; iRowIndex++) {
 						var odataset = oData.results[iRowIndex];
 
 						var Compcode = odataset.Bukrs;
-					 Purchaseordernumber = odataset.Ebeln;
+						Purchaseordernumber = odataset.Ebeln;
 						var pogrp = odataset.Ekgrp;
 						var poorg = odataset.Ekorg;
 						var lifnrr = odataset.Lifnr;
@@ -799,7 +791,7 @@ onSelectionChange : function(oEvent){
 						});
 
 					}
-			//		console.log(ListofPurchaseOrders);
+					//		console.log(ListofPurchaseOrders);
 
 					var CountPo = new sap.ui.model.json.JSONModel({
 						item: itemPO
@@ -823,49 +815,45 @@ onSelectionChange : function(oEvent){
 			});
 
 		},
-	
-	getpur : function(){
+
+		getpur: function() {
 			var that = this;
 
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-				BusyIndicator.show(0);
+			BusyIndicator.show(0);
 			oModel.read("/just_poheader2Set ", {
 				//	oModel.read("/just_poheaderSet", {
 				success: function(oData) {
 					console.log(oData);
 					BusyIndicator.hide();
 					var itemPO = oData.results.length;
-					
-					
+
 					console.log(oData);
-					
-				 var ListofPurchaseOrde = [];
+
+					var ListofPurchaseOrde = [];
 
 					for (var iRowIndex = 0; iRowIndex < itemPO; iRowIndex++) {
 						var odataset = oData.results[iRowIndex];
-					
-							var Ebeln = odataset.Ebeln;
+
+						var Ebeln = odataset.Ebeln;
 						break;
-							}
-					
-					
-				var Purchaseorder = Ebeln;
-					BusyIndicator.show(0);
-						oModel.read("/fetch_openPOSet(Purchaseorder='" + Purchaseorder + "')",{
-							urlParameters: {
-							    "$expand": "fpoItemSet"
-							  },
-					success: function(oDatas) {
-				BusyIndicator.hide();
-					console.log(oDatas);
-					},
-					error: function(oError) {
-							BusyIndicator.hide();
-						console.log(oError);
 					}
-				});
-				
-						
+
+					var Purchaseorder = Ebeln;
+					BusyIndicator.show(0);
+					oModel.read("/fetch_openPOSet(Purchaseorder='" + Purchaseorder + "')", {
+						urlParameters: {
+							"$expand": "fpoItemSet"
+						},
+						success: function(oDatas) {
+							BusyIndicator.hide();
+							console.log(oDatas);
+						},
+						error: function(oError) {
+							BusyIndicator.hide();
+							console.log(oError);
+						}
+					});
 
 					var CountPo = new sap.ui.model.json.JSONModel({
 						item: itemPO
@@ -887,17 +875,17 @@ onSelectionChange : function(oEvent){
 					MessageToast.show(errorMsg);
 				}
 			});
-	},
+		},
 
 		getTopProductsSecond: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-	BusyIndicator.show(0);
+			BusyIndicator.show(0);
 			oModel.read("/POHeaderSet", {
 				//	oModel.read("/POItemSet",{
 				success: function(oData) {
 					//		console.log(oData);
-						BusyIndicator.hide();
+					BusyIndicator.hide();
 					var item = oData.results.length;
 					var ListofVendoritem = [];
 
@@ -1035,7 +1023,7 @@ onSelectionChange : function(oEvent){
 					console.log(ListofVendorTopThreeModel);
 				},
 				error: function(oError) {
-			BusyIndicator.hide();
+					BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1043,14 +1031,14 @@ onSelectionChange : function(oEvent){
 		},
 		getTopProductsFirst: function() {
 			var oModel1 = this.getOwnerComponent().getModel("VHeader");
-				
-					BusyIndicator.show(0);
+
+			BusyIndicator.show(0);
 			oModel1.read("/Max_MaterialSet", {
 
 				//	oModel.read("/PO_DetailsSet()", {
 				//filters: aFilter,
 				success: function(odata) {
-						BusyIndicator.hide();
+					BusyIndicator.hide();
 					console.log(odata);
 					var arr = [];
 					arr = odata.results;
@@ -1094,7 +1082,7 @@ onSelectionChange : function(oEvent){
 						}
 					}
 					final.sort(compareSecondColumn);
-				//	console.log(final);
+					//	console.log(final);
 					var top5products = [];
 					for (var zz = 0; zz <= 4; zz++) {
 						top5products.push({
@@ -1102,11 +1090,11 @@ onSelectionChange : function(oEvent){
 							count: final[zz][1]
 						});
 					}
-			//		console.log(top5products);
+					//		console.log(top5products);
 					var top5productsModel = new JSONModel();
 					top5productsModel.setData(top5products);
 					oView.setModel(top5productsModel, "top5products");
-			//		console.log(top5productsModel);
+					//		console.log(top5productsModel);
 				},
 				error: function(er) {
 					BusyIndicator.hide();
@@ -1115,15 +1103,11 @@ onSelectionChange : function(oEvent){
 			});
 
 		},
-		
 
-		
-		
-		
 		getServiceHeader: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			
+
 			var po = "4500004837";
 
 			// Mi ithe po chi value hard code ghetli ahe, but tula ithe loop firvaych ahe.  count, material and disription eka model made print kar.
@@ -1142,7 +1126,7 @@ onSelectionChange : function(oEvent){
 				})
 
 			];
-				BusyIndicator.show(0);
+			BusyIndicator.show(0);
 			oModel.read("/PO_DetailsSet", {
 				filters: aFilter,
 				success: function(oData) {
@@ -1436,18 +1420,18 @@ onSelectionChange : function(oEvent){
 				];
 
 				var Purchaseorder = Ebeln;
-					BusyIndicator.show(0);
+				BusyIndicator.show(0);
 				oModel.read("/fetch_openPOSet(Purchaseorder='" + Purchaseorder + "')", {
 					urlParameters: {
 						"$expand": "fpoItemSet"
 					},
 					success: function(oData) {
-							BusyIndicator.hide();
+						BusyIndicator.hide();
 						console.log(oData);
 
 					},
 					error: function(oError) {
-							BusyIndicator.hide();
+						BusyIndicator.hide();
 						console.log(oError);
 					}
 				});

@@ -15,9 +15,9 @@
 				</t:extension>
 				<t:columns>
 					<t:Column width="5rem" hAlign="Center">
-						<Label text="Country " fieldGroupIds="Land1a"/>
+						<Label text="Country "/>
 						<t:template>
-							<Input id="idCtry" class="mtid" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
+							<Input id="idCtry" class="mtid" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
 								value="{VendorModel>BankCtry}" valueHelpRequest="handleValueHelpCountryCode" suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }"
 								suggestionItemSelected="onSuggestCtry" >
 								<suggestionItems>
@@ -27,9 +27,9 @@
 						</t:template>
 					</t:Column>
 					<t:Column hAlign="Center" width="9rem">
-						<Label text="Bank Key " fieldGroupIds="Bankld"/>
+						<Label text="Bank Key "/>
 						<t:template>
-							<Input class="desc1" id="nBankKey" textFormatMode="KeyValue" editable="{EditModel>/isEditable}"  placeholder="Enter Bank Key" showSuggestion="true" showValueHelp="true"
+							<Input class="desc1" id="nBankKey" textFormatMode="KeyValue" placeholder="Enter Bank Key" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
 								valueHelpRequest="handleBankKey" suggestionItems="{ path: 'Lookup>/BankKeyList' }" value="{VendorModel>BankKey}"
 								suggestionItemSelected="onSuggestBankKey">
 								<suggestionItems>
@@ -39,13 +39,13 @@
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
-						<Label text="Bank Account " fieldGroupIds="Banknd"/>
+						<Label text="Bank Account "/>
 						<t:template>
 							<Input id="BankAccount" value="{VendorModel>BankAcct}" editable="{EditModel>/isEditable}" placeholder="Enter Bank Account"/>
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
-						<Label text="Account Holder" fieldGroupIds="Koinhd"/>
+						<Label text="Account Holder"/>
 						<t:template>
 							<Input id="AccountHolder" class="measure1" value="{VendorModel>AccountHolderName}" editable="{EditModel>/isEditable}"/>
 						</t:template>
@@ -53,7 +53,7 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="AK"/>
 						<t:template>
-							<Input id="idAK" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" showSuggestion="true" showValueHelp="true" value="{VendorModel>idAK}"
+							<Input id="idAK" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" value="{VendorModel>idAK}"
 								valueHelpRequest="handleValueHelpAK" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestAK">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
@@ -74,7 +74,7 @@
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
-						<Label text="Reference Details" fieldGroupIds="Bkrefd"/>
+						<Label text="Reference Details"/>
 						<t:template>
 							<Input id="Referencedetails"  value="{VendorModel>BankRef}" editable="{EditModel>/isEditable}"/>
 						</t:template>
@@ -94,26 +94,26 @@
 			<form:content>
 				<core:Title text=" "/>
 				<Label text="Alternate Pay"/>
-				<Input id="AlternatePay" maxLength="10"  change="changeVenodr" type="Text" editable="{EditModel>/isEditable}"
-					class="searchBox" placeholder="Alternate Pay" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleAlternatePayee"
+				<Input id="AlternatePay" maxLength="10"  change="changeVenodr" type="Text"
+					class="searchBox" placeholder="Alternate Pay" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" valueHelpRequest="handleAlternatePayee"
 					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestAlternatePay">
 					<suggestionItems>
 						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
 					</suggestionItems>
 				</Input>
 				<Label text="ISR Number"/>
-				<Input id="ISRNumber" maxLength="11" class="InputBoxContainer" placeholder="ISR Number" editable="{EditModel>/isEditable}"/>
+				<Input id="ISRNumber" maxLength="11" class="InputBoxContainer" editable="{EditModel>/isEditable}"  placeholder="ISR Number"/>
 				<Label text="DME indicator"/>
-				<Input id="DMEindicator" maxLength="1"  change="changeVenodr" type="Text" editable="{EditModel>/isEditable}"
-					class="searchBox" placeholder="DME indicator" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleDMEindicator"
+				<Input id="DMEindicator" maxLength="1"  change="changeVenodr" type="Text"
+					class="searchBox" placeholder="DME indicator" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" valueHelpRequest="handleDMEindicator"
 					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestDMEindicator">
 					<suggestionItems>
 						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
 					</suggestionItems>
 				</Input>
 				<Label text="Instruction Key"/>
-				<Input id="idInstructionKey" maxLength="4"  change="changeVenodr" type="Text" editable="{EditModel>/isEditable}"
-					class="searchBox" placeholder="InstructionKey" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleInstructionKey"
+				<Input id="idInstructionKey" maxLength="4"  change="changeVenodr" type="Text"
+					class="searchBox" placeholder="InstructionKey" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true" valueHelpRequest="handleInstructionKey"
 					suggestionItems="{ path: 'Lookup>/InstructionKeyList' }" suggestionItemSelected="onSuggestidInstructionKey">
 					<suggestionItems>
 						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
@@ -121,9 +121,9 @@
 				</Input>
 				<core:Title text=" "/>
 				
-				<CheckBox id="IndividualEntries" text="Individual Entries" editable="{EditModel>/isEditable}">
+				<CheckBox id="IndividualEntries" text="Individual Entries">
 				</CheckBox>
-				<CheckBox id="ReferenceEntries" text="Entries for Reference." editable="{EditModel>/isEditable}">
+				<CheckBox id="ReferenceEntries" text="Entries for Reference.">
 				
 				</CheckBox>
 				<!--<CheckBox text="Individual Entries"></CheckBox>-->

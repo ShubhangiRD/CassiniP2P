@@ -43,7 +43,7 @@ sap.ui.define([
 			oComponent = this.getOwnerComponent();
 			// Define the models
 
-			this.getPurchaseOrderList();
+		//	this.getPurchaseOrderList();
 		},
 		onCreatePurchaseOrder: function() {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -274,7 +274,7 @@ sap.ui.define([
 				"Lifnr",
 				FilterOperator.Contains, sInputValue
 			)]));
-			this.getVendorList();
+		
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
