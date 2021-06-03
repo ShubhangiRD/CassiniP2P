@@ -9,14 +9,16 @@ sap.ui.define([
 	"com/cassiniProcureToPay/model/Vendor",
 
 	"com/cassiniProcureToPay/model/PODetail",
-		"com/cassiniProcureToPay/model/POItem",
-			"sap/ui/core/BusyIndicator",
-				"sap/m/MessageToast"
+	"com/cassiniProcureToPay/model/POItem",
+	"sap/ui/core/BusyIndicator",
+	"sap/m/MessageToast"
 
-], function(UIComponent, Device, models, JSONModel, Application, IconPool, GetPurchaseVendor, Vendor, PODetail,POItem,BusyIndicator,MessageToast) {
+], function(UIComponent, Device, models, JSONModel, Application, IconPool, GetPurchaseVendor, Vendor, PODetail, POItem, BusyIndicator,
+	MessageToast) {
 	"use strict";
 	var oComponent;
-		var ListofVendor = [],	ListofPurchaseOrders = [];
+	var ListofVendor = [],
+		ListofPurchaseOrders = [];
 	return UIComponent.extend("com.cassiniProcureToPay.Component", {
 
 		metadata: {
@@ -31,10 +33,7 @@ sap.ui.define([
 		init: function() {
 			oComponent = this;
 			var oLookupData = {
-				SelectedTabKey: "item",
-				IsContractItemSaved: false,
-				IsContractAccrualSaved: false,
-				IsContractSettlementSaved: false,
+			
 				VendorList: [],
 				DisplyaVendorList: [],
 				POVendorList: [],
@@ -69,8 +68,9 @@ sap.ui.define([
 				ShippingConditionList: [],
 				ActivityCodeList: [],
 				ModeOfTransportList: [],
-				PoDocumentNumber : [],
-				PlanningGroups : []
+				PoDocumentNumber: [],
+				PlanningGroups: [],
+				OpenPOList : []
 
 			};
 			var oLookupModel = new JSONModel(oLookupData);
@@ -91,6 +91,12 @@ sap.ui.define([
 			var VendorModel = new JSONModel(oVendorData);
 			this.setModel(VendorModel, "VendorModel");
 			
+			
+			
+					var oVData = new Vendor();
+				var oVendor = new JSONModel(oVData);
+					this.setModel(oVendor, "Vendor");
+
 			var oGetCountryModel = new JSONModel();
 			oGetCountryModel.setData([]);
 			this.setModel(oGetCountryModel, "GetCountryModel");
@@ -103,13 +109,13 @@ sap.ui.define([
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();
-		this.getVendorList();
-	this.getPurchaseOrderList();
+			this.getVendorList();
+			this.getPurchaseOrderList();
 		},
-			getVendorList: function() {
-		
+		getVendorList: function() {
+
 			var oModel = oComponent.getModel("VHeader");
-		//	BusyIndicator.show(0);
+			//	BusyIndicator.show(0);
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
 					var item = oData.results.length;
@@ -119,16 +125,48 @@ sap.ui.define([
 						if (odata !== undefined) {
 							var Lifnrr = odata.Lifnr;
 							var Name1r = odata.Name1;
+							var Bukrs = odata.Bukrs;
+							var Ekgrp = odata.Ekgrp;
+							var Ekorg = odata.Ekorg;
+							var Gbort = odata.Gbort;
+							var Ktokk = odata.Ktokk;
+							var Kunnr = odata.Kunnr;
+							var Land1 = odata.Land1;
+							var Ort01 = odata.Ort01;
+							var Pstlz = odata.Pstlz;
+							var Stras = odata.Stras;
+							var Regio = odata.Regio;
+							var Telf1 = odata.Telf1;
+							var Waers = odata.Waers;
+							var Sexkz = odata.Sexkz;
+							var Adrnr = odata.Adrnr;
+
 							ListofVendor.push({
 								Lifnr: Lifnrr,
-								Name1: Name1r
+								Name1: Name1r,
+								Adrnr: Adrnr,
+								Bukrs: Bukrs,
+								Ekgrp: Ekgrp,
+								Ekorg: Ekorg,
+								Gbort: Gbort,
+								Ktokk: Ktokk,
+								Kunnr: Kunnr,
+								Land1: Land1,
+								Ort01: Ort01,
+								Pstlz: Pstlz,
+								Regio: Regio,
+								Sexkz: Sexkz,
+								Stras: Stras,
+								Telf1: Telf1,
+								Waers: Waers
+
 							});
 						}
 
 					}
-				//	console.log(ListofVendor);
+					//	console.log(ListofVendor);
 
-				/*s*/
+					/*s*/
 					//BusyIndicator.hide();
 					var oLookupModel = oComponent.getModel("Lookup");
 					oLookupModel.setProperty("/DisplyaVendorList", ListofVendor);
@@ -141,30 +179,30 @@ sap.ui.define([
 				}
 			});
 		},
-	getPurchaseOrderList: function() {
-		
+		getPurchaseOrderList: function() {
+
 			var oModel = oComponent.getModel("VHeader");
 			//	BusyIndicator.show(0);
 			oModel.read("/openpo_headerSet ", {
 				//	oModel.read("/just_poheaderSet", {
 				success: function(oData) {
-					
+
 					console.log(oData);
 					BusyIndicator.hide();
 					var itemPO = oData.results.length;
-				/*	var CountPo1 = new sap.ui.model.json.JSONModel({
-						item: itemPO
+					/*	var CountPo1 = new sap.ui.model.json.JSONModel({
+							item: itemPO
 
-					});
-					this.setModel(CountPo1, "CountPo1");*/
-					
-				 ListofPurchaseOrders = [];
+						});
+						this.setModel(CountPo1, "CountPo1");*/
+
+					ListofPurchaseOrders = [];
 
 					for (var iRowIndex = 0; iRowIndex < itemPO; iRowIndex++) {
 						var odataset = oData.results[iRowIndex];
 
 						var Compcode = odataset.Bukrs;
-				var	 Purchaseordernumber = odataset.Ebeln;
+						var Purchaseordernumber = odataset.Ebeln;
 						var pogrp = odataset.Ekgrp;
 						var poorg = odataset.Ekorg;
 						var lifnrr = odataset.Lifnr;
@@ -355,9 +393,9 @@ sap.ui.define([
 						});
 
 					}
-			//		console.log(ListofPurchaseOrders);
+					//		console.log(ListofPurchaseOrders);
 
-				/*	var CountPo = new sap.ui.model.json.JSONModel({
+					/*	var CountPo = new sap.ui.model.json.JSONModel({
 						item: itemPO
 
 					});
@@ -378,7 +416,7 @@ sap.ui.define([
 				}
 			});
 
-		}		
-		
+		}
+
 	});
 });

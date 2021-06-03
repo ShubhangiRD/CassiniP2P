@@ -1,7 +1,9 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
 	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
 	xmlns:t="sap.ui.table" controllerName="com.cassiniProcureToPay.controller.POCreation">
-	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true">
+	<m:Page  showNavButton="true"
+		navButtonPress="onNavBack">
+	<ObjectPageLayout id="ObjectPageLayout"  upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true">
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
@@ -96,6 +98,60 @@
 									</m:OverflowToolbar>
 								</t:extension>
 								<t:columns>
+										<t:Column width="11rem" hAlign="Center">
+										<m:Label text="Material Number"/>
+										<t:template>
+											<m:Input id="idMaterialNumber" class="mtid" textFormatMode="KeyValue" placeholder=" Material No" showSuggestion="true" showValueHelp="true"
+												value="{PurchaseModel>Matnr}" valueHelpRequest="handlePOMaterialHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+												suggestionItemSelected="onSuggest">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column hAlign="Center" width="12rem">
+										<m:Label text="Material Description"/>
+										<t:template>
+											<m:Input class="desc1" id="nDescription" textFormatMode="KeyValue" placeholder=" Material Description" showSuggestion="true"
+												showValueHelp="true" valueHelpRequest="handleMaterialDisVendor" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }"
+												suggestionItemSelected="onSuggest">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<m:Label text="PO Quantity"/>
+										<t:template>
+											<m:Input id="Quantity" value="{PurchaseModel>Menge}" textAlign="End" placeholder="Enter PO Quantity"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<m:Label text="Unit of Measure"/>
+										<t:template>
+											<m:Input id="uom1" class="measure1"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="9rem" hAlign="Center">
+										<m:Label text="Plant"/>
+										<t:template>
+											<m:Input id="Plant" textFormatMode="KeyValue" placeholder=" Enter Plant No" showSuggestion="true" showValueHelp="true"
+												value="{PurchaseModel>Werks}" valueHelpRequest="handleValueHelpPlant" suggestionItems="{ path: 'Lookup>/POPlant' }"
+												suggestionItemSelected="onSuggest">
+												<m:suggestionItems>
+													<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+												</m:suggestionItems>
+											</m:Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<m:Label text="Price"/>
+										<t:template>
+											<m:Input id="Price" class="price1"/>
+										</t:template>
+									</t:Column>
 									<t:Column width="9rem" hAlign="Center">
 										<m:Label text="Status"/>
 										<t:template>
@@ -401,60 +457,7 @@
 											<m:CheckBox id="idFixedDate"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11rem" hAlign="Center">
-										<m:Label text="Material Number"/>
-										<t:template>
-											<m:Input id="idMaterialNumber" class="mtid" textFormatMode="KeyValue" placeholder=" Material No" showSuggestion="true" showValueHelp="true"
-												value="{PurchaseModel>Matnr}" valueHelpRequest="handlePOMaterialHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
-												suggestionItemSelected="onSuggest">
-												<m:suggestionItems>
-													<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
-												</m:suggestionItems>
-											</m:Input>
-										</t:template>
-									</t:Column>
-									<t:Column hAlign="Center" width="12rem">
-										<m:Label text="Material Description"/>
-										<t:template>
-											<m:Input class="desc1" id="nDescription" textFormatMode="KeyValue" placeholder=" Material Description" showSuggestion="true"
-												showValueHelp="true" valueHelpRequest="handleMaterialDisVendor" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }"
-												suggestionItemSelected="onSuggest">
-												<m:suggestionItems>
-													<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
-												</m:suggestionItems>
-											</m:Input>
-										</t:template>
-									</t:Column>
-									<t:Column width="11rem" hAlign="Center">
-										<m:Label text="PO Quantity"/>
-										<t:template>
-											<m:Input id="Quantity" value="{PurchaseModel>Menge}" textAlign="End" placeholder="Enter PO Quantity"/>
-										</t:template>
-									</t:Column>
-									<t:Column width="11rem" hAlign="Center">
-										<m:Label text="Unit of Measure"/>
-										<t:template>
-											<m:Input id="uom1" class="measure1"/>
-										</t:template>
-									</t:Column>
-									<t:Column width="9rem" hAlign="Center">
-										<m:Label text="Plant"/>
-										<t:template>
-											<m:Input id="Plant" textFormatMode="KeyValue" placeholder=" Enter Plant No" showSuggestion="true" showValueHelp="true"
-												value="{PurchaseModel>Werks}" valueHelpRequest="handleValueHelpPlant" suggestionItems="{ path: 'Lookup>/POPlant' }"
-												suggestionItemSelected="onSuggest">
-												<m:suggestionItems>
-													<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
-												</m:suggestionItems>
-											</m:Input>
-										</t:template>
-									</t:Column>
-									<t:Column width="11rem" hAlign="Center">
-										<m:Label text="Price"/>
-										<t:template>
-											<m:Input id="Price" class="price1"/>
-										</t:template>
-									</t:Column>
+								
 								</t:columns>
 							</t:Table>
 							<!--		<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.EditTable" type="XML"/>
@@ -528,4 +531,5 @@
 			</ObjectPageSection>
 		</sections>
 	</ObjectPageLayout>
+	</m:Page>
 </mvc:View>

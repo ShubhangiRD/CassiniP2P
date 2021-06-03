@@ -28,14 +28,12 @@ sap.ui.define([
 			oView = this.getView();
 			oComponent = this.getOwnerComponent();
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-				var oModelLookup = this.getOwnerComponent().getModel("Lookup");
-
 			//set the model on view to be used by the UI controls
 			this.getView().setModel(oModel);
 			console.log(oModel);
 			// Define the models
 			oView.byId("iddEditt").setVisible(false);
-	//		this.getVendorList();
+			this.getVendorList();
 			/*
 				this.getCustomerOfficeEntryList();
 				this.getShippingConditionList();
@@ -59,41 +57,13 @@ sap.ui.define([
 			//	this.getTransportZoneList();
 			var oHierarchyModel = new sap.ui.model.json.JSONModel();
 			oView.setModel(oHierarchyModel, "hierarchy");
-
-
-/*	var oVendorModel = this.getOwnerComponent().getModel("VendorModel");
-			var oTempContract = oVendorModel.getProperty("/VendorTemp");
-		console.log(oVendorModel);
-		var vno = oTempContract.MessageV1;
-		var vendor = oTempContract.Vendor;
-		var number = Number(vno);
-			console.log(number);
 			
-				var listvd = oModelLookup.oData.DisplyaVendorList;
-		
-			
-						if (number !== "" || number !== undefined) {
-							for (var y = 0; y < listvd.length; y++) {
-								if (number == listvd[y].Lifnr) {
-									var Ekorg = listvd[y].Ekorg;
-										var ComCode = listvd[y].Bukrs;
-											var Ktokk = listvd[y].Ktokk;
-									//	console.log(venname);
+				sap.ui.require.toUrl("app/data.json")
 
-								}
-							}
-					
-
-						} 
-
-			
-			
-		
-		
-				oView.byId("idCompCode").setValue(ComCode);
-				oView.byId("idAccGp").setValue(Ktokk);
-				oView.byId("idPurOrg").setValue(Ekorg);
-	*/
+			/*	var	VendorContract = new Vendor();
+			var VendorContractModel = new JSONModel(VendorContract);
+			this.getView().setModel(VendorContractModel, "VendorModel");
+*/
 			var PaymentModel = new JSONModel();
 			oView.setModel(PaymentModel, "PaymentModel");
 			var oEditModel = new JSONModel({
@@ -102,38 +72,45 @@ sap.ui.define([
 
 			this.getView().setModel(oEditModel, "EditModel");
 
-		
+			var oEditContModel = new JSONModel({
+				VendorNumber: "",
+				CompCode: "",
+				AccountGrp: "",
+				PurchaseOrg: "",
+				StreetHouse: "",
+				PaymentTerm: "",
+				FirstName: "",
+				Email: "",
+				Tcode: "",
+				Telephone: "",
+				LastName: "",
+				PostalCode: "",
+				City: "",
+				OrderCurrency: "",
+				Country: "",
+				Region: ""
+			});
+
+			this.getView().setModel(oEditContModel, "AddEditModel");
 
 		},
-	
-			onNavBack: function(oevt) {
+		onSelectTab: function(evt) {
+			//navigate the property is selected subheader.
 
-			var oVendorModel = oComponent.getModel("Vendor");
-			oVendorModel.setData({oData:{}});
-			oVendorModel.updateBindings(true);
-			
-		oVendorModel.refresh(true);
-	
-			this.getOwnerComponent().getRouter().navTo("ShowTiles");
+			var selectedTab = evt.getParameter("key");
+			console.log(selectedTab);
 
-		},
-
-		onCancelPresss: function() {
-
-			oView.byId("idVendor").setValue("");
-			oView.byId("idCompCode").setValue("");
-			oView.byId("idPurOrg").setValue("");
-			oView.byId("idAccGp").setValue("");
-
-
-
-			var oVendorModel = this.getOwnerComponent().getModel("VendorModel");
-			var oTempContract = oVendorModel.getProperty("/VendorTemp").destroy;
-			oVendorModel.refresh(true);
-			this.getView().getModel("VHeader").refresh();
-
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("ShowTiles");
+			if (selectedTab === "Vendor Master") {
+				oComponent.getRouter().navTo("VendorCreate");
+			} else if (selectedTab === "Purchase Order") {
+				oComponent.getRouter().navTo("PurchaseOrderTable");
+			} else if (selectedTab === "Post Goods Receipt") {
+				oComponent.getRouter().navTo("GoodReceipt");
+			} else if (selectedTab === "Book Vendor Invoice") {
+				oComponent.getRouter().navTo("Dashboard");
+			} else if (selectedTab === "Vendor Rebate Management") {
+				oComponent.getRouter().navTo("DashboardVendor");
+			}
 
 		},
 		onMenuButtonPress: function() {
@@ -167,18 +144,18 @@ sap.ui.define([
 		getVendorList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//	BusyIndicator.show(0);
+			BusyIndicator.show(0);
 
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
-				//	//BusyIndicator.hide();
+					BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/DisplyaVendorList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-				//	//BusyIndicator.hide();
+					BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -212,7 +189,6 @@ sap.ui.define([
 
 			// open value help dialog filtered by the input value
 			this._valueHelpDialogDisplayV.open(sInputValue);
-			this.getVendorList();
 		},
 		_handleValueVendorHelpSearch: function(evt) {
 			var sValue = evt.getParameter("value");
@@ -229,6 +205,8 @@ sap.ui.define([
 			var oSelectedItem = evt.getParameter("selectedItem");
 			var oModel = oView.getModel("Lookup");
 			var oModelRe = this.getOwnerComponent().getModel("VHeader");
+
+			var oVendorModel = this.getOwnerComponent().getModel("Vendor");
 
 			if (oSelectedItem) {
 				var productInput = this.byId(this.inputIdVendor),
@@ -282,12 +260,11 @@ sap.ui.define([
 					})
 
 				];
-					BusyIndicator.show(true);
+				//	BusyIndicator.show(0);
 				oModelRe.read("/bapi_vendor_getdetailSet", {
 					//oModel.read("/POItemSet", {
 					filters: aFilter,
 					success: function(oData) {
-					BusyIndicator.hide(false);
 						console.log(oData);
 						var item = oData.results.length;
 						//	oView.getModel("VendorModel").setData(oData.results[0]);
@@ -298,7 +275,6 @@ sap.ui.define([
 
 					},
 					error: function(oError) {
-					BusyIndicator.hide(false);
 						//console.log(oError);
 					}
 				});
@@ -313,17 +289,17 @@ sap.ui.define([
 		getPurchaseOrgList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/get_purchaseorg_f4helpSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/PurchaseOrganization", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -385,94 +361,22 @@ sap.ui.define([
 
 		/*PO Search end*/
 
-		/*PPlanning Group Search*/
-		getPlanningGroups: function() {
-			var that = this;
-			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
-			oModel.read("/PlanningGroupsSet", {
-				success: function(oData) {
-					////BusyIndicator.hide();
-					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
-					oLookupModel.setProperty("/PlanningGroups", oData.results);
-					oLookupModel.refresh(true);
-					//that.getMaterialList();
-				},
-				error: function(oError) {
-					////BusyIndicator.hide();
-					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
-					MessageToast.show(errorMsg);
-				}
-			});
-		},
-		handlePlanningGroups: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputIdPGG = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogPlanG) {
-				this._valueHelpDialogPlanG = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.PlanningGroups",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogPlanG);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogPlanG.getBinding("items").filter(new Filter([new Filter(
-					"Grupp",
-					FilterOperator.Contains, sInputValue
-				)
-
-			]));
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogPlanG.open(sInputValue);
-			this.getPlanningGroups();
-		},
-		handlePlanningSearchGroup: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"Grupp",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		handlePlaningGroupsClose: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputIdPGG),
-					sDescription = oSelectedItem.getInfo(),
-					sTitle = oSelectedItem.getTitle();
-				productInput.setSelectedKey(sDescription);
-				productInput.setValue(sTitle);
-
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
-
-		/*Planning Group Search end*/
-
 		/*Comp Search start*/
 
 		getCompanyList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/get_companycode_f4helpSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/CountryCode", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -520,17 +424,15 @@ sap.ui.define([
 			evt.getSource().getBinding("items").filter(oFilter);
 		},
 		_handlevendorCompClose: function(evt) {
-				var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputIdCCode),
-					sDescription = oSelectedItem.getInfo(),
-					sTitle = oSelectedItem.getTitle();
-				productInput.setSelectedKey(sDescription);
-				productInput.setValue(sTitle);
 
-			}
+			var oSelectedItem = evt.getParameter("selectedItem");
 			evt.getSource().getBinding("items").filter([]);
-		
+
+			if (!oSelectedItem) {
+				return;
+			}
+
+			this.byId("idCompCode").setValue(oSelectedItem.getTitle());
 
 		},
 		/*Company SEarch end*/
@@ -539,17 +441,17 @@ sap.ui.define([
 		getAccountList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-	BusyIndicator.show(true);
+			//BusyIndicator.show(0);
 			oModel.read("/get_accountgrp_f4helpSet", {
 				success: function(oData) {
-		BusyIndicator.hide(false);
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/AccountGroup", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-			BusyIndicator.hide(false);
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -614,17 +516,17 @@ sap.ui.define([
 		getCountryList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/country_keySet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/CountryCodeRegion", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -680,8 +582,7 @@ sap.ui.define([
 				var sDescription = oSelectedItem.getInfo(),
 					sTitle = oSelectedItem.getTitle();
 				var oModel = this.getView().getModel("VHeader");
-			 	oView.byId("TimeZone").setValue(sDescription);
-			
+				//var oModelr = oView.getModel("VendorModelItem1");
 				var cd = oSelectedItem.getTitle();
 
 				var oFilter = new sap.ui.model.Filter('Land1', sap.ui.model.FilterOperator.EQ, cd);
@@ -776,14 +677,14 @@ sap.ui.define([
 			oModel.read("/LanguageSet", {
 				success: function(oData) {
 					console.log(oData)
-						////BusyIndicator.hide();
+						//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/LanguageList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -843,7 +744,7 @@ sap.ui.define([
 			BusyIndicator.show(0);
 			oModel.read("/getcustomerSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					console.log(oData);
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/CustomerList", oData.results);
@@ -851,7 +752,7 @@ sap.ui.define([
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -975,17 +876,17 @@ sap.ui.define([
 		getIndustryList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/industrysSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/IndustrySet", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1202,7 +1103,7 @@ sap.ui.define([
 
 			// open value help dialog filtered by the input value
 			this._valueHelpDialogTaxOfc.open(sInputValue);
-
+			this.getVendorList();
 		},
 		_handleTaxOfficeSearch: function(evt) {
 			var sValue = evt.getParameter("value");
@@ -1289,17 +1190,17 @@ sap.ui.define([
 		getInstructionKeyList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/InstructionsKeysSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/InstructionKeyList", oData.results);
 					oLookupModel.refresh(true);
 
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1418,17 +1319,17 @@ sap.ui.define([
 		getReleaseGroupList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/ReleaseGroupSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/ReleaseGroupList", oData.results);
 					oLookupModel.refresh(true);
 
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1485,17 +1386,17 @@ sap.ui.define([
 		getExemptionAuthorityList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/ExemptionAuthoritySet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/ExemptionAuthorityList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1559,17 +1460,17 @@ sap.ui.define([
 		getPaymentTermsList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/PaymentTemsSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/PaymentTermsList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1636,14 +1537,14 @@ sap.ui.define([
 			//BusyIndicator.show(0);
 			oModel.read("/TolenrenceGrpSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/ToleranceGroupList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1707,17 +1608,17 @@ sap.ui.define([
 		getHouseBankList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/HouseBankSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/HouseBankList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1835,17 +1736,17 @@ sap.ui.define([
 		getOrderCurrencyList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/OrderCurrencySet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/OrderCurrencyList", oData.results);
 					oLookupModel.refresh(true);
 
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					MessageToast.show(oError);
 				}
 			});
@@ -1912,14 +1813,14 @@ sap.ui.define([
 			//BusyIndicator.show(0);
 			oModel.read("/IncotermsSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/IncotermsList", oData.results);
 					oLookupModel.refresh(true);
 
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1984,17 +1885,17 @@ sap.ui.define([
 		getPurchaseGroupList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-		BusyIndicator.show(true);
+			//BusyIndicator.show(0);
 			oModel.read("/PurchasingGroupSet", {
 				success: function(oData) {
-				BusyIndicator.hide(false);
-						var oLookupModel = that.getOwnerComponent().getModel("Lookup");
+					//BusyIndicator.hide();
+					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/PurchaseGroupList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-		BusyIndicator.hide(false);
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -2060,17 +1961,17 @@ sap.ui.define([
 		getShippingConditionList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/ShippingConditionsSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/ShippingConditionList", oData.results);
 					oLookupModel.refresh(true);
 
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -2131,14 +2032,14 @@ sap.ui.define([
 			//BusyIndicator.show(0);
 			oModel.read("/ModeOfTransportSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/ModeOfTransportList", oData.results);
 					oLookupModel.refresh(true);
 
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -2197,17 +2098,17 @@ sap.ui.define([
 		getCustomerOfficeEntryList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/CustomerOfficeSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/CustomerOfficeEntryList", oData.results);
 					oLookupModel.refresh(true);
 
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -2274,17 +2175,17 @@ sap.ui.define([
 		getActivityCodeList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/ActivityGroupSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/ActivityCodeList", oData.results);
 					oLookupModel.refresh(true);
 
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -2400,14 +2301,14 @@ sap.ui.define([
 			//BusyIndicator.show(0);
 			oModel.read("/IntrestsIndicSet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/InterestlndicList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -2445,7 +2346,7 @@ sap.ui.define([
 
 			// open value help dialog filtered by the input value
 			this._valueHelpDialogCP.open(sInputValue);
-			//this.getVendorList();
+			this.getVendorList();
 		},
 		_handleValueContPersonHelpSearch: function(evt) {
 			var sValue = evt.getParameter("value");
@@ -2482,7 +2383,7 @@ sap.ui.define([
 			// create value help dialog
 			if (!this._valueHelpDialogReAcc) {
 				this._valueHelpDialogReAcc = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.ReconAccount",
+						"com.cassiniProcureToPay.view.fragment.Vendor.fragment.ReconAccount",
 					this
 				);
 				this.getView().addDependent(this._valueHelpDialogReAcc);
@@ -2530,288 +2431,24 @@ sap.ui.define([
 
 		},
 		/*Contact Person f4 functionality end here*/
-		/*SortKey List code starts here*/
-		handleSorkeyValueHelp: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
 
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogSortKey) {
-				this._valueHelpDialogSortKey = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.SortKeyList",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogSortKey);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogSortKey.getBinding("items").filter(new Filter([new Filter(
-				"sortno",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sInputValue
-			)]));
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogSortKey.open(sInputValue);
-		},
-		_handleSortKeySearch: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"sortno",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		_handleSortKeyClose: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sTitle = oSelectedItem.getTitle();
-
-				productInput.setValue(sTitle);
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
-		/*SortKey Liat code ends here*/
-
-		/*CashManagement list code starts here*/
-
-		handlecashmangmentgrpValueHelp: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogCashManagement) {
-				this._valueHelpDialogCashManagement = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.CashManagementGroup",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogCashManagement);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogCashManagement.getBinding("items").filter(new Filter([new Filter(
-				"plangrp",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sInputValue
-			)]));
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogCashManagement.open(sInputValue);
-		},
-		_handleCashManagementSearch: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"plangrp",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		_handleCashManagementClose: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sTitle = oSelectedItem.getTitle();
-
-				productInput.setValue(sTitle);
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
-		/*Cash Management code ends here*/
-
-		/*Partner function code starts here*/
-		handlepurchasefunction: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogPartnerFunction) {
-				this._valueHelpDialogPartnerFunction = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.PartnerFunction",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogPartnerFunction);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogPartnerFunction.getBinding("items").filter(new Filter([new Filter(
-				"function",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sInputValue
-			)]));
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogPartnerFunction.open(sInputValue);
-		},
-		_handlePartnerFunctionSearch: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"function",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		_handlePartnerFunctionClose: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sTitle = oSelectedItem.getTitle();
-
-				productInput.setValue(sTitle);
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
-		/*Partner function code ends here*/
-
-		/*Pricing date control code starts here*/
-		handlePricingdatecontrol: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogPricingDate) {
-				this._valueHelpDialogPricingDate = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.PricingDateControl",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogPricingDate);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogPricingDate.getBinding("items").filter(new Filter([new Filter(
-				"pricingno",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sInputValue
-			)]));
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogPricingDate.open(sInputValue);
-		},
-		_handleValueHelpSearchPrice: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"pricingno",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		_handleValueHelpClosePrice: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sTitle = oSelectedItem.getTitle();
-
-				productInput.setValue(sTitle);
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
-		/*Pricing date control code ends here*/
-
-		/*Payment methods code starts here*/
-		handlePaymentmethod: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialogPaymentMethods) {
-				this._valueHelpDialogPaymentMethods = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.PaymentMethods",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialogPaymentMethods);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialogPaymentMethods.getBinding("items").filter(new Filter([new Filter(
-				"paymentmethodno",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sInputValue
-			)]));
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialogPaymentMethods.open(sInputValue);
-		},
-		_handleValueHelpSearchPayment: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"paymentmethodno",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		_handleValueHelpClosePayment: function(evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId),
-					sTitle = oSelectedItem.getTitle();
-
-				productInput.setValue(sTitle);
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
-		/*Payment methods code ends here*/
 		/*Time Zone f4 functionality start here*/
 		getTimeZone: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 
 			oModel.read("/TimeZoneSet", {
 				success: function(oData) {
 					console.log(oData);
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/TimeZoneList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -2879,17 +2516,17 @@ sap.ui.define([
 		getBankKeyList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-			//	BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/bankkeySet", {
 				success: function(oData) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/BankKeyList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-					////BusyIndicator.hide();
+					//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -2949,20 +2586,19 @@ sap.ui.define([
 			evt.getSource().getBinding("items").filter([]);
 		},
 		/*BankKey List code ends here*/
-
-		/*taxnotype*/
-
-		handleTaxnotype: function(oEvent) {
+		
+		/*SortKey List code starts here*/
+		handleSorkeyValueHelp: function(oEvent){
 			var sInputValue = oEvent.getSource().getValue();
 
-			this.inputTaxnotype = oEvent.getSource().getId();
+			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
-			if (!this._valueHelpTaxnotype) {
-				this._valueHelpTaxnotype = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.Taxnotype",
+			if (!this._valueHelpDialogSortKey) {
+				this._valueHelpDialogSortKey = sap.ui.xmlfragment(
+					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.SortKeyList",
 					this
 				);
-				this.getView().addDependent(this._valueHelpTaxnotype);
+				this.getView().addDependent(this._valueHelpDialogSortKey);
 			}
 			if (sInputValue.includes(")")) {
 				var sSubString = sInputValue.split(")")[1];
@@ -2970,8 +2606,8 @@ sap.ui.define([
 			}
 
 			// create a filter for the binding
-			this._valueHelpTaxnotype.getBinding("items").filter(new Filter([new Filter(
-				"taxnoType",
+			this._valueHelpDialogSortKey.getBinding("items").filter(new Filter([new Filter(
+				"sortno",
 				FilterOperator.Contains, sInputValue
 			), new Filter(
 				"Description",
@@ -2979,13 +2615,12 @@ sap.ui.define([
 			)]));
 
 			// open value help dialog filtered by the input value
-			this._valueHelpTaxnotype.open(sInputValue);
-
+			this._valueHelpDialogSortKey.open(sInputValue);
 		},
-		_handleTaxnoTypeSearch: function(evt) {
-			var sValue = evt.getParameter("value");
+		_handleSortKeySearch: function(evt){
+				var sValue = evt.getParameter("value");
 			var oFilter = new Filter([new Filter(
-				"taxnoType",
+				"sortno",
 				FilterOperator.Contains, sValue
 			), new Filter(
 				"Description",
@@ -2993,150 +2628,31 @@ sap.ui.define([
 			)]);
 			evt.getSource().getBinding("items").filter(oFilter);
 		},
-		_handleTaxnoTypeClose: function(evt) {
-
-			var oSelectedItem = evt.getParameter("selectedItem");
-			evt.getSource().getBinding("items").filter([]);
-
-			if (!oSelectedItem) {
-				return;
-			}
-
-			this.byId("Taxnotype").setValue(oSelectedItem.getTitle());
-
-		},
-		/*Trading partner code start*/
-
-		/*tax type code start*/
-
-		/*tax type code start*/
-
-		handleTaxtype: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputTaxtype = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpTaxtype) {
-				this._valueHelpTaxtype = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.Taxtype",
-					this
-				);
-				this.getView().addDependent(this._valueHelpTaxtype);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpTaxtype.getBinding("items").filter(new Filter([new Filter(
-				"Taxtype",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sInputValue
-			)]));
-
-			// open value help dialog filtered by the input value
-			this._valueHelpTaxtype.open(sInputValue);
-
-		},
-		_handleTaxTypeSearch: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"Taxtype",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"Description",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		_handleTaxTypeClose: function(evt) {
-
-			var oSelectedItem = evt.getParameter("selectedItem");
-			evt.getSource().getBinding("items").filter([]);
-
-			if (!oSelectedItem) {
-				return;
-			}
-
-			this.byId("Taxtype").setValue(oSelectedItem.getTitle());
-
-		},
-
-		/*tax type code ends*/
-
-		/*Actual qm sys start*/
-		handleidAcutalQMsys: function(oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputAutalQmSys = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpAcutalQmSys) {
-				this._valueHelpAcutalQmSys = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.AcutalQmSys",
-					this
-				);
-				this.getView().addDependent(this._valueHelpAcutalQmSys);
-			}
-			if (sInputValue.includes(")")) {
-				var sSubString = sInputValue.split(")")[1];
-				sInputValue = sSubString.trim();
-			}
-
-			// create a filter for the binding
-			this._valueHelpAcutalQmSys.getBinding("items").filter(new Filter([new Filter(
-				"ActQmSys",
-				FilterOperator.Contains, sInputValue
-			), new Filter(
-				"ShortText",
-				FilterOperator.Contains, sInputValue
-			)]));
-
-			// open value help dialog filtered by the input value
-			this._valueHelpAcutalQmSys.open(sInputValue);
-		},
-		_handleAcutalQmSysSearch: function(evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new Filter([new Filter(
-				"ActQmSys",
-				FilterOperator.Contains, sValue
-			), new Filter(
-				"ShortText",
-				FilterOperator.Contains, sValue
-			)]);
-			evt.getSource().getBinding("items").filter(oFilter);
-		},
-		_handleAcutalQmSysClose: function(evt) {
-
-			var oSelectedItem = evt.getParameter("selectedItem");
+		_handleSortKeyClose:function(evt){
+				var oSelectedItem = evt.getParameter("selectedItem");
 			if (oSelectedItem) {
-				var productInput = this.byId(this.inputAutalQmSys),
-
+				var productInput = this.byId(this.inputId),
 					sTitle = oSelectedItem.getTitle();
 
 				productInput.setValue(sTitle);
-
 			}
-
+			evt.getSource().getBinding("items").filter([]);
 		},
+		/*SortKey Liat code ends here*/
 
-		/*Actual qm sys ends*/
-
-		/*sex type code start*/
-
-		handleiidsex: function(oEvent) {
+		/*CashManagement list code starts here*/
+		
+			handlecashmangmentgrpValueHelp: function(oEvent){
 			var sInputValue = oEvent.getSource().getValue();
 
-			this.inputSexType = oEvent.getSource().getId();
+			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
-			if (!this._valueHelpsex) {
-				this._valueHelpsex = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.SexType",
+			if (!this._valueHelpDialogCashManagement) {
+				this._valueHelpDialogCashManagement = sap.ui.xmlfragment(
+					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.CashManagementGroup",
 					this
 				);
-				this.getView().addDependent(this._valueHelpsex);
+				this.getView().addDependent(this._valueHelpDialogCashManagement);
 			}
 			if (sInputValue.includes(")")) {
 				var sSubString = sInputValue.split(")")[1];
@@ -3144,8 +2660,8 @@ sap.ui.define([
 			}
 
 			// create a filter for the binding
-			this._valueHelpsex.getBinding("items").filter(new Filter([new Filter(
-				"sex",
+			this._valueHelpDialogCashManagement.getBinding("items").filter(new Filter([new Filter(
+				"plangrp",
 				FilterOperator.Contains, sInputValue
 			), new Filter(
 				"Description",
@@ -3153,14 +2669,12 @@ sap.ui.define([
 			)]));
 
 			// open value help dialog filtered by the input value
-			this._valueHelpsex.open(sInputValue);
-
+			this._valueHelpDialogCashManagement.open(sInputValue);
 		},
-
-		_handleSexTypeSearch: function(evt) {
-			var sValue = evt.getParameter("value");
+		_handleCashManagementSearch: function(evt){
+				var sValue = evt.getParameter("value");
 			var oFilter = new Filter([new Filter(
-				"sex",
+				"plangrp",
 				FilterOperator.Contains, sValue
 			), new Filter(
 				"Description",
@@ -3168,21 +2682,177 @@ sap.ui.define([
 			)]);
 			evt.getSource().getBinding("items").filter(oFilter);
 		},
-		_handleSexTypeClose: function(evt) {
+		_handleCashManagementClose:function(evt){
+				var oSelectedItem = evt.getParameter("selectedItem");
+			if (oSelectedItem) {
+				var productInput = this.byId(this.inputId),
+					sTitle = oSelectedItem.getTitle();
 
-			var oSelectedItem = evt.getParameter("selectedItem");
+				productInput.setValue(sTitle);
+			}
 			evt.getSource().getBinding("items").filter([]);
+		},
+		/*Cash Management code ends here*/
+		
+		/*Partner function code starts here*/
+			handlepurchasefunction: function(oEvent){
+			var sInputValue = oEvent.getSource().getValue();
 
-			if (!oSelectedItem) {
-				return;
+			this.inputId = oEvent.getSource().getId();
+			// create value help dialog
+			if (!this._valueHelpDialogPartnerFunction) {
+				this._valueHelpDialogPartnerFunction = sap.ui.xmlfragment(
+					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.PartnerFunction",
+					this
+				);
+				this.getView().addDependent(this._valueHelpDialogPartnerFunction);
+			}
+			if (sInputValue.includes(")")) {
+				var sSubString = sInputValue.split(")")[1];
+				sInputValue = sSubString.trim();
 			}
 
-			this.byId("idsex").setValue(oSelectedItem.getTitle());
+			// create a filter for the binding
+			this._valueHelpDialogPartnerFunction.getBinding("items").filter(new Filter([new Filter(
+				"function",
+				FilterOperator.Contains, sInputValue
+			), new Filter(
+				"Description",
+				FilterOperator.Contains, sInputValue
+			)]));
 
+			// open value help dialog filtered by the input value
+			this._valueHelpDialogPartnerFunction.open(sInputValue);
 		},
+		_handlePartnerFunctionSearch: function(evt){
+				var sValue = evt.getParameter("value");
+			var oFilter = new Filter([new Filter(
+				"function",
+				FilterOperator.Contains, sValue
+			), new Filter(
+				"Description",
+				FilterOperator.Contains, sValue
+			)]);
+			evt.getSource().getBinding("items").filter(oFilter);
+		},
+		_handlePartnerFunctionClose:function(evt){
+				var oSelectedItem = evt.getParameter("selectedItem");
+			if (oSelectedItem) {
+				var productInput = this.byId(this.inputId),
+					sTitle = oSelectedItem.getTitle();
 
-		/*sex type code end*/
+				productInput.setValue(sTitle);
+			}
+			evt.getSource().getBinding("items").filter([]);
+		},
+		/*Partner function code ends here*/
+		
+		/*Pricing date control code starts here*/
+			handlePricingdatecontrol: function(oEvent){
+			var sInputValue = oEvent.getSource().getValue();
 
+			this.inputId = oEvent.getSource().getId();
+			// create value help dialog
+			if (!this._valueHelpDialogPricingDate) {
+				this._valueHelpDialogPricingDate = sap.ui.xmlfragment(
+					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.PricingDateControl",
+					this
+				);
+				this.getView().addDependent(this._valueHelpDialogPricingDate);
+			}
+			if (sInputValue.includes(")")) {
+				var sSubString = sInputValue.split(")")[1];
+				sInputValue = sSubString.trim();
+			}
+
+			// create a filter for the binding
+			this._valueHelpDialogPricingDate.getBinding("items").filter(new Filter([new Filter(
+				"pricingno",
+				FilterOperator.Contains, sInputValue
+			), new Filter(
+				"Description",
+				FilterOperator.Contains, sInputValue
+			)]));
+
+			// open value help dialog filtered by the input value
+			this._valueHelpDialogPricingDate.open(sInputValue);
+		},
+		_handleValueHelpSearchPrice: function(evt){
+				var sValue = evt.getParameter("value");
+			var oFilter = new Filter([new Filter(
+				"pricingno",
+				FilterOperator.Contains, sValue
+			), new Filter(
+				"Description",
+				FilterOperator.Contains, sValue
+			)]);
+			evt.getSource().getBinding("items").filter(oFilter);
+		},
+		_handleValueHelpClosePrice:function(evt){
+				var oSelectedItem = evt.getParameter("selectedItem");
+			if (oSelectedItem) {
+				var productInput = this.byId(this.inputId),
+					sTitle = oSelectedItem.getTitle();
+
+				productInput.setValue(sTitle);
+			}
+			evt.getSource().getBinding("items").filter([]);
+		},
+		/*Pricing date control code ends here*/
+		
+		/*Payment methods code starts here*/
+			handlePaymentmethod: function(oEvent){
+			var sInputValue = oEvent.getSource().getValue();
+
+			this.inputId = oEvent.getSource().getId();
+			// create value help dialog
+			if (!this._valueHelpDialogPaymentMethods) {
+				this._valueHelpDialogPaymentMethods = sap.ui.xmlfragment(
+					"com.cassiniProcureToPay.view.fragment.Vendor.fragment.PaymentMethods",
+					this
+				);
+				this.getView().addDependent(this._valueHelpDialogPaymentMethods);
+			}
+			if (sInputValue.includes(")")) {
+				var sSubString = sInputValue.split(")")[1];
+				sInputValue = sSubString.trim();
+			}
+
+			// create a filter for the binding
+			this._valueHelpDialogPaymentMethods.getBinding("items").filter(new Filter([new Filter(
+				"paymentmethodno",
+				FilterOperator.Contains, sInputValue
+			), new Filter(
+				"Description",
+				FilterOperator.Contains, sInputValue
+			)]));
+
+			// open value help dialog filtered by the input value
+			this._valueHelpDialogPaymentMethods.open(sInputValue);
+		},
+		_handleValueHelpSearchPayment: function(evt){
+				var sValue = evt.getParameter("value");
+			var oFilter = new Filter([new Filter(
+				"paymentmethodno",
+				FilterOperator.Contains, sValue
+			), new Filter(
+				"Description",
+				FilterOperator.Contains, sValue
+			)]);
+			evt.getSource().getBinding("items").filter(oFilter);
+		},
+		_handleValueHelpClosePayment:function(evt){
+				var oSelectedItem = evt.getParameter("selectedItem");
+			if (oSelectedItem) {
+				var productInput = this.byId(this.inputId),
+					sTitle = oSelectedItem.getTitle();
+
+				productInput.setValue(sTitle);
+			}
+			evt.getSource().getBinding("items").filter([]);
+		},
+		/*Payment methods code ends here*/
+		
 		onCreatePress: function() {
 			var oComponent1 = this.getOwnerComponent();
 			oComponent1.getRouter().navTo("CreateContractVendor");
@@ -3201,7 +2871,7 @@ sap.ui.define([
 		onSaveContract: function(oEvt) {
 			var oModel = this.getView().getModel("VHeader");
 
-			var oVendorModel = this.getOwnerComponent().getModel("Vendor");
+			var oVendorModel = this.getOwnerComponent().getModel("VendorModel");
 			var oTempContract = oVendorModel.getProperty("/VendorTemp");
 
 			//	var vendor = oVendorModel.oData.Vendor;
@@ -3216,7 +2886,7 @@ sap.ui.define([
 			console.log(oContract);
 
 			if (oVendor === null || oVendor === undefined || oVendor === "") {
-			//	BusyIndicator.show(0);
+				BusyIndicator.show(0);
 				oModel.create("/Vendor_crudSet", oContract, {
 
 					success: this._onCreateEntrySuccess.bind(this),
@@ -3232,20 +2902,17 @@ sap.ui.define([
 					merge: false
 				};
 				var sVendorCreate = "/Vendor_crudSet(Lifnra='" + oVendor + "')";
-			//	BusyIndicator.show(0);
+				BusyIndicator.show(0);
 				oModel.update(sVendorCreate, oContract, mParameters);
 			}
 
 		},
 
 		_onCreateEntrySuccess: function(oObject, oResponse) {
-			//BusyIndicator.hide();
+			BusyIndicator.hide();
 			var Message = JSON.parse(oResponse.headers["sap-message"]).message;
-			
-			
-			
-			var oVendorModel = oView.getModel("VendorModel");
-			oVendorModel.setData();
+			var oPurchaseModel = oView.getModel("VendorModel");
+			oPurchaseModel.setData();
 
 			jQuery.sap.require("sap.m.MessageBox");
 
@@ -3255,9 +2922,6 @@ sap.ui.define([
 				actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CLOSE],
 				onClose: function(oAction) {
 					if (oAction === "OK") {
-						oVendorModel.setData();
-						oVendorModel.refresh(true);
-					
 						var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 						oRouter.navTo('ShowTiles');
 					}
@@ -3266,10 +2930,10 @@ sap.ui.define([
 
 		},
 		_onCreateEntryError: function(oError) {
-			//BusyIndicator.hide();
+			BusyIndicator.hide();
 
 			//if getting the issue while posting the accruls call the _onCreateEntryError
-			//sap.ui.core.//BusyIndicator.hide();
+			//sap.ui.core.BusyIndicator.hide();
 			MessageBox.error(
 				"Error creating entry: " + oError.statusCode + " (" + oError.statusText + ")", {
 					details: oError.responseText

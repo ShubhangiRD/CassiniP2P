@@ -16,154 +16,95 @@ sap.ui.define([
 	BusyIndicator) {
 	"use strict";
 	var oView, oComponent;
-
-	return Controller.extend("com.cassiniProcureToPay.controller.VendorDetails", {
+	return Controller.extend("com.cassiniProcureToPay.controller.VM", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf com.cassiniProcureToPay.view.view.VendorDetails
+		 * @memberOf com.cassiniProcureToPay.view.VM
 		 */
 		onInit: function() {
 			oView = this.getView();
 			oComponent = this.getOwnerComponent();
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-				var oModelLookup = this.getOwnerComponent().getModel("Lookup");
+			var oModelLookup = this.getOwnerComponent().getModel("Lookup");
 
 			//set the model on view to be used by the UI controls
 			this.getView().setModel(oModel);
 			console.log(oModel);
-			// Define the models
 			oView.byId("iddEditt").setVisible(false);
-	//		this.getVendorList();
-			/*
-				this.getCustomerOfficeEntryList();
-				this.getShippingConditionList();
-		
-				this.getInstructionKeyList();
-		
-				this.getPaymentTermsList();
-				this.getIndustryList();
-				this.getExemptionAuthorityList();
-				this.getToleranceGroupList();
-				this.getHouseBankList();
-				this.getActivityCodeList();
-				this.getDunnRecipientList();
-				this.getOrderCurrencyList();
-				this.getBankKeyList();
-				this.getTPList();
-				this.getInterestLndicList();
-				this.getModeOfTransport();
-				this.getTimeZone();*/
-
-			//	this.getTransportZoneList();
 			var oHierarchyModel = new sap.ui.model.json.JSONModel();
 			oView.setModel(oHierarchyModel, "hierarchy");
 
-
-/*	var oVendorModel = this.getOwnerComponent().getModel("VendorModel");
-			var oTempContract = oVendorModel.getProperty("/VendorTemp");
-		console.log(oVendorModel);
-		var vno = oTempContract.MessageV1;
-		var vendor = oTempContract.Vendor;
-		var number = Number(vno);
-			console.log(number);
-			
-				var listvd = oModelLookup.oData.DisplyaVendorList;
-		
-			
-						if (number !== "" || number !== undefined) {
-							for (var y = 0; y < listvd.length; y++) {
-								if (number == listvd[y].Lifnr) {
-									var Ekorg = listvd[y].Ekorg;
-										var ComCode = listvd[y].Bukrs;
-											var Ktokk = listvd[y].Ktokk;
-									//	console.log(venname);
-
-								}
-							}
-					
-
-						} 
-
-			
-			
-		
-		
-				oView.byId("idCompCode").setValue(ComCode);
-				oView.byId("idAccGp").setValue(Ktokk);
-				oView.byId("idPurOrg").setValue(Ekorg);
-	*/
-			var PaymentModel = new JSONModel();
-			oView.setModel(PaymentModel, "PaymentModel");
 			var oEditModel = new JSONModel({
 				isEditable: true
 			});
 
 			this.getView().setModel(oEditModel, "EditModel");
+			var oVisibleModel = new JSONModel({
+				isVisible: false
+			});
 
-		
+			this.getView().setModel(oVisibleModel, "VisibleModel");
+			var ScreenModel = new JSONModel({
+				isScreen: "Create Vendor"
+			});
+
+			this.getView().setModel(ScreenModel, "ScreenName");
+
+			var oVendorModel = this.getOwnerComponent().getModel("Vendor");
+
+			var number = oVendorModel.oData.Vendor;
+
+			var listvd = oModelLookup.oData.DisplyaVendorList;
+
+			if (number !== "" || number !== undefined) {
+				var a = "Display Vendor";
+				oView.getModel("ScreenName").setProperty("/isScreen", a);
+				oView.getModel("VisibleModel").setProperty("/isVisible", true);
+				oView.byId("btn_display").setVisible(false);
+				oView.byId("iddEditt").setVisible(true);
+				oView.getModel("EditModel").setProperty("/isEditable", false);
+
+				for (var y = 0; y < listvd.length; y++) {
+					if (number == listvd[y].Lifnr) {
+						
+						var Ekorg = listvd[y].Ekorg;
+						var ComCode = listvd[y].Bukrs;
+						var Ktokk = listvd[y].Ktokk;
+						
+						console.log(Ekorg);
+						console.log(Ktokk);
+						oView.byId("idAccGp").setValue(Ktokk);
+						oView.byId("idPurOrg").setValue(Ekorg);
+
+					}
+				}
+
+			}
 
 		},
-	
-			onNavBack: function(oevt) {
+		/*Vendor Details f4 functionality start here*/
+		onNavBack: function(oevt) {
 
 			var oVendorModel = oComponent.getModel("Vendor");
-			oVendorModel.setData({oData:{}});
+
+			oVendorModel.setData({
+				oData: {}
+			});
 			oVendorModel.updateBindings(true);
-			
-		oVendorModel.refresh(true);
-	
+
+			oVendorModel.refresh(true);
+			var a = "Create Vendor";
+			oView.getModel("ScreenName").setProperty("/isScreen", a);
+			oView.getModel("EditModel").setProperty("/isEditable", true);
+			oView.getModel("VisibleModel").setProperty("/isVisible", false);
+			oView.byId("btn_display").setVisible(true);
+			oView.byId("iddEditt").setVisible(false);
+
 			this.getOwnerComponent().getRouter().navTo("ShowTiles");
 
 		},
-
-		onCancelPresss: function() {
-
-			oView.byId("idVendor").setValue("");
-			oView.byId("idCompCode").setValue("");
-			oView.byId("idPurOrg").setValue("");
-			oView.byId("idAccGp").setValue("");
-
-
-
-			var oVendorModel = this.getOwnerComponent().getModel("VendorModel");
-			var oTempContract = oVendorModel.getProperty("/VendorTemp").destroy;
-			oVendorModel.refresh(true);
-			this.getView().getModel("VHeader").refresh();
-
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("ShowTiles");
-
-		},
-		onMenuButtonPress: function() {
-			oView.byId("idVendor").setValue("");
-			oView.byId("idCompCode").setValue("");
-			oView.byId("idPurOrg").setValue("");
-			oView.byId("idAccGp").setValue("");
-			oView.byId("idCountryCode").setValue("");
-			oView.byId("idFname").setValue("");
-			oView.byId("idLname").setValue("");
-			oView.byId("idStreet").setValue("");
-			oView.byId("idPostcode").setValue("");
-			oView.byId("idCity").setValue("");
-			oView.byId("idRegion").setValue("");
-			oView.byId("idTel").setValue("");
-			oView.byId("idDis").setValue("");
-			//	oView.byId("idBirth").setValue("");
-			oView.byId("idOrderCur").setValue("");
-			oView.byId("idAddno").setValue("");
-			//	oView.byId("idPurGrp").setValue("");
-			//redirect the page	frot view
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("ShowTiles");
-
-			/*	var oComponent2 = this.getOwnerComponent();
-				oComponent2.getRouter().navTo("ShowTiles");*/
-		},
-
-		/*Vendor Details f4 functionality start here*/
-
 		getVendorList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
@@ -171,14 +112,14 @@ sap.ui.define([
 
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
-				//	//BusyIndicator.hide();
+					//	//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/DisplyaVendorList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-				//	//BusyIndicator.hide();
+					//	//BusyIndicator.hide();
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -262,10 +203,11 @@ sap.ui.define([
 				var Ktokk = oModel.getProperty(sBindPath + "/Ktokk");
 				oView.byId("idVendor").setValue(Lifnr);
 
-				oView.byId("idCompCode").setValue(ComCode);
-				oView.byId("idAccGp").setValue(Ktokk);
-				oView.byId("idPurOrg").setValue(Ekorg);
+				/*		oView.byId("idCompCode").setValue(ComCode);
+						oView.byId("idAccGp").setValue(Ktokk);
+						oView.byId("idPurOrg").setValue(Ekorg);
 
+				*/
 				console.log(sDescription);
 				console.log(ComCode)
 
@@ -282,23 +224,31 @@ sap.ui.define([
 					})
 
 				];
-					BusyIndicator.show(true);
+				BusyIndicator.show(true);
 				oModelRe.read("/bapi_vendor_getdetailSet", {
 					//oModel.read("/POItemSet", {
 					filters: aFilter,
 					success: function(oData) {
-					BusyIndicator.hide(false);
+						BusyIndicator.hide(false);
 						console.log(oData);
 						var item = oData.results.length;
-						//	oView.getModel("VendorModel").setData(oData.results[0]);
+
 						var oVendor = new Vendor(oData.results[0]);
-						oView.getModel("VendorModel").setProperty("/VendorTemp", oVendor); // setData(oData.results);
+						oComponent.getModel("Vendor").setData(oData.results[0]);
+
+						/*	var oVendor = new Vendor(oData.results[0]);
+						oComponent.getModel("Vendor").setProperty("/VendorTemp", oVendor); // setData(oData.results);
+				*/
+
+						//	oView.getModel("Vendor",oVendor); // setData(oData.results);
+						//	oView.getModel("Vendor").setData(oData.results); // setData(oData.results);
+						//	oView.setModel(oVendor,"Vendor");
 						oView.byId("idAccGp").setValue(Ktokk);
 						oView.byId("idPurOrg").setValue(Ekorg);
 
 					},
 					error: function(oError) {
-					BusyIndicator.hide(false);
+						BusyIndicator.hide(false);
 						//console.log(oError);
 					}
 				});
@@ -520,7 +470,7 @@ sap.ui.define([
 			evt.getSource().getBinding("items").filter(oFilter);
 		},
 		_handlevendorCompClose: function(evt) {
-				var oSelectedItem = evt.getParameter("selectedItem");
+			var oSelectedItem = evt.getParameter("selectedItem");
 			if (oSelectedItem) {
 				var productInput = this.byId(this.inputIdCCode),
 					sDescription = oSelectedItem.getInfo(),
@@ -530,7 +480,6 @@ sap.ui.define([
 
 			}
 			evt.getSource().getBinding("items").filter([]);
-		
 
 		},
 		/*Company SEarch end*/
@@ -539,17 +488,17 @@ sap.ui.define([
 		getAccountList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-	BusyIndicator.show(true);
+			BusyIndicator.show(true);
 			oModel.read("/get_accountgrp_f4helpSet", {
 				success: function(oData) {
-		BusyIndicator.hide(false);
+					BusyIndicator.hide(false);
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/AccountGroup", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-			BusyIndicator.hide(false);
+					BusyIndicator.hide(false);
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -680,8 +629,8 @@ sap.ui.define([
 				var sDescription = oSelectedItem.getInfo(),
 					sTitle = oSelectedItem.getTitle();
 				var oModel = this.getView().getModel("VHeader");
-			 	oView.byId("TimeZone").setValue(sDescription);
-			
+				oView.byId("TimeZone").setValue(sDescription);
+
 				var cd = oSelectedItem.getTitle();
 
 				var oFilter = new sap.ui.model.Filter('Land1', sap.ui.model.FilterOperator.EQ, cd);
@@ -766,7 +715,6 @@ sap.ui.define([
 			evt.getSource().getBinding("items").filter([]);
 
 		},
-		/*Region Code end*/
 
 		/*language f4 start here*/
 		getLanguages: function() {
@@ -1984,17 +1932,17 @@ sap.ui.define([
 		getPurchaseGroupList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("Vendorf4Model");
-		BusyIndicator.show(true);
+			BusyIndicator.show(true);
 			oModel.read("/PurchasingGroupSet", {
 				success: function(oData) {
-				BusyIndicator.hide(false);
-						var oLookupModel = that.getOwnerComponent().getModel("Lookup");
+					BusyIndicator.hide(false);
+					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
 					oLookupModel.setProperty("/PurchaseGroupList", oData.results);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
 				},
 				error: function(oError) {
-		BusyIndicator.hide(false);
+					BusyIndicator.hide(false);
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -3182,18 +3130,27 @@ sap.ui.define([
 		},
 
 		/*sex type code end*/
-
 		onCreatePress: function() {
 			var oComponent1 = this.getOwnerComponent();
 			oComponent1.getRouter().navTo("CreateContractVendor");
 		},
 		onDisplayPress: function(oEvent) {
+			var a = "Display Vendor";
+
+			oView.getModel("ScreenName").setProperty("/isScreen", a);
+
+			oView.getModel("VisibleModel").setProperty("/isVisible", true);
 			oView.byId("btn_display").setVisible(false);
 			oView.byId("iddEditt").setVisible(true);
 			oView.getModel("EditModel").setProperty("/isEditable", false);
 
 		},
 		onEditPress: function(oEvent) {
+			var a = "Edit Vendor";
+
+			oView.getModel("ScreenName").setProperty("/isScreen", a);
+			oView.getModel("VisibleModel").setProperty("/isVisible", true);
+
 			oView.byId("iddEditt").setVisible(false);
 			oView.getModel("EditModel").setProperty("/isEditable", true);
 
@@ -3202,21 +3159,21 @@ sap.ui.define([
 			var oModel = this.getView().getModel("VHeader");
 
 			var oVendorModel = this.getOwnerComponent().getModel("Vendor");
-			var oTempContract = oVendorModel.getProperty("/VendorTemp");
+			//	var oTempContract = oVendorModel.getProperty("/VendorTemp");
 
 			//	var vendor = oVendorModel.oData.Vendor;
-			//	var oVendor =	oVendorModel.getData(); 
+			var oVendors = oVendorModel.getData();
 
-			var oVendor = oTempContract.Vendor;
+			var oVendor = oVendors.Vendor;
 			console.log(oVendor)
 
 			//define and bind the model
-
-			var oContract = oTempContract.getUpdateRequestPayload();
+			var ovm = new Vendor(oVendors);
+			var oContract = ovm.getUpdateRequestPayload();
 			console.log(oContract);
 
 			if (oVendor === null || oVendor === undefined || oVendor === "") {
-			//	BusyIndicator.show(0);
+				//	BusyIndicator.show(0);
 				oModel.create("/Vendor_crudSet", oContract, {
 
 					success: this._onCreateEntrySuccess.bind(this),
@@ -3232,7 +3189,7 @@ sap.ui.define([
 					merge: false
 				};
 				var sVendorCreate = "/Vendor_crudSet(Lifnra='" + oVendor + "')";
-			//	BusyIndicator.show(0);
+				//	BusyIndicator.show(0);
 				oModel.update(sVendorCreate, oContract, mParameters);
 			}
 
@@ -3240,29 +3197,54 @@ sap.ui.define([
 
 		_onCreateEntrySuccess: function(oObject, oResponse) {
 			//BusyIndicator.hide();
+			var oVendorModel = oView.getModel("Vendor");
+
 			var Message = JSON.parse(oResponse.headers["sap-message"]).message;
-			
-			
-			
-			var oVendorModel = oView.getModel("VendorModel");
-			oVendorModel.setData();
+			if (Message == "Vendors found with same address; check") {
+				MessageBox.warning(Message);
+			} else if (Message === "Changes have been made") {
+				sap.m.MessageBox.show(Message, {
+					icon: sap.m.MessageBox.Icon.INFORMATION,
 
-			jQuery.sap.require("sap.m.MessageBox");
+					actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CLOSE],
+					onClose: function(oAction) {
+						if (oAction === "OK") {
 
-			sap.m.MessageBox.show(Message, {
-				icon: sap.m.MessageBox.Icon.INFORMATION,
+							oVendorModel.setData({
+								oData: {}
+							});
+							oVendorModel.updateBindings(true);
 
-				actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CLOSE],
-				onClose: function(oAction) {
-					if (oAction === "OK") {
-						oVendorModel.setData();
-						oVendorModel.refresh(true);
-					
-						var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-						oRouter.navTo('ShowTiles');
-					}
-				}.bind(this)
-			});
+							oVendorModel.refresh(true);
+
+							this.getOwnerComponent().getRouter().navTo("ShowTiles");
+							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+							oRouter.navTo('ShowTiles');
+						}
+					}.bind(this)
+				});
+			} else {
+				sap.m.MessageBox.show(Message, {
+					icon: sap.m.MessageBox.Icon.INFORMATION,
+
+					actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CLOSE],
+					onClose: function(oAction) {
+						if (oAction === "OK") {
+
+							oVendorModel.setData({
+								oData: {}
+							});
+							oVendorModel.updateBindings(true);
+
+							oVendorModel.refresh(true);
+
+							this.getOwnerComponent().getRouter().navTo("ShowTiles");
+							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+							oRouter.navTo('ShowTiles');
+						}
+					}.bind(this)
+				});
+			}
 
 		},
 		_onCreateEntryError: function(oError) {
@@ -3270,245 +3252,20 @@ sap.ui.define([
 
 			//if getting the issue while posting the accruls call the _onCreateEntryError
 			//sap.ui.core.//BusyIndicator.hide();
+			var x = JSON.parse(oError.responseText);
+			var err = x.error.message.value;
+			console.log(err);
+
 			MessageBox.error(
-				"Error creating entry: " + oError.statusCode + " (" + oError.statusText + ")", {
-					details: oError.responseText
-				}
+				"Error creating entry: " + err + " "
 			);
-		},
-
-		OnCancelSaveGroup: function() {
-			//cancel model and reset all the values
-
-			oView.byId("idVendor").setValue("");
-			oView.byId("idCompCode").setValue("");
-			oView.byId("idPurOrg").setValue("");
-			oView.byId("idAccGp").setValue("");
-			oView.byId("idCountryCode").setValue("");
-			oView.byId("idFname").setValue("");
-			oView.byId("idLname").setValue("");
-			oView.byId("idStreet").setValue("");
-			oView.byId("idPostcode").setValue("");
-			oView.byId("idCity").setValue("");
-			oView.byId("idRegion").setValue("");
-			oView.byId("idTel").setValue("");
-			oView.byId("idDis").setValue("");
-			//	oView.byId("idBirth").setValue("");
-			oView.byId("idOrderCur").setValue("");
-			oView.byId("idAddno").setValue("");
-			//	oView.byId("idPurGrp").setValue("");
-			//redirect the page	frot view
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("ShowTiles");
-
-		},
-
-		/*start country code */
-
-		OnChangeRegionClick: function(oEvent) {
-			var sSelectedkey = oView.byId("idRign").getSelectedKey();
-			var sState = oView.byId("idCity").setValue(sSelectedkey);
-			console.log(sState);
-
-		},
-
-		/*Table PAymentDetails  item fragement*/
-		onAddNewItemBnk: function() {
-			this.pressPartnerDialog = this.getView().byId("idBankDetailsDialog");
-			if (!this.pressPartnerDialog) {
-				this.pressPartnerDialog = sap.ui.xmlfragment("com.cassiniProcureToPay.view.VendorFragment.VendorTableFragment.PaymentInfo", this);
-				//this.getView().addDependent(pressDialog);
-				//  this.pressDialog.setModel(this.getView().getModel());
-				this.pressPartnerDialog.open();
-			}
-		},
-
-		onSavePaymentInfo: function() {
-			var country = sap.ui.getCore().byId("idCtry");
-			country = country.getValue();
-
-			var nBankKey = sap.ui.getCore().byId("nBankKey");
-			nBankKey = nBankKey.getValue();
-
-			var BankAccount = sap.ui.getCore().byId("BankAccount");
-			BankAccount = BankAccount.getValue();
-
-			var AccountHolder = sap.ui.getCore().byId("AccountHolder");
-			AccountHolder = AccountHolder.getValue();
-
-			var idAK = sap.ui.getCore().byId("idAK");
-			idAK = idAK.getValue();
-
-			var bankname = sap.ui.getCore().byId("bankname");
-			bankname = bankname.getValue();
-
-			var IBANValue = sap.ui.getCore().byId("IBANValue");
-			IBANValue = IBANValue.getValue();
-
-			var BnkT = sap.ui.getCore().byId("BnkT");
-			BnkT = BnkT.getValue();
-
-			var Referencedetails = sap.ui.getCore().byId("Referencedetails");
-			Referencedetails = Referencedetails.getValue();
-
-			var Payment = [];
-
-			Payment.push({
-				country: country,
-				nBankKey: nBankKey,
-				BankAccount: BankAccount,
-				AccountHolder: AccountHolder,
-				idAK: idAK,
-				bankname: bankname,
-				IBANValue: IBANValue,
-				BnkT: BnkT,
-				Referencedetails: Referencedetails
-
-			});
-			console.log(Payment);
-
-			/*	
-					var PaymentModel = new JSONModel();
-				oView.setModel(PaymentModel, "PaymentModel");
-						PaymentModel.setData(Payment);
-				console.log(PaymentModel);*/
-			oView.getModel("PaymentModel").setData(Payment);
-			this.pressPartnerDialog.close();
-
-		},
-		onExitPaymentInfo: function() {
-			if (this.pressPartnerDialog) {
-				this.pressPartnerDialog.destroy();
-			}
-		},
-		/*Table PAymentDetails  item fragment end*/
-
-		/*Table Contact Detils header item fragement*/
-		onAddNewContactDetils: function() {
-			this.pressContactDetilsDialog = this.getView().byId("idContactPersonForms");
-			if (!this.pressContactDetilsDialog) {
-				this.pressContactDetilsDialog = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.VendorFragment.VendorTableFragment.ContactPersonVen", this);
-				this.pressContactDetilsDialog.open();
-			}
-		},
-
-		onSaveContactDetails: function() {
-
-			var FormofAdd = sap.ui.getCore().byId("formofaddcontp");
-			FormofAdd = FormofAdd.getValue();
-
-			var Firstcontname = sap.ui.getCore().byId("idfirstcontname");
-			Firstcontname = Firstcontname.getValue();
-
-			var NameContPer = sap.ui.getCore().byId("Namecontper");
-			NameContPer = NameContPer.getValue();
-
-			var Telephone1 = sap.ui.getCore().byId("idTelephone1");
-			Telephone1 = Telephone1.getValue();
-
-			var Descrptn2 = sap.ui.getCore().byId("iddescrptn2");
-			Descrptn2 = Descrptn2.getValue();
-
-			var Functions = sap.ui.getCore().byId("idfunctn");
-			Functions = Functions.getValue();
-
-			var DescriptionF = sap.ui.getCore().byId("iddescriptionF");
-			DescriptionF = DescriptionF.getValue();
-
-			var Departments = sap.ui.getCore().byId("iddeptcp");
-			Departments = Departments.getValue();
-
-			var ContactDetails = [];
-
-			ContactDetails.push({
-				FormofAdd: FormofAdd,
-				Firstcontname: Firstcontname,
-				NameContPer: NameContPer,
-				Telephone1: Telephone1,
-				Descrptn2: Descrptn2,
-				Functions: Functions,
-				DescriptionF: DescriptionF,
-				Departments: Departments
-
-			});
-			console.log(ContactDetails);
-
-			var ContactDetailsModel = new JSONModel();
-			oView.setModel(ContactDetailsModel, "ContactDetailsModel");
-			ContactDetailsModel.setData(ContactDetails);
-			console.log(ContactDetailsModel);
-
-			this.pressContactDetilsDialog.close();
-
-		},
-		onExitContactDetails: function() {
-			if (this.pressContactDetilsDialog) {
-				this.pressContactDetilsDialog.destroy();
-			}
-		},
-
-		/*Table P Contact Detils item fragment end*/
-
-		/*Table PartnerFunction header item fragement*/
-		onAddPartnerFunction: function() {
-			this.pressPartnerFunctionDialog = this.getView().byId("idPartnerFunction");
-			if (!this.pressPartnerFunctionDialog) {
-				this.pressPartnerFunctionDialog = sap.ui.xmlfragment(
-					"com.cassiniProcureToPay.view.VendorFragment.VendorTableFragment.PartnerFunDialog", this);
-				this.pressPartnerFunctionDialog.open();
-			}
-		},
-
-		onClosePartnerFunction: function() {
-
-			var PartFunct = sap.ui.getCore().byId("idpurchasefun");
-			PartFunct = PartFunct.getValue();
-
-			var NameOfPF = sap.ui.getCore().byId("idnamepf");
-			NameOfPF = NameOfPF.getValue();
-
-			var NumberPF = sap.ui.getCore().byId("idnumberpf");
-			NumberPF = NumberPF.getValue();
-
-			var DPPF = sap.ui.getCore().byId("iddppf");
-			DPPF = DPPF.getValue();
-
-			var NAmePF2 = sap.ui.getCore().byId("idnamepurfunc");
-			NAmePF2 = NAmePF2.getValue();
-
-			var PartnerFuncDetails = [];
-
-			PartnerFuncDetails.push({
-				PartFunct: PartFunct,
-				NameOfPF: NameOfPF,
-				NumberPF: NumberPF,
-				DPPF: DPPF,
-				NAmePF2: NAmePF2
-
-			});
-			console.log(PartnerFuncDetails);
-
-			var PartnerFuncModel = new JSONModel();
-			oView.setModel(PartnerFuncModel, "PartnerFuncModel");
-			PartnerFuncModel.setData(PartnerFuncDetails);
-			console.log(PartnerFuncModel);
-
-			this.pressPartnerFunctionDialog.close();
-
-		},
-		onExitPartnerFunction: function() {
-			if (this.pressPartnerFunctionDialog) {
-				this.pressPartnerFunctionDialog.destroy();
-			}
 		}
 
-		/*Table PartnerFunction item fragment end*/
-		/*end country code*/
+		/*Region Code end*/
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf com.cassiniProcureToPay.view.view.VendorDetails
+		 * @memberOf com.cassiniProcureToPay.view.VM
 		 */
 		//	onBeforeRendering: function() {
 		//
@@ -3517,7 +3274,7 @@ sap.ui.define([
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf com.cassiniProcureToPay.view.view.VendorDetails
+		 * @memberOf com.cassiniProcureToPay.view.VM
 		 */
 		//	onAfterRendering: function() {
 		//
@@ -3525,7 +3282,7 @@ sap.ui.define([
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf com.cassiniProcureToPay.view.view.VendorDetails
+		 * @memberOf com.cassiniProcureToPay.view.VM
 		 */
 		//	onExit: function() {
 		//

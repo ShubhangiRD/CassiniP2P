@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Acutal Qm Sys List"
+		class="sapUiPopupWithPadding"
+		items="{AQS>/resutls}"
+		search="_handleAcutalQmSysSearch"
+		confirm="_handleAcutalQmSysClose"
+		cancel="_handleAcutalQmSysClose">
+		<StandardListItem
+			title="{AQS>ActQmSys}"
+			info="{AQS>ShortText}" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -46,7 +46,21 @@ sap.ui.define([
 
 			//window.location.reload();
 		},
+	onNavBack: function(oevt) {
+			var oPurchaseModel = oComponent.getModel("PurchaseModel");
+			var oTempContract = oPurchaseModel.getProperty("/TempContract");
+			oTempContract.setData();
+			//	oPurchaseModel.setData([]);
+			var s = oPurchaseModel.oData.TempContract.destroy;	
+				
+				
+		
+		
+			oPurchaseModel.refresh(true);
+			this.getOwnerComponent().getRouter().navTo("PODetails");
+		//	this.getView().getModel("VHeader").refresh();
 
+		},
 		getVendorList: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
@@ -1000,7 +1014,7 @@ sap.ui.define([
 				onClose: function(oAction) {
 					if (oAction === "OK") {
 						var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-						oRouter.navTo('ShowTiles');
+						oRouter.navTo('PODetails');
 					}
 				}.bind(this)
 			});
@@ -1008,13 +1022,16 @@ sap.ui.define([
 		},
 		_onCreateEntryError: function(oError) {
 			BusyIndicator.hide();
+			var x = JSON.parse(oError.responseText);
+			var err = x.error.message.value;
 
-			MessageBox.error(
-				"Error creating entry: " + oError.statusCode + " (" + oError.statusText + ")", {
-					details: oError.responseText
-				}
+			jQuery.sap.require("sap.m.MessageBox");
+			
+			sap.m.MessageBox.error(
+				"Error creating entry: " + err + " "  
 			);
 
+	
 		},
 
 		onEditPOOrders: function() {

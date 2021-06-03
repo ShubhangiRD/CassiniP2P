@@ -1,6 +1,8 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
 	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
 	controllerName="com.cassiniProcureToPay.controller.VendorDetails">
+		<m:Page  showNavButton="true"
+		navButtonPress="onNavBack">
 	<ObjectPageLayout id="POHeader" showFooter="true" showTitleInHeaderContent="true" alwaysShowContentHeader="false"
 		preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false" >
 		<headerTitle>
@@ -17,7 +19,7 @@
 				<actions>
 					<ObjectPageHeaderActionButton text="Edit" id="iddEditt" type="Transparent" hideText="false" tooltip="edit" press="onEditPress"/>
 					<ObjectPageHeaderActionButton id="btn_display" type="Transparent" hideText="false" text="Display" press="onDisplayPress" tooltip="display"/>
-					<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline"  press="onCancelPresss"  />
 					<ObjectPageHeaderActionButton hideText="false" type="Emphasized" text="Save" tooltip="save" press="onSaveContract"/>
 				</actions>
 			</ObjectPageDynamicHeaderTitle>
@@ -154,4 +156,6 @@
 			</ObjectPageSection>
 		</sections>
 	</ObjectPageLayout>
+	</m:Page >
+
 </mvc:View>

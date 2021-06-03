@@ -1,11 +1,17 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
 	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:core="sap.ui.core">
-	<Table id="PurchaseTableDisplay" class="sapUiSizeCompact" items="{ path: 'Lookup>/PoDocumentNumber' }">
+	<Table id="PurchaseTableDisplay" class="sapUiSizeCompact" items="{ path: 'Lookup>/OpenPOList' }">
 		<headerToolbar>
 			<OverflowToolbar>
 				<Title text="Purchase Order( {CountPo>/item})" level="H2"/>
 				<ToolbarSpacer></ToolbarSpacer>
 					<SearchField id="searchField" width="20%" placeholder="Search..." search=".onSearchEbeln"/>
+							<Button
+							tooltip="Sort"
+							icon="sap-icon://sort"
+							press="onSort"
+							
+							/>
 			<!--			
 				<Button icon="sap-icon://paper-plane" text="Post" press="onPostItems" type="Accept" ariaLabelledBy="editButtonLabel"/>
 		-->	</OverflowToolbar>

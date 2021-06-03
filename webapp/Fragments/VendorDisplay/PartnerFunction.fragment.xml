@@ -3,13 +3,13 @@
 	<VBox class="sapUiSmallMargin">
 		
 		<VBox>
-			<t:Table id="idPurchaseFunction" rows="{ path: 'VendorModel>/'}" visibleRowCount="5" selectionMode="MultiToggle">
+			<t:Table id="idPurchaseFunction" rows="{ path: 'Vendor>/'}" visibleRowCount="5" selectionMode="MultiToggle">
 				<t:extension>
 					<OverflowToolbar>
 						<Title text="Partner Function "/>
 						<ToolbarSpacer/>
 						<Button icon="sap-icon://add" type="Transparent" id="idAddbuttonPF" class="remove-attr" tooltip="Add Row" press="onAddPartnerFunction"/>
-						<Button icon="sap-icon://delete" enabled="{=${VendorModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+						<Button icon="sap-icon://delete" enabled="{=${Vendor>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
 							tooltip="Delete Row" press="onDeleteItemBank"/>
 					</OverflowToolbar>
 				</t:extension>
@@ -17,8 +17,8 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Partner Function "/>
 						<t:template>
-							<Input id="idpurchasefun" class="mtid" textFormatMode="KeyValue" editable="{EditModel>/isEditable}"  showSuggestion="false" showValueHelp="false" value="{VendorModel>PartFunct}"
-								valueHelpRequest="handlepurchasefunction" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestpurchasefunc"
+							<Input id="idpurchasefun" class="mtid" textFormatMode="KeyValue" showSuggestion="false" showValueHelp="false" value="{Vendor>PartFunct}"
+								valueHelpRequest="handlepurchasefunction" editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestpurchasefunc"
 								liveChange="purchasefunctionchange">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
@@ -30,7 +30,7 @@
 						<Label text="Name"/>
 						<t:template>
 							<Input class="desc1" id="idnamepf" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" showSuggestion="false" showValueHelp="false" valueHelpRequest="handleidnamepf"
-								suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{VendorModel>Name}" suggestionItemSelected="onSuggestidnamepf">
+								suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{Vendor>Name}" suggestionItemSelected="onSuggestidnamepf">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
 								</suggestionItems>
@@ -40,20 +40,20 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Number"/>
 						<t:template>
-							<Input id="idnumberpf" value="{VendorModel>Number}" editable="{EditModel>/isEditable}"/>
+							<Input id="idnumberpf" value="{Vendor>Number}" editable="{EditModel>/isEditable}"/>
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Name"/>
 						<t:template>
-							<Input id="idnamepurfunc" class="measure1" value="{VendorModel>Name2}" editable="{EditModel>/isEditable}"/>
+							<Input id="idnamepurfunc" class="measure1" value="{Vendor>Name2}" editable="{EditModel>/isEditable}"/>
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="DP"/>
 						<t:template>
-							<Input id="iddppf" textFormatMode="KeyValue" showSuggestion="false" editable="{EditModel>/isEditable}"  showValueHelp="false" value="{VendorModel>DPPF}"
-								valueHelpRequest="handleValueHelppurfundp" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestpurchdp">
+							<Input id="iddppf" textFormatMode="KeyValue" showSuggestion="false" showValueHelp="false" value="{Vendor>DPPF}"
+								valueHelpRequest="handleValueHelppurfundp" editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestpurchdp">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
 								</suggestionItems>

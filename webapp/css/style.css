@@ -1,5 +1,16 @@
 /* Enter your custom styles here */
+/*Login page styling*/
+.loginBackground{
 
+  background: url("/webapp/images/loginpg2.jpg") no-repeat ;
+    background-size: cover ;
+	background-position: top left;
+	 animation: pagemove 5s infinite;
+}
+
+@keyframes pagemove {
+  50% {background-position: center;}
+}
 /*Dialog styling */
 .sapMLabel {
     color: #666;
@@ -24,7 +35,10 @@
     overflow: hidden;
 	
 }
-
+.ocrCassini span.sapMBtnInner.sapMBtnEmphasized {
+    background-color: #272c4d;
+    border: 1px solid #272c4d;
+}
 
 
 /*form styling begins here*/

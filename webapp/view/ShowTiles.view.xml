@@ -1,9 +1,8 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap"
-	xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:card="sap.f.cards" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
-	xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls" 
-	controllerName="com.cassiniProcureToPay.controller.ShowTiles" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:w="sap.ui.integration.widgets" xmlns:t="sap.ui.table" 	xmlns:form="sap.ui.layout.form">
-
+	xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls" controllerName="com.cassiniProcureToPay.controller.ShowTiles"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:w="sap.ui.integration.widgets" xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form">
 	<f:GridContainer id="grid12" borderReached=".onBorderReached">
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout casTiles" header="Vendor Master" press="pressGenericTile">
 			<layoutData>
@@ -15,17 +14,13 @@
 				</TileContent>
 			</tileContent>
 		</GenericTile>
-		
-		
-		
 		<GenericTile header="Purchase Order" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout" press="pressGenericTile">
 			<layoutData>
 				<f:GridContainerItemLayoutData minRows="2" columns="2"/>
 			</layoutData>
 			<tileContent>
 				<TileContent unit="Total Count">
-					
-					<NumericContent scale=" " value="{CountPo>/item}" valueColor="Error" indicator="Up" withMargin="false"/>
+					<NumericContent scale=" " value="{CountPo1>/item}" valueColor="Error" indicator="Up" withMargin="false"/>
 				</TileContent>
 			</tileContent>
 		</GenericTile>
@@ -35,10 +30,9 @@
 				<f:GridContainerItemLayoutData minRows="2" columns="2"/>
 			</layoutData>
 			<tileContent>
-				<TileContent unit=" ">
-						<ImageContent class="iconCollection icon-activity-items size"/>
-				<NumericContent scale=" " value="{CountPo1>item}" valueColor="Error" indicator="Up" withMargin="false"/>
-		</TileContent>
+				<TileContent unit="Total Count ">
+					<NumericContent scale=" " value="{CountPoooo>/item}" valueColor="Error" indicator="Up" withMargin="false"/>
+				</TileContent>
 			</tileContent>
 		</GenericTile>
 		<GenericTile header="Book Vendor Invoice" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout"
@@ -63,14 +57,12 @@
 				</TileContent>
 			</tileContent>
 		</GenericTile>
-		
-		
 		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">
 			<f:layoutData>
 				<f:GridContainerItemLayoutData rows="3" columns="3"/>
 			</f:layoutData>
 			<f:content >
-			<l:FixFlex id='chartTopVendors' class="dashboardDonutChart" minFlexSize="290">
+				<l:FixFlex id='chartTopVendors' class="dashboardDonutChart" minFlexSize="290">
 					<l:flexContent>
 						<viz:Popover id="idPopOver"></viz:Popover>
 						<viz:VizFrame id="vfTopVendors" vizProperties="{ title: {text : 'Top 5 vendors by Values', visible : true}}"
@@ -100,10 +92,11 @@
 			</f:layoutData>
 			<f:header></f:header>
 			<f:content >
-					<l:FixFlex id='chartTopProducts' class="dashboardBarChart" minFlexSize="300">
+				<l:FixFlex id='chartTopProducts' class="dashboardBarChart" minFlexSize="300">
 					<l:flexContent>
 						<viz:Popover id="idPopOverBar"></viz:Popover>
-						<viz:VizFrame id="vfTopProducts" vizProperties="{ title: {text : 'Top 5 Products by Values', visible : true}}"  uiConfig="{applicationSet:'fiori'}" width="800px" height="270px" vizType='bar'>
+						<viz:VizFrame id="vfTopProducts" vizProperties="{ title: {text : 'Top 5 Products by Values', visible : true}}"
+							uiConfig="{applicationSet:'fiori'}" width="800px" height="270px" vizType='bar'>
 							<viz:dataset>
 								<viz.data:FlattenedDataset data="{top5products>/}">
 									<viz.data:dimensions>
@@ -121,43 +114,38 @@
 						</viz:VizFrame>
 					</l:flexContent>
 				</l:FixFlex>
-				
 			</f:content>
 		</f:Card>
-	<!--	<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">
-			<f:layoutData>
-				<f:GridContainerItemLayoutData columns="3"/>
-			</f:layoutData>
-			<f:header>
-				<card:Header title="Vendors with most Open PO's" class="fcardsclasstitle"/>
-			</f:header>
-			<f:content>
-			<List showSeparators="None" items="{ path: 'CountModel>/' }">
-					<CustomListItem>
-						<HBox alignItems="Center" justifyContent="SpaceBetween">
-							<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
-								<Title level="H5" text="Vendor : {CountModel>name}"/>
-								<Text text="PO Count: {CountModel>count}" />
-							</VBox>
-							<ObjectStatus text=" " 	state="Error"/>
-						</HBox>
-					</CustomListItem>
-				</List>
-			</f:content>
-		</f:Card>
-	-->		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">
+		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout FcardClass ">
 			<f:layoutData>
 				<f:GridContainerItemLayoutData rows="6" columns="3"/>
 			</f:layoutData>
 			<f:header>
-				<card:Header title="Vendors Action List" class="fcardsclasstitle"/>
+				<card:Header title="Vendors Action List"/>
 			</f:header>
 			<f:content>
-			
-			<core:Fragment fragmentName="com.cassiniProcureToPay.view.fragment.VendorListDash" type="XML"/>
-
-				
-		
+				<ScrollContainer width="100%" horizontal="true" vertical="true" focusable="true">
+					<List id="VendorList" items="{Lookup>/DisplyaVendorList}" custom:Lifnr="{Lookup>Lifnr}" mode="SingleSelectMaster" width="100%"
+						itemPress="OnNavigateVendorDetails" growing="true" growingThreshold="10" growingScrollToLoad="false">
+						<items>
+							<ObjectListItem type="Navigation" press="OnNavigateVendorDetails" title="{Lookup>Lifnr}" intro="{Lookup>Name1}"/>
+						</items>
+						<headerToolbar>
+							<Toolbar>
+								<Title id="tableHeader" text=""/>
+								<ToolbarSpacer/>
+							
+								<SearchField id="searchFieldVendor" width="50%" tooltip="{i18n>worklistSearchTooltip}" search="searchFieldVendor"></SearchField>
+							<Button
+							tooltip="Sort"
+							icon="sap-icon://sort"
+							press="ListSort"
+							
+							/>
+							</Toolbar>
+						</headerToolbar>
+					</List>
+				</ScrollContainer>
 			</f:content>
 		</f:Card>
 		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">
@@ -166,52 +154,7 @@
 			</f:layoutData>
 			<f:header></f:header>
 			<f:content>
-			<!--	<Table id="awaitingTable" items="{ path : 'Lookup>/POOrderList', sorter : { path : 'Waers' } }" class="sapUiSizeCompact">
-					<headerToolbar>
-						<OverflowToolbar>
-							<Title text="Purchase Orders" level="H2"/>
-							<ToolbarSpacer></ToolbarSpacer>
-							<Button press="onSearchFilterData" icon="sap-icon://filter"/>
-							<SearchField id="searchField" width="20%" placeholder="Search..." search=".onSearch"/>
-							<Button icon="sap-icon://download" press="onDataExport"/>
-							<Button icon="sap-icon://sort" tooltip="Sort Categories in addition to current sorting" press="onSortTable"/>
-						</OverflowToolbar>
-					</headerToolbar>
-					<columns>
-						<Column>
-							<Text text="Company Code"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="Purchase Order"/>
-						</Column>
-						<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
-							<Text text="Vendor Details "/>
-						</Column>
-						<Column hAlign="Center" id="idCurrency" minScreenWidth="Desktop" demandPopin="true">
-							<Text text="Currency"/>
-						</Column>
-						<Column hAlign="Center" minScreenWidth="Desktop" id="idCreateddate" demandPopin="true">
-							<Text text="CreatDate"/>
-						</Column>
-						<Column hAlign="Center" minScreenWidth="Desktop" id="idCreatedBy" demandPopin="true">
-							<Text text="CreatedBy"/>
-						</Column>
-					</columns>
-					<items>
-						<ColumnListItem vAlign="Middle" type="Navigation" custom:Ebeln="{Lookup>Ebeln}" press="NavigatePurchaseItemDetails">
-							<cells>
-								<ObjectIdentifier title="{Lookup>Bukrs}"/>
-								<ObjectIdentifier title="{Lookup>Ebeln}"/>
-								<ObjectIdentifier title="{Lookup>Lifnr}" text="{Lookup>Name1}"/>
-								<ObjectIdentifier title="{Lookup>Waers}"/>
-								<ObjectIdentifier title="{Lookup>CreatDate}"/>
-								<ObjectIdentifier title="{Lookup>CreatedBy}"/>
-							</cells>
-						</ColumnListItem>
-					</items>
-				</Table>
-	-->				<core:Fragment fragmentName="com.cassiniProcureToPay.view.fragment.FilterTable" type="XML"/>
-
+				<core:Fragment fragmentName="com.cassiniProcureToPay.view.fragment.FilterTable" type="XML"/>
 			</f:content>
 		</f:Card>
 	</f:GridContainer>

@@ -4,12 +4,12 @@
 	<SelectDialog
 		title="Recon Account List"
 		class="sapUiPopupWithPadding"
-		items="{Lookup>/}"
+		items="{reconaccount>/ReconAccount}"
 		search="_handleReconAccountSearch"
 		confirm="_handleReconAccountClose"
 		cancel="_handleReconAccountClose">
 		<StandardListItem
-			title="{Lookup>Bwkey}"
-			info="{Lookup>Bwkey}" />
+			title="{reconaccount>GLAccount}"
+			info="{reconaccount>Description}" />
 	</SelectDialog>
 </core:FragmentDefinition>

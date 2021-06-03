@@ -61,6 +61,23 @@ sap.ui.define([
 			oRouter.getRoute("POITemDetails").attachPatternMatched(this._onObjectMatched, this);
 			oView.byId("idSave").setVisible(false);
 		},
+			onNavBack: function(oevt) {
+				
+				var oPurchaseModel = oComponent.getModel("PurchaseModel");
+			var oTempContract = oPurchaseModel.getProperty("/TempContract");
+			oTempContract.setData();
+			//	oPurchaseModel.setData([]);
+			var s = oPurchaseModel.oData.TempContract.destroy;	
+				
+				
+				
+				
+				
+				oPurchaseModel.refresh(true);
+			this.getOwnerComponent().getRouter().navTo("PODetails");
+			this.getView().getModel("VHeader").refresh();
+
+		},
 		_onObjectMatched: function(oEvent) {
 
 			var oModel = this.getOwnerComponent().getModel("VHeader");
@@ -239,12 +256,12 @@ sap.ui.define([
 			oPurchaseModel.refresh(true);
 			this.getView().getModel("VHeader").refresh();
 
-			oView.byId("idPurOrg").setValue("");
+	oView.byId("idPurchaseOrg").setValue("");
 
-			oView.byId("idCountryCode").setValue("");
+			oView.byId("cc").setValue("");
 			oView.byId("vnumber").setValue("");
-			oView.byId("idCompCode").setValue("");
-			oView.byId("idPurGrg").setValue("");
+			oView.byId("cu").setValue("");
+			oView.byId("pg").setValue("");
 
 			//redirect the page	frot view
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -1199,7 +1216,7 @@ sap.ui.define([
 		},
 		_onUpdateProdEntrySuccess: function(oObject, oResponse) {
 			BusyIndicator.hide();
-var UpdatedPO = oResponse.data.Ebeln;
+			var UpdatedPO = oResponse.data.Ebeln;
 			var oPurchaseModel = this.getOwnerComponent().getModel("PurchaseModel");
 			var oTempContract = oPurchaseModel.getProperty("/TempContract");
 			oTempContract.setData();
@@ -1219,7 +1236,7 @@ var UpdatedPO = oResponse.data.Ebeln;
 				onClose: function(oAction) {
 					if (oAction === "OK") {
 						var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-						oRouter.navTo('ShowTiles');
+						oRouter.navTo('PODetails');
 					}
 				}.bind(this)
 			});
@@ -1227,12 +1244,16 @@ var UpdatedPO = oResponse.data.Ebeln;
 		},
 		_onCreateEntryError: function(oError) {
 			BusyIndicator.hide();
+		var x = JSON.parse(oError.responseText);
+			var err = x.error.message.value;
 
-			MessageBox.error(
-				"Error creating entry: " + oError.statusCode + " (" + oError.statusText + ")", {
-					details: oError.responseText
-				}
+			jQuery.sap.require("sap.m.MessageBox");
+			
+			sap.m.MessageBox.error(
+				"Error creating entry: " + err + " "  
 			);
+
+		
 
 		},
 

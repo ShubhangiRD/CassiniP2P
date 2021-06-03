@@ -42,7 +42,10 @@ sap.ui.define([
 			oComponent = this.getOwnerComponent();
 			this.oSF = oView.byId("searchField");
 			var sRootPath = jQuery.sap.getModulePath("com.cassiniProcureToPay");
-
+		/*	var oVendorModel = this.getOwnerComponent().getModel("VendorModel");
+			 oVendorModel.setData([]);
+	
+			oVendorModel.refresh(true);	*/
 			//get the json data model.
 			var oModel = new JSONModel([sRootPath, "data/LandingPageData.json"].join("/"));
 			this.getView().setModel(oModel, "LandingPageModel");
@@ -52,6 +55,8 @@ sap.ui.define([
 			this.getView().setModel(manifests, "manifests");
 			console.log(manifests);
 */
+	
+		
 			var CountModel = new JSONModel();
 			oView.setModel(CountModel, "CountModel");
 
@@ -72,8 +77,8 @@ sap.ui.define([
 			this.getView().setModel(onVisiblemodel, "Visiblemodel");
 			//	this.headercolumn();
 
-			this.getVendorList();
-			this.getPurchaseOrderList();
+	this.getVendorList();
+		this.getPurchaseOrderList();
 			this.getVendorCountListByPO();
 			//		this.getOpenPurchaseOrder();
 			this.getTopFiveVendorsNames();
@@ -115,6 +120,11 @@ sap.ui.define([
 				items: this.modes
 			}), "modes");
 			this.switchState("Navigation");
+			
+			
+			  	this.bDescending = false;
+				this.sSearchQuery = 0;
+				this.bGrouped = false;
 
 		},
 
@@ -159,7 +169,25 @@ sap.ui.define([
 			}
 
 		},
+			OnNavigateVendorDetails: function(oEvent) {
+		
+		
+			//clear the data model
+			try {
+				var sPath = oEvent.getParameter("listItem").getBindingContextPath();
+			//get the Prodno from this model
+			var oModel = oView.getModel("Lookup");
+			var oVendorpath = oModel.getProperty(sPath);
+			var oVendor = oVendorpath.Lifnr;
+				oComponent.getRouter().navTo("DisplayVendor", {
+					VendorNo: oVendor
+				});
+			} catch (ex) {
+				MessageBox.error(ex);
+			}
 
+			//oComponent.getRouter().navTo("Dashboard2");
+		},
 		NavigatePurchaseItemDetails: function(oEvent) {
 
 			try {
@@ -176,7 +204,7 @@ sap.ui.define([
 		pressGenericTile: function(evt) {
 			//navigate the property is selected subheader.
 			if (evt.getSource().getProperty("header") === "Vendor Master") {
-				oComponent.getRouter().navTo("VendorDetails");
+				oComponent.getRouter().navTo("VM");
 			} else if (evt.getSource().getProperty("header") === "Purchase Order") {
 				oComponent.getRouter().navTo("PODetails");
 			} else if (evt.getSource().getProperty("header") === "Post Goods Receipt") {
@@ -197,12 +225,12 @@ sap.ui.define([
 		getVendorCountListByPO: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			BusyIndicator.show(0);
+			BusyIndicator.show(true);
 			return new Promise(function(resolve1, reject1) {
 				oModel.read("/POHeaderSet", {
 					//	oModel.read("/POItemSet",{
 					success: function(oData) {
-						BusyIndicator.hide();
+						BusyIndicator.hide(false);
 						//		console.log(oData);
 						var item = oData.results.length;
 						var ListofVendoritem = [];
@@ -315,7 +343,7 @@ sap.ui.define([
 						console.log(ListofVendorTopThreeModel);
 					},
 					error: function(oError) {
-						BusyIndicator.hide();
+						BusyIndicator.hide(false);
 						var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 						MessageToast.show(errorMsg);
 					}
@@ -382,14 +410,45 @@ sap.ui.define([
 				success: function(oData) {
 					var item = oData.results.length;
 
-					for (var iRowIndex = 0; iRowIndex <= 2600; iRowIndex++) {
+					for (var iRowIndex = 0; iRowIndex < item; iRowIndex++) {
 						var odata = oData.results[iRowIndex];
 						if (odata !== undefined) {
 							var Lifnrr = odata.Lifnr;
 							var Name1r = odata.Name1;
+							var Bukrs = odata.Bukrs;
+							var Ekgrp = odata.Ekgrp;
+							var Ekorg = odata.Ekorg;
+							var Gbort = odata.Gbort;
+							var Ktokk = odata.Ktokk;
+							var Kunnr = odata.Kunnr;
+							var Land1 = odata.Land1;
+							var Ort01 = odata.Ort01;
+							var Pstlz = odata.Pstlz;
+							var Stras = odata.Stras;
+							var Regio = odata.Regio;
+							var Telf1 = odata.Telf1;
+							var Waers = odata.Waers;
+							var Sexkz = odata.Sexkz;
+							var Adrnr = odata.Adrnr;
+
 							ListofVendor.push({
 								Lifnr: Lifnrr,
-								Name1: Name1r
+								Name1: Name1r,
+								Adrnr: Adrnr,
+								Bukrs: Bukrs,
+								Ekgrp: Ekgrp,
+								Ekorg: Ekorg,
+								Gbort: Gbort,
+								Ktokk: Ktokk,
+								Kunnr: Kunnr,
+								Land1: Land1,
+								Ort01: Ort01,
+								Pstlz: Pstlz,
+								Regio: Regio,
+								Sexkz: Sexkz,
+								Stras: Stras,
+								Telf1: Telf1,
+								Waers: Waers
 							});
 						}
 
@@ -404,6 +463,13 @@ sap.ui.define([
 
 					//BusyIndicator.hide();
 					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
+			var lengthpo = 	oLookupModel.oData.PoDocumentNumber.length;
+				var CountPoooo = new sap.ui.model.json.JSONModel({
+						item: lengthpo
+					
+					});
+					oView.setModel(CountPoooo, "CountPoooo");
+
 					oLookupModel.setProperty("/DisplyaVendorList", ListofVendor);
 					oLookupModel.refresh(true);
 					//that.getMaterialList();
@@ -484,8 +550,10 @@ sap.ui.define([
 						//	oView.getModel("VendorModel").setData(oData.results[0]);
 
 						var oVendor = new Vendor(oData.results[0]);
-						oView.getModel("VendorModel").setProperty("/VendorTemp", oVendor); // setData(oData.results);
-						oComponent.getRouter().navTo("VendorDetails");
+						oComponent.getModel("Vendor").setData(oData.results[0]);
+				
+					//	oComponent.getModel("Vendor").setProperty("/VendorTemp", oVendor); // setData(oData.results);
+						oComponent.getRouter().navTo("VM");
 					},
 					error: function(oError) {
 						//console.log(oError);
@@ -580,7 +648,7 @@ sap.ui.define([
 			var that = this;
 
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			BusyIndicator.show(0);
+			//BusyIndicator.show(0);
 			oModel.read("/just_poheader2Set ", {
 				//	oModel.read("/just_poheaderSet", {
 				success: function(oData) {
@@ -880,7 +948,7 @@ sap.ui.define([
 		getTopProductsSecond: function() {
 			var that = this;
 			var oModel = this.getOwnerComponent().getModel("VHeader");
-			BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel.read("/POHeaderSet", {
 				//	oModel.read("/POItemSet",{
 				success: function(oData) {
@@ -1032,17 +1100,17 @@ sap.ui.define([
 		getTopProductsFirst: function() {
 			var oModel1 = this.getOwnerComponent().getModel("VHeader");
 
-			BusyIndicator.show(0);
+		//	BusyIndicator.show(0);
 			oModel1.read("/Max_MaterialSet", {
 
 				//	oModel.read("/PO_DetailsSet()", {
 				//filters: aFilter,
 				success: function(odata) {
 					BusyIndicator.hide();
-					console.log(odata);
+				//	console.log(odata);
 					var arr = [];
 					arr = odata.results;
-					console.log(arr);
+				//	console.log(arr);
 
 					function foo(arr) {
 						var a = [],
@@ -1126,11 +1194,11 @@ sap.ui.define([
 				})
 
 			];
-			BusyIndicator.show(0);
+BusyIndicator.show(false);
 			oModel.read("/PO_DetailsSet", {
 				filters: aFilter,
 				success: function(oData) {
-					BusyIndicator.hide();
+					BusyIndicator.hide(false);
 					console.log(oData);
 
 					var resultlengrh = oData.results.length;
@@ -1193,7 +1261,7 @@ sap.ui.define([
 				},
 
 				error: function(oError) {
-					BusyIndicator.hide();
+					BusyIndicator.hide(false);
 					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
 					MessageToast.show(errorMsg);
 				}
@@ -1420,18 +1488,18 @@ sap.ui.define([
 				];
 
 				var Purchaseorder = Ebeln;
-				BusyIndicator.show(0);
+			BusyIndicator.show(true);
 				oModel.read("/fetch_openPOSet(Purchaseorder='" + Purchaseorder + "')", {
 					urlParameters: {
 						"$expand": "fpoItemSet"
 					},
 					success: function(oData) {
-						BusyIndicator.hide();
+						BusyIndicator.hide(false);
 						console.log(oData);
 
 					},
 					error: function(oError) {
-						BusyIndicator.hide();
+						BusyIndicator.hide(false);
 						console.log(oError);
 					}
 				});
@@ -1440,6 +1508,38 @@ sap.ui.define([
 			}
 			oEvent.getSource().getBinding("items").filter([]);
 
+		},
+			/*vendor action list sorting */	
+	ListSort: function (oEvent) {
+			this.bDescending = !this.bDescending;
+			this.fnApplyFiltersAndOrdering();
+		},
+		
+		
+		_fnGroup : function (oContext){
+			var oVendorList = oContext.getProperty("Lookup>Lifnr");
+
+			return {
+				key : oVendorList,
+				text : oVendorList
+			};
+		},
+			fnApplyFiltersAndOrdering: function (oEvent){
+			var aFilters = [],
+				aSorters = [];
+
+			if (this.bGrouped) {
+				aSorters.push(new Sorter("Lookup>Lifnr", this.bDescending, this._fnGroup));
+			} else {
+				aSorters.push(new Sorter("Lookup>Name1", this.bDescending));
+			}
+
+			if (this.sSearchQuery) {
+				var oFilter = new Filter("Lookup>Name1", FilterOperator.Contains, this.sSearchQuery);
+				aFilters.push(oFilter);
+			}
+
+			this.byId("VendorList").getBinding("items").filter(aFilters).sort(aSorters);
 		}
 
 		/**

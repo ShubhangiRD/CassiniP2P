@@ -1,0 +1,92 @@
+{
+	"ReconAccount":[{
+		"GLAccount":"31000",
+		"Description":"Down payments made - tangible assets"
+	},
+	{
+		"GLAccount":"39000",
+		"Description":"Down payments made - intangible assets"
+	},
+	{
+		"GLAccount":"61000",
+		"Description":"Down payments financial assets(see account assignment text)"
+	},
+	{
+		"GLAccount":"62110",
+		"Description":"Secured bank loans, due within 1 year"
+	},
+	{
+		"GLAccount":"62120",
+		"Description":"Secured bank loans, due within 1-5 years"
+	},
+	{
+		"GLAccount":"62130",
+		"Description":"Secured bank loans, due after 5 years"
+	},
+	{
+		"GLAccount":"62210",
+		"Description":"Secured bank loans, due within 1 year"
+	},
+	{
+		"GLAccount":"62220",
+		"Description":"Secured bank loans, due within 1-5 years"
+	},
+	{
+		"GLAccount":"62230",
+		"Description":"Secured bank loans, due after 5 years"
+	},
+	{
+		"GLAccount":"95000",
+		"Description":"Discount"
+	},
+	{
+		"GLAccount":"151000",
+		"Description":"Prepayment - Inventory"
+	},
+	{
+		"GLAccount":"159000",
+		"Description":"Other down payments - current assets"
+	},
+	{
+		"GLAccount":"160000",
+		"Description":"Trade Payables - domestic"
+	},
+	{
+		"GLAccount":"160010",
+		"Description":"Trade Payables - domestic one-time suppliers"
+	},
+	{
+		"GLAccount":"161000",
+		"Description":"Trade Payables - foreign"
+	},
+	{
+		"GLAccount":"161010",
+		"Description":"Trade Payables - foreign one-time vendors"
+	},
+	{
+		"GLAccount":"165000",
+		"Description":"Accounts Payable - Affiliates"
+	},
+	{
+		"GLAccount":"166000",
+		"Description":"Amortization - Prepayments"
+	},
+	{
+		"GLAccount":"180000",
+		"Description":"Bills of exchange payable"
+	},
+	{
+		"GLAccount":"196300",
+		"Description":"Payment requests - vendors"
+	},
+	{
+		"GLAccount":"196400",
+		"Description":"Guarantees - vendors"
+	},
+	{
+		"GLAccount":"197100",
+		"Description":"Accounts Payable - payment withheld"
+	}
+	
+	]
+}

@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Sex List"
+		class="sapUiPopupWithPadding"
+		items="{Sextype>/results}"
+		search="_handleSexTypeSearch"
+		confirm="_handleSexTypeClose"
+		cancel="_handleSexTypeClose">
+		<StandardListItem
+			title="{Sextype>sex}"
+			info="{Sextype>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

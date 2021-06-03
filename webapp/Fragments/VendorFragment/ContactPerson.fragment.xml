@@ -3,13 +3,13 @@
 	<VBox class="sapUiSmallMargin">
 	
 		<VBox>
-			<t:Table id="idContactPerson" rows="{ path: 'VendorModel>/'}" visibleRowCount="5" selectionMode="MultiToggle">
+			<t:Table id="idContactPerson" rows="{ path: 'Vendor>/'}" visibleRowCount="5" selectionMode="MultiToggle">
 				<t:extension>
 					<OverflowToolbar>
 						<Title text="Contact Person  "/>
 						<ToolbarSpacer/>
 						<Button icon="sap-icon://add" type="Transparent" id="idAddbuttonContatPersn" class="remove-attr" tooltip="Add Row" press="onAddNewContactDetils"/>
-						<Button icon="sap-icon://delete" enabled="{=${VendorModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+						<Button icon="sap-icon://delete" enabled="{=${Vendor>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
 							tooltip="Delete Row" press="onDeleteItemBank"/>
 					</OverflowToolbar>
 				</t:extension>
@@ -18,7 +18,7 @@
 						<Label text="Form Of Address "/>
 						<t:template>
 							<Input id="formofaddcontp"  textFormatMode="KeyValue"  editable="{EditModel>/isEditable}"  showSuggestion="true" showValueHelp="true"
-								value="{VendorModel>Formofaddr}" valueHelpRequest="handleformofadd" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+								value="{Vendor>/Formofaddr}" valueHelpRequest="handleformofadd" suggestionItems="{ path: 'Lookup>/MaterialList' }"
 								suggestionItemSelected="onSuggestFormofadd" liveChange="formofaddcontperson">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
@@ -30,7 +30,7 @@
 						<Label text="First Name"/>
 						<t:template>
 							<Input  id="idfirstcontname" textFormatMode="KeyValue" editable="{EditModel>/isEditable}"  showSuggestion="true" showValueHelp="true"
-								valueHelpRequest="handleNameContatPerson" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{VendorModel>Name}"
+								valueHelpRequest="handleNameContatPerson" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{Vendor>Name}"
 								suggestionItemSelected="onSuggestnameContatctPerson">
 								<suggestionItems>
 									<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
@@ -41,13 +41,13 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Name"/>
 						<t:template>
-							<Input id="Namecontper" value="{VendorModel>Name2}" editable="{EditModel>/isEditable}" />
+							<Input id="Namecontper" value="{Vendor>Name2}" editable="{EditModel>/isEditable}" />
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Telephone1"/>
 						<t:template>
-							<Input id="idTelephone1" class="measure1" value="{VendorModel>Telephone}" editable="{EditModel>/isEditable}"/>
+							<Input id="idTelephone1" class="measure1" value="{Vendor>Telephone}" editable="{EditModel>/isEditable}"/>
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
@@ -64,7 +64,7 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Description"/>
 						<t:template>
-							<Input id="iddescrptn2" value="{VendorModel>Descrptn2}" editable="{EditModel>/isEditable}" />
+							<Input id="iddescrptn2" value="{Vendor>Descrptn2}" editable="{EditModel>/isEditable}" />
 						</t:template>
 					</t:Column>
 					<t:Column width="9rem" hAlign="Center">
@@ -81,7 +81,7 @@
 					<t:Column width="9rem" hAlign="Center">
 						<Label text="Description"/>
 						<t:template>
-							<Input id="iddescriptionF" value="{VendorModel>DescriptionF}" editable="{EditModel>/isEditable}" />
+							<Input id="iddescriptionF" value="{Vendor>DescriptionF}" editable="{EditModel>/isEditable}" />
 						</t:template>
 					</t:Column>
 				

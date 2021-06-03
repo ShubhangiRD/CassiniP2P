@@ -1,7 +1,9 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
 	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
 	xmlns:t="sap.ui.table" controllerName="com.cassiniProcureToPay.controller.POITemDetails">
-	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true">
+<m:Page  showNavButton="true"
+		navButtonPress="onNavBack">
+		<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true">
 		<headerTitle>
 			<ObjectPageHeader id="headerForTest" objectTitle="Purchase Order : {pomodel>/PurchaseO}"  objectSubtitle="Standard PO">
 				<actions>
@@ -119,4 +121,5 @@
 			</ObjectPageSection>
 		</sections>
 	</ObjectPageLayout>
+</m:Page>
 </mvc:View>

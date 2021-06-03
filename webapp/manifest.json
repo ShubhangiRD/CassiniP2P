@@ -119,6 +119,47 @@
 					"bundleName": "com.cassiniProcureToPay.i18n.i18n"
 				}
 			},
+			"taxnotype": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/taxnotype.json"
+			},
+			"Taxtype": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/Taxtype.json"
+			},
+			"AQS": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/ActualQMSys.json"
+
+			},
+			"Sextype": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/sextype.json"
+			},
+			"sortkey": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/SortKey.json"
+			},
+			"reconaccount": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/ReconAccount.json"
+			},
+			"cashmanagement": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/CashManagementGroup.json"
+			},
+			"partnerfunction": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/PartnerFunction.json"
+			},
+			"pricingdate": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/PricingDateControl.json"
+			},
+			"paymentmethod": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "data/PaymentMethods.json"
+			},
 			"": {
 				"dataSource": "mainService",
 				"preload": true
@@ -161,200 +202,202 @@
 				"async": true
 			},
 			"routes": [{
-				"pattern": "",
-				"name": "LoginPage",
-				"target": "LoginPage"
-			}, {
-				"pattern": "ShowTiles",
-				"name": "ShowTiles",
-				"target": ["ShowTiles"]
-			}, {
-				"name": "PurchaseItemDetails",
-				"pattern": "PurchaseItemDetails/{PoNumber}",
-				"target": "PurchaseItemDetails"
-			},{
-				"name": "POITemDetails",
-				"pattern": "POITemDetails/{PoNo}",
-				"target": "POITemDetails"
-			},
-			
-			
-			
-			{
-				"pattern": "CreateContractVendor",
-				"name": "CreateContractVendor",
-				"target": ["CreateContractVendor"]
-			}, {
-				"pattern": "OrderCreations",
-				"name": "OrderCreations",
-				"target": ["OrderCreations"]
-			}, {
-				"pattern": "PurchaseOrder",
-				"name": "PurchaseOrder",
-				"target": ["PurchaseOrder"]
-			}, {
-				"pattern": "VendorRebate",
-				"name": "VendorRebate",
-				"target": ["VendorRebate"]
-			}, {
-				"pattern": "Home",
-				"name": "Home",
-				"target": ["Home"]
-			}, {
-				"pattern": "CreateContract",
-				"name": "CreateContract",
-				"target": ["CreateContract"]
-			}, {
-				"pattern": "DashboardVendor",
-				"name": "DashboardVendor",
-				"target": ["DashboardVendor"]
-			}, {
-				"pattern": "TileDashboard",
-				"name": "TileDashboard",
-				"target": ["TileDashboard"]
-			}, {
-				"pattern": "MassAccrualPost",
-				"name": "MassAccrualPost",
-				"target": ["MassAccrualPost"]
-			}, {
-				"pattern": "MassUpload",
-				"name": "MassUpload",
-				"target": ["MassUpload"]
-			}, {
-				"pattern": "ViewContract",
-				"name": "ViewContract",
-				"target": ["ViewContract"]
-			}, {
-				"pattern": "ChangeContract",
-				"name": "ChangeContract",
-				"target": ["ChangeContract"]
-			}, {
-				"pattern": "BookInvoice",
-				"name": "BookInvoice",
-				"target": ["BookInvoice"]
-			}, {
-				"pattern": "Dashboard",
-				"name": "Dashboard",
-				"target": ["Dashboard"]
-			}, {
-				"pattern": "Dashboard2",
-				"name": "Dashboard2",
-				"target": ["Dashboard2"]
-			}, {
-				"name": "Home",
-				"pattern": "home",
-				"target": ["Home"]
-			}, {
-				"name": "OCRHome",
-				"pattern": "ocrhome",
-				"target": ["OCRHome"]
-			}, {
-				"name": "ScanningErrors",
-				"pattern": "scanning-errors",
-				"target": ["ScanningErrors"]
-			}, {
-				"name": "ReadyToPost",
-				"pattern": "ready-to-post",
-				"target": ["ReadyToPost"]
-			}, {
-				"name": "ScanningErrorDetails",
-				"pattern": "scanning-error-details/{scanId}",
-				"target": ["ScanningErrorDetails"]
-			}, {
-				"name": "ValidationErrors",
-				"pattern": "validation-errors",
-				"target": ["ValidationErrors"]
-			}, {
-				"name": "ValidationErrorDetails",
-				"pattern": "validation-error-details/{docId}",
-				"target": ["ValidationErrorDetails"]
-			}, {
-				"name": "ReadyToPostDetails",
-				"pattern": "ready-to-post-details/{recordId}",
-				"target": ["ReadyToPostDetails"]
-			}, {
-				"name": "PoPreference",
-				"pattern": "popreference/{approvalId}",
-				"target": ["PoPreference"]
-			}, {
-				"name": "DueForApproval",
-				"pattern": "due-for-approval",
-				"target": ["DueForApproval"]
-			}, {
-				"name": "DocumentsRejected",
-				"pattern": "documents-rejected",
-				"target": ["DocumentsRejected"]
-			}, {
-				"name": "DocumentsRejectedDetails",
-				"pattern": "documents-rejected-details/{rejectionId}",
-				"target": ["DocumentsRejectedDetails"]
-			}, {
-				"name": "ScannedDocuments",
-				"pattern": "scanned-documents",
-				"target": ["ScannedDocuments"]
-			}, {
-				"name": "PostedDocuments",
-				"pattern": "posted-documents",
-				"target": ["PostedDocuments"]
-			}, {
-				"name": "UpdateVendor",
-				"pattern": "UpdateVendor-documents",
-				"target": ["UpdateVendor"]
-			}, {
-				"name": "DisplayVendor",
-				"pattern": "DisplayVendor-documents",
-				"target": ["DisplayVendor"]
-			}, {
-				"name": "PurchaseOrderTable",
-				"pattern": "PurchaseOrderTable-documents",
-				"target": ["PurchaseOrderTable"]
-			}, {
-				"name": "DisplayPOItems",
-				"pattern": "DisplayPOItems-documents",
-				"target": ["DisplayPOItems"]
-			}, {
-				"name": "EditPOOrder",
-				"pattern": "EditPOOrder-documents",
-				"target": ["EditPOOrder"]
-			}, {
-				"name": "SamplePO",
-				"pattern": "SamplePO-documents",
-				"target": ["SamplePO"]
-			}, {
-				"name": "VendorCreate",
-				"pattern": "VendorCreate-documents",
-				"target": ["VendorCreate"]
-			}, {
-				"name": "EditVendor",
-				"pattern": "EditVendor",
-				"target": ["EditVendor"]
-			}, {
-				"name": "GoodReceipt",
-				"pattern": "GoodReceipt",
-				"target": ["GoodReceipt"]
-			}, {
-				"name": "VendorDetails",
-				"pattern": "VendorDetails",
-				"target": ["VendorDetails"]
-			}, {
-				"name": "AdminPanel",
-				"pattern": "AdminPanel",
-				"target": ["AdminPanel"]
-			}, {
-				"pattern": "POForm-screen",
-				"name": "POForm",
-				"target": "POForm"
-			},
-			{
-				"pattern": "PODetails",
-				"name": "PODetails",
-				"target": "PODetails"
-			},
-			{
-				"pattern": "POCreation",
-				"name": "POCreation",
-				"target": "POCreation"
-			}],
+					"pattern": "",
+					"name": "LoginPage",
+					"target": "LoginPage"
+				}, {
+					"pattern": "ShowTiles",
+					"name": "ShowTiles",
+					"target": ["ShowTiles"]
+				}, {
+					"name": "PurchaseItemDetails",
+					"pattern": "PurchaseItemDetails/{PoNumber}",
+					"target": "PurchaseItemDetails"
+				}, {
+					"name": "POITemDetails",
+					"pattern": "POITemDetails/{PoNo}",
+					"target": "POITemDetails"
+				},
+
+				{
+					"pattern": "CreateContractVendor",
+					"name": "CreateContractVendor",
+					"target": ["CreateContractVendor"]
+				}, {
+					"pattern": "OrderCreations",
+					"name": "OrderCreations",
+					"target": ["OrderCreations"]
+				}, {
+					"pattern": "PurchaseOrder",
+					"name": "PurchaseOrder",
+					"target": ["PurchaseOrder"]
+				}, {
+					"pattern": "VendorRebate",
+					"name": "VendorRebate",
+					"target": ["VendorRebate"]
+				}, {
+					"pattern": "Home",
+					"name": "Home",
+					"target": ["Home"]
+				}, {
+					"pattern": "CreateContract",
+					"name": "CreateContract",
+					"target": ["CreateContract"]
+				}, {
+					"pattern": "DashboardVendor",
+					"name": "DashboardVendor",
+					"target": ["DashboardVendor"]
+				}, {
+					"pattern": "TileDashboard",
+					"name": "TileDashboard",
+					"target": ["TileDashboard"]
+				}, {
+					"pattern": "MassAccrualPost",
+					"name": "MassAccrualPost",
+					"target": ["MassAccrualPost"]
+				}, {
+					"pattern": "MassUpload",
+					"name": "MassUpload",
+					"target": ["MassUpload"]
+				}, {
+					"pattern": "ViewContract",
+					"name": "ViewContract",
+					"target": ["ViewContract"]
+				}, {
+					"pattern": "ChangeContract",
+					"name": "ChangeContract",
+					"target": ["ChangeContract"]
+				}, {
+					"pattern": "BookInvoice",
+					"name": "BookInvoice",
+					"target": ["BookInvoice"]
+				}, {
+					"pattern": "Dashboard",
+					"name": "Dashboard",
+					"target": ["Dashboard"]
+				}, {
+					"pattern": "Dashboard2",
+					"name": "Dashboard2",
+					"target": ["Dashboard2"]
+				}, {
+					"name": "Home",
+					"pattern": "home",
+					"target": ["Home"]
+				}, {
+					"name": "OCRHome",
+					"pattern": "ocrhome",
+					"target": ["OCRHome"]
+				}, {
+					"name": "ScanningErrors",
+					"pattern": "scanning-errors",
+					"target": ["ScanningErrors"]
+				}, {
+					"name": "ReadyToPost",
+					"pattern": "ready-to-post",
+					"target": ["ReadyToPost"]
+				}, {
+					"name": "ScanningErrorDetails",
+					"pattern": "scanning-error-details/{scanId}",
+					"target": ["ScanningErrorDetails"]
+				}, {
+					"name": "ValidationErrors",
+					"pattern": "validation-errors",
+					"target": ["ValidationErrors"]
+				}, {
+					"name": "ValidationErrorDetails",
+					"pattern": "validation-error-details/{docId}",
+					"target": ["ValidationErrorDetails"]
+				}, {
+					"name": "ReadyToPostDetails",
+					"pattern": "ready-to-post-details/{recordId}",
+					"target": ["ReadyToPostDetails"]
+				}, {
+					"name": "PoPreference",
+					"pattern": "popreference/{approvalId}",
+					"target": ["PoPreference"]
+				}, {
+					"name": "DueForApproval",
+					"pattern": "due-for-approval",
+					"target": ["DueForApproval"]
+				}, {
+					"name": "DocumentsRejected",
+					"pattern": "documents-rejected",
+					"target": ["DocumentsRejected"]
+				}, {
+					"name": "DocumentsRejectedDetails",
+					"pattern": "documents-rejected-details/{rejectionId}",
+					"target": ["DocumentsRejectedDetails"]
+				}, {
+					"name": "ScannedDocuments",
+					"pattern": "scanned-documents",
+					"target": ["ScannedDocuments"]
+				}, {
+					"name": "PostedDocuments",
+					"pattern": "posted-documents",
+					"target": ["PostedDocuments"]
+				}, {
+					"name": "UpdateVendor",
+					"pattern": "UpdateVendor-documents",
+					"target": ["UpdateVendor"]
+				}, {
+					"name": "DisplayVendor",
+					"pattern": "DisplayVendor-documents/{VendorNo}",
+					"target": ["DisplayVendor"]
+				}, {
+					"name": "PurchaseOrderTable",
+					"pattern": "PurchaseOrderTable-documents",
+					"target": ["PurchaseOrderTable"]
+				}, {
+					"name": "DisplayPOItems",
+					"pattern": "DisplayPOItems-documents",
+					"target": ["DisplayPOItems"]
+				}, {
+					"name": "EditPOOrder",
+					"pattern": "EditPOOrder-documents",
+					"target": ["EditPOOrder"]
+				}, {
+					"name": "SamplePO",
+					"pattern": "SamplePO-documents",
+					"target": ["SamplePO"]
+				}, {
+					"name": "VendorCreate",
+					"pattern": "VendorCreate-documents",
+					"target": ["VendorCreate"]
+				}, {
+					"name": "EditVendor",
+					"pattern": "EditVendor",
+					"target": ["EditVendor"]
+				}, {
+					"name": "GoodReceipt",
+					"pattern": "GoodReceipt",
+					"target": ["GoodReceipt"]
+				}, {
+					"name": "VendorDetails",
+					"pattern": "VendorDetails",
+					"target": ["VendorDetails"]
+				}, {
+					"name": "AdminPanel",
+					"pattern": "AdminPanel",
+					"target": ["AdminPanel"]
+				}, {
+					"pattern": "POForm-screen",
+					"name": "POForm",
+					"target": "POForm"
+				}, {
+					"pattern": "PODetails",
+					"name": "PODetails",
+					"target": "PODetails"
+				}, {
+					"pattern": "POCreation",
+					"name": "POCreation",
+					"target": "POCreation"
+				},
+				{
+					"pattern": "VM",
+					"name": "VM",
+					"target": "VM"
+				}
+			],
 			"targets": {
 				"LoginPage": {
 					"viewLevel": 1,
@@ -365,12 +408,18 @@
 				},
 				"ShowTiles": {
 					"viewName": "ShowTiles",
-						"controlId": "idApp"
-					
-				},"POCreation": {
+					"controlId": "idApp"
+
+				},
+					"VM": {
+					"viewName": "VM",
+					"controlId": "idApp"
+
+				},
+				"POCreation": {
 					"viewName": "POCreation",
-						"controlId": "idApp"
-					
+					"controlId": "idApp"
+
 				},
 				"TileDashboard": {
 					"viewName": "TileDashboard"
@@ -392,7 +441,7 @@
 				},
 				"VendorDetails": {
 					"viewName": "VendorDetails",
-						"controlId": "idApp"
+					"controlId": "idApp"
 				},
 				"CreateContract": {
 					"viewName": "CreateContract"
@@ -511,21 +560,21 @@
 				"GoodReceipt": {
 					"viewType": "XML",
 					"viewName": "GoodReceipt",
-						"controlId": "idApp"
+					"controlId": "idApp"
 				},
 				"PurchaseItemDetails": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "PurchaseItemDetails",
-						"controlId": "idApp"
+					"controlId": "idApp"
 				},
-					"POITemDetails": {
+				"POITemDetails": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "POITemDetails",
-						"controlId": "idApp"
+					"controlId": "idApp"
 				},
 				"AdminPanel": {
 					"viewType": "XML",
@@ -534,9 +583,9 @@
 				"POForm": {
 					"viewId": "POForm",
 					"viewName": "POForm",
-						"controlId": "idApp"
+					"controlId": "idApp"
 				},
-					"PODetails": {
+				"PODetails": {
 					"viewType": "XML",
 					"viewName": "PODetails",
 					"controlId": "idApp"

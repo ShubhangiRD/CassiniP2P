@@ -1,7 +1,9 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
 	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
 	controllerName="com.cassiniProcureToPay.controller.PODetails">
-	<ObjectPageLayout id="POHeader" enableLazyLoading="true" useIconTabBar="true" showTitleInHeaderContent="true" upperCaseAnchorBar="false">
+	<m:Page  showNavButton="true"
+		navButtonPress="onNavBack">
+			<ObjectPageLayout id="POHeader" enableLazyLoading="true" useIconTabBar="true" showTitleInHeaderContent="true" upperCaseAnchorBar="false">
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
@@ -21,8 +23,7 @@
 		</headerTitle>
 		<headerContent>
 			<m:FlexBox wrap="Wrap" fitContainer="true">
-				<!--	<m:Avatar src="sap-icon://picture" displaySize="L" class="sapUiTinyMarginEnd"/>
-		-->
+				
 				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 					<m:Label text="Vendor : " required="true"/>
 					<m:Input id="vnumber" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
@@ -34,16 +35,7 @@
 					</m:Input>
 					<l:HorizontalLayout class="sapUiSmallMarginEnd"></l:HorizontalLayout >
 				</l:VerticalLayout>
-			<!--	<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-					<m:Label text="Purchase Group:"/>
-					<m:Input id="pg" textFormatMode="KeyValue" placeholder="Purchase Group ..." showSuggestion="true"
-						value="{PurchaseModel>/TempContract/Ekgrp}" editable="true" showValueHelp="true" valueHelpRequest="handlePurchaseGroupVendor"
-						suggestionItems="{ path: 'Lookup>/PurchaseGroupList' }" suggestionItemSelected="onSuggest">
-						<m:suggestionItems>
-							<core:ListItem key="{Lookup>Ekgrp}" text="{Lookup>Eknam}" additionalText="{Lookup>Ekgrp}"/>
-						</m:suggestionItems>
-					</m:Input>
-				</l:VerticalLayout>-->
+			
 				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
 					<m:Label text="Company Code:" required="true"/>
 					<m:Input id="cc" textFormatMode="KeyValue" placeholder="Company Code ..." showSuggestion="true" 
@@ -74,7 +66,7 @@
 						</m:suggestionItems>
 					</m:Input>
 				</l:VerticalLayout>
-				<!-- <m:FlexBox wrap="wrap" fitContainer="true"> -->
+			
 			</m:FlexBox>
 		</headerContent>
 		<sections>
@@ -89,4 +81,5 @@
 			</ObjectPageSection>
 		</sections>
 	</ObjectPageLayout>
+</m:Page>
 </mvc:View>
