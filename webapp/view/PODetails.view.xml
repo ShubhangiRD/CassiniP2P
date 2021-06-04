@@ -1,4 +1,77 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
+<mvc:View controllerName="com.cassiniProcureToPay.controller.PODetails" height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.f" class="sapUiSizeCompact" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:vm="sap.ui.comp.variants">
+	<f:DynamicPage id="dynamicPageId" showNavButton="true"
+		navButtonPress="onNavBack">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					
+					<vm:VariantManagement standardItemText="Purchase Orders"></vm:VariantManagement>
+				</f:heading>
+				<f:actions>
+					<ToolbarSpacer/>
+						<Button icon="sap-icon://navigation-left-arrow" type="Emphasized" press="onNavBack"/>
+					<Button icon="sap-icon://add" type="Emphasized" press="onCreatePurchaseOrder"/>
+					<Button type="Transparent" text="Cancel" press="OnCancel" tooltip="decline"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<!-- DynamicPage Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
+						<fb:filterItems>
+						<fb:FilterItem name="Lifnr" label="Vendor Number">
+								<fb:control>
+						
+											<Select
+										id="vnumber"
+										forceSelection="true"
+										change="onSelectChange"
+										items="{
+                                                    path: 'VendorListM>/'
+                                                }">
+										<core:Item key="{VendorListM>Lifnr}" text="{VendorListM>Lifnr}"/>
+										</Select>
+								</fb:control>
+							</fb:FilterItem>
+				<!--	<fb:FilterItem name="Ekorg" label="Purchase Org">
+								<fb:control>
+									<Select  id="idPurchaseOrg"  change="onSelectChange" forceSelection="true" items="{ path: 'PurchaseORg>/' }">
+										<core:Item key="{PurchaseORg>Ekorg}" text="{PurchaseORg>Ekorg}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>-->
+							<fb:FilterItem name="Bukrs" label="Company Code">
+								<fb:control>
+									<Select id="cc" change="onSelectChange" forceSelection="true" items="{ path: 'Lookup>/CountryCode' }">
+										<core:Item key="{Lookup>Bukrs}" text="{Lookup>Bukrs}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+						</fb:filterItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<!-- DynamicPage Content -->
+		<f:content>
+			<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.POfragments.DisplayPOTable" type="XML"/>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>
+<!--<mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
 	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
 	controllerName="com.cassiniProcureToPay.controller.PODetails">
 	<m:Page  showNavButton="true"
@@ -83,3 +156,4 @@
 	</ObjectPageLayout>
 </m:Page>
 </mvc:View>
+-->

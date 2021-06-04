@@ -19,7 +19,8 @@
 							icon="sap-icon://grid"
 							tooltip="Enable / Disable Cell Filter Functionality"
 							pressed="{ui>/cellFilterOn}"/>-->
-					<m:Button icon="sap-icon://download" press="onDataExport"/>
+						<!--	//onDataExport-->
+					<m:Button icon="sap-icon://download" press="onExport"/>
 					<!--<m:Button icon="sap-icon://full-screen" press="TableFullScreen"/>-->
 					<m:Button icon="sap-icon://decline" tooltip="Clear all filters" press="clearAllFiltersPOtable"/>
 					<m:ToolbarSeparator/>

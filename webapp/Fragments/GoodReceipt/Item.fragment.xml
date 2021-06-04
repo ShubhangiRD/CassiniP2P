@@ -75,10 +75,10 @@ xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" x
 						<t:Column width="7rem" hAlign="Center">
 							<Label text="Quantity"/>
 							<t:template>
-								<u:Currency id="Quantity" textAlign="Center" stringValue="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}" currency="{ }" useSymbol="true"/>
-						
-							<!--	<Input id="Quantity" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}"  textAlign="End"/>
-						-->	</t:template>
+						<!--		<u:Currency id="Quantity" textAlign="Center" stringValue="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}" currency="{ }" useSymbol="true"/>
+						-->
+								<Input id="Quantity" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}"  textAlign="End"/>
+							</t:template>
 						</t:Column>
 							<t:Column width="9rem" hAlign="Center">
 							<Label text="NetPrice"/>

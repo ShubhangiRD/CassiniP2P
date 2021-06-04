@@ -400,11 +400,9 @@
 			],
 			"targets": {
 				"LoginPage": {
-					"viewLevel": 1,
-					"viewId": "idAppView",
-					"controlAggregation": "pages",
-					"viewName": "LoginPage",
-					"controlId": "idApp"
+				
+					"viewName": "LoginPage"
+				
 				},
 				"ShowTiles": {
 					"viewName": "ShowTiles",

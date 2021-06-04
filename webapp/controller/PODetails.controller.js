@@ -42,18 +42,19 @@ sap.ui.define([
 			this.getView().setModel(oModel);
 			oView = this.getView();
 			oComponent = this.getOwnerComponent();
-			// Define the models
+					var OdataModel = new sap.ui.model.json.JSONModel();
+					oView.setModel(OdataModel, "VendorListM");
+						var odPurcOrg = new sap.ui.model.json.JSONModel();
+					oView.setModel(odPurcOrg, "PurchaseORg");
 
+
+			// Define the models
+this.getCompanyList(); 
+this.getVendorList();
+this.getPurchaseOrgList();
 			this.getPurchaseOrderList();
 
-			this.aKeys = [
-				"Lifnr", "Ebeln", "Bukrs"
-			];
-			this.oSelectName = this.getSelect("vnumber");
-			this.oSelectCategory = this.getSelect("idpurorder");
-			this.oSelectSupplierName = this.getSelect("cc");
-			
-			
+		
 				this.bDescending = false;
 				this.sSearchQuery = 0;
 				this.bGrouped = false;
@@ -89,6 +90,14 @@ sap.ui.define([
 		},
 
 		onSelectChange: function() {
+				this.aKeys = [
+			 "Lifnr", "Bukrs" , "Ekorg"
+			];
+			this.oSelectName = this.getSelect("vnumber");
+			this.oSelectCategory = this.getSelect("idPurchaseOrg");
+			this.oSelectSupplierName = this.getSelect("cc");
+			
+			
 			var aCurrentFilterValues = [];
 
 			aCurrentFilterValues.push(this.getSelectedItemText(this.oSelectName));
@@ -100,15 +109,23 @@ sap.ui.define([
 		},
 		filterTable: function(aCurrentFilterValues) {
 			//	var aFilter = [];
-
+	this.getTableItems().filter(this.getFilters(aCurrentFilterValues));
 			// update list binding
-			var list = this.getView().byId("PurchaseTableDisplay");
+		/*	var list = this.getView().byId("PurchaseTableDisplay");
 			var binding = list.getBinding("items");
 			binding.filter(this.getFilters(aCurrentFilterValues), "Application");
-
+*/
 		},
-
+	getTable: function() {
+			return this.getView().byId("PurchaseTableDisplay");
+		},
+		getTableItems: function() {
+			return this.getTable().getBinding("items");
+		},
 		getFilters: function(aCurrentFilterValues) {
+	
+			
+			
 			var aFilters = [];
 
 			aFilters = this.aKeys.map(function(sCriteria, i) {
@@ -196,11 +213,10 @@ sap.ui.define([
 			//BusyIndicator.show(0);
 			oModel.read("/Fetch_Vendor_DetailsSet", {
 				success: function(oData) {
-					//BusyIndicator.hide();
-					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
-					oLookupModel.setProperty("/DisplyaVendorList", oData.results);
-					oLookupModel.refresh(true);
-					//that.getMaterialList();
+			//	oView.getModel("VendorListM").setData(oData.results);
+				oView.getModel("VendorListM").setSizeLimit(oData.results.length);
+					oView.getModel("VendorListM").setData(oData.results);
+				
 				},
 				error: function(oError) {
 					//BusyIndicator.hide();
@@ -209,7 +225,26 @@ sap.ui.define([
 				}
 			});
 		},
-
+		getPurchaseOrgList: function() {
+			var that = this;
+			var oModel = this.getOwnerComponent().getModel("VHeader");
+			//	BusyIndicator.show(0);
+			oModel.read("/get_purchaseorg_f4helpSet", {
+				success: function(oData) {
+					////BusyIndicator.hide();
+						oView.getModel("PurchaseORg").setSizeLimit(oData.results.length);
+					oView.getModel("PurchaseORg").setData(oData.results);
+				
+				
+					//that.getMaterialList();
+				},
+				error: function(oError) {
+					////BusyIndicator.hide();
+					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
+					MessageToast.show(errorMsg);
+				}
+			});
+		},
 		onMenuButtonPress: function() {
 			var oPurchaseModel = this.getOwnerComponent().getModel("PurchaseModel");
 			var oTempContract = oPurchaseModel.getProperty("/TempContract");
@@ -235,26 +270,7 @@ sap.ui.define([
 		},
 
 		/*Po Search*/
-		getPurchaseOrgList: function() {
-			var that = this;
-			var oModel = this.getOwnerComponent().getModel("VHeader");
-
-			oModel.read("/get_purchaseorg_f4helpSet", {
-				success: function(oData) {
-					BusyIndicator.hide();
-					var oLookupModel = that.getOwnerComponent().getModel("Lookup");
-					oLookupModel.setProperty("/PurchaseOrganization", oData.results);
-					oLookupModel.refresh(true);
-					//that.getMaterialList();
-				},
-				error: function(oError) {
-					BusyIndicator.hide();
-					var errorMsg = oError.statusCode + " " + oError.statusText + ":" + JSON.parse(oError.responseText).error.message.value;
-					MessageToast.show(errorMsg);
-				}
-			});
-		},
-
+	
 		/*PO Search end*/
 
 		/*Comp Search start*/

@@ -160,9 +160,7 @@ border: none !important;
     border: 1px solid #272c4d;
 }
 
-.ocrCassini .sapTntToolHeader.sapMTB {
-	height: 4rem;
-}
+
 .ocrCassini .sapTntToolHeader.sapMTB .sapMSwtOn:not(.sapMSwtAcceptReject) {
     background: #FFFFFF;
     border-color: #FFFFFF;

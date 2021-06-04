@@ -135,7 +135,7 @@
 								<Title id="tableHeader" text=""/>
 								<ToolbarSpacer/>
 							
-								<SearchField id="searchFieldVendor" width="50%" tooltip="{i18n>worklistSearchTooltip}" search="searchFieldVendor"></SearchField>
+								<SearchField id="searchFieldVendor" width="70%" tooltip="{i18n>worklistSearchTooltip}" search="searchFieldVendor"></SearchField>
 							<Button
 							tooltip="Sort"
 							icon="sap-icon://sort"

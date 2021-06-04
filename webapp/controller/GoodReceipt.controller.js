@@ -264,7 +264,7 @@ sap.ui.define([
 				"Lifnr",
 				FilterOperator.Contains, sInputValue
 			)]));
-		
+
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 			this.getPurchaseOrderList();
@@ -334,23 +334,28 @@ sap.ui.define([
 								oView.getModel("EditModel").setProperty("/isEditable", false);
 								console.log('value starts with zero');
 
-							
 							}
-						var AllModel = oView.getModel("AllDataModel");
-								var path = AllModel.oData;
-								AllModel.setProperty(path + "/PONO");
-								oView.getModel("AllDataModel").setProperty("/PONO", Ebeln);
-								/*	var PO = new JSONModel({
-										PONO: Ebeln
-									});
+							var AllModel = oView.getModel("AllDataModel");
+							var path = AllModel.oData;
+							AllModel.setProperty(path + "/PONO");
+							oView.getModel("AllDataModel").setProperty("/PONO", Ebeln);
+							/*	var PO = new JSONModel({
+									PONO: Ebeln
+								});
 
-									oView.setModel(PO, "PO");*/
+								oView.setModel(PO, "PO");*/
 						}
-						var datedoc = oData.CreatDate;
-						var s_doc_date = datedoc;
+						var PostDate = oData.CreatDate;
+						var s_doc_date = PostDate;
 						var str = s_doc_date.toISOString();
 						str = str.slice(0, -5);
 						console.log(str);
+
+						var DocumentDates = oData.DocDate;
+						var s_doc_datePost = DocumentDates;
+						var Datepoststring = s_doc_datePost.toISOString();
+						Datepoststring = Datepoststring.slice(0, -5);
+						console.log(Datepoststring);
 
 						/*	var Megodate = new JSONModel({
 												CreatDate: str
@@ -362,6 +367,9 @@ sap.ui.define([
 						var path = AllModel.oData;
 						AllModel.setProperty(path + "/CreatDate");
 						oView.getModel("AllDataModel").setProperty("/CreatDate", str);
+
+						AllModel.setProperty(path + "/DocumentDate");
+						oView.getModel("AllDataModel").setProperty("/DocumentDate", Datepoststring);
 
 						//	console.log(oData.Vendor);
 						var vendor = oData.Vendor;
@@ -702,6 +710,7 @@ sap.ui.define([
 			console.log(oTempModel);
 			var oPoorder = oView.byId("idPD").getValue();
 			var oVendor = oView.byId("idVendor").getValue();
+
 			//	var idVendornumber = oView.byId("idvendorno").getValue();
 
 			var aItems = oTempModel.POItem;
@@ -751,17 +760,27 @@ sap.ui.define([
 			}
 			var oEntry1 = {};
 
-			var s_postingDate = CreateDocDate;
-			var str = s_postingDate.toISOString();
-			str = str.slice(0, -5);
-			console.log(str);
+			var Documentdate = oView.byId("idDocDate").getValue();
+			var PostingDate = oView.byId("idPostDate").getValue();
 
-			var s_documentDate = CreateDoctypeDate;
+			var date_post = new Date(PostingDate);
+			var podate = date_post.toISOString();
+			podate = podate.slice(0, -5);
+			console.log(podate);
+
+               
+
+
+
+
+
+			var s_documentDate = new Date(Documentdate); 
+			
 			var string = s_documentDate.toISOString();
 			string = string.slice(0, -5);
 			console.log(string);
 
-			oEntry1.Budat = str;
+			oEntry1.Budat = podate;
 			oEntry1.Bldat = string;
 			oEntry1.Xblnr = "1234";
 
@@ -792,6 +811,13 @@ sap.ui.define([
 			//	s.refresh(true);
 
 			oPurchaseModel.refresh(true);
+				var allmodel = oView.getModel("AllDataModel");
+	allmodel.setData({
+				oData: {}
+			});
+			allmodel.updateBindings(true);
+
+			allmodel.refresh(true);
 			//	oView.byId("vtitle").setValue("");
 			//	oView.byId("idPurchaseOrder").setValue("");
 			oView.byId("idPD").setValue("");
@@ -831,15 +857,15 @@ sap.ui.define([
 		},
 
 		_onCreateEntryError: function(oError) {
-
+		
 			BusyIndicator.hide();
 			var x = JSON.parse(oError.responseText);
 			var err = x.error.message.value;
 
 			jQuery.sap.require("sap.m.MessageBox");
-			
+
 			sap.m.MessageBox.error(
-				"Error creating entry: " + err + " "  
+				"Error creating entry: " + err + " "
 			);
 
 		},
@@ -852,10 +878,13 @@ sap.ui.define([
 				//	oPurchaseModel.setData([]);
 				var s = oPurchaseModel.oData.TempContract.destroy;
 				//	s.refresh(true);
-				var AllDataModel = oView.getModel("AllDataModel");
-				AllDataModel.setData();
-				AllDataModel.refresh(true);
+				var allmodel = oView.getModel("AllDataModel");
+	allmodel.setData({
+				oData: {}
+			});
+			allmodel.updateBindings(true);
 
+			allmodel.refresh(true);
 				oPurchaseModel.refresh(true);
 				this.getView().getModel("VHeader").refresh();
 

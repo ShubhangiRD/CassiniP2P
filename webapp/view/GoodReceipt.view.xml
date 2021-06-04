@@ -9,13 +9,12 @@
 				-->
 				<ObjectPageDynamicHeaderTitle >
 					<expandedHeading>
-							<m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
-						
-							<m:FlexBox fitContainer="true" alignItems="Center">
-						<m:HBox>
-							<m:Title text="Goods Receipt" wrapping="true"/>
-							<m:ObjectMarker type="Favorite" class="sapUiTinyMarginBegin"/>
-						</m:HBox>
+						<m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
+						<m:FlexBox fitContainer="true" alignItems="Center">
+							<m:HBox>
+								<m:Title text="Goods Receipt" wrapping="true"/>
+								<m:ObjectMarker type="Favorite" class="sapUiTinyMarginBegin"/>
+							</m:HBox>
 						</m:FlexBox>
 					</expandedHeading>
 					<snappedHeading>
@@ -93,9 +92,13 @@
 										<!--<m:Label text="Note"/>-->
 										<!--<m:Input id="idNote"/>-->
 										<m:Label text="Document Date"/>
-										<m:DatePicker id="idDocDate" editable="{EditModel>/isEditable}" value="{AllDataModel>/CreatDate}"/>
+										<m:DateTimePicker id="idDocDate" editable="{EditModel>/isEditable}" value="{ path: 'AllDataModel>/CreatDate' }"/>
+										<!--	<m:DatePicker id="idDocDate" editable="{EditModel>/isEditable}" value="{AllDataModel>/CreatDate}"/>
+									-->
 										<m:Label text="Posting Date"/>
-										<m:DatePicker id="idPostDate" value="{AllDataModel>/CreatDate}" editable="{EditModel>/isEditable}"/>
+										<m:DateTimePicker id="idPostDate" editable="{EditModel>/isEditable}" value="{ path: 'AllDataModel>/DocumentDate' }"/>
+										<!--		<m:DatePicker id="idPostDate" value="{AllDataModel>/DocumentDate}" editable="{EditModel>/isEditable}"/>
+								-->
 										<!--<m:Input type="Text" id="idPostDate" value="{Megodate>/CreatDate}" editable="{EditModel>/isEditable}"/>
 									-->
 										<core:Title text=" "/>
