@@ -1,0 +1,25 @@
+{
+"resutls":[
+   {"Taxtype":"01",
+    "Description":"01 Spec. person responsible for sales/purch.tax"
+   },
+   {"Taxtype":"02",
+    "Description":"02 Unspec. person responsible for sales/purch.tax"
+   },
+   {"Taxtype":"03",
+    "Description":"03 No person responsible for sales/purch.tax"
+   },
+   {"Taxtype":"04",
+    "Description":"04 Subject to exemption from sales/purch.tax"
+   },
+   {"Taxtype":"05",
+    "Description":"05 Sales/purch.tax consumer"
+   }
+
+	]
+
+	
+	
+	
+	
+}

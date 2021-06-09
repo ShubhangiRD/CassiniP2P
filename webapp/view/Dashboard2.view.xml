@@ -1,0 +1,221 @@
+<mvc:View controllerName="com.vSimpleApp.controller.Dashboard2" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:card="sap.f.cards"
+	xmlns:w="sap.ui.integration.widgets" xmlns:f="sap.f">
+	<tnt:ToolHeader>
+		<tnt:ToolPage id="toolPage">
+			<tnt:header>
+				<f:ShellBar title="" showMenuButton="true" homeIcon="./images/Cassini-logo.png" showCopilot="false" showNotifications="true"
+					menuButtonPressed="onMenuButtonPress" showProductSwitcher="false" notificationsNumber="2">
+					<f:menu>
+						<Menu>
+							<MenuItem text="Flight booking" icon="sap-icon://flight"/>
+							<MenuItem text="Car rental" icon="sap-icon://car-rental"/>
+						</Menu>
+					</f:menu>
+					<f:searchManager>
+						<f:SearchManager/>
+					</f:searchManager>
+				</f:ShellBar>
+			</tnt:header>
+		</tnt:ToolPage>
+	</tnt:ToolHeader>
+	<App>
+		<pages>
+			<Page title="Dashboard" showHeader="false" class="sapUiTinyMargin">
+				<content>
+					<f:GridContainer id="grid12" borderReached=".onBorderReached">
+						<GenericTile subheader="Create/Update/Display" header="Create Vendor" press="onPress">
+							<layoutData>
+								<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+							</layoutData>
+							<tileContent>
+								<TileContent unit="Unit" footer="Footer Text">
+									<ImageContent class="iconCollection icon-activity-items size" src="sap-icon://activity-items"/>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+						
+						<GenericTile header="Purchase Order Creation" press="onPress1">
+							<layoutData>
+								<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+							</layoutData>
+							<tileContent>
+								<TileContent unit="Unit" footer="Footer Text">
+									<ImageContent class="iconCollection icon-activity-items size" src="sap-icon://credit-card"/>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+						<!--<w:Card manifest="{manifests>/list2}">
+							<w:layoutData>
+								<f:GridContainerItemLayoutData  columns="3"/>
+							</w:layoutData>
+						</w:Card>-->
+						<!--	<w:Card manifest="{manifests>/list4}">
+							<w:layoutData>
+								<f:GridContainerItemLayoutData  columns="3"/>
+							</w:layoutData>
+						</w:Card>-->
+						<GenericTile header="Post Goods Receipt" press="onPress">
+							<layoutData>
+								<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+							</layoutData>
+							<tileContent>
+								<TileContent unit="Unit" footer="Footer Text">
+									<ImageContent class="iconCollection icon-activity-items size" src="sap-icon://monitor-payments"/>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+						<GenericTile header="Book Invoice" press="onPress">
+							<layoutData>
+								<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+							</layoutData>
+							<tileContent>
+								<TileContent unit="Unit" footer="Footer Text">
+									<ImageContent class="iconCollection icon-activity-items size" src="sap-icon://travel-expense-report"/>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+						<GenericTile header="Vendor Rebates" press="onPress">
+							<layoutData>
+								<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+							</layoutData>
+							<tileContent>
+								<TileContent unit="Unit" footer="Footer Text">
+									<ImageContent class="iconCollection icon-activity-items size" src="sap-icon://supplier"/>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+						<w:Card manifest="{manifests>/donut}">
+							<w:layoutData>
+								<f:GridContainerItemLayoutData rows="3" columns="3"/>
+							</w:layoutData>
+						</w:Card>
+						<f:Card >
+							<f:layoutData>
+								<f:GridContainerItemLayoutData columns="10"/>
+							</f:layoutData>
+							<f:header>
+								<card:Header title="Purchase Order List"/>
+							</f:header>
+							<f:content>
+								<Table id="awaitingTable" items="{ListofPOData>/}" class="sapUiSizeCompact">
+									<headerToolbar>
+										<Toolbar>
+											<content>
+												<Title text=" " level="H2"/>
+											</content>
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Line"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Material Description"/>
+										</Column>
+										<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+											<Text text="Quantity"/>
+										</Column>
+										<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+											<Text text="Unit of Quantity"/>
+										</Column>
+										<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+											<Text text="Purchase Orders"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<ObjectIdentifier title="{ListofPOData>Bukrs}"/>
+												<ObjectIdentifier title="{ListofPOData>Bukrs}"/>
+												<ObjectIdentifier title="{ListofPOData>Bukrs}"/>
+												<ObjectIdentifier title="{ListofPOData>Bukrs}"/>
+												<ObjectIdentifier title="{ListofPOData>Bukrs}"/>
+												<!--	<ObjectIdentifier title="{ListofPOData>Bukrs}"/>
+											<Button icon="sap-icon://paper-plane" text="Post" press="onPost" type="Accept" ariaLabelledBy="editButtonLabel"/>
+							-->
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</f:content>
+						</f:Card>
+						<!--<w:Card manifest="{manifests>/table}">
+							<w:layoutData>
+								<f:GridContainerItemLayoutData minRows="6" columns="10"/>
+							</w:layoutData>
+						</w:Card>-->
+						<!--	<w:Card manifest="{manifests>/list5}" id ="VendorListid">
+							<w:layoutData>
+								<f:GridContainerItemLayoutData  columns="3"/>
+							</w:layoutData>
+						</w:Card>-->
+						<f:Card >
+							<f:layoutData>
+								<f:GridContainerItemLayoutData columns="3"/>
+							</f:layoutData>
+							<f:header>
+								<card:Header title="Vendor Name List"/>
+							</f:header>
+							<f:content>
+					
+								<List id="collectionGroupList" items="{ path: 'ListofVendorData>/' }" noDataText="No data" mode="SingleSelectMaster"
+									itemPress="onSelectionChange">
+									<StandardListItem type="Navigation" title="{ListofVendorData>Lifnr}" description="{ListofVendorData>Name1}"/>
+									<headerToolbar>
+										<Toolbar>
+											<ToolbarSpacer/>
+											<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search=".onSearch" width="auto"></SearchField>
+										</Toolbar>
+									</headerToolbar>
+								</List>
+							</f:content>
+						</f:Card>
+					</f:GridContainer>
+					<!--	<Table id="awaitingTable" class="sapUiSizeCompact" items="{ path: 'approvedDocuments>/', sorter: { path: 'approvedDocuments>uniqueId' } }">
+						<headerToolbar>
+							<Toolbar>
+								<content>
+									<Title text=" " level="H2"/>
+								
+								</content>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Text text="Line"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Material Description"/>
+							</Column>
+							<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+								<Text text="Quantity"/>
+							</Column>
+							<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+								<Text text="Unit of Quantity"/>
+							</Column>
+							<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+								<Text text="Purchase Orders"/>
+							</Column>
+						
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<ObjectIdentifier title="{approvedDocuments>uniqueId}"/>
+									<ObjectIdentifier title="{approvedDocuments>vendorName}" text="{approvedDocuments>vendorNo}"/>
+									<Text text="MM"/>
+									<Text text="{ path: 'approvedDocuments>documentDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd' } }"
+										wrapping="false"/>
+									<Button icon="sap-icon://paper-plane" text="Post" press="onPost" type="Accept" ariaLabelledBy="editButtonLabel"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+			-->
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

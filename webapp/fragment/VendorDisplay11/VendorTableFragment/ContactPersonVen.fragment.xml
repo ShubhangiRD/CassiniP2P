@@ -1,0 +1,101 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Contact Person Details" id="idContactPersonDetails" afterClose="onAfterClose" class="sapUiSizeCompact" contentHeight="400px"
+		contentWidth="800px">
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="idContactPersonForms" editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Form Of Address">
+								<f:fields>
+									<Input id="formofaddcontp" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>Material}" valueHelpRequest="handleformofadd" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestFormofadd" liveChange="formofaddcontperson">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="First Name">
+								<f:fields>
+									<Input class="desc1" id="idfirstcontname" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+										valueHelpRequest="handleNameContatPerson" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{PurchaseModel>ShortText}"
+										suggestionItemSelected="onSuggestnameContatctPerson">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Name ">
+								<f:fields>
+									<Input id="Namecontper" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Telephone">
+								<f:fields>
+									<Input id="idTelephone1" class="measure1" value="{PurchaseModel>PoUnit}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Description">
+								<f:fields>
+									<Input id="iddescrptn2" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Function">
+								<f:fields>
+									<Input id="idfunctn" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Plant}"
+										valueHelpRequest="handleValueHelpidfunctn" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestidfunctn">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Description ">
+								<f:fields>
+									<Input id="iddescriptionF" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Department">
+								<f:fields>
+									<Input id="iddeptcp" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Plant}"
+										valueHelpRequest="handleValueHelpiddeptcp" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestiddeptcp">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+				<Button text="Close"  press="onExitContactDetails"/>
+		
+				</beginButton>
+		<endButton>
+		
+				<Button text="Save" type="Emphasized" press="onSaveContactDetails"/>
+	
+			
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

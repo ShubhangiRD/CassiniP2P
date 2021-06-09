@@ -1,0 +1,120 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+        xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+   	<VBox class="sapUiSmallMargin" alignContent="Center">
+		
+					
+					<form:SimpleForm id="SimpleFormChange480_12120" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+						labelSpanS="12" adjustLabelSpan="false" columnsXL="2" columnsL="2" columnsM="1" class="myFormMarginTop" singleContainerFullSize="false">
+						<form:content>
+							<core:Title text="Initial"/>
+						<Label text="Vendor" required="true"/>
+						<Input  id="idVendor" value="{VendorModel>/VendorTemp/VendorNo}"   textFormatMode="KeyValue" placeholder="Vendor Number" showSuggestion="true"
+							showValueHelp="true" valueHelpRequest="handleVendorValueHelpBox" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+							suggestionItemSelected="onSuggest" width="70%">
+							<suggestionItems>
+								<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+							</suggestionItems>
+						</Input>
+							
+							
+							<!--<Input  value="{Vendor>/FirstName}" id="idFname" placeholder="Name ..."></Input>
+							--><Label text="Purchase Org" required="true"/>
+							<Input  id="idPurOrg"  value="{VendorModel>/VendorTemp/PurchasingOrg}" textFormatMode="KeyValue" placeholder=" Purchase Org" showSuggestion="true" showValueHelp="true"
+								valueHelpRequest="handlePurchaseOrgVendor" width="70%" suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
+								</suggestionItems>
+							</Input>
+							<Label text="Company Code" required="true"/>
+							<Input id="idCompCode"   value="{VendorModel>/VendorTemp/CompanyCode}" textFormatMode="KeyValue" placeholder="Company Code" showSuggestion="true" showValueHelp="true"
+							 	valueHelpRequest="handleCompanyCodeVendor" width="70%" suggestionItems="{ path: 'Lookup>/CountryCode' }" suggestionItemSelected="onSuggest">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
+								</suggestionItems>
+							</Input>
+							
+								<Label text="Account Group" required="true"/>
+							<Input id="idAccGp" textFormatMode="KeyValue" placeholder="Account Group ..." showSuggestion="true" showValueHelp="true"
+									value="{VendorModel>/VendorTemp/VendorAccountGroup}"		valueHelpRequest="handleAccountCodeVendor" width="70%" suggestionItems="{ path: 'Lookup>/AccountGroup' }" suggestionItemSelected="onSuggest">
+											<suggestionItems>
+												<core:ListItem key="{Lookup>Ktokk}" text="{Lookup>Ktokk}" additionalText="{Lookup>Ktokk}"/>
+											</suggestionItems>
+										</Input>
+						</form:content>
+					</form:SimpleForm>
+					
+				
+					
+			<!--		<form:SimpleForm id="SimpleFormChangesecond" editable="true" layout="ResponsiveGridLayout" columnsXL="2" columnsL="2" columnsM="2"
+						title="General Data">
+						<form:content>
+							<VBox class="VendorDisplyaclass">
+							<CheckBox text="Address" selected="true">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox>
+							<CheckBox id="idControl" text="Control">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox>
+							<CheckBox text="Payment Transaction" width="300px">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox>
+							<CheckBox text="Contact Person" width="200px">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox></VBox>
+						</form:content>
+					</form:SimpleForm>
+				
+					<form:SimpleForm id="SimpleFormChangethird" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+						labelSpanS="12" adjustLabelSpan="true" emptySpanL="0" emptySpanM="0" emptySpanS="0" singleContainerFullSize="false"
+						title="Company Code Data">
+						<form:content>
+								<VBox class="VendorDisplyaclass">
+							<CheckBox text="Accounting Information" selected="true">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox>
+							<CheckBox text="Payment Transaction" width="200px">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox>
+							<CheckBox id="iCorrespondence" text="Correspondence">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox>
+							<CheckBox text="Withholding tax" width="200px">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox></VBox>
+						</form:content>
+					</form:SimpleForm>
+					<form:SimpleForm id="SimpleFormChangefour" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+						labelSpanS="12" adjustLabelSpan="false" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1"
+						singleContainerFullSize="false" title="Purchase Order Data">
+						<form:content>
+								<VBox class="VendorDisplyaclass">
+							<CheckBox text="Purchasing Data" selected="true">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox>
+							<CheckBox text="Partner Function" width="200px">
+								<layoutData>
+									<l:GridData linebreak="true" indentL="4" indentM="4"/>
+								</layoutData>
+							</CheckBox></VBox>
+						</form:content>
+					</form:SimpleForm>
+			-->	</VBox>
+</core:FragmentDefinition>

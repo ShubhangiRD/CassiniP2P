@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="Retails" editable="true" class="sapUiTinyMarginTop">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="A Table Rel">
+							<f:fields>
+								<Input id="TabRel" maxLength="10" textFormatMode="KeyValue" showSuggestion="true" value="{CreateVendor>/VendorContract/Lifnr}"
+									showValueHelp="true" valueHelpRequest="handleMaterialValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="onSuggest">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+								<Input id="TabRel2" maxLength="3" textFormatMode="KeyValue" showSuggestion="true" value=" " showValueHelp="true"
+									valueHelpRequest="handleMaterialValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggest">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Allocation Table" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Select id="idAllocatnTab" class="sapUiTinyMarginTop">
+									<items>
+										<core:Item text=" " key=" "/>
+										<core:Item text=" " key=" "/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

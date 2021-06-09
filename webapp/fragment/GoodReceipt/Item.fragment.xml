@@ -1,0 +1,519 @@
+<core:FragmentDefinition xmlns="sap.m" 
+xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+<VBox class="TableBoxClass sapUiSmallMargin">
+				<t:Table id="idTableitem"  rows="{ path: 'PurchaseModel>/TempContract/POItem'}" editable="true" visibleRowCount="4"
+					selectionMode="MultiToggle">
+					<t:extension>
+						<OverflowToolbar>
+							<Title text=" Purchase Order Items"/>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://delete" enabled="{=${PurchaseModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+								tooltip="Delete Row" press="onDeleteConditionItem"/>
+						</OverflowToolbar>
+					</t:extension>
+					<t:columns>
+						<t:Column width="7rem" hAlign="Center">
+							<Label text="Line"/>
+							<t:template>
+								<Input id="idMaterialNumber" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" value="{PurchaseModel>PoItem}" ></Input>
+							</t:template>
+						</t:Column>
+							<t:Column hAlign="Center" width="12rem">
+							<Label text="Material Number"/>
+							<t:template>
+								<Input class="desc1" id="Material" value="{PurchaseModel>Material}" editable="{EditModel>/isEditable}"></Input>
+							</t:template>
+						</t:Column>
+						<t:Column hAlign="Center" width="12rem">
+							<Label text="Material Description"/>
+							<t:template>
+								<Input class="desc1" id="nDescription" value="{PurchaseModel>ShortText}" editable="{EditModel>/isEditable}" ></Input>
+							</t:template>
+						</t:Column>
+						<!--<t:Column width="4rem" hAlign="Center">-->
+						<!--	<Label text="OK"/>-->
+						<!--	<t:template>-->
+						<!--		<CheckBox id="idOK"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+					<!--	<t:Column width="9rem" hAlign="Center">
+							<Label text="Vendor"/>
+							<t:template>
+								<Input id="Price" value="{PurchaseModel>SuppVendor}" class="price1" editable="false"/>
+							</t:template>
+						</t:Column>-->
+						
+					
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<t:Column width="9rem" hAlign="Center">
+							<Label text="Storage Location"/>
+							<t:template>
+								<Input id="idCust" value="{PurchaseModel>StgeLoc}" editable="{EditModel>/isEditable}"  textFormatMode="KeyValue" placeholder="Storage Location" showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleStorageLocationValue" suggestionItems="{ path: 'Lookup>/StorageLocationList'}"
+									suggestionItemSelected="suggestionItemStorageLocation">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lgort}" text="{Lookup>Lgobe}" additionalText="{Lookup>Lgort}"/>
+									</suggestionItems>
+								</Input>
+							</t:template>
+						</t:Column>
+						
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Plant"/>
+								<t:template>
+									<Input id="idBatch" value="{PurchaseModel>Plant}" editable="{EditModel>/isEditable}"/>
+								</t:template>
+							</t:Column>
+						<t:Column width="7rem" hAlign="Center">
+							<Label text="Quantity"/>
+							<t:template>
+						<!--		<u:Currency id="Quantity" textAlign="Center" stringValue="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}" currency="{ }" useSymbol="true"/>
+						-->
+								<Input id="Quantity" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}"  textAlign="End"/>
+							</t:template>
+						</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+							<Label text="NetPrice"/>
+							<t:template>
+										<u:Currency id="idNetprice" textAlign="Center" stringValue="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}" currency="{ }" useSymbol="true"/>
+						
+						<!--		<Input id="idNetprice" value="{PurchaseModel>NetPrice}" textAlign="End" editable="{EditModel>/isEditable}"></Input>
+						-->	</t:template>
+						</t:Column>
+						<t:Column width="7rem" hAlign="Center">
+							<Label text="Unit of Quantity"/>
+							<t:template>
+								<Input id="uom1" value="{PurchaseModel>PoUnit}"  editable="{EditModel>/isEditable}" class="measure1"/>
+							</t:template>
+						</t:Column>
+						<!--<t:Column width="4rem" hAlign="Center">-->
+						<!--	<Label text="EUn"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idEUn" showSuggestion="true" showValueHelp="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Stock Determin."/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idStockDetermin"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Storage Location"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idStorageLocation"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Cost Center"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idCostCenter" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Business Area"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idBusinessArea" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Profit Center"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idProfitCenter" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="G/L Account"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idGLAccount" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="5rem" hAlign="Center">-->
+						<!--	<Label text="Batch"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idBatch"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Valuation Type"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idValuationType"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Movement Type"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idMovementType1" showSuggestion="true" showValueHelp="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Direction"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idDirection" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Stock Type"/>-->
+						<!--	<t:template>-->
+						<!--		<Select id="idStockType" selectedKey="Unrestricted" class="sapclassinputbox">-->
+						<!--			<items>-->
+						<!--				<core:Item text="Unrestricted" key="Unrestricted"/>-->
+						<!--				<core:Item text="Quality inspection" key="Quality inspection"/>-->
+						<!--				<core:Item text="Blocked Stock" key="Blocked Stock"/>-->
+						<!--			</items>-->
+						<!--		</Select>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						
+					
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Special Stock"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idSpecialStock" showSuggestion="true" showValueHelp="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Customer"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idCustomer"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Vendor"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idVendor1" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Sales Order"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idSalesOrder"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="9rem" hAlign="Center">-->
+						<!--	<Label text="Sales Order Item"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idSalesOrderItem"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="WBS Element"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idWBSElement"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column  width="7rem" hAlign="Center">-->
+						<!--	<Label text="Qty in OPUn"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idQtyInOPUn"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column  width="7rem" hAlign="Center">-->
+						<!--	<Label text="OPUn"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idOPUn"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+					
+						<!--<t:Column  width="7rem" hAlign="Center">-->
+						<!--	<Label text="Item"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idItem" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column  width="9rem" hAlign="Center">-->
+						<!--	<Label text="DCi in PO Item"/>-->
+						<!--	<t:template>-->
+						<!--		<CheckBox id="idDCIPOItem"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Del. Comp. Ind."/>-->
+						<!--	<t:template>-->
+						<!--		<Select id="idDelCompInd" selectedKey="Set automatically" class="sapclassinputbox">-->
+						<!--			<items>-->
+						<!--				<core:Item text="Set automatically" key="Set automatically"/>-->
+						<!--				<core:Item text="Set" key="Set"/>-->
+						<!--				<core:Item text="Do not set" key="Do not set"/>-->
+						<!--			</items>-->
+						<!--		</Select>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Del Date"/>-->
+						<!--	<t:template>-->
+						<!--		<DatePicker id="idDelDate"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Ref Doc"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idRefDoc"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Date of Manuf."/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idDateOfManuf"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="SLED/BBD"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idSLEDBBD"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Base Unit"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idBaseUnit" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Del Note Qty"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idDelNoteQty" />-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Del Note Unit"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idDelNoteUnit"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="EAN Check"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idEANCheck"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="EAN OUn"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idEANOUn"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="EAN BUn"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idEANBUn"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="MPN Material"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idMPNMaterial"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Acct Ass. Cat."/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idAcctAssCat" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Return"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idReturn"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Text"/>-->
+						<!--	<t:template>-->
+						<!--		<Input type="Text" id="idText1"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Unloading Point"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idUnloadingPoint1"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Recipient"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idRecipient"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Material"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idMaterial" showValueHelp="true" showSuggestion="true" />-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Vendor Material Number"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idVendorMaterialNumber"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Vendor Batch"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idVendorBatch"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Plant"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idPlant1" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Storage Location"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idStorageLocation1"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Storage Bin"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idStorageBin1"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Requisitioner"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idRequisitioner"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Customer"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idCustomer1"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Vendor"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idVendor2" showValueHelp="true" showSuggestion="true"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Sales Value"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idSalesValue"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Lot Container"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idLotContainer"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="No. Containers"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idNoContainers"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label  text="Reason for mvmt"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idReasonForMvmt"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Reason"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idReason"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="PO Quantity"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idPOQuantity"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Received"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idReceived"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Issued"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idIssued"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="OUn"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idOUn"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Promotion"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idPromotion"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Batch restr."/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idBatchRestr"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Ext. Amount LC"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idExtAmountLC"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="RfIt"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idRfIt"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Currency"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idCurrency"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="GRS"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idGRS"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--<t:Column width="7rem" hAlign="Center">-->
+						<!--	<Label text="Service Data"/>-->
+						<!--	<t:template>-->
+						<!--		<Input id="idServiceData"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						
+						<!--	<t:Column width="9rem" hAlign="Center">-->
+						<!--		<Label text="Vendor Name"/>-->
+						<!--		<t:template>-->
+						<!--			<Input id="idVend" value="{PurchaseModel>VendorNameee}"  editable="false"/>-->
+						<!--		</t:template>-->
+						<!--	</t:Column>-->
+						<!--			<t:Column width="9rem" hAlign="Center">-->
+						<!--		<Label text="Sales Order"/>-->
+						<!--		<t:template>-->
+						<!--			<Input id="idSales"/>-->
+						<!--		</t:template>-->
+						<!--	</t:Column>-->
+						<!--	<t:Column width="9rem" hAlign="Center">-->
+						<!--		<Label text="Valuation type"/>-->
+						<!--		<t:template>-->
+						<!--			<Input id="idVal"/>-->
+						<!--		</t:template>-->
+						<!--	</t:Column>-->
+					</t:columns>
+				</t:Table>
+			</VBox>
+</core:FragmentDefinition>

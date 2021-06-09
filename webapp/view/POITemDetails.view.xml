@@ -1,0 +1,168 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
+	xmlns:t="sap.ui.table" xmlns:tnt="sap.tnt"  controllerName="com.vSimpleApp.controller.POITemDetails">
+	
+<m:Page  showNavButton="true"
+		navButtonPress="onNavBack">
+		<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true">
+		<headerTitle>
+			<ObjectPageHeader id="headerForTest" objectTitle="Purchase Order : {pomodel>/PurchaseO}"  objectSubtitle="Standard PO">
+				<actions>
+					<ObjectPageHeaderActionButton text="Edit" id="iddEdit" type="Emphasized" hideText="false" tooltip="edit" press="onEditPress"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline" press="OnCancel"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Emphasized" id="idSave" text="Save" tooltip="save" press="onSavePurchaseOrder"/>
+				</actions>
+			</ObjectPageHeader>
+				</headerTitle>
+		<headerContent>
+			
+			<l:VerticalLayout>
+				<!--	<m:ObjectStatus text="Document {pomodel>/PurchaseO}  does not contain any selectable items" state="Error"/>
+				-->
+				<m:ObjectAttribute text="Vendor: {oHeaderDataModel>/Number}"/>
+				<m:ObjectAttribute  text="{oHeaderDataModel>/Name}"/>
+			
+			</l:VerticalLayout>
+				<l:VerticalLayout>
+				<m:ObjectAttribute text="Created by   : {oHeaderDataModel>/createdby}"/>
+				<m:ObjectAttribute text="Created Date :{oHeaderDataModel>/createddate}"/>
+				<m:ObjectAttribute text="Company Code : {oHeaderDataModel>/CompCodeno}"/>
+			
+			</l:VerticalLayout>
+			<l:VerticalLayout>
+				<m:ObjectAttribute text="{oHeaderDataModel>/CompCodename}"/>
+			</l:VerticalLayout>
+			<!--<l:VerticalLayout>
+				<m:Label text="NetValue"/>
+				<m:ObjectAttribute text="{oHeaderDataModel>/CompCodename}"/>
+			</l:VerticalLayout>-->
+		</headerContent>
+		<sections>
+			<!--Tabs-->
+			<ObjectPageSection titleUppercase="false"  title="Org Data">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.OrgData" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" title="Items">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.EditTable" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false"  title="Delivery Invoice">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.DeliveryInvoice" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false"  title="Address">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.AddressHeader" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false"  title="Communication">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.CommunicationHeader" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="Partners" title="Partenrs">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.Partners" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="Additionaldata" title="Additional Data">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.AdditionalData" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="Status" title="Status">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.Status" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="PP" title="Payment sProcessing">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.PaymentProcessing" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Item Details">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+								<m:IconTabBar id="idIconTabPO">
+									<m:items>
+										<m:IconTabFilter text="Material Data">
+												<core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.MaterialData" type="XML"/>
+										</m:IconTabFilter>
+										<m:IconTabFilter text="Quantities">
+											    <core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.Quantities" type="XML"/>
+										</m:IconTabFilter>
+											<m:IconTabFilter text="Delivery Schedule">
+											    <core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.DeliverySchedule" type="XML"/>
+										</m:IconTabFilter>
+											<m:IconTabFilter text="Delivery">
+											    <core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.Delivery" type="XML"/>
+										</m:IconTabFilter>
+											<m:IconTabFilter text="Invoice">
+											    <core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.Invoice" type="XML"/>
+										</m:IconTabFilter>
+											<m:IconTabFilter text="Conditions">
+											    <core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.Conditions" type="XML"/>
+										</m:IconTabFilter>
+											<m:IconTabFilter text="Delivery Address">
+											    <core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.DeliveryAddress" type="XML"/>
+										</m:IconTabFilter>
+											<m:IconTabFilter text="Confirmation">
+											    <core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.Confirmation" type="XML"/>
+										</m:IconTabFilter>
+											<m:IconTabFilter text="Condition Control">
+											    <core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.ConditionControl" type="XML"/>
+										</m:IconTabFilter>
+											<m:IconTabFilter text="Retails">
+											    <core:Fragment fragmentName="com.vSimpleApp.view.PurchaseOrderFragment.Retails" type="XML"/>
+										</m:IconTabFilter>
+									</m:items>
+								</m:IconTabBar>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</m:Page>
+</mvc:View>

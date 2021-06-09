@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" displayBlock="true" xmlns:tnt="sap.tnt">
+	
+	<!--	<tnt:ToolPage id="toolPage">
+	<tnt:header>
+			
+			<f:ShellBar title="Vendor Rebate Management"
+				showMenuButton="true"
+				homeIcon="./images/Logo.png"
+				showCopilot="false"
+				showNotifications="true"
+				menuButtonPressed="onMenuButtonPress"
+				showProductSwitcher="false"
+				notificationsNumber="2">
+				<f:menu>
+					<Menu>
+						<MenuItem text="Flight booking" icon="sap-icon://flight" />
+						<MenuItem text="Car rental" icon="sap-icon://car-rental" />
+					</Menu>
+				</f:menu>
+				<f:profile>
+					<f:Avatar initials="JS" press="onUserNamePress"/>
+				</f:profile>
+				<f:searchManager>
+					<f:SearchManager/>
+				</f:searchManager>
+			</f:ShellBar>
+		</tnt:header>
+	</tnt:ToolPage>-->
+	
+		<tnt:ToolHeader>
+		<Button icon="sap-icon://menu2" type="Transparent" press="onMenuButtonPress">
+			<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow" />
+			</layoutData>
+		</Button>
+		<Image src="./images/Cassini-logo.png" densityAware="false" class="logo" width="9rem">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Image>
+		<FlexBox
+			direction="Column"
+			alignItems="Start">
+			<items>
+			
+				<Text text="Vendor Rebate Management" class="userName" />
+			</items>
+		</FlexBox>
+		<ToolbarSpacer />
+		
+		<ToolbarSpacer />
+		<Button icon="sap-icon://comment" type="Transparent">
+			<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow" />
+			</layoutData>
+		</Button>
+		<Switch state="true" customTextOn="EN" customTextOff="DE" change="onChangeLanguage">
+			<layoutData>
+				<FlexItemData growFactor="1" />
+			</layoutData>
+		</Switch>
+	</tnt:ToolHeader>
+</core:FragmentDefinition>

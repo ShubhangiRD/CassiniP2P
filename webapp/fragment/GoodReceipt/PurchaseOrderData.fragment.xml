@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+<VBox class="sapUiSmallMargin">
+								<f:Form id="idPOformDAta" editable="true">
+									<f:layout>
+										<f:ResponsiveGridLayout labelSpanXL="6" labelSpanL="6" labelSpanM="6" labelSpanS="6" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+											emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+									</f:layout>
+									<f:formContainers>
+										<f:FormContainer>
+											<f:formElements>
+												<f:FormElement label="Purchase Order">
+													<f:fields>
+														<Input id="idPOrder" editable="{EditModel>/isEditable}" textFormatMode="KeyValue"></Input>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="Del Completed IND">
+													<f:fields>
+														<Input type="Text" id="idIND" value=" " editable="{EditModel>/isEditable}"></Input>
+													</f:fields>
+												</f:FormElement>
+											</f:formElements>
+										</f:FormContainer>
+									</f:formContainers>
+								</f:Form>
+							</VBox>
+</core:FragmentDefinition>

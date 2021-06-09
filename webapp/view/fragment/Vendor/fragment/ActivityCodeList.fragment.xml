@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Activity Code List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/ActivityCodeList}"
+		search="_handleActivityCodeSearch"
+		confirm="_handleActivityCodeClose"
+		cancel="_handleActivityCodeClose">
+		<StandardListItem
+			title="{Lookup>Actvt}" />
+	</SelectDialog>
+</core:FragmentDefinition>

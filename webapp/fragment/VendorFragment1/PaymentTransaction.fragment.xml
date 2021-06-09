@@ -1,0 +1,163 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		
+		<f:Form id="FormChange2payment" editable="true" class="myFormMarginBottom">
+			<f:title>
+				<core:Title text="Payment Data "/>
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Payment Terms">
+							<f:fields>
+								<Input id="idpaymentterms" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" value="{VendorModel>/VendorTemp/TermsPaymentKey}" showValueHelp="true"
+									valueHelpRequest="handlePaymenttermsHelp" suggestionItems="{ path: 'Lookup>/PaymentTermsList' }"
+									suggestionItemSelected="onSuggestpaymentterms">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Cr Memo Terms">
+							<f:fields>
+								<Input id="idmemoterms" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
+									valueHelpRequest="handlePaymenttermsHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestmemoterms">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Chk Cashing time">
+							<f:fields>
+								<Input id="idchkcashingtime" editable="{EditModel>/isEditable}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Tolerance Group ">
+							<f:fields>
+								<Input id="idtolerencegp" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"  showValueHelp="true"
+									valueHelpRequest="handleToleranceGrpValueHelp" suggestionItems="{ path: 'Lookup>/ToleranceGroupList' }"
+									suggestionItemSelected="onSuggestTolerence">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" ">
+							<f:fields>
+								<CheckBox id="checkdouble" text="Check Double inv"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<f:Form id="FormChange3payment" editable="true" class="myFormMarginBottom">
+			<f:title>
+				<core:Title text="Automatic Payment Transaction"/>
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Payment Methods">
+							<f:fields>
+								<Input id="idpaymethod" maxLength="2" value="{VendorModel>/VendorTemp/PaymentMethods}"   editable="{EditModel>/isEditable}" showValueHelp="true" class="sapUiSmallMarginTop"
+									valueHelpRequest="handlePaymentmethod" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="onSuggestPaymentMethod">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Alternate.Payee">
+							<f:fields>
+								<Input id="idAlternate.Payee" maxLength="10"   editable="{EditModel>/isEditable}" showValueHelp="true"
+									valueHelpRequest="handleAlternatePayee" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="onSuggestAlternatePayee">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="B/Exch/Limit ">
+							<f:fields>
+								<Input id="BExchLimit" maxLength="13"  editable="{EditModel>/isEditable}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" ">
+							<f:fields>
+								<CheckBox id="idindividualpmnt" text="Individual Pmnt"   />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Payment Block">
+							<f:fields>
+								<Input id="idpayBlock" maxLength="1"  showValueHelp="true"  editable="{EditModel>/isEditable}" valueHelpRequest="handlePaymentBlock"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestPaymentBlock">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="House Bank ">
+							<f:fields>
+								<Input id="idHousebank" maxLength="5"  editable="{EditModel>/isEditable}"  showValueHelp="true" valueHelpRequest="handleHousebank"
+									suggestionItems="{ path: 'Lookup>/HouseBankList' }" suggestionItemSelected="onSuggesthousebank">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" Grouping Key">
+							<f:fields>
+								<Input id="idHGrouping" maxLength="2"  showValueHelp="true"   editable="{EditModel>/isEditable}" valueHelpRequest="handleGrouping"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestGrouping">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" Tolerence Group">
+							<f:fields>
+								<Input id="ifTolerencegrp" maxLength="4"  editable="{EditModel>/isEditable}" textFormatMode="KeyValue" showSuggestion="true" 
+									showValueHelp="true" valueHelpRequest="handleToleranceGrpValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="onSuggestTolerence">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" ">
+							<f:fields>
+								<CheckBox id="alternatepayiddoc" text="AltPayDoc"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

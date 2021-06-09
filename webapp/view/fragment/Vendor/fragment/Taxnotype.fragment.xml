@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Tax number typeList"
+		class="sapUiPopupWithPadding"
+		items="{taxnotype>/results}"
+		search="_handleTaxnoTypeSearch"
+		confirm="_handleTaxnoTypeClose"
+		cancel="_handleTaxnoTypeClose">
+		<StandardListItem
+			title="{taxnotype>taxnoType}"
+			info="{taxnotype>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

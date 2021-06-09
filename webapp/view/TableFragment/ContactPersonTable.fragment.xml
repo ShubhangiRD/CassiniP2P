@@ -1,0 +1,99 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" >
+	<Dialog id="ContactDialog" title="Contact Person" contentWidth="800px" contentHeight="500px" resizable="true" draggable="true">
+		
+		<!--<Label text="Form of Address" class="sapDialogLabel"/>-->
+		<!--<Input id="idFormOfAddress" placeholder="Address"/>-->
+		<!--<Label text="First name" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idFirstName" placeholder="First name"/>-->
+		<!--<Label text="Name" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idName" placeholder="Name"/>-->
+		<!--<Label text="Telephone1" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idTelephone11" placeholder="Telephone"/>-->
+		<!--<Label text="Department" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idDepartment" placeholder="Department"/>-->
+		<!--<Label text="Description" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idDescription1" placeholder="Description"/>-->
+		<!--<Label text="Function" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idFunction" placeholder="Function"/>-->
+		<!--<Label text="Description" class="sapUiSmallMarginTop sapDialogLabel"/>-->
+		<!--<Input id="idDescription2" placeholder="Description"/>-->
+		<VBox class="sapUiSmallMargin">
+		<f:Form id="FormChange355"
+			editable="true" class="myFormMarginTop">
+			<f:title>
+				<core:Title text=""/>
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Form of Address">
+							<f:fields>
+								<Input value="{FormOfAddress}" id="idFormOfAddress" placeholder="Form of Address"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="First name">
+							<f:fields>
+								<Input value="{FirstName}" id="idFirstName" placeholder="First name"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Name">
+							<f:fields>
+								<Input id="idName" value="{Name}" placeholder="Name">
+									
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Telephone1">
+							<f:fields>
+							<Input id="idTelephone11" placeholder="Telephone" value="{Telephone1}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Department">
+							<f:fields>
+							<Input id="idDepartment" placeholder="Department" value="{Department}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Description">
+							<f:fields>
+							<Input id="idDescription1" placeholder="Description" value="{Description1}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Function">
+							<f:fields>
+							<Input id="idFunction" placeholder="Function" value="{Function}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Description">
+							<f:fields>
+							<Input id="idDescription2" placeholder="Description" value="{Description}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+		<beginButton>
+			<Button text="{i18n>dialogOkButton}" press="onDialogContactOk"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>dialogCancelButton}" press="onDialogContactCancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

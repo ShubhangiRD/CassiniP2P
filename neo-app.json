@@ -1,0 +1,69 @@
+{
+  "welcomeFile": "/webapp/index.html",
+  "routes": [
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "Cassini01",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "Cassini01"
+    },
+     {
+      "path": "/ocrclient",
+      "target": {
+        "type": "destination",
+        "name": "ocr_client_api",
+        "entryPath": "/"
+      },
+      "description": "OCR Client API"
+    },
+    {
+      "path": "/ocrspring",
+      "target": {
+        "type": "destination",
+        "name": "ocr_rest_spring",
+        "entryPath": "/"
+      },
+      "description": "OCR Spring API"
+    },
+    {
+      "path": "/dataVerifier",
+      "target": {
+        "type": "destination",
+        "name": "dataVerifier",
+        "entryPath": "/"
+      },
+      "description": "Data Verifier API"
+    },
+     {
+      "path": "/vendorSpringRest",
+      "target": {
+        "type": "destination",
+        "name": "VendorFile",
+        "entryPath": "/"
+      },
+      "description": "Vendor Spring API"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

@@ -1,0 +1,17 @@
+
+
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title=" Country List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/CountryCodeRegion}"
+		search="_handlecountryPOSearch"
+		confirm="_handlecountryPOClose"
+		cancel="_handlecountryPOClose">
+		<StandardListItem
+			title="{Lookup>Land1}"
+			info="{Lookup>Landx}" />
+	</SelectDialog>
+</core:FragmentDefinition>

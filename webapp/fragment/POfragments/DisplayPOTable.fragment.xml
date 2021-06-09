@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:core="sap.ui.core">
+	<Table id="PurchaseTableDisplay" class="sapUiSizeCompact" items="{ path: 'Lookup>/OpenPOList' }">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Purchase Order( {CountPo>/item})" level="H2"/>
+				<ToolbarSpacer></ToolbarSpacer>
+					<SearchField id="searchField" width="20%" placeholder="Search..." search=".onSearchEbeln"/>
+							<Button
+							tooltip="Sort"
+							icon="sap-icon://sort"
+							press="onSort"
+							
+							/>
+			<!--			
+				<Button icon="sap-icon://paper-plane" text="Post" press="onPostItems" type="Accept" ariaLabelledBy="editButtonLabel"/>
+		-->	</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Company Code"/>
+			</Column>
+			<Column>
+				<Text text="Vendor Details"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Purchase Order "/>
+			</Column>
+			<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Purchase Group "/>
+			</Column>
+			<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Purchase Organization"/>
+			</Column>
+		
+			<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Created By"/>
+			</Column>
+			<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Created Date"/>
+			</Column>
+			<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Country"/>
+			</Column>
+				<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Payment Term"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press="OnNavigateDetails" custom:Ebeln="{Lookup>Ebeln}">
+				<cells>
+					<ObjectIdentifier title="{Lookup>Bukrs}"/>
+					<ObjectIdentifier title="{Lookup>Lifnr}" text="{Lookup>Name}"/>
+					<ObjectIdentifier title="{Lookup>Ebeln}"/>
+					<ObjectIdentifier title="{Lookup>Ekgrp}"/>
+					<ObjectIdentifier title="{Lookup>Ekorg}"/>
+				
+					<ObjectIdentifier title="{Lookup>Ernam}"/>
+					<ObjectIdentifier title="{path: 'Lookup>Bedat', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd' } }"/>
+					<ObjectIdentifier title="{Lookup>Lands}"/>
+						<ObjectIdentifier title="{Lookup>Zterm}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

@@ -1,0 +1,65 @@
+<mvc:View 
+xmlns:core="sap.ui.core" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns="sap.m" 
+xmlns:u="sap.ui.unified" 
+xmlns:f="sap.f"
+	displayBlock="true"
+xmlns:l="sap.ui.layout.form"
+	xmlns:uxap="sap.uxap" 
+	xmlns:tnt="sap.tnt" 
+		class="sapUiSizeCompact"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+controllerName="com.vSimpleApp.controller.MassUpload">
+		<tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<f:ShellBar title="Vendor Rebate Management"
+				showMenuButton="true"
+				homeIcon="./images/Logo.png"
+				showCopilot="false"
+				showNotifications="true"
+				menuButtonPressed="onMenuButtonPress"
+				showProductSwitcher="false"
+				notificationsNumber="2">
+				<f:menu>
+					<Menu>
+						<MenuItem text="Flight booking" icon="sap-icon://flight" />
+						<MenuItem text="Car rental" icon="sap-icon://car-rental" />
+					</Menu>
+				</f:menu>
+				<f:profile>
+					<f:Avatar initials="JS" press="onUserNamePress"/>
+				</f:profile>
+				<f:searchManager>
+					<f:SearchManager/>
+				</f:searchManager>
+			</f:ShellBar>
+		</tnt:header>
+		</tnt:ToolPage>
+	<VBox>
+		<uxap:ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true" class="sapUiLargeMarginTop">
+			<uxap:headerTitle>
+			<uxap:ObjectPageHeader objectTitle="{i18n>massUpload}" showPlaceholder="true">
+				<uxap:actions>
+					<uxap:ObjectPageHeaderActionButton type="Transparent" id="idBack" icon="sap-icon://nav-back" text="back" press="onNavBack" hideText="true" />
+					<uxap:ObjectPageHeaderActionButton type="Transparent" id="idSave" text="{i18n>save}" press="onSavePress" hideText="false" hideIcon="true" />
+					<uxap:ObjectPageHeaderActionButton type="Transparent" text="{i18n>delete}" hideText="false" hideIcon="true"/>
+					<uxap:ObjectPageHeaderActionButton type="Transparent" text="{i18n>copyExcel}" press="onCopyExcel" hideText="false" hideIcon="true"/>
+					<uxap:ObjectPageHeaderActionButton type="Transparent" text="{i18n>download}" hideText="false" hideIcon="true"/>
+					<uxap:ObjectPageHeaderActionButton type="Transparent" text="{i18n>share}"/>
+				</uxap:actions>
+			</uxap:ObjectPageHeader>
+		</uxap:headerTitle>
+		</uxap:ObjectPageLayout>
+		<l:SimpleForm class="sapUiLargeMarginTop" editable="true">
+			<l:content>
+				<Label class="sapUiLargeMarginTop" text="{i18n>fileName}"></Label>
+				<VBox class="sapUiLargeMarginTop">
+					<u:FileUploader id="idfileUploader" width="50%" sameFilenameAllowed="false" placeholder="{i18n>chooseFile}" style="Emphasized"></u:FileUploader>
+					<Button text="{i18n>upload}" press="onUpload"></Button>
+				</VBox>
+			</l:content>
+		</l:SimpleForm>
+		
+	</VBox>
+</mvc:View>

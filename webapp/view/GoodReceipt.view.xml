@@ -1,0 +1,173 @@
+<mvc:View controllerName="com.vSimpleApp.controller.GoodReceipt" xmlns:t="sap.ui.table" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:card="sap.f.cards" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:m="sap.m"
+	xmlns:tnt="sap.tnt" xmlns:u="sap.ui.unified" class="sapUiSizeCompact" height="100%" displayBlock="true">
+	<m:Page showNavButton="true" navButtonPress="onNavBack">
+		<ObjectPageLayout id="ObjectPageLayout" showFooter="true" showTitleInHeaderContent="true" alwaysShowContentHeader="false"
+			preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+			<headerTitle>
+				<!--	<m:ObjectStatus text="Document {PONO>/Ebeln}  does not contain any selectable items" state="Error"/>
+				-->
+				<ObjectPageDynamicHeaderTitle >
+					<expandedHeading>
+						<m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
+						<m:FlexBox fitContainer="true" alignItems="Center">
+							<m:HBox>
+								<m:Title text="Goods Receipt" wrapping="true"/>
+								<m:ObjectMarker type="Favorite" class="sapUiTinyMarginBegin"/>
+							</m:HBox>
+						</m:FlexBox>
+					</expandedHeading>
+					<snappedHeading>
+						<m:FlexBox fitContainer="true" alignItems="Center">
+							<m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
+							<m:Title text="Goods Receipt" wrapping="true"/>
+						</m:FlexBox>
+					</snappedHeading>
+					<expandedContent>
+						<m:ObjectStatus text="Document {AllDataModel>/PONO} does not contain any selectable items" visible="{visiblemodel>/isvisible}"
+							id="iderroritem" state="Error"/>
+					</expandedContent>
+					<snappedContent>
+						<m:ObjectStatus text="Document {AllDataModel>/PONO} does not contain any selectable items" visible="{visiblemodel>/isvisible}" state="Error"/>
+					</snappedContent>
+					<actions>
+						<ObjectPageHeaderActionButton text="Cancel" type="Transparent" hideText="false" press="onCancelPRess"/>
+						<ObjectPageHeaderActionButton text="Save" type="Emphasized" hideText="false" press="onPostPurchaseOrder"/>
+					</actions>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<headerContent>
+				<form:SimpleForm id="FormHeaderContent1" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
+					labelSpanS="12" adjustLabelSpan="false" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+					<form:content>
+						<m:Label text=" "/>
+						<m:Input id="idPD" textFormatMode="KeyValue" placeholder="Purchase Document" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+							width="100%" valueHelpRequest="handlePursOrderValueHelp" suggestionItems="{ path: 'Lookup>/PoDocumentNumber'}"
+							suggestionItemSelected="suggestionItemSelectedPOrder">
+							<m:suggestionItems>
+								<core:ListItem key="{Lookup>Ebeln}" text="{Lookup>Lifnr}" additionalText="{Lookup>Ebeln}"/>
+							</m:suggestionItems>
+						</m:Input>
+						<m:Input id="idlant" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" placeholder=" Plant No" showSuggestion="true" width="30%"
+							showValueHelp="true" valueHelpRequest="handleValueHelpPlant" suggestionItems="{ path: 'Lookup>/POPlant' }"
+							suggestionItemSelected="onSuggest">
+							<m:suggestionItems>
+								<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+							</m:suggestionItems>
+						</m:Input>
+					</form:content>
+				</form:SimpleForm>
+				<form:SimpleForm id="FormHeaderContent2" editable="true" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="12"
+					labelSpanS="12" adjustLabelSpan="false" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+					<form:content>
+						<m:Label text="Vendor "/>
+						<m:Text id="idVendorr" text="{AllDataModel>/Vendor}: {AllDataModel>/VendorName} "/>
+						<m:Label text="Purchasing Document "/>
+						<m:Text text="{AllDataModel>/PON}"/>
+					</form:content>
+				</form:SimpleForm>
+			</headerContent>
+			<sections>
+				<ObjectPageSection titleUppercase="false" title="General Information" id="general">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<form:SimpleForm id="FormLumpSum" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+									labelSpanS="12" adjustLabelSpan="false" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false">
+									<form:content>
+										<core:Title text=""/>
+										<!--<m:Label text="Printing"/>-->
+										<!--<m:Select id="idPrinting" selectedKey="vtitle" class="sapclassinputbox">-->
+										<!--	<m:items>-->
+										<!--		<core:Item text="No print." key="No print"/>-->
+										<!--	</m:items>-->
+										<!--</m:Select>-->
+										<m:Label text="Bill of Lading"/>
+										<m:Input type="Text" id="idBillLand" editable="{EditModel>/isEditable}" value="{PurchaseModel>/TempContract/Waers}"/>
+										<m:Label text="GR Slip No"/>
+										<m:Input type="Text" id="idGrSlipno" editable="{EditModel>/isEditable}" value="{PurchaseModel>/TempContract/Waers}"></m:Input>
+										<m:Label text="Delivery Note"/>
+										<m:Input id="idDeliDate" editable="{EditModel>/isEditable}" textFormatMode="KeyValue"></m:Input>
+										<core:Title text=" "/>
+										<!--<m:Label text="Note"/>-->
+										<!--<m:Input id="idNote"/>-->
+										<m:Label text="Document Date"/>
+										<m:DateTimePicker id="idDocDate" editable="{EditModel>/isEditable}" value="{ path: 'AllDataModel>/CreatDate' }"/>
+										<!--	<m:DatePicker id="idDocDate" editable="{EditModel>/isEditable}" value="{AllDataModel>/CreatDate}"/>
+									-->
+										<m:Label text="Posting Date"/>
+										<m:DateTimePicker id="idPostDate" editable="{EditModel>/isEditable}" value="{ path: 'AllDataModel>/DocumentDate' }"/>
+										<!--		<m:DatePicker id="idPostDate" value="{AllDataModel>/DocumentDate}" editable="{EditModel>/isEditable}"/>
+								-->
+										<!--<m:Input type="Text" id="idPostDate" value="{Megodate>/CreatDate}" editable="{EditModel>/isEditable}"/>
+									-->
+										<core:Title text=" "/>
+										<m:Label text="Header text"/>
+										<m:Input type="Text" id="idHeadertext" editable="{EditModel>/isEditable}" value="{AllDataModel>/VendorName}"></m:Input>
+										<m:Label text="Vendor"/>
+										<m:Input type="Text" id="idVendor" value=" " editable="{EditModel>/isEditable}"></m:Input>
+									</form:content>
+								</form:SimpleForm>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<!--<ObjectPageSection titleUppercase="false" title="Vendor">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.view.GoodReceipt.Vendor" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>-->
+				<ObjectPageSection titleUppercase="false" title="Items">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.GoodReceipt.Item" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Additional Information">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<m:IconTabBar id="idIconTabPO">
+									<m:items>
+										<m:IconTabFilter text="Material" key="general">
+											<core:Fragment fragmentName="com.vSimpleApp.fragment.GoodReceipt.Material" type="XML"/>
+										</m:IconTabFilter>
+										<m:IconTabFilter class="hide" text="Quantity" key="general">
+											<core:Fragment fragmentName="com.vSimpleApp.fragment.GoodReceipt.Quantity" type="XML"/>
+										</m:IconTabFilter>
+										<m:IconTabFilter text="Where">
+											<core:Fragment fragmentName="com.vSimpleApp.fragment.GoodReceipt.Where" type="XML"/>
+										</m:IconTabFilter>
+										<m:IconTabFilter text="Purchase Order Data">
+											<core:Fragment fragmentName="com.vSimpleApp.fragment.GoodReceipt.PurchaseOrderData" type="XML"/>
+										</m:IconTabFilter>
+										<!--	<m:IconTabFilter text="Partner">
+											<core:Fragment fragmentName="com.vSimpleApp.view.GoodReceipt.Partner" type="XML"/>
+										</m:IconTabFilter>-->
+										<m:IconTabFilter text="Account Assignment">
+											<core:Fragment fragmentName="com.vSimpleApp.fragment.GoodReceipt.AccountAssignment" type="XML"/>
+										</m:IconTabFilter>
+									</m:items>
+								</m:IconTabBar>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+			<!--<footer>-->
+			<!--	<m:OverflowToolbar>-->
+			<!--		<m:ToolbarSpacer/>-->
+			<!--		<m:Button id="idSave" icon="sap-icon://save" text="Save" press="onPostPurchaseOrder"/>-->
+			<!--		<m:Button type="Reject" text="Cancel"/>-->
+			<!--	</m:OverflowToolbar>-->
+			<!--</footer>-->
+		</ObjectPageLayout>
+	</m:Page>
+</mvc:View>

@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Tolerance Group List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/ToleranceGroupList}"
+		search="_handleToleranceGroupVendorSearch"
+		confirm="_handleToleranceGroupVendorClose"
+		cancel="_handleToleranceGroupVendorClose">
+		<StandardListItem
+			title="{Lookup>Usnam}"
+			info="{Lookup>Rfpro}" />
+	</SelectDialog>
+</core:FragmentDefinition>

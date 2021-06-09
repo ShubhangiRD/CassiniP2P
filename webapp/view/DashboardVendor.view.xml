@@ -1,0 +1,72 @@
+<mvc:View 
+	height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:f="sap.f"
+	displayBlock="true"
+	xmlns:tnt="sap.tnt"
+	controllerName="com.vSimpleApp.controller.DashboardVendor"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:l="sap.ui.layout"
+	class="sapUiSizeCompact"
+	xmlns:uxap="sap.uxap">
+	<!--	<core:Fragment fragmentName="com.vSimpleApp.view.fragment.RebateHeader" type="XML"/>-->
+	<tnt:ToolPage id="toolPage">
+		<tnt:header>
+				
+			<f:ShellBar title="Vendor Rebate Management"
+				showMenuButton="true"
+				homeIcon="./images/Logo.png"
+				showCopilot="false"
+				showNotifications="true"
+				menuButtonPressed="onMenuButtonPress"
+				showProductSwitcher="false"
+				notificationsNumber="2">
+				<f:menu>
+					<Menu>
+						<MenuItem text="Flight booking" icon="sap-icon://flight" />
+						<MenuItem text="Car rental" icon="sap-icon://car-rental" />
+					</Menu>
+				</f:menu>
+				<f:profile>
+					<f:Avatar initials="JS" press="onUserNamePress"/>
+				</f:profile>
+				<f:searchManager>
+					<f:SearchManager/>
+				</f:searchManager>
+			</f:ShellBar>
+		</tnt:header>
+		<tnt:mainContents>
+			<VBox height="100%"
+				width="100%"
+				alignItems="Center" class="sapUiMediumMarginBegin sapUiLargeMarginTop genericTileLayout">
+					<l:HorizontalLayout class="sapUiLargeMarginTop"  id="TileContainerExpanded" allowWrapping="true" content="{LandingPageModel>/TileCollection/line1}">
+						<GenericTile class="sapUiLargeMarginEnd sapUiLargeMarginTop tileLayoutOne" header="{LandingPageModel>title}"  press="pressGenericTile">
+							<TileContent footer="{LandingPageModel>footer}">
+								<ImageContent class="iconCollection" src="{LandingPageModel>icon}"/>
+							</TileContent>
+						</GenericTile>
+					</l:HorizontalLayout>
+					<l:HorizontalLayout id="nakamkoshish" class="sapUiContentPadding sapUiLargeMarginTop">
+					<Label text="{i18n>search} :" design="Bold"/>
+					<Input visible="{= ${GlobalKeys>/page} === 'appHome' }" id="productInput" width="40rem" type="Text" class="searchBox"
+						placeholder="{i18n>placeholder}" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"
+						suggestionItemSelected="suggestionItemSelected"
+						suggestionItems="{ path: 'ViewAllAg>/AGRHeaderSet'}">
+						<suggestionItems>
+							<core:Item text="{i18n>agreementNumber} - {ViewAllAg>Rcont} | Vendor No - {ViewAllAg>Vendorno}"/>
+						</suggestionItems>
+					</Input>
+					
+					
+				</l:HorizontalLayout>
+				</VBox>
+					
+			
+		</tnt:mainContents>
+	</tnt:ToolPage>
+			
+</mvc:View>

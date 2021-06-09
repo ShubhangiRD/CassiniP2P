@@ -1,0 +1,60 @@
+<mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.f" class="sapUiSizeCompact"   controllerName="com.vSimpleApp.controller.LoginPage"
+	displayBlock="true" xmlns:html="http://www.w3.org/1999/xhtml">
+	<tnt:ToolHeader>
+		<Button icon="sap-icon://menu2" type="Transparent" press="onMenuButtonPress">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Button>
+		<Image src="./images/Cassini-logo.png" densityAware="false" class="logo" width="9rem">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Image>
+	
+		<FlexBox direction="Column" alignItems="Start">
+			<items></items>
+		</FlexBox>
+		<ToolbarSpacer/>
+		<FlexBox class="logoContent" direction="Column" alignItems="Start">
+			<items>
+			
+			</items>
+		</FlexBox>
+		<ToolbarSpacer/>
+		<Button icon="sap-icon://comment" type="Transparent">
+			<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow"/>
+			</layoutData>
+		</Button>
+		<Switch state="true" customTextOn="EN" customTextOff="DE" change="onChangeLanguage">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Switch>
+	</tnt:ToolHeader>
+	<Page id="idLogin" showHeader="false" enableScrolling="false" class="loginBackground">
+		<content>
+<!--			<VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+				<items>
+					<Title class="loginTitle" level="H1" text="LOGIN"/>
+					<Title class="loginTitle" level="H3" text="Procure-To-Pay Portal"/>
+					<Input id="idInput" width="18rem" placeholder="Username" liveChange="onChangeValue"/>
+					<Input id="idPassword" width="18rem" type="Password" placeholder="Password" liveChange="onChangeValue"/>
+					<Button width="18rem" type="Emphasized" text="Login" press="onLogin" class="LoginButtonClass"/></items>
+			</VBox>-->
+					<VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+				<items>
+					<Image src="./images/Cassini-logo.png" class="animate__animated animate__slideInLeft"  width="9rem"/>
+	
+				<!--	<Title class="loginTitle animate__animated animate__slideInLeft" level="H1"  text="LOGIN"/>
+				-->	<Title class="loginTitle animate__animated animate__slideInRight" level="H3" text="Procure-To-Pay Portal"/>
+					<Input id="idInput" width="15rem" placeholder="Username" liveChange="onChangeValue" class="animate__animated animate__rotateInDownLeft"/>
+					<Input id="idPassword" width="15rem" type="Password" placeholder="Password" liveChange="onChangeValue"  class="animate__animated animate__rotateInDownRight"/>
+					<Button  type="Emphasized" width="9rem" text="Login" press="onLogin" class="LoginButtonClass animate__animated animate__zoomInDown"/></items>
+			</VBox>
+		</content>
+	
+	</Page>
+</mvc:View>

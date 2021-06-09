@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns:m="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<m:VBox >
+		<f:SimpleForm  editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+			labelSpanS="12" adjustLabelSpan="false" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false">
+			<f:content>
+				<m:Label text="Purchase Org" required="true"/>
+				<m:Input id="idPurchaseOrg" textFormatMode="KeyValue" placeholder=" Purchase Org " showSuggestion="true" editable="{EditModel>/isEditable}"
+					value="{PurchaseModel>/TempContract/Ekorg}" showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"
+					suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
+					<m:suggestionItems>
+						<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
+					</m:suggestionItems>
+				</m:Input>
+				<m:Label text="Purchase Group" required="true"/>
+				<m:Input id="pg" textFormatMode="KeyValue" placeholder="Purchase Group " showSuggestion="true"
+					value="{PurchaseModel>/TempContract/Ekgrp}" editable="{EditModel>/isEditable}" showValueHelp="true"
+					valueHelpRequest="handlePurchaseGroupVendor" suggestionItems="{ path: 'Lookup>/PurchaseGroupList' }" suggestionItemSelected="onSuggest">
+					<m:suggestionItems>
+						<core:ListItem key="{Lookup>Ekgrp}" text="{Lookup>Eknam}" additionalText="{Lookup>Ekgrp}"/>
+					</m:suggestionItems>
+				</m:Input>
+				<m:Label text="Company Code" required="true"/>
+				<m:Input id="cc" textFormatMode="KeyValue" placeholder="Company Code " showSuggestion="true" value="{PurchaseModel>/TempContract/Bukrs}"
+					editable="{EditModel>/isEditable}" showValueHelp="true" valueHelpRequest="handleCompanyCodeVendor"
+					suggestionItems="{ path: 'Lookup>/CountryCode' }" suggestionItemSelected="onSuggest">
+					<m:suggestionItems>
+						<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
+					</m:suggestionItems>
+				</m:Input>
+				<core:Title text=""/>
+				<m:Label text="Vendor" required="true"/>
+				<m:Input id="vnumber" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
+					value="{PurchaseModel>/TempContract/Lifnr}" valueHelpRequest="_handleValueVendorHelpS"
+					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" 	editable="{EditModel>/isEditable}"  suggestionItemSelected="suggestionVebor">
+					<m:suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</m:suggestionItems>
+				</m:Input>
+					<m:Label text="Currency" required="true"/>
+						<m:Input type="Text" id="cu" value="{PurchaseModel>/TempContract/Waers}" 	editable="{EditModel>/isEditable}"  ></m:Input>
+			
+			</f:content>
+		</f:SimpleForm>
+	</m:VBox>
+</core:FragmentDefinition>

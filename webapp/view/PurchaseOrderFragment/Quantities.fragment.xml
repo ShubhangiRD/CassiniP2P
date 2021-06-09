@@ -1,0 +1,174 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="QuantitiesForm" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+					emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="PO Quantity">
+							<f:fields>
+								<Input id="idQuantity" textFormatMode="KeyValue" class="sapUiTinyMarginTop"/>
+								<Input id="quantunit" textFormatMode="KeyValue" class="sapUiTinyMarginTop" showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleMaterialValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVebor"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+									
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						
+							<f:FormElement label="PO Quantity in SKU">
+							<f:fields>
+								<Input id="idQuantSKU" textFormatMode="KeyValue" class="sapUiTinyMarginTop"/>
+								<Input id="quantunitST1" textFormatMode="KeyValue"  class="sapUiTinyMarginTop" showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleunitST1" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionunitST1"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						
+								
+							<f:FormElement label="Net Weight">
+							<f:fields>
+								<Input id="idNetWeight" textFormatMode="KeyValue" class="sapUiTinyMarginTop"/>
+								<Input id="idNetWeight2" textFormatMode="KeyValue" class="sapUiTinyMarginTop"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleunitST1" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionunitST1"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						
+								
+							<f:FormElement label="Gross Weight">
+							<f:fields>
+								<Input id="GrossWeight" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="GrossWeight2" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleGrossWeight" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionGrossWeight"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						
+								
+							<f:FormElement label="Volume ">
+							<f:fields>
+								<Input id="Volumeid" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="Volumeid2" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleVolume" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVolume"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						
+								
+							<f:FormElement label="Points">
+							<f:fields>
+								<Input id="idPoints" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="idPoints2" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handlePoints" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionPoints"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						
+						
+								
+							
+					
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer>
+					<f:formElements>
+							<f:FormElement label="Net Weight">
+							<f:fields>
+								<Input id="idNetWeight3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="idNetWeight4" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleidNetWeight2" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionidNetWeight2"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+								
+							<f:FormElement label="Gross Weight">
+							<f:fields>
+								<Input id="GrossWeight3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="GrossWeight4" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleGrossWeight" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionGrossWeight"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						
+								
+							<f:FormElement label="Volume ">
+							<f:fields>
+								<Input id="Volumeid3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="Volumeid4" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleVolume" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVolume"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						
+								
+							<f:FormElement label="Points">
+							<f:fields>
+								<Input id="idPoints3" class="sapUiTinyMarginTop"  textFormatMode="KeyValue"/>
+								<Input id="idPoints4" class="sapUiTinyMarginTop" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handlePoints" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionPoints"
+								 editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						
+						
+								
+					
+					
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

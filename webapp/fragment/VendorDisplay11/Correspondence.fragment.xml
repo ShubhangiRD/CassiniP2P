@@ -1,0 +1,90 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<form:SimpleForm id="FormChange2cores" editable="true" layout="ResponsiveGridLayout" title="Dunning Data" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+			columnsL="3" columnsM="1" class="myFormMarginBottom" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=" "/>
+				<Label text="Dunn Procedure"/>
+				<Input id="iddunprodc" maxLength="4" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+					valueHelpRequest="handleDunprocHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestDunproc">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Dunn Recipient"/>
+				<Input maxLength="10" id="iddunreceipt" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+					showValueHelp="true" valueHelpRequest="handledunnreceipt" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestdunreceipt">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Last Dunned"/>
+				<DatePicker id="idlastdun" editable="{EditModel>/isEditable}"/>
+				<Label text="Dunning Clerk"/>
+				<Input maxLength="2" id="iddunclerk" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+					valueHelpRequest="handleiddunclerkHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestiddunclerk">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=" "/>
+				<Label text="Dunning Block"/>
+				<Input maxLength="1" id="iddunblock" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+					valueHelpRequest="handleiddunblockkHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestiddunblockk">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Legal Dunn Proc"/>
+				<DatePicker id="idlegaldunpro" editable="{EditModel>/isEditable}"/>
+				<Label text="Dunning Level"/>
+				<Input maxLength="1" id="iddunlevel" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+					valueHelpRequest="handleiddunlevelHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestiddunlevel">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Grouping Key"/>
+				<Input maxLength="1" id="iddungrpkey" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+					showValueHelp="true" valueHelpRequest="handledungrpkey" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestiddungrpkey">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm id="FormChange3cores" editable="true" layout="ResponsiveGridLayout" title="Address" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+			columnsL="3" columnsM="1" class="myFormMarginBottom" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=" "/>
+				<Label text=""/>
+				<CheckBox id="lcoalprocessid" text="Local Process" editable="{EditModel>/isEditable}"/>
+				<Label text="Acctg clerk"/>
+				<Input maxLength="2" id="idAcctgclrk" showValueHelp="true" valueHelpRequest="handleAcctgClerk" editable="{EditModel>/isEditable}"
+					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestAcctgclerk">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Acct W vendor"/>
+				<Input id="accwvendor" editable="{EditModel>/isEditable}"/>
+				<Label text="Clerk At Vendor"/>
+				<Input id="clrkatvendor" editable="{EditModel>/isEditable}"/>
+				<core:Title text=" "/>
+				<Label text="AcountClrk tel no" required="true"/>
+				<Input id="clrtelno" fieldGroupIds="Tlfnsb" value="{Vendor>/AccountingClerkTelephone}" editable="{EditModel>/isEditable}"/>
+				<Label text="Clerk Fax no" required="true"/>
+				<Input id="clrkatfax" fieldGroupIds="Tlfxsb" value="{Vendor>/AccountingClerkFax}" editable="{EditModel>/isEditable}"/>
+				<Label text="Clerk Internet "/>
+				<Input id="clrkatinternet" editable="{EditModel>/isEditable}"/>
+				<Label text="Account Memo"/>
+				<Input id="idaccmemo" editable="{EditModel>/isEditable}"/>
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

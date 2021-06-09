@@ -1,0 +1,45 @@
+{
+	"releasegroup":[
+		{
+		"appgrpno":"FIOR",
+		"appgrpname":"Vendor(Fiori)"
+	},
+	{
+		"appgrpno":"4000",
+		"appgrpname":"CoCd 4000, GL Posting"
+	},
+	{
+		"appgrpno":"3000",
+		"appgrpname":"CoCd 3000, Vendor 2210"
+	},
+	{
+		"appgrpno":"2222",
+		"appgrpname":"Vendor A"
+	},
+	{
+		"appgrpno":"1000",
+		"appgrpname":"CoCd 1000, Vendor 2200"
+	},
+	{
+		"appgrpno":"0100",
+		"appgrpname":"New internet customer ok"
+	},
+	{
+		"appgrpno":"0004",
+		"appgrpname":"G/L accounts"
+	},
+	{
+		"appgrpno":"0003",
+		"appgrpname":"Vendor C"
+	},
+	{
+		"appgrpno":"0002",
+		"appgrpname":"Vendor B"
+	},
+	{
+		"appgrpno":"0001",
+		"appgrpname":"Vendor A"
+	}
+	
+	]
+}

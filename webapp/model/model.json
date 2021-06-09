@@ -1,0 +1,44 @@
+{
+	"selectedKey": "{key}",
+	"navigation": [
+		{
+			"title": "Dashboard",
+			"icon": "sap-icon://bbyd-dashboard",
+			"key": "dashboard"
+		},
+		{
+			"title": "Contract",
+			"icon": "sap-icon://BusinessSuiteInAppSymbols/icon-contract",
+			"expanded": true,
+			"key": "contract",
+			"items": [
+				{
+					"title": "Create",
+					"key": "createContract"
+				},
+				{
+					"title": "Display",
+					"key": "displayContract"
+				},
+				{
+					"title": "Change",
+					"key": "changeContract"
+				}
+			]
+		}
+	],
+	"fixedNavigation": [
+		{
+			"title": "Quick Link 1",
+			"icon": "sap-icon://chain-link"
+		},
+		{
+			"title": "Quick Link 2",
+			"icon": "sap-icon://chain-link"
+		},
+		{
+			"title": "Favorites",
+			"icon": "sap-icon://favorite"
+		}
+	]
+}

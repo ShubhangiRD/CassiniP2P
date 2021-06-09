@@ -1,0 +1,97 @@
+<mvc:View
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:core="sap.ui.core"
+		xmlns:l="sap.ui.layout"
+		xmlns:unified="sap.ui.unified"
+		xmlns="sap.m">
+	<f:Form width="100%"
+		editable="false">
+		<f:layout>
+			<f:ResponsiveGridLayout
+				labelSpanXL="12"
+				labelSpanL="12"
+				labelSpanM="12"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="2"
+				columnsL="2"
+				columnsM="2"
+				singleContainerFullSize="false" />
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Document Date">
+						<f:fields>
+							<Input value="{
+								path: 'record>/documentDate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									pattern: 'yyyy-MM-dd'
+								}
+							}" editable="false" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Posting Date">
+						<f:fields>
+							<DatePicker
+								value="{
+									path: 'record>/postingDate',
+									type: 'sap.ui.model.type.Date',
+									formatOptions: {
+										pattern: 'yyyy-MM-dd'
+									}
+								}" valueFormat="yyyy-MM-dd" displayFormat="long"
+								change="handleChange"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Reference Number">
+						<f:fields>
+							<Input value="{record>/referenceNo}" editable="false" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Transaction">
+						<f:fields>
+							<Input value="Invoice" editable="false" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="PO Number">
+						<f:fields>
+							<Input value="{record>/poNumber}" editable="false" />
+						</f:fields>
+					</f:FormElement>
+						<f:FormElement label="Net Value">
+						<f:fields>
+							<Input value="{record>/netValue}" editable="false"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Vendor Number">
+						<f:fields>
+							<Input value="{record>/vendorNo}" editable="false" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Company Code">
+						<f:fields>
+							<Input value="{record>/companyCode}" editable="false" />
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Gross Amount">
+						<f:fields>
+								<Input value="{record>/grossValue}" editable="false"/>
+						</f:fields>
+					</f:FormElement>
+				
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+</mvc:View>

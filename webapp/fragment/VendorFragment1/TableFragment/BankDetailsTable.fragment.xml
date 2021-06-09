@@ -1,0 +1,105 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog id="BankDialog" title="Bank Details" contentWidth="800px" contentHeight="500px" resizable="true" draggable="true">
+		<!--	<VBox>
+			<Label text="Country" class="sapDialogLabel"/>
+			<Input id="idCountry" placeholder="Country"/>
+			<Label text="Bank Key" class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idBankKey" placeholder="Bank Key"/>
+			<Label text="Bank Account" class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idBankAccount" placeholder="Bank Account"/>
+			<Label text="Account holder" class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idAccountHolder" placeholder="Account Holder"/>
+			<Label text="AK" class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idAK1" placeholder="AK"/>
+			<Label text="IBAN" class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idIBAN1" placeholder="IBAN"/>
+			<Label text="IBANValue" class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idIBANValue1" placeholder="IBANValue"/>
+			<Label text="BnkT" class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idBNKT1" placeholder="BnkT"/>
+			<Label text="Reference details" class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idReferenceDetails" placeholder="Reference Details"/>
+			<Label text="Debit Auth." class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idDebitAuth" placeholder="Debit Auth."/>
+			<Label text="Name of Bank" class="sapUiSmallMarginTop sapDialogLabel"/>
+			<Input id="idNameOfBank" placeholder="Name of Bank"/></VBox>-->
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="FormChange354" editable="true" class="myFormMarginTop">
+				<f:title>
+					<core:Title text=""/>
+				</f:title>
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+						emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Country">
+								<f:fields>
+									<Input value="{Country}" id="idCountry" placeholder="Country"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Bank Key">
+								<f:fields>
+									<Input value="{Bankkey}" id="idBankKey" placeholder="Bank key"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Bank Account">
+								<f:fields>
+									<Input value="{BankAccount}" placeholder="Bank Account"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Account Holder">
+								<f:fields>
+									<Input id="idAccountHolder" placeholder="Account Holder" value="{AccountHolder}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="AK">
+								<f:fields>
+									<Input id="idAK1" placeholder="AK" value="{AK}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="IBAN">
+								<f:fields>
+									<Input id="idIBAN1" placeholder="IBAN" value="{IBAN}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="IBANValue">
+								<f:fields>
+									<Input id="idIBANValue1" placeholder="IBAN Value" value="{IBANValue}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="BnkT">
+								<f:fields>
+									<Input id="idBnkT1" placeholder="BnkT" value="{BnkT}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Reference Details">
+								<f:fields>
+									<Input id="idReferenceDetails" placeholder="Reference Details" value="{ReferenceDetails}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Debit Auth.">
+								<f:fields>
+									<Input id="idDebitAuth" placeholder="Debit Auth" value="{DebitAuth}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Name of Bank">
+								<f:fields>
+									<Input id="idNameOfBank" placeholder="Name of Bank" value="{NameOfBank}"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+	
+			<Button text="Close" press="onDialogBankOk"/>
+	
+			<Button text="Save" press="onDialogBankCancel"/>
+		
+	
+	</Dialog>
+</core:FragmentDefinition>

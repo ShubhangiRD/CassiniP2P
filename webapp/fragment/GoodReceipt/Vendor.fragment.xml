@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+<VBox class="sapUiSmallMargin" visible="{VisibleModel>/isVisibleable}">
+									<f:Form id="idvendorrform" editable="true">
+										<f:layout>
+											<f:ResponsiveGridLayout  labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+												emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+										</f:layout>
+										<f:formContainers>
+											<f:FormContainer>
+												<f:formElements>
+													<f:FormElement label="Vendor">
+														<f:fields>
+															<Input id="idvendorno1" editable="{EditModel>/isEditable}" textFormatMode="KeyValue"/>
+															<Input id="idvendorno" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
+																valueHelpRequest="handleMaterialValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVebor"
+																width="140px" editable="{EditModel>/isEditable}">
+																<suggestionItems>
+																	<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+																</suggestionItems>
+																<layoutData>
+																	<l:GridData span="XL1 L2 M2 S4"/>
+																</layoutData>
+															</Input>
+															<!--	<Input type="Text" id="idvendorno"  width="140px" editable="{EditModel>/isEditable}">	<layoutData>
+										<l:GridData span="XL1 L2 M2 S4" />
+									</layoutData>
+								</Input>-->
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement label="Vendor">
+														<f:fields>
+															<Input id="idPostDateq"  editable="{EditModel>/isEditable}" textFormatMode="KeyValue"/>
+															<Input type="Text" id="idPostDateq11" visible="false" width="140px" editable="{EditModel>/isEditable}">
+																<layoutData>
+																	<l:GridData span="XL1 L2 M2 S4"/>
+																</layoutData>
+															</Input>
+														</f:fields>
+													</f:FormElement>
+												</f:formElements>
+											</f:FormContainer>
+										</f:formContainers>
+									</f:Form>
+								</VBox>
+</core:FragmentDefinition>

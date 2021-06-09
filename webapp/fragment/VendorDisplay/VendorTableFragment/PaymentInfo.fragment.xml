@@ -1,0 +1,99 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Payment Details" id="idBankDetailsDialog" afterClose="onAfterClose" class="sapUiSizeCompact" contentHeight="400px"
+		contentWidth="800px">
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="idPaymentForms" editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Country">
+								<f:fields>
+									<Input id="idCtry" class="mtid" textFormatMode="KeyValue" placeholder=" EnterCtry" showSuggestion="true" showValueHelp="true"
+										value="{PurchaseModel>Material}" valueHelpRequest="handleCtryHelp" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+										suggestionItemSelected="onSuggestCtry" liveChange="Ctrychange">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Bank Key">
+								<f:fields>
+									<Input class="desc1" id="nBankKey" textFormatMode="KeyValue" placeholder="Enter Bank Key" showSuggestion="true" showValueHelp="true"
+										valueHelpRequest="handleBankKey" suggestionItems="{ path: 'Lookup>/BankKeyList' }" value="{PurchaseModel>ShortText}"
+										suggestionItemSelected="onSuggestBankKey">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Bank Account ">
+								<f:fields>
+									<Input id="BankAccount" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}" placeholder="Enter Bank Account"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Account Holder">
+								<f:fields>
+									<Input id="AccountHolder" class="measure1" value="{PurchaseModel>PoUnit}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="AK">
+								<f:fields>
+									<Input id="idAK" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Plant}"
+										valueHelpRequest="handleValueHelpAK" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestAK">
+										<suggestionItems>
+											<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Bank Name">
+								<f:fields>
+									<Input id="bankname" class="price1" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="IBAN Value">
+								<f:fields>
+									<Input id="IBANValue" class="price1" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="BnkT ">
+								<f:fields>
+									<Input id="BnkT" class="price1" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Reference Details">
+								<f:fields>
+									<Input id="Referencedetails" class="price1" value="{PurchaseModel>NetPrice}" editable="{EditModel>/isEditable}"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements></f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+				<Button text="Close"  press="onExitPaymentInfo"/>
+	
+			</beginButton>
+		<endButton>
+				<Button text="Save" type="Emphasized" press="onSavePaymentInfo"/>
+	
+			</endButton>
+	</Dialog>
+</core:FragmentDefinition>

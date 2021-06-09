@@ -1,0 +1,57 @@
+{
+	"TileCollection": {
+		"line1": [{
+				"info": "Create Vendor",
+				"icon": "sap-icon://customer-order-entry",
+				"title": "Vendor Master",
+				"infoState": "Success",
+				"iconColor": "#ffffff",
+				"bgColor": "rgb(57, 123, 110)",
+				"borderColor": "rgb(57, 123, 110)",
+				"contentText": "Creation,Updation,    Display"
+
+			}, {
+				"info": "Purchase Order Creation",
+				"title": "Purchase Order Creation",
+				"infoState": "Success",
+				"icon": "sap-icon://instance",
+				"iconColor": "#ffffff",
+				"bgColor": "rgb(57, 123, 110)",
+				"borderColor": "rgb(57, 123, 110)",
+				"contentText": "Purchasing order Creations"
+
+			}, {
+				"info": "Post Good Receipt",
+				"title": "Post Good Receipt",
+				"infoState": "Success",
+				"icon": "sap-icon://upload",
+				"iconColor": "#ffffff",
+				"bgColor": "rgb(57, 123, 110)",
+				"borderColor": "rgb(57, 123, 110)",
+				"contentText": "Creating Post Good Receipt"
+
+			}, {
+				"info": "Book Invoice",
+				"title": "Book Invoice",
+				"infoState": "Success",
+				"icon": "sap-icon://sap-box",
+				"iconColor": "#ffffff",
+				"bgColor": "rgb(57, 123, 110)",
+				"borderColor": "rgb(57, 123, 110)",
+				"contentText": "Creating and Generating book Invoice"
+
+			}, {
+				"info": "Vendor Rebates",
+				"title": "Vendor Rebates",
+				"infoState": "Success",
+				"icon": "sap-icon://sap-box",
+				"iconColor": "#ffffff",
+				"bgColor": "rgb(57, 123, 110)",
+				"borderColor": "rgb(57, 123, 110)",
+				"contentText": "Creating and Generate Vendor Rebates"
+
+			}
+
+		]
+	}
+}

@@ -1,0 +1,120 @@
+{
+	"PaymentMethods":[
+		{
+			"paymentmethodno":"@",
+			"Description": "ISO 20022 International"
+		},
+		{
+			"paymentmethodno":"&",
+			"Description":"SEPA Credit Transfer"
+		},
+		{
+			"paymentmethodno":"=",
+			"Description":"MT101"
+		},
+		{
+			"paymentmethodno":"0",
+			"Description":"Biller Direct Bankeinzug"
+		},
+		{
+			"paymentmethodno":"1",
+			"Description":"Biller Direct KreditKarte"
+		},
+		{
+			"paymentmethodno":"2",
+			"Description":"Uberweisung Ausland"
+		},
+		{
+			"paymentmethodno":"5",
+			"Description":"SEPA Credit Transfer"
+		},
+		{
+			"paymentmethodno":"7",
+			"Description":"SEPA Credit Transfer (PE)"
+		},
+		{
+			"paymentmethodno":"9",
+			"Description":"UberweisungTEST"
+		},
+		{
+			"paymentmethodno":"A",
+			"Description":"Bankabbuchung"
+		},
+		{
+			"paymentmethodno":"C",
+			"Description":"International Check"
+		},
+		{
+			"paymentmethodno":"D",
+			"Description":"Lastschrift uber IHC"
+		},
+		{
+			"paymentmethodno":"E",
+			"Description":"Bankeinzug"
+		},
+		{
+			"paymentmethodno":"I",
+			"Description":"Bankuberweisung intern IHC"
+		},
+		{
+			"paymentmethodno":"J",
+			"Description":"Bankuberweisung extern IHC"
+		},
+		{
+			"paymentmethodno":"K",
+			"Description":"Bankscheck bei Auslandszahlung"
+		},
+		{
+			"paymentmethodno":"L",
+			"Description":"Auslanduberweisung"
+		},
+		{
+			"paymentmethodno":"M",
+			"Description":"Auslanduberweisung PMW"
+		},
+		{
+				"paymentmethodno":"O",
+			"Description":"Orderscheck"
+		},
+		{
+				"paymentmethodno":"P",
+			"Description":"Postgiro Uberweisung"
+		},
+		{
+				"paymentmethodno":"R",
+			"Description":"Europauberweisung"
+		},
+		{
+				"paymentmethodno":"S",
+			"Description":"Scheck / Check"
+		},
+		{
+				"paymentmethodno":"T",
+			"Description":"Scheck-WechselW"
+		},
+		{
+				"paymentmethodno":"U",
+			"Description":"Uberweisung"
+		},
+		{
+				"paymentmethodno":"V",
+			"Description":"Verrechnung (im Konzern)"
+		},
+		{
+				"paymentmethodno":"W",
+			"Description":"Wechsel (Ausgangszahlung)"
+		},
+		{
+				"paymentmethodno":"X",
+			"Description":"Uberweisung"
+		},
+		{
+				"paymentmethodno":"Y",
+			"Description":"SEPA Direct Debit"
+		},
+		{
+				"paymentmethodno":"Z",
+			"Description":"Bank Transfer (Outgoing F111)"
+		}
+		]
+}

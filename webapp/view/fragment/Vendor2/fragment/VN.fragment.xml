@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Table"
+		class="sapUiPopupWithPadding"
+		items="{VHeader>/VMasterSet}"
+		search=".onValueHelpSearch"
+		confirm="OnVendorNumberClose"
+		cancel="OnVendorNumberClose"
+		>
+		<StandardListItem
+			icon="{ProductPicUrl}"
+			iconDensityAware="false"
+			iconInset="false"
+			title="{VHeader>Lifnr}"
+			description="{VHeader>Name1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

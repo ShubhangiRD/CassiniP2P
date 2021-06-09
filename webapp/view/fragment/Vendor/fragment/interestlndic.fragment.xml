@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Interest Lndic List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/InterestlndicList}"
+		search="_handleValueILHelpSearch"
+		confirm="_handleValueILHelpClose"
+		cancel="_handleValueILHelpClose">
+		<StandardListItem
+			title="{Lookup>Vzskz}"
+		 />
+	</SelectDialog>
+</core:FragmentDefinition>

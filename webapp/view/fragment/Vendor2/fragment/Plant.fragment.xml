@@ -1,0 +1,36 @@
+<!--<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Plant Details"
+		class="sapUiPopupWithPadding"
+		items="{VHeader>/get_plant_f4helpSet}"
+		search="_handleValueHelpSearchPlant"
+		confirm="_handleValueHelpClosePlant"
+		cancel="_handleValueHelpClosePlant">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{VHeader>Bwkey}"
+			description="{VHeader>Bwkey}" />
+	</SelectDialog>
+</core:FragmentDefinition>-->
+
+	
+
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Plant List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/POPlant}"
+		search="_handlePlantSearch"
+		confirm="_handlePlantClose"
+		cancel="_handlePlantClose">
+		<StandardListItem
+			title="{Lookup>Bwkey}"
+			info="{Lookup>Bwkey}" />
+	</SelectDialog>
+</core:FragmentDefinition>
+

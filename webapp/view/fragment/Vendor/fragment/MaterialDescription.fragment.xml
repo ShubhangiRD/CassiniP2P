@@ -1,0 +1,18 @@
+
+
+
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Material Discription"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/MaterialDiscription}"
+		search="_handleMaterialDisSearch"
+		confirm="_handleMaterialDisClose"
+		cancel="_handleMaterialDisClose">
+		<StandardListItem
+			title="{Lookup>Description}"
+			info="{Lookup>Materialno}" />
+	</SelectDialog>
+</core:FragmentDefinition>

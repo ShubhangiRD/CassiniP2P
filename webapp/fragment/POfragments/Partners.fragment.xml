@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table"
+	xmlns:u="sap.ui.unified">
+	<t:Table id="idPurchaseFunction" class="sapUiSmallMargin" rows="{ path: ' '}" visibleRowCount="5" selectionMode="MultiToggle">
+		<t:extension>
+			<OverflowToolbar>
+				<Title text="Purchase Function "/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" type="Transparent" id="idAddbuttonPFHea" class="remove-attr" tooltip="Add Row" press="AddPartnerHeaderItems"/>
+				<Button icon="sap-icon://delete" enabled="{=${PurchaseModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+					tooltip="Delete Row" press="onDeleteItemBank"/>
+			</OverflowToolbar>
+		</t:extension>
+		<t:columns>
+			<t:Column width="9rem" hAlign="Center">
+				<Label text="Furchase Function "/>
+				<t:template>
+					<Input id="idpurchasefun" class="mtid" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" value="{PurchaseModel>Material}"
+						valueHelpRequest="handlepurchasefunction" editable="{EditModel>/isEditable}"  suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggestpurchasefunc"
+						liveChange="purchasefunctionchange">
+						<suggestionItems>
+							<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+						</suggestionItems>
+					</Input>
+				</t:template>
+			</t:Column>
+			<t:Column hAlign="Center" width="9rem">
+				<Label text="Name"/>
+				<t:template>
+					<Input class="desc1" id="idnamepf" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleidnamepf"
+						suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" editable="{EditModel>/isEditable}"   value="{PurchaseModel>ShortText}" suggestionItemSelected="onSuggestidnamepf">
+						<suggestionItems>
+							<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+						</suggestionItems>
+					</Input>
+				</t:template>
+			</t:Column>
+			<t:Column width="9rem" hAlign="Center">
+				<Label text="Number"/>
+				<t:template>
+					<Input id="idnumberpf" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="9rem" hAlign="Center">
+				<Label text="Name"/>
+				<t:template>
+					<Input id="idnamepurfunc" class="measure1" value="{PurchaseModel>PoUnit}" editable="{EditModel>/isEditable}"/>
+				</t:template>
+			</t:Column>
+	
+		</t:columns>
+	</t:Table>
+</core:FragmentDefinition>

@@ -1,0 +1,64 @@
+
+
+
+{
+	"PurchaseGroupInformation": {
+	
+		"ItemsData": [{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "105"
+
+		},
+		{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "105"
+
+		},
+		{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "105"
+		},
+		{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "105"
+		},
+		{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "105"
+		},
+		{
+
+			"materialNo": "12345",
+			"materialDis": "7bags",
+			"PO_Quality": "good",
+			"UnitOfM": "PC",
+			"Plant": "RF",
+			"Price": "105"
+		}]
+	}
+}

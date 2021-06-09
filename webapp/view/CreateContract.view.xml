@@ -1,0 +1,489 @@
+<mvc:View height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+	xmlns:form="sap.ui.layout.form"
+	displayBlock="true"
+	controllerName="com.vSimpleApp.controller.CreateContract">
+	<VBox fitContainer="true">
+		<form:SimpleForm
+			class="contractForm"
+			minWidth="1024"
+			maxContainerCols="2"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			labelSpanL="4"
+			labelSpanM="4"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="2"
+			columnsM="2">
+			<form:content>
+				<core:Title text="" />
+				<Label class="sapUiTinyMarginTop" text="Vendor" required="true"/>
+				<Input
+					id="idVendorInput"
+					type="Text"
+					textFormatMode="KeyValue"
+					placeholder="Enter Vendor Name or Number..."
+					change="onChangeVendor"
+					showSuggestion="true"
+					showValueHelp="true"
+					valueState="{Vendor>/TempContract/VendorValueState}"
+					valueHelpRequest="handleValueHelp"
+					suggestionItems="{Lookup>/VendorList}"
+					suggestionItemSelected="suggestionItemSelected">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Vendorno}" text="{Lookup>Vendorname}" additionalText="{Lookup>Vendorno}" />
+					</suggestionItems>
+				</Input>
+				<Label class="sapUiTinyMarginTop" text="Description" required="true" />
+				<Input
+					value="{Vendor>/TempContract/Description}"
+					valueState="{Vendor>/TempContract/DescriptionValueState}"
+					change="onChangeDescription"
+					placeholder="Enter Description..."
+					maxLength="40"
+					width="100%" />
+				<Label class="sapUiTinyMarginTop" text="Valid From" required="true"/>
+				<DatePicker
+					id="idValidFrom"
+					placeholder="Enter From Date ..."
+					change="onChangeValidFrom"
+					value="{Vendor>/TempContract/ValidFrom}"
+					valueState="{Vendor>/TempContract/ValidFromValueState}"/>
+				<Label class="sapUiTinyMarginTop" text="Valid To" required="true"/>
+				<DatePicker
+					id="idValidTo"
+					placeholder="Enter To Date ..."
+					change="onChangeValidTo"
+					value="{Vendor>/TempContract/ValidTo}"
+					valueState="{Vendor>/TempContract/ValidToValueState}"/>
+				<core:Title text="" />
+				<f:Card class="detailCard" height="9.2em">
+					<f:content>
+						<VBox
+							width="100%"
+							class="sapUiSmallMargin"
+							justifyContent="SpaceBetween">
+							<HBox justifyContent="SpaceBetween">
+								<VBox class="valueContainer">
+									<Label class="cardLabel" text="Company Code" />
+									<Text text="{=${Vendor>/TempContract/CompanyCode} !== '' ? ${Vendor>/TempContract/CompanyCode} : '-'}" />
+								</VBox>
+								<VBox class="valueContainer">
+									<Label class="cardLabel" text="Purchase Organization" />
+									<Text text="{=${Vendor>/TempContract/PurchaseOrg} !== '' ? ${Vendor>/TempContract/PurchaseOrg} : '-'}" />
+								</VBox>
+								<VBox class="valueContainer">
+									<Label class="cardLabel" text="Currency" />
+									<Text text="{=${Vendor>/TempContract/Currency} !== '' ? ${Vendor>/TempContract/Currency} : '-'}" />
+								</VBox>
+							</HBox>
+							<HBox justifyContent="SpaceBetween">
+								<VBox class="valueContainer">
+									<Label class="cardLabel" text="Created By" />
+									<Text text="{=${Vendor>/TempContract/CreatedBy} !== '' ? ${Vendor>/TempContract/CreatedBy} : '-'}" />
+								</VBox>
+								<VBox class="valueContainer">
+									<Label class="cardLabel" text="Created On" />
+									<Text text="{=${Vendor>/TempContract/CreatedOn} !== '' ? ${Vendor>/TempContract/CreatedOn} : '-'}" />
+								</VBox>
+								<VBox class="valueContainer">
+									<Label class="cardLabel" text="Changed By" />
+									<Text text="{=${Vendor>/TempContract/ChangedBy} !== '' ? ${Vendor>/TempContract/ChangedBy} : '-'}" />
+								</VBox>
+								<!--<HBox>
+									<VBox class="sapUiLargeMarginEnd">
+										<Label class="cardLabel" text="Changed By" />
+										<Text text="{=${Vendor>/TempContract/ChangedBy} !== '' ? ${Vendor>/TempContract/ChangedBy} : '-'}" />
+									</VBox>
+									<VBox>
+										<Label class="cardLabel" text="Changed On" />
+										<Text text="{=${Vendor>/TempContract/ChangedOn} !== '' ? ${Vendor>/TempContract/ChangedOn} : '-'}" />
+									</VBox>
+								</HBox>-->
+							</HBox>
+						</VBox>
+					</f:content>
+				</f:Card>
+			</form:content>
+			<form:layoutData>
+				<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
+			</form:layoutData>
+		</form:SimpleForm>
+		<IconTabBar
+			upperCase="true"
+			expandable="false"
+			selectedKey="{Lookup>/SelectedTabKey}"
+			select="onChangeTab"
+			applyContentPadding="true"
+			stretchContentHeight="true"
+			class="sapUiResponsiveContentPadding iconTabContainer">
+			<items>
+				<IconTabFilter key="item" text="Items" design="Horizontal">
+					<Title text="SKU Exclusion"/>
+					<MultiInput
+						id="idSKUMultiInput"
+						placeholder="Enter Material Number or Description (Optional)..."
+						tokens="{Vendor>/TempContract/SKUExclusion}"
+						tokenUpdate="onChangeSKUExclusion"
+						suggestionItems="{
+							path: 'Lookup>/MaterialList',
+							sorter: { path: 'Description' }
+						}"
+						valueHelpRequest="handleMaterialValueHelp">
+						<core:ListItem key="{Lookup>MaterialNo}" text="{Lookup>Description}"  additionalText="{Lookup>MaterialNo}" />
+						<tokens>
+							<Token key="{Vendor>MaterialNo}" text="{Vendor>Description}"/>
+						</tokens>
+					</MultiInput>
+					<t:Table
+						id="idRebateConditionItemTable"
+						class="sapUiSmallMarginTop"
+						rows="{Vendor>/TempContract/RebateConditionItems}"
+						selectionMode="MultiToggle"
+						visibleRowCount="5">
+						<t:extension>
+							<OverflowToolbar>
+								<Title text="Rebate Condition Table ({=${Vendor>/TempContract/RebateConditionItems}.length})" />
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://add" type="Transparent" tooltip="Add Row" press="onAddNewConditionItem" />
+								<Button 
+									icon="sap-icon://delete"
+									enabled="{=${Vendor>/TempContract/RebateConditionItems}.length > 0}"
+									type="Transparent"
+									tooltip="Delete Row"
+									press="onDeleteConditionItem" />
+							</OverflowToolbar>
+						</t:extension>
+						<t:columns>
+							<t:Column width="11rem" hAlign="Center">
+								<Label text="Rebate Type" />
+								<t:template>
+									<Select selectedKey="{Vendor>RebateType}" change="onChangeRebateType">
+										<core:Item text="Value Rebate" key="v"/>
+										<core:Item text="Growth Rebate" key="g"/>
+									</Select>
+								</t:template>
+							</t:Column>
+							<t:Column hAlign="Center">
+								<Label text="Scales" />
+								<t:template>
+									<CheckBox selected="{Vendor>IsScaleSelected}" select="onSelectScale"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Rate(%)" />
+								<t:template>
+									<Input
+										type="Number"
+										enabled="{Vendor>IsRateEnabled}"
+										value="{Vendor>Rate}"
+										valueState="{Vendor>RateValueState}"
+										change="onChangeRebateItemRate"
+										textAlign="End"
+										placeholder="Enter Rate (%)..."/>
+								</t:template>
+							</t:Column>
+							<t:Column width="11rem" hAlign="Center">
+								<Label text="Base"/>
+								<t:template>
+									<Select selectedKey="{Vendor>Base}">
+										<core:Item text="Purchase Order" key="po"/>
+										<core:Item text="Goods Receipt" key="gr"/>
+									</Select>
+								</t:template>
+							</t:Column>
+							<t:Column width="11rem" hAlign="Center">
+								<Label text="Valid From" />
+								<t:template>
+									<DatePicker
+										placeholder="Enter From Date..."
+										change="onChangeItemValidFrom"
+										value="{Vendor>ValidFrom}"
+										valueState="{Vendor>ValidFromValueState}"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="11rem" hAlign="Center">
+								<Label text="Valid To" />
+								<t:template>
+									<DatePicker
+										placeholder="Enter To Date..."
+										change="onChangeItemValidTo"
+										value="{Vendor>ValidTo}"
+										valueState="{Vendor>ValidToValueState}"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon="sap-icon://open-command-field" />
+				<IconTabFilter
+					key="eligibleData"
+					text="Eligible Data for Rebate"
+					enabled="{=${Lookup>/IsContractItemSaved}}"
+					design="Horizontal">
+					<t:Table
+						id="idEligibleDataRebateTable"
+						rows="{Vendor>/TempContract/EligibleData}"
+						selectionMode="MultiToggle"
+						visibleRowCount="8">
+						<t:extension>
+							<OverflowToolbar>
+								<Title text="Items ({=${Vendor>/TempContract/EligibleData}.length})" />
+								<ToolbarSpacer/>
+							</OverflowToolbar>
+						</t:extension>
+						<t:columns>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Rebate Type" />
+								<t:template>
+									<Text text="{Vendor>RebateType}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Purchase Order #" />
+								<t:template>
+									<Text text="{Vendor>PurchaseOrder}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Goods Reciept #" />
+								<t:template>
+									<Text text="{Vendor>GoodsReceipt}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Line Item #" />
+								<t:template>
+									<Text text="{Vendor>LineItemNo}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Created On" />
+								<t:template>
+									<Text text="{Vendor>CreatedOn}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Material #" />
+								<t:template>
+									<Text text="{Vendor>MaterialNo}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Material Description" />
+								<t:template>
+									<Text text="{Vendor>MaterialDescription}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Rate (%)" />
+								<t:template>
+									<Text text="{Vendor>Rate}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="End">
+								<Label text="Net Price" />
+								<t:template>
+									<ObjectNumber
+										class="valueRightAlign"
+										number="{Vendor>NetPrice}"
+										unit="{Vendor>/TempContract/Currency}"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="End">
+								<Label text="Rebate Amount" />
+								<t:template>
+									<ObjectNumber
+										class="valueRightAlign"
+										number="{Vendor>RebateAmount}"
+										unit="{Vendor>/TempContract/Currency}"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon="sap-icon://open-command-field" />
+				<IconTabFilter
+					key="accrual"
+					text="Accrual"
+					enabled="{=${Lookup>/IsContractItemSaved}}"
+					design="Horizontal">
+					<HBox class="sapUiSmallMarginBottom">
+						<VBox class="accrualTabContainer" width="100%">
+							<Label text="Posting Peroid:" />
+							<DatePicker
+								placeholder="Enter Posting Period..."
+								value="{Vendor>/TempContract/Accrual/PostingPeriod}"
+								valueState="{Vendor>/TempContract/Accrual/PostingPeriodValueState}"
+								displayFormat="MM-y"
+								change="onChangePostingPeriod"/>
+						</VBox>
+						<VBox class="accrualTabContainer" width="100%">
+							<Label text="Posting Date:" />
+							<DatePicker
+								placeholder="Enter Posting Date..."
+								value="{Vendor>/TempContract/Accrual/PostingDate}"
+								change="onChangeAccrualPostingDate"
+								valueState="{Vendor>/TempContract/Accrual/PostingDateValueState}"/>
+						</VBox>
+						<VBox class="accrualTabContainer" width="100%">
+							<Label text="Document Date:" />
+							<DatePicker
+								placeholder="Enter Document Date..."
+								value="{Vendor>/TempContract/Accrual/DocumentDate}"
+								change="onChangeDocumentDate"
+								valueState="{Vendor>/TempContract/Accrual/DocumentDateValueState}"/>
+						</VBox>
+					</HBox>
+					<t:Table
+						id="idAccrualTable"
+						rows="{Vendor>/TempContract/Accrual/AccrualSet}"
+						selectionMode="MultiToggle"
+						visibleRowCount="8">
+						<t:extension>
+							<OverflowToolbar>
+								<Title text="Items ({=${Vendor>/TempContract/Accrual/AccrualSet}.length})" />
+								<ToolbarSpacer/>
+							</OverflowToolbar>
+						</t:extension>
+						<t:columns>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Rebate Type" />
+								<t:template>
+									<Text text="{Vendor>RebateType}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" hAlign="Center">
+								<Label text="Account" />
+								<t:template>
+									<Text text="{Vendor>Account}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="8rem" hAlign="Center">
+								<Label text="Vendor" />
+								<t:template>
+									<Text text="{Vendor>Vendor}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="8rem" hAlign="End">
+								<Label text="Amount" />
+								<t:template>
+									<ObjectNumber
+										class="valueRightAlign"
+										number="{Vendor>Amount}"
+										unit="{Vendor>/TempContract/Currency}"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="8rem" hAlign="Center">
+								<Label text="Material" />
+								<t:template>
+									<Text text="{Vendor>Material}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="8rem" hAlign="Center">
+								<Label text="Profit Center" />
+								<t:template>
+									<Text text="{Vendor>Profit}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="8rem" hAlign="Center">
+								<Label text="Assignment" />
+								<t:template>
+									<Text text="{Vendor>Assignment}" />
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon="sap-icon://open-command-field" />
+				<IconTabFilter
+					key="settlement"
+					text="Settlement"
+					enabled="{=${Lookup>/IsContractItemSaved}}"
+					design="Horizontal">
+					<HBox class="sapUiSmallMarginBottom">
+						<VBox class="accrualTabContainer" width="100%">
+							<Label text="Vendor:" />
+							<Text class="vendorText" text="({Vendor>/TempContract/VendorNo}) {Vendor>/TempContract/VendorName}"/>
+						</VBox>
+						<VBox class="accrualTabContainer" width="100%">
+							<Label text="Posting Period:" />
+							<DatePicker
+								value="{Vendor>/TempContract/Settlement/PostingPeriod}"
+								displayFormat="MM-y"
+								change="onChangeSettlementPostingDate"/>
+						</VBox>
+						<VBox class="accrualTabContainer" width="100%">
+							<Label text="Reference Text:" />
+							<Input
+								value="{Vendor>/TempContract/Settlement/ReferenceText}"
+								valueState="{Vendor>/TempContract/Settlement/ReferenceTextValueState}"
+								change="onChangeReferenceText"
+								placeholder="Enter Reference Text"/>
+						</VBox>
+					</HBox>
+					<t:Table
+						id="idSettlementTable"
+						rows="{Vendor>/TempContract/Settlement/SettlementSet}"
+						selectionMode="MultiToggle"
+						visibleRowCount="8">
+						<t:extension>
+							<OverflowToolbar>
+								<Title text="Items ({=${Vendor>/TempContract/Settlement/SettlementSet}.length})" />
+								<ToolbarSpacer/>
+							</OverflowToolbar>
+						</t:extension>
+						<t:columns>
+							<t:Column hAlign="Center">
+								<Label text="Rebate Type" />
+								<t:template>
+									<Text text="{Vendor>RebateType}" />
+								</t:template>
+							</t:Column>
+							<t:Column hAlign="Center">
+								<Label text="Valid From" />
+								<t:template>
+									<Text text="{Vendor>ValidFrom}" />
+								</t:template>
+							</t:Column>
+							<t:Column hAlign="Center">
+								<Label text="Valid To" />
+								<t:template>
+									<Text text="{Vendor>ValidTo}" />
+								</t:template>
+							</t:Column>
+							<t:Column hAlign="End">
+								<Label text="Available Accrual" />
+								<t:template>
+									<ObjectNumber
+										class="valueRightAlign"
+										number="{Vendor>AccruedAmount}"
+										unit="{Vendor>/TempContract/Currency}"/>
+								</t:template>
+							</t:Column>
+							<t:Column hAlign="Center">
+								<Label text="Settlement Amount" />
+								<t:template>
+									<Input
+										class="amountInput"
+										textAlign="End"
+										type="Number"
+										description="{Vendor>/TempContract/Currency}"
+										value="{Vendor>SettleAmount}"
+										valueState="{Vendor>SettleAmountValueState}"
+										placeholder="Enter Amount..." />
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</VBox>
+</mvc:View>

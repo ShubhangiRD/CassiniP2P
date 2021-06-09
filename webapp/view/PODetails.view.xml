@@ -1,0 +1,193 @@
+<mvc:View controllerName="com.vSimpleApp.controller.PODetails" height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.f" class="sapUiSizeCompact" xmlns:fb="sap.ui.comp.filterbar"
+xmlns:tnt="sap.tnt" 	xmlns:vm="sap.ui.comp.variants">
+	<tnt:ToolHeader>
+		<Button icon="sap-icon://menu2" type="Transparent" press="onMenuButtonPress">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Button>
+		<Image src="./images/Cassini-logo.png" densityAware="false" class="logo" width="9rem">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Image>
+	
+		<FlexBox direction="Column" alignItems="Start">
+			<items></items>
+		</FlexBox>
+		<ToolbarSpacer/>
+		<FlexBox class="logoContent" direction="Column" alignItems="Start">
+			<items>
+			
+			</items>
+		</FlexBox>
+		<ToolbarSpacer/>
+		<Button icon="sap-icon://comment" type="Transparent">
+			<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow"/>
+			</layoutData>
+		</Button>
+		<Switch state="true" customTextOn="EN" customTextOff="DE" change="onChangeLanguage">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Switch>
+	</tnt:ToolHeader>
+	<f:DynamicPage id="dynamicPageId" showNavButton="true"
+		navButtonPress="onNavBack">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					
+					<vm:VariantManagement standardItemText="Purchase Orders"></vm:VariantManagement>
+				</f:heading>
+				<f:actions>
+					<ToolbarSpacer/>
+						<Button icon="sap-icon://navigation-left-arrow" type="Emphasized" press="onNavBack"/>
+					<Button icon="sap-icon://add" type="Emphasized" press="onCreatePurchaseOrder"/>
+					<Button type="Transparent" text="Cancel" press="OnCancel" tooltip="decline"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<!-- DynamicPage Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
+						<fb:filterItems>
+						<fb:FilterItem name="Lifnr" label="Vendor Number">
+								<fb:control>
+						
+											<Select
+										id="vnumber"
+										forceSelection="true"
+										change="onSelectChange"
+										items="{
+                                                    path: 'VendorListM>/'
+                                                }">
+										
+										<core:Item key="{VendorListM>Lifnr}" text="{VendorListM>Lifnr}"/>
+										</Select>
+								</fb:control>
+							</fb:FilterItem>
+				<!--	<fb:FilterItem name="Ekorg" label="Purchase Org">
+								<fb:control>
+									<Select  id="idPurchaseOrg"  change="onSelectChange" forceSelection="true" items="{ path: 'PurchaseORg>/' }">
+										<core:Item key="{PurchaseORg>Ekorg}" text="{PurchaseORg>Ekorg}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>-->
+							<fb:FilterItem name="Bukrs" label="Company Code">
+								<fb:control>
+									<Select id="cc" change="onSelectChange" forceSelection="true" items="{ path: 'compMode>/' }">
+										<core:Item key="{compMode>Bukrs}" text="{compMode>Bukrs}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+						</fb:filterItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<!-- DynamicPage Content -->
+		<f:content>
+			<core:Fragment fragmentName="com.vSimpleApp.fragment.POfragments.DisplayPOTable" type="XML"/>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>
+<!--<mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
+	controllerName="com.vSimpleApp.controller.PODetails">
+	<m:Page  showNavButton="true"
+		navButtonPress="onNavBack">
+			<ObjectPageLayout id="POHeader" enableLazyLoading="true" useIconTabBar="true" showTitleInHeaderContent="true" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="Purchase Details" wrapping="true"/>
+				</expandedHeading>
+				<snappedHeading>
+					<m:FlexBox fitContainer="true" alignItems="Center">
+						<m:Avatar src="sap-icon://picture" class="sapUiTinyMarginEnd"/>
+						<m:Title text="Purchase Details" wrapping="true"/>
+					</m:FlexBox>
+				</snappedHeading>
+				<actions>
+					<ObjectPageHeaderActionButton icon="sap-icon://add" type="Emphasized" press="onCreatePurchaseOrder"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" press="OnCancel" tooltip="decline"/>
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true">
+				
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text="Vendor : " required="true"/>
+					<m:Input id="vnumber" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true" showValueHelp="true"
+					 valueHelpRequest="handleVendorValueHelp"
+						suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="suggestionVebor">
+						<m:suggestionItems>
+							<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+						</m:suggestionItems>
+					</m:Input>
+					<l:HorizontalLayout class="sapUiSmallMarginEnd"></l:HorizontalLayout >
+				</l:VerticalLayout>
+			
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text="Company Code:" required="true"/>
+					<m:Input id="cc" textFormatMode="KeyValue" placeholder="Company Code ..." showSuggestion="true" 
+						showValueHelp="true" valueHelpRequest="handleCompanyCodeVendor" suggestionItems="{ path: 'Lookup>/CountryCode' }"
+						suggestionItemSelected="onSuggest">
+						<m:suggestionItems>
+							<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
+						</m:suggestionItems>
+					</m:Input>
+				</l:VerticalLayout>
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text="Purchase Org :" required="true"/>
+					<m:Input id="idPurchaseOrg" textFormatMode="KeyValue" placeholder=" Purchase Org .." showSuggestion="true"
+					 showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor"
+						suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
+						<m:suggestionItems>
+							<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
+						</m:suggestionItems>
+					</m:Input>
+				</l:VerticalLayout>
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text="Purchase Order :" required="true"/>
+					<m:Input id="idpurorder" textFormatMode="KeyValue" placeholder=" Purchase Order .."  valueHelpRequest="handlePursOrderValueHelp" 
+					showSuggestion="true" showValueHelp="true"
+						suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
+						<m:suggestionItems>
+							<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
+						</m:suggestionItems>
+					</m:Input>
+				</l:VerticalLayout>
+			
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="Purchase Order">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.vSimpleApp.Fragments.POfragments.DisplayPOTable" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</m:Page>
+</mvc:View>
+-->

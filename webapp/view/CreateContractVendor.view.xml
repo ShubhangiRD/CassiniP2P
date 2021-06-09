@@ -1,0 +1,253 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.vSimpleApp.controller.CreateContractVendor"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:tnt="sap.tnt">
+	<core:Fragment fragmentName="com.vSimpleApp.view.fragment.Header" type="XML"/>
+	<VBox alignItems="End">
+		<HBox>
+			<Button id="editbtn" icon="sap-icon://edit" type="Transparent" tooltip="Edit" press="onEditPress"/>
+			<Button id="displaybtn" text="Display" type="Transparent" tooltip="Display" press="onDisplayPress"/>
+		</HBox>
+	</VBox>
+	<l:VerticalLayout class="VendorHeaderClass">
+		<VBox class="PurchaseVboxFirst">
+			<!--	<Button id="editbtn1" icon="sap-icon://edit" type="Transparent" tooltip="Edit" press="onEditPress"/>
+-->
+			<f:Form id="FormLumpSum" editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title="Create Vendor">
+						<f:formElements>
+							<f:FormElement label=" Vendor Number">
+								<f:fields>
+									<Input id="idVendor" value="{CreateVendor>/VendorContract/VendorNumber}" width="100%" type="Text" class="searchBox"
+										placeholder=" Vendor Number ..."></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Company Code">
+								<f:fields>
+									<Input value="{CreateVendor>/VendorContract/CompCode}" class="InputBoxContainer" id="idCompCode" placeholder="Company Code ..." type="Text"
+										showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelpCompCode" suggestionItemSelected="suggestionItemCompCode"
+										suggestionItems="{VHeader>/get_companycode_f4helpSet}">
+										<suggestionItems>
+											<core:Item key="{VHeader>Bukrs}" text="{VHeader>Butxt}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title=" ">
+						<f:formElements>
+							<f:FormElement label="Account Group">
+								<f:fields>
+									<Input class="sapUiTinyMarginTop" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelpAccGrp" type="Text"
+										id="idAccGp" placeholder="Account Group ..." suggestionItemSelected="suggestionItemCompCode"
+										value="{CreateVendor>/VendorContract/AccountGrp}" suggestionItems="{VHeader>/get_accountgrp_f4helpSet}">
+										<suggestionItems>
+											<core:Item key="{VHeader>Ktokk}" text="{VHeader>Mandt}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Purchase Organization">
+								<f:fields>
+									<Input placeholder=" Purchase Org ..." showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelpPurchaseOrg" type="Text"
+										id="idPurOrg" value="{CreateVendor>/VendorContract/PurchaseOrg}" suggestionItems="{VHeader>/get_purchaseorg_f4helpSet}"
+										suggestionItemSelected="suggestionItemPurchaseOrg">
+										<suggestionItems>
+											<core:Item key="{VHeader>Ekorg}" text="{VHeader>Ekotx}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+								</f:formElements>
+					</f:FormContainer>
+						<f:FormContainer title=" ">
+						<f:formElements>
+								<f:FormElement label="Purchase Group">
+								<f:fields>
+									<Input placeholder=" Purchase Org ..." showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelpPurchaseGrp" type="Text"
+										id="idPurGrp" value="{CreateVendor>/VendorContract/PurchaseGrp}" suggestionItems="{VHeader>/get_purchaseorg_f4helpSet}"
+										suggestionItemSelected="suggestionItemPurchasegrp">
+										<suggestionItems>
+											<core:Item key="{VHeader>Ekgrp}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+					
+						
+						</f:formElements>
+					</f:FormContainer>
+				
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+	</l:VerticalLayout>
+	<VBox class="PurchaseVboxSecond">
+		<!--	<Panel expandable="true" headerText="Vendor Details" width="auto" class="sapUiResponsiveMargin">	
+		</Panel>
+	-->
+		<f:Form id="FormHeaderContent" editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title=" " class="FormContainerVendor">
+					<f:formElements>
+						<f:FormElement label="Vendor Title">
+							<f:fields>
+								<Select id="vtitle" selectedKey="vtitle" class="SelectionClass">
+									<items>
+										<core:Item text="Dr." key="Dr"/>
+										<core:Item text="Company" key="Company"/>
+										<core:Item text="DOCT." key="DOCT"/>
+										<core:Item text="MADM." key="MADM"/>
+										<core:Item text="MISS." key="MISS"/>
+										<core:Item text="MIST." key="MIST"/>
+										<core:Item text="Mr." key="Mr"/>
+										<core:Item text="Ms." key="Ms"/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Address Number">
+									<f:fields>
+										<Input id="idAddno" value="{CreateVendor>/VendorContract/AddressNum}"  type="Text" class="InputBoxContainer" placeholder="Address Number">
+										
+										</Input>
+									</f:fields>
+								</f:FormElement>
+						<f:FormElement label="Streets">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Street}" id="idStreet" placeholder=" Your Street..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="BirthPlace">
+							<f:fields>
+								<Input id="idBirth" value="{CreateVendor>/VendorContract/BirthPlace}" type="Text" class="InputBoxContainer"
+									placeholder="BirthPlace"></Input>
+							</f:fields>
+						</f:FormElement>
+						<!--	<f:FormElement label="House Address">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Address}" id="idHouse" placeholder=" Your Address..."/>
+							</f:fields>
+						</f:FormElement>-->
+				
+					</f:formElements>
+					<!--	<f:FormElement label="Code">
+								<f:fields>
+									<Input value="{Code}" class="InputBoxContainer" id="cd4" width="120px"/>
+								</f:fields>
+							</f:FormElement>-->
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="FirstName">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/FirstName}" id="idFname" placeholder=" Firstname ..."></Input>
+							</f:fields>
+						</f:FormElement>
+					<f:FormElement label="Distinct">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Distinct}" class="InputBoxContainer" id="idDis" placeholder="Enter Distinct ..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Telphone">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Telephone}" id="idTel" class="InputBoxContainer" 
+									placeholder=" Enter Telephone ..."/>
+							</f:fields>
+						</f:FormElement>
+							<f:FormElement label="Gender">
+							<f:fields>
+									<Select id="idGender" selectedKey="Gendor" class="SelectionClass">
+									<items>
+										<core:Item text="Male" key="Male"/>
+										<core:Item text="Female" key="Female"/>
+								
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="LastName">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/LastName}" id="idLname" placeholder="LastName ..."/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Postal Code">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/PostalCode}" class="InputBoxContainer" id="idPostcode" placeholder=" Postal Code ..."/>
+							</f:fields>
+						</f:FormElement>	
+						<f:FormElement label="City">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/City}" id="idCity" class="InputBoxContainer" placeholder=" City ..."/>
+							</f:fields>
+						</f:FormElement>
+						
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Order Currency">
+							<f:fields>
+								<Input id="idOrderCur" value="{CreateVendor>/VendorContract/OrderCurrency}" width="120px" class="InputBoxContainer" type="Text"
+									placeholder=" Select Order Currency ..."></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Country">
+							<f:fields>
+								<Input value="{CreateVendor>/VendorContract/Country}" id="idCountryCode" placeholder="Select Country Code ..." type="Text"
+									showSuggestion="true" showValueHelp="true" width="120px" valueHelpRequest="handleValueHelpCountryCode"
+									suggestionItems="{ path: 'VHeader>/country_keySet' , filters: [{ path: 'Spras', operator: 'EQ', value1: 'E' }]}"
+									suggestionItemSelected="suggestionItemCountryCode">
+									<suggestionItems>
+										<core:Item key="{VHeader>Land1}" text="{VHeader>Landx}"/>
+									</suggestionItems>
+								</Input>
+								<!--	<Input value="{filterModel>/catDescription}" id="idCountryCode" placeholder="Select Country Code ..." type="Text"
+									showSuggestion="true" showValueHelp="true" width="120px" valueHelpRequest="handleValueHelpCat"
+								suggestionItems="{ path: 'VHeader>/country_keySet', filters : [ { path : 'Stufe', operator : 'EQ', value1 : '1'}, { path : 'Spras', operator : 'EQ', value1 : 'E'} ] }">
+		
+									<suggestionItems>
+										<core:Item key="{VHeader>Landx}"/>
+									</suggestionItems>
+								</Input>-->
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Region">
+							<f:fields>
+								<Input id="idRegion" class="RegionClass" value="{CreateVendor>/VendorContract/Region}" placeholder="Select Region ..." type="Text"
+									width="120px">
+									<!-- region_keySet?$filter=(Land1 eq 'IN') -->
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<!--	<f:FormElement label="Payment Term">
+									<f:fields>
+										<Input id="payt" width="120px" type="Text" class="InputBoxContainer" placeholder=" Select Payment term ...">
+										
+										</Input>
+									</f:fields>
+								</f:FormElement>-->
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<VBox alignContent="Center" class="ButtonController" alignItems="End">
+			<HBox>
+				<Button press="onSaveContract" class="button1" text="submit" width="100%"/>
+				<Button press="OnCancelContract" class="button2" text="Cancel" width="100%"/>
+			</HBox>
+		</VBox>
+	</VBox>
+</mvc:View>

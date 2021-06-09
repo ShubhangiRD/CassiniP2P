@@ -1,0 +1,100 @@
+{
+	"results": [{
+			"taxnoType": "00",
+			"Description": "Special Person resp. for sales"
+		}, {
+			"taxnoType": "01",
+			"Description": "Special Person resp. for sales"
+		}, {
+			"taxnoType": "02",
+			"Description": "unSpecial Person resp. for sales"
+		}, {
+			"taxnoType": "03",
+			"Description": "No Person resp. for sales"
+		}, {
+			"taxnoType": "04",
+			"Description": "Subject to exemption "
+		}, {
+			"taxnoType": "05",
+			"Description": "Sales purchase tax consume"
+		}, {
+			"taxnoType": "06",
+			"Description": "Special Person resp. for sales"
+		}, {
+			"taxnoType": "07",
+			"Description": "unSpecial Person resp. for sales"
+		}, {
+			"taxnoType": "08",
+			"Description": "No Person resp. for sales"
+		}, {
+			"taxnoType": "09",
+			"Description": "Subject to exemption "
+		}, {
+			"taxnoType": "10",
+			"Description": "Sales purchase tax consume"
+		}, {
+			"taxnoType": "11",
+			"Description": "Special Person resp. for sales"
+		}, {
+			"taxnoType": "12",
+			"Description": "unSpecial Person resp. for sales"
+		}, {
+			"taxnoType": "13",
+			"Description": "No Person resp. for sales"
+		}, {
+			"taxnoType": "14",
+			"Description": "Subject to exemption "
+		}, {
+			"taxnoType": "16",
+			"Description": "Sales purchase tax consume"
+		}, {
+			"taxnoType": "17",
+			"Description": "Special Person resp. for sales"
+		}, {
+			"taxnoType": "18",
+			"Description": "unSpecial Person resp. for sales"
+		}, {
+			"taxnoType": "19",
+			"Description": "No Person resp. for sales"
+		}, {
+			"taxnoType": "20",
+			"Description": "Subject to exemption "
+		}, {
+			"taxnoType": "21",
+			"Description": "Sales purchase tax consume"
+		}, {
+			"taxnoType": "22",
+			"Description": "Sales purchase tax consume"
+		}, {
+			"taxnoType": "23",
+			"Description": "Special Person resp. for sales"
+		}, {
+			"taxnoType": "24",
+			"Description": "unSpecial Person resp. for sales"
+		}, {
+			"taxnoType": "80",
+			"Description": "No Person resp. for sales"
+		}, {
+			"taxnoType": "85",
+			"Description": "Subject to exemption "
+		}, {
+			"taxnoType": "86",
+			"Description": "Sales purchase tax consume"
+		}, {
+			"taxnoType": "87",
+			"Description": "Special Person resp. for sales"
+		}, {
+			"taxnoType": "89",
+			"Description": "unSpecial Person resp. for sales"
+		}, {
+			"taxnoType": "90",
+			"Description": "No Person resp. for sales"
+		}, {
+			"taxnoType": "94",
+			"Description": "Subject to exemption "
+		}, {
+			"taxnoType": "96",
+			"Description": "Sales purchase tax consume"
+		}
+	]
+}

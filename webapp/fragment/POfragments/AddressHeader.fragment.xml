@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox >
+		<form:SimpleForm id="AddressHeader"  editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2"
+			columnsL="2" columnsM="1" singleContainerFullSize="false">
+			<form:content>
+				<!--<core:Title text=" "/>-->
+				<Label text="Street/House no"/>
+				<Input maxLength="35" value=" "   editable="{EditModel>/isEditable}"  id="idStreetHeader" placeholder=" Your Street">
+					<layoutData>
+						<l:GridData span="XL2 L3 M4 S4"/>
+					</layoutData>
+				</Input>
+				<Input maxLength="10" id="idAddnoHeader"  editable="{EditModel>/isEditable}"   value="{CreateVendor>/VendorContract/AddressNum}" type="Text"
+					placeholder="Address Number"></Input>
+				<Label text="Postal Code" required="true"/>
+				<Input maxLength="10" value="{CreateVendor>/VendorContract/PostalCode}"  editable="{EditModel>/isEditable}"   change="changePostalCode"
+					id="idPostcodeHeader" placeholder=" Postal Code "/>
+				<Input maxLength="35" value=" " id="idCityHeader" editable="{EditModel>/isEditable}"   placeholder=" City "/>
+				<Label text="Country Code" required="true"/>
+				<Input maxLength="3" id="idCountryCodeHeader" editable="{EditModel>/isEditable}"    textFormatMode="KeyValue" placeholder=" Country Code "
+					showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelpCountryCode"
+					suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }" suggestionItemSelected="onSuggest">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Land1}" text="{Lookup>Landx}" additionalText="{Lookup>Land1}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Telphone"/>
+				<Input maxLength="16" value="{CreateVendor>/VendorContract/Telephone}" editable="{EditModel>/isEditable}"   id="idTelHeader" />
+				<Label text="Fax"/>
+				<Input maxLength="31" id="idfaxHeader" editable="{EditModel>/isEditable}"   />
+				<core:Title text=" "/>
+				<Label text="Extension"/>
+				<Input maxLength="31" id="Extension" editable="{EditModel>/isEditable}"  />
+				<Label text="Extension"/>
+				<Input maxLength="31" id="Extension2" editable="{EditModel>/isEditable}"   />
+				<Button id="AddnrDetailsHeader"    text="Address Details"/>
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

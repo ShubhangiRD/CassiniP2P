@@ -1,0 +1,27 @@
+{
+	"PricingDate": [{
+		"pricingno": "",
+		"Description": "No Control"
+	},
+	{
+		"pricingno":"1",
+		"Description":"Purchase Order Date"
+	},
+	{
+		"pricingno":"2",
+		"Description":"Delivery Date"
+	},
+	{
+		"pricingno":"3",
+		"Description":"Current Date"
+	},
+	{
+		"pricingno":"4",
+		"Description":"Manual"
+	},
+	{
+		"pricingno":"5",
+		"Description":"GR Date"
+	}
+	]
+}

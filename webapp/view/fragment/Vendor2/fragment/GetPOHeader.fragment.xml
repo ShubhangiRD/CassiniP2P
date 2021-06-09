@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Vendor PO List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/POVendorList}"
+		search="_handlePOVendorSearch"
+		confirm="_handlePOVendorHelpClose"
+		cancel="_handlePOVendorHelpClose">
+		<StandardListItem
+			title="{Lookup>Name1}"
+			info="{Lookup>Lifnr}" />
+	</SelectDialog>
+</core:FragmentDefinition><!--<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Table"
+		class="sapUiPopupWithPadding"
+		items="{VHeader>/POHeaderSet}"
+		search=".onValueHelpSearch"
+		confirm=".HandlehelpCloseVendorNumber"
+		cancel=".HandlehelpCloseVendorNumber"
+		>
+		<StandardListItem
+			icon="{ProductPicUrl}"
+			iconDensityAware="false"
+			iconInset="false"
+			title="{VHeader>Lifnr}"
+			description="{VHeader>Name1}" />
+	</SelectDialog>
+</core:FragmentDefinition>-->

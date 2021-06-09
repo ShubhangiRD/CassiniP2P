@@ -1,0 +1,163 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
+	controllerName="com.vSimpleApp.controller.VM">
+	<m:Page showNavButton="true" navButtonPress="onNavBack">
+		<ObjectPageLayout id="POHeader" showFooter="true" showTitleInHeaderContent="true" alwaysShowContentHeader="false"
+			preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+			<headerTitle>
+				<ObjectPageDynamicHeaderTitle>
+					<expandedHeading>
+							<m:HBox>
+							<m:Title text="{ScreenName>/isScreen}" id="idvndorscreen" wrapping="true"/>
+							<m:ObjectMarker type="Favorite" class="sapUiTinyMarginBegin"/>
+						</m:HBox>
+					
+					</expandedHeading>
+					<snappedHeading>
+						<m:FlexBox fitContainer="true" alignItems="Center">
+							<m:Avatar src="sap-icon://picture" class="sapUiTinyMarginEnd"/>
+							<m:Title text="{ScreenName>/isScreen}" wrapping="true"/>
+						</m:FlexBox>
+					</snappedHeading>
+					<actions>
+						<ObjectPageHeaderActionButton text="Edit" id="iddEditt" type="Transparent" hideText="false" tooltip="edit" press="onEditPress"/>
+						<ObjectPageHeaderActionButton id="btn_display" type="Transparent" hideText="false" text="Display" press="onDisplayPress" tooltip="display"/>
+						<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline" press="onCancelPresss"/>
+						<ObjectPageHeaderActionButton hideText="false" type="Emphasized" text="Save" tooltip="save" press="onSaveContract"/>
+					</actions>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<headerContent>
+				<m:FlexBox wrap="Wrap" fitContainer="true">
+					<!--	<m:Avatar src="sap-icon://picture" displaySize="L" class="sapUiTinyMarginEnd"/>
+		-->
+					<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+						<m:Label text="Vendor : " required="true" visible="{VisibleModel>/isVisible}"/>
+						<m:Input id="idVendor" value="{VendorModel>/Vendorno}" visible="{VisibleModel>/isVisible}" textFormatMode="KeyValue" placeholder="Vendor Number"
+							showSuggestion="true" showValueHelp="true" valueHelpRequest="handleVendorValueHelpBox"
+							suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggest">
+							<m:suggestionItems>
+								<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+							</m:suggestionItems>
+						</m:Input>
+						<l:HorizontalLayout class="sapUiSmallMarginEnd"></l:HorizontalLayout >
+					</l:VerticalLayout>
+					<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+						<m:Label text="Purchase Org :" required="true"/>
+						<m:Input id="idPurOrg" value="{VendorModel>/PurchasingOrg}" textFormatMode="KeyValue" placeholder=" Purchase Org" showSuggestion="true"
+							showValueHelp="true" valueHelpRequest="handlePurchaseOrgVendor" editable="{EditModel>/isEditable}"
+							suggestionItems="{ path: 'Lookup>/PurchaseOrganization' }" suggestionItemSelected="onSuggest">
+							<m:suggestionItems>
+								<core:ListItem key="{Lookup>Ekorg}" text="{Lookup>Ekotx}" additionalText="{Lookup>Ekorg}"/>
+							</m:suggestionItems>
+						</m:Input>
+					</l:VerticalLayout>
+					<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+						<m:Label text="Company Code:" required="true"/>
+						<m:Input id="idCompCode" value="{VendorModel>/CompCode}" textFormatMode="KeyValue" placeholder="Company Code" showSuggestion="true"
+							showValueHelp="true" valueHelpRequest="handleCompanyCodeVendor" editable="{EditModel>/isEditable}"
+							suggestionItems="{ path: 'Lookup>/CountryCode' }" suggestionItemSelected="onSuggest">
+							<m:suggestionItems>
+								<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
+							</m:suggestionItems>
+						</m:Input>
+					</l:VerticalLayout>
+					<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+						<m:Label text="Account Group:" required="true"/>
+						<m:Input id="idAccGp" textFormatMode="KeyValue" placeholder="Account Group ..." showSuggestion="true" showValueHelp="true"
+							value="{VendorModel>/VendorAccountGroup}" editable="{EditModel>/isEditable}" valueHelpRequest="handleAccountCodeVendor"
+							suggestionItems="{ path: 'Lookup>/AccountGroup' }" suggestionItemSelected="onSuggest">
+							<m:suggestionItems>
+								<core:ListItem key="{Lookup>Ktokk}" text="{Lookup>Ktokk}" additionalText="{Lookup>Ktokk}"/>
+							</m:suggestionItems>
+						</m:Input>
+					</l:VerticalLayout>
+					<!-- <m:FlexBox wrap="wrap" fitContainer="true"> -->
+				</m:FlexBox>
+			</headerContent>
+			<sections>
+				<ObjectPageSection titleUppercase="false" title="Address">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.VendorFragment.Address" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Control">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.VendorFragment.Control" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Payment">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.VendorFragment.Payment" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Contact Person">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.VendorFragment.ContactPerson" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Accounting Info">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.VendorFragment.AccountingInfo" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Payment Transaction">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.VendorFragment.PaymentTransaction" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Correspondence">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.VendorFragment.Correspondence" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Purchase Data">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.VendorFragment.PurchaseData" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" title="Partner Function">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<core:Fragment fragmentName="com.vSimpleApp.fragment.VendorFragment.PartnerFunction" type="XML"/>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+	</m:Page >
+</mvc:View>

@@ -1,0 +1,110 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<form:SimpleForm id="SimpleFor" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+			adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1"
+			class="myFormMarginTop" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text="Office"/>
+				<!--<Label text="VendorModel" required="true"/>-->
+				<!--<Input id="idVendorModelno" value="{VendorModel>/VendorTemp/VendorModelNumber}" change="changeVenodr" type="Text" class="searchBox"-->
+				<!--	placeholder="VendorModel Number"></Input>-->
+				<Label text="Title" required="true" fieldGroupIds="Anreda"/>
+				<Select id="vtitle1" selectedKey="vtitle" class="sapclassinputbox"  fieldGroupIds="Anreda">
+					<items>
+						<core:Item text="Mr." key="Mr"/>
+						<core:Item text="Ms." key="Ms"/>
+						<core:Item text="MADM." key="MADM"/>
+						<core:Item text="MISS." key="MISS"/>
+						<core:Item text="MIST." key="MIST"/>
+						<core:Item text="Company" key="Company"/>
+						<core:Item text="DOCT." key="DOCT"/>
+						<core:Item text="Dr." key="Dr"/>
+					</items>
+					<layoutData>
+						<l:GridData span="XL2 L3 M4 S4"/>
+					</layoutData>
+				</Select>
+				<Input value="{VendorModel>/VendorTemp/Name}" editable="{EditModel>/isEditable}"  id="idFsname" maxLength="35" placeholder="Firstname"></Input>
+				<Label text="LastName" required="true"/>
+				<Input maxLength="35" value="{VendorModel>/VendorTemp/Name2}"  editable="{EditModel>/isEditable}" id="idLname" placeholder="LastName"/>
+		<Label text="Search Term" required="true"/>
+				<Input maxLength="25" id="idSearchTerm" editable="{EditModel>/isEditable}" placeholder="Search Term" />
+	<Label text="Country Code" required="true"/>
+				<Input maxLength="3" id="idCountryCode" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" placeholder="Country Code" showSuggestion="true"
+					value="{VendorModel>/VendorTemp/Country}" showValueHelp="true" valueHelpRequest="handleValueHelpCountryCode"
+					suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }" suggestionItemSelected="onSuggest">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Land1}" text="{Lookup>Landx}" additionalText="{Lookup>Land1}"/>
+					</suggestionItems>
+				</Input>
+			<Label text="Time Zone " />
+				<Input id="TimeZone"  type="Text"  showSuggestion="true"  editable="{EditModel>/isEditable}" showValueHelp="true"
+					valueHelpRequest="handleValueHelpTimeZone" suggestionItems="{ path: 'hierarchy>/results'}" suggestionItemSelected="suggestionItemTimeZone">
+					<suggestionItems>
+						<core:Item key="{hierarchy>Bezei}" text="{hierarchy>Bland}"/>
+					</suggestionItems>
+				</Input><Label text="POBoxPostalCode"/>
+				<Input maxLength="35" value="{VendorModel>/VendorTemp/POBoxPostalCode}" editable="{EditModel>/isEditable}" id="idPOBoxPostalCode" >
+				
+				</Input>
+				<core:Title text=" "/>
+				<Label text="Street/House no"/>
+				<Input maxLength="35" value="{VendorModel>/VendorTemp/Street}"  editable="{EditModel>/isEditable}" id="idStreet" placeholder=" Your Street">
+				
+				</Input>
+		<!--		<Input maxLength="10" id="idAddno" value="{VendorModel>/VendorTemp/AddressNum}" type="Text" placeholder="Address Number"></Input>
+			-->	<Label text="City"/>
+				<Input maxLength="35" value="{VendorModel>/VendorTemp/City}" editable="{EditModel>/isEditable}" id="idCity" class="InputBoxContainer" placeholder=" City"/>
+				<Label text="Region "/>
+				<Input id="idRegion" maxLength="3" value="{VendorModel>/VendorTemp/Region}" editable="{EditModel>/isEditable}" placeholder="Select Region" type="Text"
+					showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelpCust" suggestionItems="{ path: 'hierarchy>/results'}"
+					suggestionItemSelected="suggestionItemRegion">
+					<suggestionItems>
+						<core:Item key="{hierarchy>Bezei}" text="{hierarchy>Bland}"/>
+					</suggestionItems>
+					<layoutData>
+						<l:GridData span="XL2 L3 M4 S4"/>
+					</layoutData>
+				</Input>
+				<Input maxLength="11" value="{VendorModel>/VendorTemp/District}" editable="{EditModel>/isEditable}" class="InputBoxContainer" id="idDistin" placeholder="Distinct"></Input>
+				<Label text="Pox Box" />
+				<Input maxLength="10" value="{VendorModel>/VendorTemp/PoBox}" editable="{EditModel>/isEditable}" class="InputBoxContainer" id="idPostbox" placeholder="Post Box"></Input>
+				<Label text="Postal Code"/>
+				<Input maxLength="10" value="{VendorModel>/VendorTemp/PostlCode}" editable="{EditModel>/isEditable}"  change="changePostalCode" id="idPostcode"
+					placeholder="Postal Code"/>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm id="SimpleFormChange480_12120-2" editable="true" layout="ResponsiveGridLayout" title="Communication Details"
+			labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0"
+			emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1" class="myFormMargin" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=" "/>
+				<Label text="Language"/>
+					<Input id="idlanguage"  editable="{EditModel>/isEditable}" value="{VendorModel>/VendorTemp/Langu}" placeholder="Language" type="Text"
+					showSuggestion="true" showValueHelp="true" valueHelpRequest="handleLanguage" suggestionItems="{ path: 'Lookup>/LanguageList'}"
+					suggestionItemSelected="suggestionItemLanguage">
+					<suggestionItems>
+						<core:Item key="{Lookup>Sptxt}" text="{Lookup>Sptxt}"/>
+					</suggestionItems>
+				
+				</Input>
+		
+				<Label text="Telphone"/>
+				<Input maxLength="16" value="{VendorModel>/VendorTemp/Telephone}" editable="{EditModel>/isEditable}" id="idTel" class="InputBoxContainer"/>
+				<Label text="Fax"/>
+				<Input maxLength="31" id="idfax" class="InputBoxContainer" editable="{EditModel>/isEditable}"  value="{VendorModel>/VendorTemp/FaxNumber}"/>
+				<Label text="Email"/>
+				<Input id="idEmails" class="InputBoxContainer" editable="{EditModel>/isEditable}"  value="{VendorModel>/VendorTemp/InternetAddrs}"/>
+				<core:Title text=" "/>
+				<Label text="Data Line"/>
+				<Input maxLength="14" id="idDataline"  class="InputBoxContainer"  editable="{EditModel>/isEditable}" placeholder="Enter Data Line"/>
+				<Label text="Tel Ext"/>
+				<Input id="TelExtension" class="InputBoxContainer"  editable="{EditModel>/isEditable}" value="{VendorModel>/VendorTemp/TelexNumber}" placeholder="Enter Extension"/>
+				<Label text="Fax Ext"/>
+				<Input id="FaxExtension" class="InputBoxContainer" editable="{EditModel>/isEditable}"  value="{VendorModel>/VendorTemp/TelexNumber}" placeholder="Enter Extension"/>
+				<Label text="Tele Box"/>
+				<Input id="TeleboxNumber" class="InputBoxContainer" editable="{EditModel>/isEditable}" value="{VendorModel>/VendorTemp/TeleboxNumber}" placeholder="Enter Extension"/>
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

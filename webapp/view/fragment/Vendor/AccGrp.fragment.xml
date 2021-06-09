@@ -1,0 +1,33 @@
+<!--<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Account Group"
+		class="sapUiPopupWithPadding"
+		items="{VHeader>/get_accountgrp_f4helpSet}"
+		search="_handleValueHelpSearchAccGrp"
+		confirm="_handleValueHelpCloseAccGrp"
+		cancel="_handleValueHelpCloseAccGrp">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{VHeader>Ktokk}"
+			description="{VHeader>Ktokk}" />
+	</SelectDialog>
+</core:FragmentDefinition>-->
+
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Account Group List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/AccountGroup}"
+		search="_handlevendorAccountGSearch"
+		confirm="_handlevendorAccountGClose"
+		cancel="_handlevendorAccountGClose">
+		<StandardListItem
+			title="{Lookup>Ktokk}"
+			info="{Lookup>Ktokk}" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Sort Key List"
+		class="sapUiPopupWithPadding"
+		items="{sortkey>/SortKey}"
+		search="_handleSortKeySearch"
+		confirm="_handleSortKeyClose"
+		cancel="_handleSortKeyClose">
+		<StandardListItem
+			title="{sortkey>sortno}"
+			info = "{sortkey>Description}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

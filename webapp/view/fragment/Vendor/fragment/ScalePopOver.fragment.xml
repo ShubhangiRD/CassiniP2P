@@ -1,0 +1,78 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:core="sap.ui.core">
+	<Popover
+		title="{=${Vendor>RebateType} === 'g' ? 'Growth Rebate' : 'Value Rebate'}"
+		class="sapUiPopupWithPadding"
+		modal="true"
+		placement="Right"
+		initialFocus="action">
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					id="action"
+					tooltip="Save"
+					text="Save"
+					press="handleClosePress">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+				</Button>
+			</Toolbar>
+		</footer>
+		<VBox>
+		<t:Table
+			id="idScaleTable"
+			width="25.1rem"
+			rows="{Vendor>Scales}"
+			selectionMode="MultiToggle"
+			visibleRowCount="5">
+			<t:extension>
+				<OverflowToolbar>
+					<Title text="Scales ({=${Vendor>Scales}.length})" />
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://add" type="Transparent" tooltip="Add Row" press="onAddNewScaleItem" />
+					<Button 
+						icon="sap-icon://delete"
+						enabled="{=${Vendor>Scales}.length > 0}"
+						type="Transparent"
+						tooltip="Delete Row"
+						press="onDeleteScaleItem" />
+				</OverflowToolbar>
+			</t:extension>
+			<t:columns>
+				<t:Column width="9rem" hAlign="Center">
+					<Label text="{=${Vendor>RebateType} === 'g' ? 'Growth Rate(%)' : 'Spend Value'}" />
+					<t:template>
+						<Input
+							type="Number"
+							value="{Vendor>Value}"
+							valueState="{Vendor>ValueState}"
+							textAlign="End"
+							placeholder="Enter {=${Vendor>RebateType} === 'g' ? 'Growth Rate (%)' : 'Spend Value'}"/>
+					</t:template>
+				</t:Column>
+				<t:Column hAlign="Center">
+					<Label text="Currency" />
+					<t:template>
+						<Text text="{Vendor>/TempContract/Currency}" />
+					</t:template>
+				</t:Column>
+				<t:Column width="9rem" hAlign="Center">
+					<Label text="Rebate %" />
+					<t:template>
+						<Input
+							type="Number"
+							value="{Vendor>RebatePercent}"
+							valueState="{Vendor>RebatePercentState}"
+							textAlign="End"
+							placeholder="Enter Rebate (%)"/>
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,192 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<form:SimpleForm id="FormChange22" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1"
+			class="myFormMarginBottom" singleContainerFullSize="false" title="Accounting Information">
+			<form:content>
+				<core:Title text=""/>
+				<Label text="Recon Account" required="true"/>
+					<Input id="ReconAccount" 	maxLength="8" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/ReconciliationAccount}" showValueHelp="true"
+									valueHelpRequest="handleReconAccountValueHelp" editable="{EditModel>/isEditable}" suggestionItems="{ path: '{reconaccount>/ReconAccount}' }"
+									suggestionItemSelected="onSuggestReconAccount">
+									<suggestionItems>
+										<core:ListItem key="{reconaccount>GLAccount}" text="{reconaccount>Description}" additionalText="{reconaccount>GLAccount}"/>
+									</suggestionItems>
+								</Input>
+			
+				<Label text="Head Office"/>
+				<Input id="headoffice" value="{VendorModel>/HdOffice}"  textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleHeadOfficeHelp"
+					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestheadoffice" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Authorization "/>
+				<Input id="idauthor" value="{VendorModel>/CollAuth}"  placeholder="Authorization" editable="{EditModel>/isEditable}"/>
+				<Label text="Certification Date"/>
+				<DatePicker id="idcertificatindate" editable="{EditModel>/isEditable}"/>
+				<Label text="Minority Indic"/>
+				<Input id="MinorityIndic" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleMinorityIndicHelp"
+					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestMinorityIndic" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=""/>
+				<Label text="Sort Key."  required="true"/>
+				<Input id="idsortkey" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Sortfield}" showValueHelp="true"
+					valueHelpRequest="handleSorkeyValueHelp" fieldGroupIds="Sortla" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestsortkey" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Subsidy Indic "/>
+				<Input id="idsubsudyindic" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handlesubsudyindicValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestsubsidyindic" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Cash Managment Grp"/>
+				<Input id="idcashmgmntgrp" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" class="sapUiSmallMarginTop"
+					valueHelpRequest="handlecashmangmentgrpValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestcashmgtgrp" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Release Group "  required="true"/>
+				<Input id="Releasegrp" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/ReleaseApprovalGroup}"
+					showValueHelp="true" valueHelpRequest="handleReleasegrpValueHelp" suggestionItems="{ path: 'Lookup>/ReleaseGroupList' }"
+					suggestionItemSelected="onSuggestReleasegrp" editable="{EditModel>/isEditable}" fieldGroupIds="Frgrpb">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm id="FormChange33" editable="true" layout="ResponsiveGridLayout" title="Interest Calculation" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+			columnsL="3" columnsM="1" class="myFormMargin" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=""/>
+				<Label text="Interest Indic"/>
+				<Input id="idinterestindi" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleinterestindic"
+					suggestionItems="{ path: 'Lookup>/InterestlndicList' }" suggestionItemSelected="onSuggestinterestindic" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Vzskz}" text="{Lookup>Vzskz}" additionalText="{Lookup>Vzskz}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Interest Cycle"/>
+				<Input id="idintcycle" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleintrestcycle"
+					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestintrestcycle" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=""/>
+				<Label text="Last Key Date "/>
+				<!--<DatePicker id="idLastKeydate" />-->
+				<Input id="idLastKeydate" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Lifnr}" showValueHelp="true"
+					valueHelpRequest="handlekeydate" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestkeydate"
+					editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Last Interest run "/>
+				<!--<DatePicker/>-->
+				<Input id="idLastInterest" textFormatMode="KeyValue" showSuggestion="true" value="{VendorModel>/Lifnr}" showValueHelp="true"
+					valueHelpRequest="handleLastInterestrun" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestLastInterestrun" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm id="SimpleForms2" editable="true" layout="ResponsiveGridLayout" title="Withholding Tax" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+			columnsL="3" columnsM="1" class="myFormMargin" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text="Withholding tax "/>
+				<Label text="W.Tax Code"/>
+				<Input id="idwtaxcode" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+					valueHelpRequest="handleidwtaxcode" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestwtaxcode">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<!--	<DatePicker id="idDOB"/>-->
+				<Label text="WH Tax Country"/>
+				<Input id="idwtaxCountry" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+					valueHelpRequest="handleidwtaxCountry" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestwtaxCountry">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Receipt Type"/>
+				<Input id="idreceptype" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}" showValueHelp="true"
+					valueHelpRequest="handlereceipttype" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestreceipttype">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=" "/>
+				<Label text="Exemption Number"/>
+				<Input id="expnum" class="sapUiSmallMarginTopBottom" editable="{EditModel>/isEditable}"/>
+				<Label text="Valid Until"/>
+				<DatePicker id="idvaliduntil" editable="{EditModel>/isEditable}"/>
+				<!--<Input id="idvaliduntil" textFormatMode="KeyValue" showSuggestion="true" value="{Vendor>/Lifnr}" showValueHelp="true"
+					valueHelpRequest="handlevaliduntil" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestvaliduntil">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>-->
+				<Label text="Exmpt Authority"/>
+				<Input id="idexmptauthority" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleExmptAuthority"
+					suggestionItems="{ path: 'Lookup>/ExemptionAuthorityList' }" suggestionItemSelected="onSuggestExmptAuthority"
+					editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Reference Data" id="FormChangepre" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+			columnsL="3" columnsM="1" class="myFormMargin" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=""/>
+				<Label text="Prev Account Number"/>
+				<Input id="idprevaccno" class="sapUiSmallMarginTop" editable="{EditModel>/isEditable}" textFormatMode="KeyValue"></Input>
+				<Label text="Activity Code"/>
+				<Input id="Activitycode" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleActivityCode"
+					editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/ActivityCodeList' }" suggestionItemSelected="onSuggestActivityCode">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Actvt}" text="{Lookup>Actvt}" additionalText="{Lookup>Actvt}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=""/>
+				<Label text="Personal Number "/>
+				<Input id="idpersonalno" editable="{EditModel>/isEditable}" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+					class="sapUiSmallMarginTop" valueHelpRequest="handlePersonalNumber" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestPersonalNumber">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Distr Type "/>
+				<Input id="iddistrtype" editable="{EditModel>/isEditable}" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handleDistype" fieldGroupIds="Ort02a" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestDistytyp">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

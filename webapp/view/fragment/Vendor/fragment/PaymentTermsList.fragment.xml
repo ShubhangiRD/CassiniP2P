@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Payment Terms List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/PaymentTermsList}"
+		search="_handlePaymentTermsVendorSearch"
+		confirm="_handlePaymentTermsVendorClose"
+		cancel="_handlePaymentTermsVendorClose">
+		<StandardListItem
+			title="{Lookup>Zterm}"
+			info="{Lookup>Text1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

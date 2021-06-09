@@ -1,0 +1,525 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:m="sap.m"
+	height="100%" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<m:ScrollContainer width="100%" horizontal="true" vertical="true" focusable="true">
+		<Table id="tablePoorders" selectionMode="None" rows="{Lookup>/PoDocumentNumber}" visibleRowCount="7" enableCellFilter="{ui>/cellFilterOn}"
+			filter="filterPrice" ariaLabelledBy="title">
+			<extension>
+				<m:OverflowToolbar >
+					<m:Title id="title" text="Products"/>
+					<m:ToolbarSpacer/>
+					<m:Select id="select" items="{modes>/items}" selectedKey="Navigation" change="onBehaviourModeChange">
+						<core:Item key="{modes>key}" text="{modes>text}"/>
+					</m:Select>
+					<!--	<m:ToggleButton
+							icon="sap-icon://complete"
+							tooltip="Show available products only"
+							press="toggleAvailabilityFilter"
+							pressed="{ui>/availabilityFilterOn}"/>
+						<m:ToggleButton
+							icon="sap-icon://grid"
+							tooltip="Enable / Disable Cell Filter Functionality"
+							pressed="{ui>/cellFilterOn}"/>-->
+						<!--	//onDataExport-->
+					<m:Button icon="sap-icon://download" press="onExport"/>
+					<!--<m:Button icon="sap-icon://full-screen" press="TableFullScreen"/>-->
+					<m:Button icon="sap-icon://decline" tooltip="Clear all filters" press="clearAllFiltersPOtable"/>
+					<m:ToolbarSeparator/>
+					<m:SearchField placeholder="Filter" value="{ui>/globalFilter}" search="onSearchEbeln" width="15rem"/>
+				</m:OverflowToolbar>
+			</extension>
+			<columns>
+				<Column width="9rem" hAlign="Center" filterProperty="Bukrs">
+					<m:Label text="Company Code"/>
+					<template>
+						<m:Text text="{Lookup>Bukrs}" wrapping="false"/>
+					</template>
+				</Column>
+				<Column width="11rem" hAlign="Center" filterProperty="Ebeln" defaultFilterOperator="StartsWith">
+					<m:Label text="Purchase Order"/>
+					<template >
+						<m:Text text="{Lookup>Ebeln}" custom:Ebeln="{Lookup>Ebeln}" wrapping="false"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" sortProperty="Lifnr" filterProperty="Lifnr">
+					<m:Label text="Vendor Number "/>
+					<template>
+						<m:Text text="{Lookup>Lifnr}" wrapping="false"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" sortProperty="Name" filterProperty="Name">
+					<m:Label text="Vendor Name "/>
+					<template>
+						<m:Text text="{Lookup>Name}" wrapping="false"/>
+					</template>
+				</Column>
+				<Column id="idPurchaseOrg" width="9rem" hAlign="Center" filterProperty="Ekorg">
+					<m:Label text="Purchase Org"/>
+					<template>
+						<m:Text text="{Lookup>Ekorg}" wrapping="false"/>
+					</template>
+				</Column>
+				<Column id="iddate" width="9rem" hAlign="Center" filterProperty="Bedat">
+					<m:Label text="Created On"/>
+					<template>
+						<m:Text text="{path: 'Lookup>Bedat', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd' } }" wrapping="false"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Ernam" sortProperty="Ernam">
+					<m:Label text="Created By"/>
+					<template>
+						<m:Text text="{Lookup>Ernam}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Absgr" sortProperty="Absgr">
+					<m:Label text="Reason for Cancellation"/>
+					<template>
+						<m:Text text="{Lookup>Absgr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Addnr" sortProperty="Addnr">
+					<m:Label text="Document number for additional"/>
+					<template>
+						<m:Text text="{Lookup>Addnr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Adrnr" sortProperty="Adrnr">
+					<m:Label text="Address number"/>
+					<template>
+						<m:Text text="{Lookup>Adrnr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Angdt" sortProperty="Angdt">
+					<m:Label text="Deadline for Submission of Bid/Quotation"/>
+					<template>
+						<m:Text text="{Lookup>Angdt}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Angnr" sortProperty="Angnr">
+					<m:Label text="Quotation Number"/>
+					<template>
+						<m:Text text="{Lookup>Angnr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Ausnr" sortProperty="Ausnr">
+					<m:Label text="Bid invitation number"/>
+					<template>
+						<m:Text text="{Lookup>Ausnr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Autlf" sortProperty="Autlf">
+					<m:Label text="Complete Delivery Stipulated for Each Purchase Order"/>
+					<template>
+						<m:Text text="{Lookup>Autlf}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Bnddt" sortProperty="Bnddt">
+					<m:Label text="Binding Period for Quotation"/>
+					<template>
+						<m:Text text="{Lookup>Bnddt}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Bsakz" sortProperty="Bsakz">
+					<m:Label text="Control indicator for purchasing document type"/>
+					<template>
+						<m:Text text="{Lookup>Bsakz}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Bsart" sortProperty="Bsart">
+					<m:Label text="Purchasing Document Type"/>
+					<template>
+						<m:Text text="{Lookup>Bsart}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Bstyp" sortProperty="Bstyp">
+					<m:Label text="Purchasing Document Category"/>
+					<template>
+						<m:Text text="{Lookup>Bstyp}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Bwbdt" sortProperty="Bwbdt">
+					<m:Label text="Closing Date for Applications"/>
+					<template>
+						<m:Text text="{Lookup>Bwbdt}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Description" sortProperty="Description">
+					<m:Label text="Contract Name"/>
+					<template>
+						<m:Text text="{Lookup>Description}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Dpamt" sortProperty="Dpamt">
+					<m:Label text="Down Payment Amount in Document Currency"/>
+					<template>
+						<m:Text text="{Lookup>Dpamt}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Dpdat" sortProperty="Dpdat">
+					<m:Label text="Due Date for Down Payment"/>
+					<template>
+						<m:Text text="{Lookup>Dpdat}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Dppct" sortProperty="Dppct">
+					<m:Label text="Down Payment Percentage"/>
+					<template>
+						<m:Text text="{Lookup>Dppct}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Dptyp" sortProperty="Dptyp">
+					<m:Label text="Down Payment Indicator"/>
+					<template>
+						<m:Text text="{Lookup>Dptyp}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Exnum" sortProperty="Exnum">
+					<m:Label text="Foreign trade data in MM and SD documents"/>
+					<template>
+						<m:Text text="{Lookup>Exnum}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Frggr" sortProperty="Frggr">
+					<m:Label text="Release group"/>
+					<template>
+						<m:Text text="{Lookup>Frggr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Frgke" sortProperty="Frgke">
+					<m:Label text="Release Indicator: Purchasing Document"/>
+					<template>
+						<m:Text text="{Lookup>Frgke}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Frgrl" sortProperty="Frgrl">
+					<m:Label text="Release Not Yet Completely Effected"/>
+					<template>
+						<m:Text text="{Lookup>Frgrl}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Frgsx" sortProperty="Frgsx">
+					<m:Label text="Release Strategy"/>
+					<template>
+						<m:Text text="{Lookup>Frgsx}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Frgzu" sortProperty="Frgzu">
+					<m:Label text="Release status"/>
+					<template>
+						<m:Text text="{Lookup>Frgzu}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Gwldt" sortProperty="Gwldt">
+					<m:Label text="Warranty Date"/>
+					<template>
+						<m:Text text="{Lookup>Gwldt}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="HierarchyExists" sortProperty="HierarchyExists">
+					<m:Label text="HierarchyExists"/>
+					<template>
+						<m:Text text="{Lookup>HierarchyExists}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Ihran" sortProperty="Ihran">
+					<m:Label text="Quotation Submission Date"/>
+					<template>
+						<m:Text text="{Lookup>Ihran}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Ihrez" sortProperty="Ihrez">
+					<m:Label text="Your Reference"/>
+					<template>
+						<m:Text text="{Lookup>Ihrez}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Inco1" sortProperty="Inco1">
+					<m:Label text="Incoterms (Part 1)"/>
+					<template>
+						<m:Text text="{Lookup>Inco1}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Inco2" sortProperty="Inco2">
+					<m:Label text="Incoterms (Part 2)"/>
+					<template>
+						<m:Text text="{Lookup>Inco2}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Kalsm" sortProperty="Kalsm">
+					<m:Label text="Procedure"/>
+					<template>
+						<m:Text text="{Lookup>Kalsm}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Kdatb" sortProperty="Kdatb">
+					<m:Label text="Start of Validity Period"/>
+					<template>
+						<m:Text text="{path: 'Lookup>Kdatb', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd' } }" wrapping="false"/>
+						<!--		<m:Text text="{Lookup>Kdatb}"/>-->
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Kdate" sortProperty="Kdate">
+					<m:Label text="End of Validity Period"/>
+					<template>
+						<m:Text text="{path: 'Lookup>Kdate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd' } }" wrapping="false"/>
+						<!--	<m:Text text="{Lookup>Kdate}"/>-->
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Knumv" sortProperty="Knumv">
+					<m:Label text="Number of the document condition"/>
+					<template>
+						<m:Text text="{Lookup>Knumv}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Konnr" sortProperty="Konnr">
+					<m:Label text="Number of Principal Purchase Agreement"/>
+					<template>
+						<m:Text text="{Lookup>Konnr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Kornr" sortProperty="Kornr">
+					<m:Label text="Correction of miscellaneous provisions"/>
+					<template>
+						<m:Text text="{Lookup>Kornr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Ktwrt" sortProperty="Ktwrt">
+					<m:Label text="Target Value for Header Area per Distribution"/>
+					<template>
+						<m:Text text="{Lookup>Ktwrt}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Kufix" sortProperty="Kufix">
+					<m:Label text="Indicator: Fixing of Exchange Rate"/>
+					<template>
+						<m:Text text="{Lookup>Kufix}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Kunnr" sortProperty="Kunnr">
+					<m:Label text="Customer Number"/>
+					<template>
+						<m:Text text="{Lookup>Kunnr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Lands" sortProperty="Lands">
+					<m:Label text="Country "/>
+					<template>
+						<m:Text text="{Lookup>Lands}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Lblif" sortProperty="Lblif">
+					<m:Label text="Field not used"/>
+					<template>
+						<m:Text text="{Lookup>Lblif}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="LegalContract" sortProperty="LegalContract">
+					<m:Label text="LegalContract"/>
+					<template>
+						<m:Text text="{Lookup>LegalContract}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Lifre" sortProperty="Lifre">
+					<m:Label text="Different Invoicing Party"/>
+					<template>
+						<m:Text text="{Lookup>Lifre}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Llief" sortProperty="Llief">
+					<m:Label text="Supplying Vendor"/>
+					<template>
+						<m:Text text="{Lookup>Llief}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Loekz" sortProperty="Loekz">
+					<m:Label text="Deletion Indicator in Purchasing Document"/>
+					<template>
+						<m:Text text="{Lookup>Loekz}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Lphis" sortProperty="Lphis">
+					<m:Label text="scheduling agreement"/>
+					<template>
+						<m:Text text="{Lookup>Lphis}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Lponr" sortProperty="Lponr">
+					<m:Label text="Last Item Number"/>
+					<template>
+						<m:Text text="{Lookup>Lponr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Memory" sortProperty="Memory">
+					<m:Label text="Purchase order not yet complete"/>
+					<template>
+						<m:Text text="{Lookup>Memory}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Memorytype" sortProperty="Memorytype">
+					<m:Label text="Category of Incompleteness"/>
+					<template>
+						<m:Text text="{Lookup>Memorytype}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="MsrId" sortProperty="MsrId">
+					<m:Label text="MsrId"/>
+					<template>
+						<m:Text text="{Lookup>MsrId}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Pincr" sortProperty="Pincr">
+					<m:Label text="Item Number Interval"/>
+					<template>
+						<m:Text text="{Lookup>Pincr}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="PohfType" sortProperty="PohfType">
+					<m:Label text="PohfType"/>
+					<template>
+						<m:Text text="{Lookup>PohfType}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Procstat" sortProperty="Procstat">
+					<m:Label text=" processing state"/>
+					<template>
+						<m:Text text="{Lookup>Procstat}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="ReasonCode" sortProperty="ReasonCode">
+					<m:Label text="ReasonCode"/>
+					<template>
+						<m:Text text="{Lookup>ReasonCode}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="ReleaseDate" sortProperty="ReleaseDate">
+					<m:Label text="ReleaseDate"/>
+					<template>
+						<m:Text text="{Lookup>ReleaseDate}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="RelocId" sortProperty="RelocId">
+					<m:Label text="RelocId"/>
+					<template>
+						<m:Text text="{Lookup>RelocId}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="RelocSeqId" sortProperty="RelocSeqId">
+					<m:Label text="RelocSeqId"/>
+					<template>
+						<m:Text text="{Lookup>RelocSeqId}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Reswk" sortProperty="Reswk">
+					<m:Label text="Supplying (Issuing) Plant in Stock Transport Order"/>
+					<template>
+						<m:Text text="{Lookup>Reswk}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Retpc" sortProperty="Retpc">
+					<m:Label text="Retention in percent"/>
+					<template>
+						<m:Text text="{Lookup>Retpc}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Rettp" sortProperty="Rettp">
+					<m:Label text="Retention Indicator"/>
+					<template>
+						<m:Text text="{Lookup>Rettp}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Revno" sortProperty="Revno">
+					<m:Label text="Version numbe"/>
+					<template>
+						<m:Text text="{Lookup>Revno}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Rlwrt" sortProperty="Rlwrt">
+					<m:Label text="Total value at time of release"/>
+					<template>
+						<m:Text text="{Lookup>Rlwrt}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Shipcond" sortProperty="Shipcond">
+					<m:Label text="Shipping Conditions"/>
+					<template>
+						<m:Text text="{Lookup>Shipcond}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Spras" sortProperty="Spras">
+					<m:Label text="Language Key"/>
+					<template>
+						<m:Text text="{Lookup>Spras}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Stafo" sortProperty="Stafo">
+					<m:Label text="Update group for statistics update "/>
+					<template>
+						<m:Text text="{Lookup>Stafo}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Stako" sortProperty="Stako">
+					<m:Label text=" Document with time-dependent conditions"/>
+					<template>
+						<m:Text text="{Lookup>Stako}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Statu" sortProperty="Statu">
+					<m:Label text="Status of Purchasing Document"/>
+					<template>
+						<m:Text text="{Lookup>Statu}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Stceg" sortProperty="Stceg">
+					<m:Label text="VAT Registration Number"/>
+					<template>
+						<m:Text text="{Lookup>Stceg}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Submi" sortProperty="Submi">
+					<m:Label text="Collective Number"/>
+					<template>
+						<m:Text text="{Lookup>Submi}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Zbd1p" sortProperty="Zbd1p">
+					<m:Label text="Cash Discount Percentage 1"/>
+					<template>
+						<m:Text text="{Lookup>Zbd1p}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Zbd1t" sortProperty="Zbd1t">
+					<m:Label text="Cash (Prompt Payment) Discount Days"/>
+					<template>
+						<m:Text text="{Lookup>Zbd1t}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Zbd2p" sortProperty="Zbd2p">
+					<m:Label text="Cash Discount Percentage 2"/>
+					<template>
+						<m:Text text="{Lookup>Zbd2p}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Zbd2t" sortProperty="Zbd2t">
+					<m:Label text="Cash (Prompt Payment) Discount Days"/>
+					<template>
+						<m:Text text="{Lookup>Zbd2t}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Zbd3t" sortProperty="Zbd3t">
+					<m:Label text="Cash (Prompt Payment) Discount Days"/>
+					<template>
+						<m:Text text="{Lookup>Zbd3t}"/>
+					</template>
+				</Column>
+				<Column width="9rem" hAlign="Center" filterProperty="Zterm" sortProperty="Zterm">
+					<m:Label text="Terms of Payment Key"/>
+					<template>
+						<m:Text text="{Lookup>Zterm}"/>
+					</template>
+				</Column>
+			</columns>
+			<footer>
+				<m:OverflowToolbar id="infobar"></m:OverflowToolbar>
+			</footer>
+		</Table>
+	</m:ScrollContainer>
+</core:FragmentDefinition>

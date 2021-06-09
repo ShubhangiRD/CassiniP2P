@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Order Currency List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/OrderCurrencyList}"
+		search="_handleOrderCurrencyVendorSearch"
+		confirm="_handleOrderCurrencyVendorClose"
+		cancel="_handleOrderCurrencyVendorClose">
+		<StandardListItem
+			title="{Lookup>Lifnr}"
+			info="{Lookup>Name1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

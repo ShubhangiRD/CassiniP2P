@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Customer List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/CustomerList}"
+		search="_handleCustomerVendorSearch"
+		confirm="_handleCustomerVendorClose"
+		cancel="_handleCustomerVendorClose">
+		<StandardListItem
+			title="{Lookup>Kunnr}"
+			info="{Lookup>Name1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

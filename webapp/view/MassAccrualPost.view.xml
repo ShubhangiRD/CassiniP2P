@@ -1,0 +1,71 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap"
+	xmlns:tnt="sap.tnt" class="sapUiSizeCompact" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:q="sap.f"
+	controllerName="com.vSimpleApp.controller.MassAccrualPost">
+	<tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<q:ShellBar title="Vendor Rebate Management" showMenuButton="true" homeIcon="./images/Logo.png" showCopilot="false" showNotifications="true"
+				menuButtonPressed="onMenuButtonPress" showProductSwitcher="false" notificationsNumber="2">
+				<q:menu>
+					<Menu>
+						<MenuItem text="Flight booking" icon="sap-icon://flight"/>
+						<MenuItem text="Car rental" icon="sap-icon://car-rental"/>
+					</Menu>
+				</q:menu>
+				<q:profile>
+					<q:Avatar initials="JS" press="onUserNamePress"/>
+				</q:profile>
+				<q:searchManager>
+					<q:SearchManager/>
+				</q:searchManager>
+			</q:ShellBar>
+		</tnt:header>
+	</tnt:ToolPage>
+	<VBox class="sapUiLargeMarginTop">
+		<f:Form id="FormToolbar" editable="true" ariaLabelledBy="Title1">
+			<f:toolbar>
+				<Toolbar>
+					<Button id="bck" icon="sap-icon://nav-back" text="" press="onNavBack"/>
+					<Title id="Title" text="Mass Accrual Post"/>
+					<ToolbarSpacer/>
+					<Button id="faBtn1" icon="sap-icon://save" text="Post Accruals" press="getAccrual"/>
+					<Button icon="sap-icon://decline" text="{i18n>cancel}" press="OnCancelMassAcrual"/>
+				</Toolbar>
+			</f:toolbar>
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4"
+					emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer ariaLabelledBy="Title3">
+					<f:formElements>
+						<f:FormElement label=" Posting Period">
+							<f:fields>
+								<DatePicker required="true" id="perid" displayFormat="MM/yyyy" valueFormat="MM/yyyy"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Posting Date">
+							<f:fields>
+								<DatePicker required="true" id="peridate" valueFormat="yyyy-MM-dd" displayFormat="long"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Contract">
+							<f:fields>
+								<Input id="contid" value="{Agreement>/ContAgr} "/>
+								<!--	<Input type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="onOpenDialog" suggestionItems="{/ProductCollection}">
+							-->
+								<Button id="f1" icon="sap-icon://add" text=" Multiple" press="addMultiple">
+									<!--	<suggestionItems>
+										<core:Item text="{Name}"/>
+									</suggestionItems>-->
+									<layoutData>
+										<l:GridData span="XL2 L1 M3 S4"/>
+									</layoutData>
+								</Button>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</mvc:View>

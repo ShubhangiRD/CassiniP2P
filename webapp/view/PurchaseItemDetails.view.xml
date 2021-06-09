@@ -1,0 +1,301 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" 	xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.vSimpleApp.controller.PurchaseItemDetails"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	
+			<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" showNavButton="true" navButtonPress="onNavBack" toggleHeaderOnTitleClick="{/titleClickable}">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Purchase Order : {pomodel>/PurchaseO}"/>
+					</f:heading>
+				
+					<f:expandedContent>
+							<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						
+						<Label text="{oHeaderDataCodePurOrg>/CompCode}"/>
+						<Label text="{oHeaderDataCodePurOrg>/PurchOrg}"/>
+									</layout:VerticalLayout>
+					</f:expandedContent>
+					<f:snappedContent>
+						<Label text="Expanded Header"/>
+					</f:snappedContent>
+					<f:snappedTitleOnMobile>
+					
+					</f:snappedTitleOnMobile>
+				
+					<f:actions>
+						<Button icon="sap-icon://refresh" press="onRefresh" tooltip="Refresh"/>
+					
+					</f:actions>
+					<f:navigationActions>
+					
+						<Button
+								icon="sap-icon://decline"
+								type="Transparent" />
+					</f:navigationActions>
+				</f:DynamicPageTitle>
+			</f:title>
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<layout:HorizontalLayout allowWrapping="true">
+								<layout:VerticalLayout class="sapUiMediumMarginEnd">
+								<ObjectAttribute title="Company Code" text="{oHeaderDataModel>/CompCodeno}|{oHeaderDataModel>/CompCodename}"/>
+						
+							<ObjectAttribute title="Purchase Org" text="{oHeaderDataModel>/PurchOrgno}|{oHeaderDataModel>/PurchOrgname}"/>
+						
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+								<ObjectAttribute title="Vendor Number" text="{oHeaderDataModel>/Name}"/>
+						
+							<ObjectAttribute title="Created On" text="{oHeaderDataModel>/createddate}"/>
+						
+						</layout:VerticalLayout>
+
+						<layout:VerticalLayout>
+								<ObjectAttribute title="Vendor Name" text="{oHeaderDataModel>/Number}"/>
+							<ObjectAttribute title="Created By" text="{oHeaderDataModel>/createdby}"/>
+						
+						</layout:VerticalLayout>
+					</layout:HorizontalLayout>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+				<Table id="PurchaseTable" class="sapUiSizeCompact" items="{ path: 'PurchaseItemDetailsModel>/' }">
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title text="Purchase Order Items" level="H2"/>
+						<ToolbarSpacer></ToolbarSpacer>
+						<Button icon="sap-icon://paper-plane" text="Post" press="onPostItems" type="Accept" ariaLabelledBy="editButtonLabel"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="PO Number"/>
+					</Column>
+					<Column>
+						<Text text="Vendor Details"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Material Details"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="Material Description"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="NetPrice"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="Quantity"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="CreatedBy"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="Document Date"/>
+					</Column>
+				
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>PoNumber}"/>
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>Vendor}" text="{PurchaseItemDetailsModel>Name}"/>
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>Material}"/>
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>ShortText}"/>
+								<u:Currency textAlign="Center" stringValue="{PurchaseItemDetailsModel>NetPrice}" currency="{ }" useSymbol="true"/>
+							<u:Currency textAlign="Center" stringValue="{PurchaseItemDetailsModel>Quantity}" currency="{ }" useSymbol="true"/>
+						
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>CreatedBy}"/>
+							<ObjectIdentifier
+								title="{path: 'PurchaseItemDetailsModel>CreatDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd' } }"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			</f:content>
+			<!-- DynamicPage Footer -->
+			<f:footer>
+				<OverflowToolbar>
+					<Button icon="sap-icon://message-popup"
+							text="{/messagesLength}"
+							type="Emphasized"
+							press="onMessageButtonPress"
+							visible="{= !!${/messagesLength}}"/>
+					<ToolbarSpacer/>
+					<Button type="Accept" text="Accept"/>
+					<Button type="Reject" text="Reject"/>
+				</OverflowToolbar>
+			</f:footer>
+		</f:DynamicPage>
+
+	
+	
+	
+	<!--<Page title="Purchase Items Detail" showNavButton="true" navButtonPress="onNavBack">
+		<headerContent>
+			<Button icon="sap-icon://refresh" press="onRefresh" tooltip="Refresh"/>
+		</headerContent>
+		<content>
+			<Table id="PurchaseTable" class="sapUiSizeCompact" items="{ path: 'PurchaseItemDetailsModel>/' }">
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title text="Purchase Order Items" level="H2"/>
+						<ToolbarSpacer></ToolbarSpacer>
+						<Button icon="sap-icon://paper-plane" text="Post" press="onPostItems" type="Accept" ariaLabelledBy="editButtonLabel"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="PO Number"/>
+					</Column>
+					<Column>
+						<Text text="Vendor Details"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Material Details"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="Material Description"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="NetPrice"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="Quantity"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="CreatedBy"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="Document Date"/>
+					</Column>
+				
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>PoNumber}"/>
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>Vendor}"/>
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>Material}"/>
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>ShortText}"/>
+								<u:Currency textAlign="Center" stringValue="{PurchaseItemDetailsModel>NetPrice}" currency="{ }" useSymbol="true"/>
+							<u:Currency textAlign="Center" stringValue="{PurchaseItemDetailsModel>Quantity}" currency="{ }" useSymbol="true"/>
+						
+							<ObjectIdentifier title="{PurchaseItemDetailsModel>CreatedBy}"/>
+							<ObjectIdentifier
+								title="{path: 'PurchaseItemDetailsModel>CreatDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd' } }"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>-->
+	
+	<!--
+		<f:DynamicPage id="listidpage" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+				<f:title>
+					<f:DynamicPageTitle>
+						<f:heading>
+							<Title text=" Purchase Order : {GroupModel>/currentGrp}"/>
+						</f:heading>
+						<f:expandedContent>
+							<Label text=" "/>
+						</f:expandedContent>
+						<f:snappedContent>
+							<Label text="This is a subheading"/>
+						</f:snappedContent>
+						<f:snappedTitleOnMobile>
+							<Title text="Header Title On Phone"/>
+						</f:snappedTitleOnMobile>
+						<f:content></f:content>
+						<f:actions></f:actions>
+						<f:navigationActions>
+						
+							<Button icon="sap-icon://notes" press=".onSubmitDialogPress" class="sapUiSmallMarginBottom"/>
+								<Button icon="sap-icon://attachment" press=".onfileAddFunction" class="sapUiSmallMarginBottom"/>
+						
+							<Button id="btn_cancel" icon="sap-icon://decline" type="Transparent" press="onNavBack"/>
+							<Button id="btn_hide" icon="sap-icon://full-screen" type="Transparent" tooltip="Hide" custom:splitAppMode="HideMode" press="HideFullList"/>
+							<Button id="btn_show" icon="sap-icon://full-screen" tooltip="Show" custom:splitAppMode="ShowHideMode" press="ShowFullList"/>
+							<Button icon="sap-icon://history" press="onPressHistory" tooltip="Purchase Order Histroy"/>
+						</f:navigationActions>
+					</f:DynamicPageTitle>
+				</f:title>
+				<f:header>
+					<f:DynamicPageHeader pinnable="true">
+						<l:HorizontalLayout allowWrapping="true">
+							<l:VerticalLayout class="sapUiMediumMarginEnd">
+								<ObjectAttribute title="Created On" text="{dateMo>/CreatDate}"/>
+							</l:VerticalLayout>
+							<l:HorizontalLayout>
+								<ObjectAttribute title="Created By" text="{dateModel>/createby}"/>
+							</l:HorizontalLayout>
+						</l:HorizontalLayout>
+					</f:DynamicPageHeader>
+				</f:header>
+				<f:content >
+					<IconTabBar id="idIconTabBar" select=".onFilterSelect" class="sapUiResponsiveContentPadding" upperCase="true">
+						<items>
+							<IconTabFilter count="{/PurchaseOrderDetails/lenght}" text="Purchase Order Details">
+							
+								<Table id="table" width="auto" items="{PurchaseOrderDetails>/}" noDataText="No Purchase Details Available"
+									busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished=".onUpdateFinished">
+									<columns>
+										<Column width="10em" demandPopin="true" hAlign="Center" minScreenWidth="Tablet">
+											<Text id="iditem" text="Item Number"/>
+										</Column>
+										<Column width="12em" demandPopin="true" hAlign="Center" minScreenWidth="Tablet">
+											<Text id="idMaterial" text="Material Number"/>
+										</Column>
+										<Column width="12em" demandPopin="false" hAlign="Center" minScreenWidth="Tablet">
+											<Text id="idmatDiscription" text="Material Description"/>
+										</Column>
+										<Column width="9em" demandPopin="true" hAlign="Right" minScreenWidth="Tablet">
+											<Text id="idmatprice" text="Price"/>
+										</Column>
+										<Column width="10em" demandPopin="true" hAlign="Center" minScreenWidth="Tablet">
+											<Text id="idPoUnit" text="Purchase Unit"/>
+										</Column>
+										<Column width="10em" demandPopin="true" hAlign="Center" minScreenWidth="Tablet">
+											<Text id="idQuantt" text="Open Quantity"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem >
+											<cells>
+												<ObjectIdentifier title="{PurchaseOrderDetails>PoItem}"/>
+												<ObjectIdentifier title="{PurchaseOrderDetails>Material}"/>
+												<ObjectIdentifier title="{PurchaseOrderDetails>ShortText}"/>
+												<ObjectIdentifier title="{PurchaseOrderDetails>NetPrice}"/>
+												<ObjectIdentifier title="{PurchaseOrderDetails>PoUnit}"/>
+												<ObjectIdentifier title="{PurchaseOrderDetails>Quantity}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+							<IconTabSeparator/>
+					
+							<IconTabFilter text="File">
+								<l:VerticalLayout class="sapUiContentPadding" width="500px">
+									<u:FileUploader id="idfileUploader" width="100%" sameFilenameAllowed="false" placeholder="Select File" style="Emphasized"></u:FileUploader>
+									<TextArea id="idnote" placeholder="Enter Note" growing="true" growingMaxLines="7" width="100%"/>
+									<Button text="Submit" press="onFileUpload" type="Emphasized" class="sapUiTinyMarginBegin"/>
+								</l:VerticalLayout>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</f:content>
+				<f:footer>
+					<OverflowToolbar>
+						<Button icon="sap-icon://message-popup" text="{/messagesLength}" type="Emphasized" press="onMessageButtonPress"
+							visible="{= !!${/messagesLength}}"/>
+						<ToolbarSpacer/>
+						<Button type="Accept" text="Accept"/>
+						<Button type="Reject" text="Reject"/>
+					</OverflowToolbar>
+				</f:footer>
+			</f:DynamicPage>
+	-->
+</mvc:View>

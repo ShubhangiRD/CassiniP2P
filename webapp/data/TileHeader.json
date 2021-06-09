@@ -1,0 +1,32 @@
+{
+	"TileCollection": {
+		"line1": [{
+				"info": "CONTRACT MANAGEMENT",
+				"title": "CONTRACT MANAGEMENT",
+				"icon": "sap-icon://add-activity-2",
+				"footer": "Create Contract"
+			}, {
+				"info": "POST ACCRUALS",
+				"title": "POST ACCRUALS",
+				"icon": "sap-icon://business-one",
+				"footer": "Mass Process Accrual"
+			}, {
+				"info": "UPLOAD CONTRACTS",
+				"title": "UPLOAD CONTRACTS",
+				"icon": "sap-icon://upload",
+				"footer": "Upload"
+			}, {
+				"info": "POST SETTLEMENTS",
+				"title": "POST SETTLEMENTS",
+				"icon": "sap-icon://collections-insight",
+				"footer": "Settlement"
+			}, {
+				"info": "ANALYTICS",
+				"title": "ANALYTICS",
+				"icon": "sap-icon://bubble-chart",
+				"footer": "Dashboard"
+			}
+
+		]
+	}
+}

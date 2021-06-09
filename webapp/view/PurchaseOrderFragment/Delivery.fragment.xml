@@ -1,0 +1,139 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="DeliveryForm" editable="true" class="sapUiTinyMarginTop">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Overdeliv Tool" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="Overdeliv" maxLength="3" textFormatMode="KeyValue" class="sapUiTinyMarginTop"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="UnderDeliv Tool" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="UnderDeliv" maxLength="3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Rem Shelf Life" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="RemShelfLife" maxLength="4" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="PL Deliv Time" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="PLDelivTime" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="GR Proc Time" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="GRProcTime" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Latest GR Date" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="LatestGRDate" maxLength="8" textFormatMode="KeyValue" class="sapUiTinyMarginTop"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Shippping Instruction" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Select id="ShipppingInstruction" class="sapUiTinyMarginTop">
+									<items>
+										<core:Item text=" " key=" "/>
+										<core:Item text=" " key=" "/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Stock type" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Select id="Stocktype" class="sapUiTinyMarginTop">
+									<items>
+										<core:Item text=" " key=" "/>
+										<core:Item text=" " key=" "/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="QA Control Key" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Select id="QAControlKey" class="sapUiTinyMarginTop">
+									<items>
+										<core:Item text=" " key=" "/>
+										<core:Item text=" " key=" "/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="1Rem/Exped." class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="Exped1" maxLength="3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="2Rem/Exped." class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="Exped2" maxLength="3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="3Rem/Exped." class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="Exped3" maxLength="3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="No Exped." class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="Expedno" maxLength="3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Incoterms" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="Incoterms1" maxLength="3" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+								<Input id="Incoterms2" maxLength="28" class="sapUiTinyMarginTop" textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label=" " class="sapUiTinyMarginTop">
+							<f:fields>
+								<CheckBox id="UnlimitedDel" class="sapUiTinyMarginTop" text="Unlimited"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" " class="sapUiTinyMarginTop">
+							<f:fields>
+								<CheckBox id="Originaccept" class="sapUiTinyMarginTop" text="Origin accept"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" " class="sapUiTinyMarginTop">
+							<f:fields>
+								<CheckBox id="GoodReceipt" class="sapUiTinyMarginTop" text="Good Receipt"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" " class="sapUiTinyMarginTop">
+							<f:fields>
+								<CheckBox id="GRnonVoluated" class="sapUiTinyMarginTop" text="GR non Voluated"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" " class="sapUiTinyMarginTop">
+							<f:fields>
+								<CheckBox id="DelivCompl" class="sapUiTinyMarginTop" text="Delivery Complete"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table"
+	xmlns:u="sap.ui.unified">
+	<VBox class="sapUiSmallMargin">
+	
+		<VBox>
+			<t:Table id="idContactPerson" rows="{ path: 'Vendor>/'}" visibleRowCount="5" selectionMode="MultiToggle">
+				<t:extension>
+					<OverflowToolbar>
+						<Title text="Contact Person  "/>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" type="Transparent" id="idAddbuttonContatPersn" class="remove-attr" tooltip="Add Row" press="onAddNewContactDetils"/>
+						<Button icon="sap-icon://delete" enabled="{=${Vendor>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+							tooltip="Delete Row" press="onDeleteItemBank"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Form Of Address "/>
+						<t:template>
+							<Input id="formofaddcontp"  textFormatMode="KeyValue"  editable="{EditModel>/isEditable}"  showSuggestion="true" showValueHelp="true"
+								value="{Vendor>/Formofaddr}" valueHelpRequest="handleformofadd" suggestionItems="{ path: 'Lookup>/MaterialList' }"
+								suggestionItemSelected="onSuggestFormofadd" liveChange="formofaddcontperson">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column hAlign="Center" width="9rem">
+						<Label text="First Name"/>
+						<t:template>
+							<Input  id="idfirstcontname" textFormatMode="KeyValue" editable="{EditModel>/isEditable}"  showSuggestion="true" showValueHelp="true"
+								valueHelpRequest="handleNameContatPerson" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }" value="{Vendor>Name}"
+								suggestionItemSelected="onSuggestnameContatctPerson">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Name"/>
+						<t:template>
+							<Input id="Namecontper" value="{Vendor>Name2}" editable="{EditModel>/isEditable}" />
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Telephone1"/>
+						<t:template>
+							<Input id="idTelephone1" class="measure1" value="{Vendor>Telephone}" editable="{EditModel>/isEditable}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Department"/>
+						<t:template>
+							<Input id="iddeptcp" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" 
+								valueHelpRequest="handleValueHelpiddeptcp" editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestiddeptcp">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Description"/>
+						<t:template>
+							<Input id="iddescrptn2" value="{Vendor>Descrptn2}" editable="{EditModel>/isEditable}" />
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Function"/>
+						<t:template>
+							<Input id="idfunctn" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" 
+								valueHelpRequest="handleValueHelpidfunctn" editable="{EditModel>/isEditable}"  suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggestidfunctn">
+								<suggestionItems>
+									<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+								</suggestionItems>
+							</Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem" hAlign="Center">
+						<Label text="Description"/>
+						<t:template>
+							<Input id="iddescriptionF" value="{Vendor>DescriptionF}" editable="{EditModel>/isEditable}" />
+						</t:template>
+					</t:Column>
+				
+				</t:columns>
+			
+			</t:Table>
+			
+			<Label class="myFormMargin" text="Name:"/>
+				<Input id="contnameperson" width="30%" maxLength="35" textFormatMode="KeyValue" placeholder="Vendor" showSuggestion="true"
+								 showValueHelp="true" valueHelpRequest="handleContPersonValueHelp" editable="{EditModel>/isEditable}" fieldGroupIds="Lifnra"
+									suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestcontnameperson">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+									</suggestionItems>
+								</Input>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

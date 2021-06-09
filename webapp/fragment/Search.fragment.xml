@@ -1,0 +1,64 @@
+<core:FragmentDefinition
+height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:f="sap.f"
+	displayBlock="true"
+	xmlns:tnt="sap.tnt"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:l="sap.ui.layout"
+	xmlns:uxap="sap.uxap">
+<!--	<Dialog title="" id="ListDialog" afterClose="onAfterClose"  >
+		<l:VerticalLayout
+		class="sapUiContentPadding"
+		width="500%">
+		<l:HorizontalLayout class="sapUiContentPadding"  >
+		<Panel id="idPnl" >
+			<FlexBox id="idFB" alignItems="Center" justifyContent="Start">
+				<items>
+					<Input id="inpuhear" width="100%"/>
+				
+				</items>
+			</FlexBox>
+		</Panel>
+	  </l:HorizontalLayout>
+	    </l:VerticalLayout>
+		<beginButton>
+			<Button id="sa1" text="Save" press="onCreateItem"/>
+		</beginButton>
+		<endButton>
+			<Button id="ca1" text="Close" press="onClose"/>
+		</endButton>
+		
+	</Dialog>-->
+	 <Dialog title="Dialog" id="ListDialog" afterClose="onAfterClose">
+ <VBox height="100%"
+				width="100%"
+				alignItems="Center" class="sapUiMediumMarginBegin genericTileLayout">
+					<l:HorizontalLayout id="nakamkoshish" class="sapUiContentPadding sapUiLargeMarginTop">
+					<Label text="{i18n>search} :" design="Bold"/>
+					<Input visible="{= ${GlobalKeys>/page} === 'appHome' }" id="productInput" width="40rem" type="Text" class="searchBox"
+						placeholder="{i18n>placeholder}" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"
+						suggestionItemSelected="suggestionItemSelected"
+						suggestionItems="{ path: 'ViewAllAg>/AGRHeaderSet'}">
+						<suggestionItems>
+							<core:Item text="{i18n>agreementNumber} - {ViewAllAg>Rcont} | Vendor No - {ViewAllAg>Vendorno}"/>
+						</suggestionItems>
+					</Input>
+					
+					
+				</l:HorizontalLayout>
+				</VBox>
+  
+  <beginButton>
+   <Button text="Save" press="onSave" />
+  </beginButton>
+  <endButton>
+   <Button text="Close" press="onClose" />
+  </endButton>
+ </Dialog>
+
+</core:FragmentDefinition>

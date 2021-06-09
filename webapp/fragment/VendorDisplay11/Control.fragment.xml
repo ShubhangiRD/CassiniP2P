@@ -1,0 +1,237 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<form:SimpleForm id="FormChange1" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1"
+			class="myFormMarginTop" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=""/>
+				<Label text="Customer"/>
+				<Input maxLength="10" id="idCustomer" textFormatMode="KeyValue" placeholder="Customer" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handleCustomer" editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/CustomerList' }"
+					suggestionItemSelected="onSuggestCustomer">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Trading Partner"/>
+				<Input maxLength="6" id="idTrading" textFormatMode="KeyValue" placeholder="Trading" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handleTradingPartners" editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/CountryCode' }"
+					suggestionItemSelected="onSuggestTrading">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Bukrs}" text="{Lookup>Butxt}" additionalText="{Lookup>Bukrs}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=""/>
+				<Label text="Authorization"/>
+				<Input maxLength="4" editable="{EditModel>/isEditable}"/>
+				<Label text="Planning Group" required="true"/>
+				<Input id="idPlanninggrp" maxLength="4" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handlePlanningGroups" editable="{EditModel>/isEditable}" suggestionItems="{ path: 'Lookup>/PlanningGroups' }"
+					value="{Vendor>/PlanningGroup}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Grupp}" text="{Lookup>Grupp}" additionalText="{Lookup>Grupp}"/>
+					</suggestionItems>
+				</Input>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm id="FormChange2" editable="true" layout="ResponsiveGridLayout" title="Tax Information" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+			columnsL="3" columnsM="1" class="myFormMarginBottom" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=" "/>
+				<Label text="Tax Number 1"/>
+				<Input maxLength="16" editable="{EditModel>/isEditable}"/>
+				<Label text="Tax Number 3" required="true"/>
+				<Input value="{Vendor>/TaxNumber3}" fieldGroupIds="Stcd3a" maxLength="18" editable="{EditModel>/isEditable}"/>
+				<Label text="Tax Number 4" required="true"/>
+				<Input value="{Vendor>/TaxNumber4}" fieldGroupIds="Stcd4a" maxLength="18" editable="{EditModel>/isEditable}"/>
+				<Label text="Tax Number" required="true"/>
+				<Input value="{Vendor>/TaxAuthority}" maxLength="18" editable="{EditModel>/isEditable}"/>
+				<Label text="Tax Jur" required="true"/>
+				<Input maxLength="15" id="idTaxJur" textFormatMode="KeyValue" showSuggestion="true" value="{Vendor>/TaxJurisdiction}"
+					showValueHelp="true" valueHelpRequest="handleMaterialValueHelp" suggestionItems=" " editable="{EditModel>/isEditable}"
+					suggestionItemSelected="onSuggest">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=""/>
+				<Label text="Tax Number 2"/>
+				<Input id="taxno2" maxLength="11" editable="{EditModel>/isEditable}"/>
+				<Label text="Fiscal Address"/>
+				<Input maxLength="10" id="idFiscalAddress" textFormatMode="KeyValue" showSuggestion="true" editable="{EditModel>/isEditable}"
+					showValueHelp="true" valueHelpRequest="handleFiscalAddressValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggest">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Business Type"/>
+				<Input maxLength="30" id="TypeofBusiness" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handleTypeofBusiness" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestTypeofBusiness" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Indusrtry Type"/>
+				<Input maxLength="30" id="TypeofIndustry" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handleTypeofIndustry" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestTypeofIndustry" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=""/>
+				<Label text="Tax no type" required="true"/>
+				<Input maxLength="2" id="Taxnotype" textFormatMode="KeyValue" editable="{EditModel>/isEditable}" showSuggestion="true"
+					value="{Vendor>/TaxNumberType}" showValueHelp="true" valueHelpRequest="handleTaxnotype"
+					suggestionItems="{ path: 'taxnotype>/results' }" suggestionItemSelected="onSuggestTaxnotype">
+					<suggestionItems>
+						<core:ListItem key="{taxnotype>taxnoType}" text="{taxnotype>Description}" additionalText="{taxnotype>taxnoType}"/>
+					</suggestionItems>
+				</Input>
+				<!--	<Input maxLength="2" id="Taxnotype" textFormatMode="KeyValue" showSuggestion="true" value="{Vendor>/TaxNumberType}"
+					showValueHelp="true" valueHelpRequest="handleTaxnotype" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestTaxnotype" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>-->
+				<Label text="Tax type" required="true"/>
+				<Input maxLength="2" id="Taxtype" textFormatMode="KeyValue" showSuggestion="true" value="{Vendor>/Taxtype}"
+					showValueHelp="true" valueHelpRequest="handleTaxtype" fieldGroupIds="Stcdta" suggestionItems="{ path: 'Taxtype>/resutls' }"
+					suggestionItemSelected="onSuggestTaxtype" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Taxtype>Taxtype}" text="{Taxtype>Description}" additionalText="{Taxtype>Taxtype}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Social code"/>
+				<Input id="Socinccode" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" editable="{EditModel>/isEditable}"
+					valueHelpRequest="handleSocinccode" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestSocinccode">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Rep's Name "/>
+				<Input id="RepName" editable="{EditModel>/isEditable}"/>
+				<Label text="Tax Office" required="true"/>
+				<Input maxLength="10" id="TaxOffice" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handleTaxOfficeValueHelp" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggest"
+					editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=" "/>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm id="FormChange3" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="1"
+			class="myFormMarginTop" singleContainerFullSize="false" title="Reference Data">
+			<form:content>
+				<core:Title text="Reference Data "/>
+				<Label text="Location no1"/>
+				<Input id="Location1" maxLength="7" editable="{EditModel>/isEditable}"/>
+				<Label text="Credit no Info"/>
+				<Input id="Credit1" maxLength="11" editable="{EditModel>/isEditable}"/>
+				<Label text="Industry" required="true"/>
+				<Input maxLength="4" id="Industry1" showSuggestion=" true" value="{Vendor>/Industrykey}" showValueHelp="true"
+					valueHelpRequest="handleValueHelpIndustry" suggestionItems="{ path: 'Lookup>/IndustrySet' }" suggestionItemSelected="onSuggestIndustry"
+					editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="SCAC " required="true"/>
+				<Input id="idSCAC" placeholder="Standard Code" fieldGroupIds="Scacda" maxLength="4" value="{Vendor>/StandardCode}"
+					editable="{EditModel>/isEditable}"/>
+				<Label text="Transport Zone " required="true"/>
+				<Input id="idTransportzone" fieldGroupIds="Lzonea" value="{Vendor>/TransportationZone}" showSuggestion="true"
+					showValueHelp="true" valueHelpRequest="handleTransportZone" suggestionItems="{ path: 'Lookup>/TransportZoneList' }"
+					suggestionItemSelected="onSuggestidTransportzone" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Land1}" text="{Lookup>Zone1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Train Station "/>
+				<Input id="idTrain" maxLength="25" placeholder="Train Station" editable="{EditModel>/isEditable}"/>
+				<Label text="Acutal QM sys " required="true"/>
+				<Input maxLength="4" id="idAcutalQMsys" textFormatMode="KeyValue" showSuggestion="true" value="{Vendor>/VendorQMSystem}"
+					showValueHelp="true" valueHelpRequest="handleidAcutalQMsys" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestidAcutalQMsys" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="External Maufac" required="true"/>
+				<Input id="idExternal" fieldGroupIds="Emnfra" value="{Vendor>/ExternalManufacturer}" maxLength="10"
+					editable="{EditModel>/isEditable}"/>
+				<core:Title text=""/>
+				<Label text="Location no2 "/>
+				<Input id="Location2" maxLength="5" editable="{EditModel>/isEditable}"/>
+				<Label text="Last ext review"/>
+				<DatePicker id="idLasextreview" editable="{EditModel>/isEditable}"/>
+				<Label text="POD-Relevent"/>
+				<Input maxLength="1" id="idPOD-Relevent" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handleididPODReleven" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestididPODReleven" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Car freight grp"/>
+				<Input maxLength="4" id="idCarfreightgro" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true"
+					valueHelpRequest="handleidCarfreightgro" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+					suggestionItemSelected="onSuggestidCarfreightgro" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Check Digit"/>
+				<Input id="idCheckDigit" maxLength="1" editable="{EditModel>/isEditable}"/>
+				<Label text="SAPG"/>
+				<Input maxLength="4" id="idSAPG" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleSAPG"
+					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestSAPG" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="QM System to"/>
+				<DatePicker id="QMSystemto" editable="{EditModel>/isEditable}"/>
+				<core:Title text=""/>
+				<Label text=""/>
+				<CheckBox id="Equalizationtax" text="Equalization tax" editable="{EditModel>/isEditable}"/>
+				<Label text=""/>
+				<CheckBox id="NaturalPerson" text="Natural Person" editable="{EditModel>/isEditable}"/>
+				<Label text=""/>
+				<CheckBox id="SalesPurchaseTax" text="Sales Pur/Tax" editable="{EditModel>/isEditable}"/>
+				<Label text=""/>
+				<CheckBox id="TaxSplit" text="Tax Split " editable="{EditModel>/isEditable}"/>
+				<Label text=""/>
+				<CheckBox id="SocInsurance" text="Soc Insurance " editable="{EditModel>/isEditable}"/>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm id="SimpleForm" editable="true" layout="ResponsiveGridLayout" title="Address" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+			columnsL="3" columnsM="1" class="myFormMarginBottom" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=" "/>
+				<Label text="DOB"/>
+				<DatePicker id="idDOB" editable="{EditModel>/isEditable}"/>
+				<Label text="Sex"/>
+				<Input maxLength="1" id="idsex" textFormatMode="KeyValue" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleiidsex"
+					suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }" suggestionItemSelected="onSuggestidsex" editable="{EditModel>/isEditable}">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Lifnr}" text="{Lookup>Name1}" additionalText="{Lookup>Lifnr}"/>
+					</suggestionItems>
+				</Input>
+				<core:Title text=" "/>
+				<Label text="BirthPlace"/>
+				<Input id="idbirthplace" editable="{EditModel>/isEditable}"/>
+				<Label text="Profession"/>
+				<Input id="idProfession" editable="{EditModel>/isEditable}"></Input>
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

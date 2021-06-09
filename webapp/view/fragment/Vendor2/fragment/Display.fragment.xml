@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Display Vendor List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/DisplyaVendorList}"
+		search="_handleMaterialValueHelpSearch"
+		confirm="_handleValueHelpClose1"
+		cancel="_handleValueHelpClose1">
+		<StandardListItem
+			title="{Lookup>Name1}"
+			info="{Lookup>Lifnr}" />
+	</SelectDialog>
+</core:FragmentDefinition>
+
+
+
+<!--<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Display Vendor"
+		class="sapUiPopupWithPadding"
+		items="{VHeader>/Fetch_Vendor_DetailsSet}"
+		search="_handleValueHelpSearchgetVendor"
+		confirm="_handleValueHelpClosegetVendor"
+		cancel="_handleValueHelpClosegetVendor">
+		<StandardListItem
+			title="{VHeader>Name1}"
+			info="{VHeader>Lifnr}" />
+	</SelectDialog>
+</core:FragmentDefinition>-->

@@ -1,0 +1,121 @@
+{
+	"CashManagement": [{
+		"plangrp": "A1",
+		"Description": "Domestic Payments (A/P)"
+	}, {
+		"plangrp": "A2",
+		"Description": "Foreign Payments (A/P)"
+	}, {
+		"plangrp": "A3",
+		"Description": "Vendor affiliated companies"
+	}, {
+		"plangrp": "A4",
+		"Description": "Major Vendors"
+	}, {
+		"plangrp": "A5",
+		"Description": "Personnel costs"
+	}, {
+		"plangrp": "A6",
+		"Description": "Taxes"
+	}, {
+		"plangrp": "AC",
+		"Description": "One-time vendors"
+	}, {
+		"plangrp": "C8",
+		"Description": "MM Commodity Purchase"
+	}, {
+		"plangrp": "C9",
+		"Description": "SD Commodity Sale"
+	}, {
+		"plangrp": "CLP 1000",
+		"Description": "Customer receipts (A/R)"
+	}, {
+		"plangrp": "E1",
+		"Description": "Customer receipts (A/R)"
+	}, {
+		"plangrp": "E2",
+		"Description": "Domestic customers"
+	}, {
+		"plangrp": "E3",
+		"Description": "Foreign customers"
+	},
+	{
+		"plangrp": "E4",
+		"Description": "Customer-affiliated companies"
+	},
+	{
+		"plangrp": "E5",
+		"Description": "High risk customer"
+	},
+	{
+		"plangrp": "E6",
+		"Description": "Major customers"
+	},
+	{
+		"plangrp": "E7",
+		"Description": "Customer rent received"
+	},
+	{
+		"plangrp": "E8",
+		"Description": "Loan Redemption (A/R)"
+	},
+	{
+		"plangrp": "IHC",
+		"Description": "Customer receipts (A/R)"
+	},
+	{
+		"plangrp": "IHCMX",
+		"Description": "IN HOUSE CASH"
+	},
+	{
+		"plangrp": "KC1",
+		"Description": "Local customers"
+	},
+	{
+		"plangrp": "KC2",
+		"Description": "Foreign customers"
+	},
+	{
+		"plangrp": "KC3",
+		"Description": "Employee customers"
+	},
+	{
+		"plangrp": "KV1",
+		"Description": "Local vendors"
+	},
+	{
+		"plangrp": "KV2",
+		"Description": "Foreign vendors"
+	},
+	{
+		"plangrp": "KV3",
+		"Description": "Employee vendors"
+	},
+	{
+		"plangrp": "KV4",
+		"Description": "Government vendors"
+	},
+	{
+		"plangrp": "KV5",
+		"Description": "International vendors"
+	},
+	{
+		"plangrp": "MM"
+	},
+	{
+		"plangrp": "PD"
+	},
+	{
+		"plangrp": "PG",
+		"Description": "Planning Group"
+	},
+	{
+		"plangrp": "PM",
+		"Description": "Manual Planning"
+	},
+	{
+		"plangrp": "T1",
+		"Description": "Treasury Partner"
+	}
+	]
+}

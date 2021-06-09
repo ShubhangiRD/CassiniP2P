@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+								<f:Form id="idWhereForm" editable="true">
+									<f:layout>
+										<f:ResponsiveGridLayout  labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+											emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+									</f:layout>
+									<f:formContainers>
+										<f:FormContainer>
+											<f:formElements>
+												<f:FormElement label="Movement Type">
+													<f:fields>
+														<Input id="idMovementType" editable="{EditModel>/isEditable}" showValueHelp="true" showSuggestion="true"/>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="Plant">
+													<f:fields>
+														<Input id="idPlant" editable="{EditModel>/isEditable}"  value=" "/>
+														<Input id="idPlantNo" editable="{EditModel>/isEditable}" value=" ">
+															<layoutData>
+																<l:GridData span="XL1 L2 M2 S4"/>
+															</layoutData>
+														</Input>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="Goods Recipient">
+													<f:fields>
+														<Input id="idGoodsRecipient" editable="{EditModel>/isEditable}" value=" "/>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="Unloading Point">
+													<f:fields>
+														<Input id="idUnloadingPoint" editable="{EditModel>/isEditable}" value=" "/>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="Text">
+													<f:fields>
+														<Input id="idText" editable="{EditModel>/isEditable}" />
+													</f:fields>
+												</f:FormElement>
+											</f:formElements>
+										</f:FormContainer>
+									</f:formContainers>
+								</f:Form>
+							</VBox>
+</core:FragmentDefinition>

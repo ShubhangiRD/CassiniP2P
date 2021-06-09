@@ -1,0 +1,44 @@
+<mvc:View controllerName="com.vSimpleApp.controller.PostedDocuments" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 	xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+		<core:Fragment fragmentName="com.vSimpleApp.view.OCRfragment.Header" type="XML"/>
+
+	<Page title="{= 'Documents Posted (' + ${postedDocuments>/}.length + ')' }" class="sapUiSizeCompact" showNavButton="true"
+		navButtonPress="onNavBack">
+		<headerContent>
+			<Button icon="sap-icon://refresh" press="onRefresh" tooltip="Refresh"/>
+		</headerContent>
+		<content>
+			<Table id="postedTable" busyIndicatorDelay="0" inset="false"
+				items="{ path: 'postedDocuments>/', sorter: { path: 'postedDocuments>uniqueId', descending: true } }">
+				<columns>
+					<Column>
+						<Text text="Unique ID"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Vendor Number"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="Reference Number"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="ERP Document No."/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="Fiscal Year"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle" custom:uniqueId="{postedDocuments>uniqueId}" press="onSelectDocument">
+						<cells>
+							<ObjectIdentifier title="{postedDocuments>uniqueId}"/>
+							<Text text="{postedDocuments>vendorNo}"/>
+							<Text text="{postedDocuments>referenceNo}"/>
+							<Text text="{postedDocuments>sapInvoice}"/>
+							<Text text="{postedDocuments>ocrYear}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,52 @@
+{
+	"PartnerFunction":[{
+		"function":"AD",
+		"Description":"Additionals"
+	},
+	{
+		"function":"PE",
+		"Description":"Cont. per, fresh prod"
+	},
+	{
+		"function":"CP",
+		"Description":"Contact Person"
+	},
+	{
+		"function":"OA",
+		"Description":"Ordering Address"
+	},
+	{
+		"function":"VN",
+		"Description":"Vendor"
+	},
+	{
+		"function":"OR",
+		"Description":"Only Representative"
+	},
+	{
+		"function":"R1",
+		"Description":"REACH Contact (Vend)"
+	},
+	{
+		"function":"IP",
+		"Description":"Invoice presented by"
+	},
+	{
+		"function":"FA",
+		"Description":"Forwarding Agent"
+	},
+	{
+		"function":"CA",
+		"Description":"Contract Address"
+	},
+	{
+		"function":"GS",
+		"Description":"Goods Supplier"
+	},
+	{
+		"function":"ER",
+		"Description":"Employee Responsible"
+	}
+	
+	]
+}

@@ -1,0 +1,145 @@
+<mvc:View controllerName="com.vSimpleApp.controller.Dashboard" 
+xmlns:html="http://www.w3.org/1999/xhtml" 
+xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout" 
+	xmlns:t="sap.ui.table" 
+	xmlns:unified="sap.ui.unified" 
+	xmlns:core="sap.ui.core"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" 
+	xmlns:viz.data="sap.viz.ui5.data" 
+	xmlns="sap.m" 
+	xmlns:tnt="sap.tnt"
+	xmlns:c="sap.suite.ui.microchart" 
+	xmlns:cassini="com.vSimpleApp.controls"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<core:Fragment fragmentName="com.vSimpleApp.view.OCRfragment.Header" type="XML"/>
+
+	<l:Grid class="sapUiSmallMarginTop" containerQuery="true" vSpacing="0" defaultSpan="XL2 L3">
+		<cassini:Tile id="tileSuccessfullyScanned" titleLevel="H1" height="259px" title="{= ${successfullyScannedDocuments>/}.length }"
+			description="Documents successfully scanned" custom:route="ScannedDocuments" press="handleNav"/>
+		<l:Grid containerQuery="true" vSpacing="1rem" hSpacing="0" defaultSpan="L12 M12 S12">
+			<cassini:Tile titleLevel="H3" height="6.5rem" title="{= ${manualVerifyDocuments>/}.length }" custom:route="ScanningErrors"
+				description="Manual Verification" press="handleNav"/>
+			<cassini:Tile titleLevel="H3" height="6.5rem" title="{= ${validationErrorsDocuments>/}.length }" custom:route="ValidationErrors"
+				description="Validation Errors" press="handleNav"/>
+		</l:Grid>
+		<l:FixFlex id='chartTopVendors' class="dashboardDonutChart" minFlexSize="290">
+			<l:flexContent>
+				<viz:Popover id="idPopOver"></viz:Popover>
+				<viz:VizFrame id="vfTopVendors" uiConfig="{applicationSet:'fiori'}" vizType='donut'>
+					<viz:dataset>
+						<viz.data:FlattenedDataset data="{/topVendors}">
+							<viz.data:dimensions>
+								<viz.data:DimensionDefinition name="Vendor" value="{Vendor}"/>
+							</viz.data:dimensions>
+							<viz.data:measures>
+								<viz.data:MeasureDefinition name="Revenue" value="{Revenue}"/>
+							</viz.data:measures>
+						</viz.data:FlattenedDataset>
+					</viz:dataset>
+					<viz:feeds>
+						<viz.feeds:FeedItem uid="size" type="Measure" values="Revenue"/>
+						<viz.feeds:FeedItem uid="color" type="Dimension" values="Vendor"/>
+					</viz:feeds>
+				</viz:VizFrame>
+			</l:flexContent>
+		</l:FixFlex>
+		<l:Grid containerQuery="true" vSpacing="1rem" hSpacing="0" defaultSpan="XL6 L6 M6 S6">
+			<cassini:Tile titleLevel="H3" height="7.5rem" padding="0.5rem" class="tile positive sapUiTinyMarginEnd"
+				title="{= ${postedDocuments>/}.length }" custom:route="PostedDocuments" description="Documents Posted" press="handleNav"/>
+			<cassini:Tile titleLevel="H3" height="7.5rem" padding="0.5rem" class="tile neutral" title="{= ${awaitingApprovalDocuments>/}.length }"
+				custom:route="DueForApproval" description="Documents Awaiting Approval" press="handleNav"/>
+			<cassini:Tile titleLevel="H3" height="7.5rem" padding="0.5rem" class="tile critical sapUiTinyMarginEnd"
+				title="{= ${approvedDocuments>/}.length }" custom:route="ReadyToPost" description="Ready To Post" press="handleNav"/>
+			<cassini:Tile titleLevel="H3" height="7.5rem" padding="0.5rem" class="tile negative" 
+				title="{= ${rejectedDocuments>/}.length }" custom:route="DocumentsRejected" description="Documents Rejected"
+				press="handleNav"/>
+		</l:Grid>
+	</l:Grid>
+	<l:Grid containerQuery="true" width="100%" defaultSpan="XL12 L12 M12 S12">
+		<l:FixFlex id='chartTopProducts' class="dashboardBarChart" minFlexSize="300">
+			<l:flexContent>
+				<viz:Popover id="idPopOverBar"></viz:Popover>
+				<viz:VizFrame id="vfTopProducts" uiConfig="{applicationSet:'fiori'}" vizType='bar'>
+					<viz:dataset>
+						<viz.data:FlattenedDataset data="{/topProducts}">
+							<viz.data:dimensions>
+								<viz.data:DimensionDefinition name="Product" value="{Product}"/>
+							</viz.data:dimensions>
+							<viz.data:measures>
+								<viz.data:MeasureDefinition name="Volume" value="{Volume}"/>
+							</viz.data:measures>
+						</viz.data:FlattenedDataset>
+					</viz:dataset>
+					<viz:feeds>
+						<viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="Volume"/>
+						<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Product"/>
+					</viz:feeds>
+				</viz:VizFrame>
+			</l:flexContent>
+		</l:FixFlex>
+	</l:Grid>
+	<Table id="awaitingTable" class="sapUiSizeCompact"
+		items="{ path: 'approvedDocuments>/', sorter: { path: 'approvedDocuments>uniqueId' } }">
+		<headerToolbar>
+			<Toolbar>
+				<content>
+					<Title text="Ready to Post" level="H2"/>
+					<!--<ToolbarSpacer />
+					<ComboBox id="idPopinLayout"
+						placeholder="Popin layout options"
+						change="onPopinLayoutChanged">
+						<items>
+							<core:Item  text="Block"
+								key="Block"/>
+							<core:Item  text="Grid Large"
+								key="GridLarge"/>
+							<core:Item  text="Grid Small"
+								key="GridSmall"/>
+						</items>
+					</ComboBox>-->
+				</content>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Unique ID"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Vendor Details"/>
+			</Column>
+			<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Process"/>
+			</Column>
+			<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Workflow"/>
+			</Column>
+			<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Status"/>
+			</Column>
+			<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Document Date"/>
+			</Column>
+			<Column hAlign="Center">
+				<Text text="Action"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier title="{approvedDocuments>uniqueId}"/>
+					<ObjectIdentifier title="{approvedDocuments>vendorName}" text="{approvedDocuments>vendorNo}"/>
+					<Text text="MM"/>
+					<core:Icon color="{= (${approvedDocuments>workflow} === 1) ? '#385723' : '#ff0000' }"
+						src="{ path: 'approvedDocuments>workflow', formatter: 'com.vSimpleApp.Formatter.workflowIcon' }"></core:Icon>
+					<tnt:InfoLabel text="Approved" displayOnly="true" colorScheme="8"/>
+					<Text text="{ path: 'approvedDocuments>documentDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy-MM-dd' } }"
+						wrapping="false"/>
+					<Button icon="sap-icon://paper-plane" text="Post" press="onPost" type="Accept" ariaLabelledBy="editButtonLabel"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>

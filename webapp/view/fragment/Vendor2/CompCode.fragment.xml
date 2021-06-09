@@ -1,0 +1,35 @@
+<!--<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Company Code"
+		class="sapUiPopupWithPadding"
+		id="idCompCode"
+			items="{ path: 'VHeader>/get_companycode_f4helpSet' , filters: [{ path: 'Bukrs', operator: 'EQ', value1: '{Bukrs}' }]}"
+			search="_handleValueHelpSearchCompCode"
+		confirm="_handleValueHelpCloseCompCode"
+		cancel="_handleValueHelpCloseCompCode">
+		<StandardListItem
+			title="{VHeader>Bukrs}"
+			description="{VHeader>Butxt}" 
+			iconDensityAware="false"
+			iconInset="false"/>
+			</SelectDialog>
+</core:FragmentDefiniti-->
+
+
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Company Code List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/CountryCode}"
+		search="_handlevendorCompSearch"
+		confirm="_handlevendorCompClose"
+		cancel="_handlevendorCompClose">
+		<StandardListItem
+			title="{Lookup>Bukrs}"
+			info="{Lookup>Butxt}" />
+	</SelectDialog>
+</core:FragmentDefinition>

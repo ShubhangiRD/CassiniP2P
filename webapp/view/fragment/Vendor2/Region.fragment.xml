@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Region"
+		class="sapUiPopupWithPadding"
+		items="{ path: 'hierarchy>/results'}"
+		search="_handleValueHelpSearchCust"
+		confirm="_handleValueHelpCloseCust"
+		cancel="_handleValueHelpCloseCust">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{hierarchy>Bezei}"
+			description="{hierarchy>Bland}" />
+	</SelectDialog>
+</core:FragmentDefinition>

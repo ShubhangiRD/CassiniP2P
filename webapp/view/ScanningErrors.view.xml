@@ -1,0 +1,125 @@
+<mvc:View controllerName="com.vSimpleApp.controller.ScanningErrors" 
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table"
+	xmlns:unified="sap.ui.unified"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+		<core:Fragment fragmentName="com.vSimpleApp.view.OCRfragment.Header" type="XML"/>
+	<Page
+		title="{=
+			'Manual Verification(' + ${manualVerifyDocuments>/}.length + ')'
+		}"
+		class="sapUiSizeCompact"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<headerContent>
+			<Button icon="sap-icon://refresh" press="onRefresh" tooltip="Refresh" />
+		</headerContent>
+		<content>
+			<Table id="manualVerifyTable"
+				inset="false"
+				busyIndicatorDelay="0"
+				items="{
+					path: 'manualVerifyDocuments>/',
+					sorter: {
+						path: 'manualVerifyDocuments>documentId'
+					}
+				}">
+				<columns>
+					<Column hAlign="Center">
+						<Text text="Document No." />
+					</Column>
+					<!--<Column minScreenWidth="Tablet"
+						demandPopin="true">
+						<Text text="Batch" />
+					</Column>-->
+					<Column hAlign="Center">
+						<Text text="Created On" />
+					</Column>
+					<Column hAlign="Center">
+						<Text text="Updated On" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem custom:batchId="{manualVerifyDocuments>batchId}" vAlign="Middle" type="Navigation" press="onNavigateManualVerify">
+						<cells>
+							<ObjectIdentifier
+								title="{manualVerifyDocuments>documentId}" />
+							<!--<ObjectIdentifier
+								title="{manualVerifyDocuments>batchName}"/>-->
+							<Text
+								text="{manualVerifyDocuments>createdOn}"/>
+							
+							<Text text="{manualVerifyDocuments>updatedOn}" wrapping="false" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+	<!--<OverflowToolbar id="toolbar">
+		<Title id="title" text="{=
+			'Scanning Errors(' + ${NonSapErrorData>/}.length + ')'
+		}"></Title>
+		<ToolbarSpacer />
+		<Button
+			type="Emphasized"
+			icon="sap-icon://synchronize"
+			tooltip="Refresh"
+			text="Refresh"
+			press="onModelRefresh"/>
+	</OverflowToolbar>
+	<t:Table
+		id="table"
+		rows="{ManualVerifyDocuments>/}"
+		selectionMode="None"
+		alternateRowColors="true"
+		ariaLabelledBy="title">
+		<t:rowSettingsTemplate>
+			<t:RowSettings highlight="Error"/>
+		</t:rowSettingsTemplate>
+		<t:columns>
+			<t:Column hAlign="Center"
+				sortProperty="ManualVerifyDocuments>DocumentId" 
+				filterProperty="ManualVerifyDocuments>DocumentId"
+				width="20%">
+				<Label text="Document ID"/>
+				<t:template>
+					<Link
+						class="error"
+						text="{ManualVerifyDocuments>DocumentId}"
+						target="_blank"
+						href="{= 'http://103.73.151.249/DataVerifier?batchId=' + ${ManualVerifyDocuments>BatchId}}"/>
+				</t:template>
+			</t:Column>
+			<t:Column hAlign="Center" width="20%">
+				<Label text="Batch ID"/>
+				<t:template>
+					<Text text="{ManualVerifyDocuments>BatchId}" wrapping="false"/>
+				</t:template>
+			</t:Column>
+			<t:Column hAlign="Center" width="20%">
+				<Label text="Batch Name"/>
+				<t:template>
+					<Text text="{ManualVerifyDocuments>BatchName}" wrapping="false"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="20%" hAlign="Right">
+				<Label text="Created On"/>
+				<t:template>
+					<Text text="{ManualVerifyDocuments>CreatedOn}" wrapping="false"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="20%" hAlign="Right">
+				<Label text="Updated On"/>
+				<t:template>
+					<Text text="{ManualVerifyDocuments>UpdatedOn}" wrapping="false"/>
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>-->
+</mvc:View>

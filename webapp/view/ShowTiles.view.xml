@@ -1,0 +1,194 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap"
+	xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls" controllerName="com.vSimpleApp.controller.ShowTiles"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:w="sap.ui.integration.widgets" xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form">
+		<tnt:ToolHeader>
+		<Button icon="sap-icon://menu2" type="Transparent" press="onMenuButtonPress">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Button>
+		<Image src="./images/Cassini-logo.png" densityAware="false" class="logo" width="9rem">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Image>
+	
+		<FlexBox direction="Column" alignItems="Start">
+			<items></items>
+		</FlexBox>
+		<ToolbarSpacer/>
+		<FlexBox class="logoContent" direction="Column" alignItems="Start">
+			<items>
+			
+			</items>
+		</FlexBox>
+		<ToolbarSpacer/>
+		<Button icon="sap-icon://comment" type="Transparent">
+			<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow"/>
+			</layoutData>
+		</Button>
+		<Switch state="true" customTextOn="EN" customTextOff="DE" change="onChangeLanguage">
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</Switch>
+	</tnt:ToolHeader>
+	<f:GridContainer id="grid12" borderReached=".onBorderReached">
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout casTiles" header="Vendor Master" press="pressGenericTile">
+			<layoutData>
+				<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+			</layoutData>
+			<tileContent>
+				<TileContent unit="Total Count">
+					<NumericContent scale=" " value="{Count>/item}" valueColor="Error" indicator="Up" withMargin="false"/>
+				</TileContent>
+			</tileContent>
+		</GenericTile>
+		<GenericTile header="Purchase Order" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout" press="pressGenericTile">
+			<layoutData>
+				<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+			</layoutData>
+			<tileContent>
+				<TileContent unit="Total Count">
+					<NumericContent scale=" " value="{CountPo1>/item}" valueColor="Error" indicator="Up" withMargin="false"/>
+				</TileContent>
+			</tileContent>
+		</GenericTile>
+		<GenericTile header="Post Goods Receipt" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout"
+			press="pressGenericTile">
+			<layoutData>
+				<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+			</layoutData>
+			<tileContent>
+				<TileContent unit="Total Count ">
+					<NumericContent scale=" " value="{CountPoooo>/item}" valueColor="Error" indicator="Up" withMargin="false"/>
+				</TileContent>
+			</tileContent>
+		</GenericTile>
+		<GenericTile header="Book Vendor Invoice" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout"
+			press="pressGenericTile">
+			<layoutData>
+				<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+			</layoutData>
+			<tileContent>
+				<TileContent >
+					<ImageContent class="iconCollection icon-activity-items size"/>
+				</TileContent>
+			</tileContent>
+		</GenericTile>
+		<GenericTile header="Vendor Rebate Management" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout"
+			press="pressGenericTile">
+			<layoutData>
+				<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+			</layoutData>
+			<tileContent>
+				<TileContent >
+					<ImageContent class="iconCollection icon-activity-items size"/>
+				</TileContent>
+			</tileContent>
+		</GenericTile>
+		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">
+			<f:layoutData>
+				<f:GridContainerItemLayoutData rows="3" columns="3"/>
+			</f:layoutData>
+			<f:content >
+				<l:FixFlex id='chartTopVendors' class="dashboardDonutChart" minFlexSize="290">
+					<l:flexContent>
+						<viz:Popover id="idPopOver"></viz:Popover>
+						<viz:VizFrame id="vfTopVendors" vizProperties="{ title: {text : 'Top 5 vendors by Values', visible : true}}"
+							uiConfig="{applicationSet:'fiori'}" vizType='donut' width="270px" height="270px">
+							<viz:dataset>
+								<viz.data:FlattenedDataset data="{CountModel>/}">
+									<viz.data:dimensions>
+										<viz.data:DimensionDefinition name="Vendor" value="{CountModel>name}"/>
+									</viz.data:dimensions>
+									<viz.data:measures>
+										<viz.data:MeasureDefinition name="Revenue" value="{CountModel>count}"/>
+									</viz.data:measures>
+								</viz.data:FlattenedDataset>
+							</viz:dataset>
+							<viz:feeds>
+								<viz.feeds:FeedItem uid="size" type="Measure" values="Revenue"/>
+								<viz.feeds:FeedItem uid="color" type="Dimension" values="Vendor"/>
+							</viz:feeds>
+						</viz:VizFrame>
+					</l:flexContent>
+				</l:FixFlex>
+			</f:content>
+		</f:Card>
+		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout FcardClass">
+			<f:layoutData>
+				<f:GridContainerItemLayoutData rows="3" columns="10"/>
+			</f:layoutData>
+			<f:header></f:header>
+			<f:content >
+				<l:FixFlex id='chartTopProducts' class="dashboardBarChart" minFlexSize="300">
+					<l:flexContent>
+						<viz:Popover id="idPopOverBar"></viz:Popover>
+						<viz:VizFrame id="vfTopProducts" vizProperties="{ title: {text : 'Top 5 Products by Values', visible : true}}"
+							uiConfig="{applicationSet:'fiori'}" width="800px" height="270px" vizType='bar'>
+							<viz:dataset>
+								<viz.data:FlattenedDataset data="{top5products>/}">
+									<viz.data:dimensions>
+										<viz.data:DimensionDefinition name="Product" value="{top5products>prod}"/>
+									</viz.data:dimensions>
+									<viz.data:measures>
+										<viz.data:MeasureDefinition name="Volume" value="{top5products>count}"/>
+									</viz.data:measures>
+								</viz.data:FlattenedDataset>
+							</viz:dataset>
+							<viz:feeds>
+								<viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="Volume"/>
+								<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Product"/>
+							</viz:feeds>
+						</viz:VizFrame>
+					</l:flexContent>
+				</l:FixFlex>
+			</f:content>
+		</f:Card>
+		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout FcardClass ">
+			<f:layoutData>
+				<f:GridContainerItemLayoutData rows="6" columns="3"/>
+			</f:layoutData>
+			<f:header>
+				<card:Header title="Vendors Action List"/>
+			</f:header>
+			<f:content>
+				<ScrollContainer width="100%" horizontal="true" vertical="true" focusable="true">
+					<List id="VendorList" items="{Lookup>/DisplyaVendorList}" custom:Lifnr="{Lookup>Lifnr}" mode="SingleSelectMaster" width="100%"
+						itemPress="OnNavigateVendorDetails" growing="true" growingThreshold="10" growingScrollToLoad="false">
+						<items>
+							<ObjectListItem type="Navigation" press="OnNavigateVendorDetails" title="{Lookup>Lifnr}" intro="{Lookup>Name1}"/>
+						</items>
+						<headerToolbar>
+							<Toolbar>
+								<Title id="tableHeader" text=""/>
+								<ToolbarSpacer/>
+							
+								<SearchField id="searchFieldVendor" width="70%" tooltip="{i18n>worklistSearchTooltip}" search="searchFieldVendor"></SearchField>
+							<Button
+							tooltip="Sort"
+							icon="sap-icon://sort"
+							press="ListSort"
+							
+							/>
+							</Toolbar>
+						</headerToolbar>
+					</List>
+				</ScrollContainer>
+			</f:content>
+		</f:Card>
+		<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tileLayout">
+			<f:layoutData>
+				<f:GridContainerItemLayoutData columns="10"/>
+			</f:layoutData>
+			<f:header></f:header>
+			<f:content>
+				<core:Fragment fragmentName="com.vSimpleApp.view.fragment.FilterTable" type="XML"/>
+			</f:content>
+		</f:Card>
+	</f:GridContainer>
+</mvc:View>

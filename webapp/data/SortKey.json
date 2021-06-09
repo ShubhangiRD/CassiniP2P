@@ -1,0 +1,151 @@
+{
+	"SortKey":[{
+		"sortno":"000",
+		"Description":"Assignment Number"
+	},
+	{
+		"sortno":"001",
+		"Description":"Posting date"
+	},
+	{
+		"sortno":"002",
+		"Description":"Doc. no., fiscal year"
+	},
+	{
+		"sortno":"003",
+		"Description":"Document date"
+	},
+	{
+		"sortno":"004",
+		"Description":"Branch account"
+	},
+	{
+		"sortno":"005",
+		"Description":"Local currency amount"
+	},
+	{
+		"sortno":"006",
+		"Description":"Doc. currency amount"
+	},
+	{
+		"sortno":"007",
+		"Description":"Bill/exchange. due date"
+	},
+	{
+		"sortno":"008",
+		"Description":"Cost Center"
+	},
+	{
+		"sortno":"009",
+		"Description":"External document no"
+	},
+	{
+		"sortno":"010",
+		"Description":"Purchase order no"
+	},
+	{
+		"sortno":"011",
+		"Description":"Plant number"
+	},
+	{
+		"sortno":"012",
+		"Description":"Vendor number"
+	},
+	{
+		"sortno":"014",
+		"Description":"Purchase order"
+	},
+	{
+		"sortno":"015",
+		"Description":"Personnel number"
+	},
+	{
+		"sortno":"016",
+		"Description":"Settlement period"
+	},
+	{
+		"sortno":"017",
+		"Description":"Settlement period., personnel number"
+	},
+	{
+		"sortno":"018",
+		"Description":"Asset number"
+	},
+	{
+		"sortno":"021",
+		"Description":"Segment text"
+	},
+	{
+		"sortno":"022",
+		"Description":"One-time name / city"
+	},
+	{
+		"sortno":"023",
+		"Description":"One-time city / name"
+	},
+	{
+		"sortno":"024",
+		"Description":"Document header text"
+	},
+	{
+		"sortno":"025",
+		"Description":"CPU Date"
+	},
+	{
+		"sortno":"026",
+		"Description":"Pmnt per., bslne date"
+	},
+	{
+		"sortno":"027",
+		"Description":"Value date"
+	},
+	{
+		"sortno":"029",
+		"Description":"Posting month, vendor"
+	},
+	{
+		"sortno":"031",
+		"Description":"Customer number"
+	},
+	{
+		"sortno":"032",
+		"Description":"Posting year, month, currency"
+	},
+	{
+		"sortno":"033",
+		"Description":"Cost Center"
+	},
+	{
+		"sortno":"034",
+		"Description":"Month, Cost center"
+	},
+	{
+		"sortno":"035",
+		"Description":"Rental agreement"
+	},
+	{
+		"sortno":"036",
+		"Description":"Order"
+	},
+	{
+		"sortno":"037",
+		"Description":"Currency key"
+	},
+	{
+		"sortno":"039",
+		"Description":"Project number"
+	},
+	{
+		"sortno":"055",
+		"Description":"Fiscal year, month"
+	},
+	{
+		"sortno":"101",
+		"Description":"Cash discount clearing"
+	},
+	{
+		"sortno":"150",
+		"Description":"Nota fiscal"
+	}
+	]
+}

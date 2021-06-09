@@ -1,0 +1,122 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:card="sap.f.cards" class="sapUiSizeCompact" xmlns:mvc="sap.ui.core.mvc" height="100%"
+	xmlns:t="sap.ui.table" controllerName="com.cassiniProcureToPay.controller.POITemDetails">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" preserveHeaderStateOnScroll="true">
+		<headerTitle>
+			<ObjectPageHeader id="headerForTest" objectTitle="Purchase Order : {pomodel>/PurchaseO}"  objectSubtitle="Standard PO">
+				<actions>
+					<ObjectPageHeaderActionButton text="Edit" id="iddEdit" type="Emphasized" hideText="false" tooltip="edit" press="onEditPress"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Transparent" text="Cancel" tooltip="decline" press="OnCancel"/>
+					<ObjectPageHeaderActionButton hideText="false" type="Emphasized" id="idSave" text="Save" tooltip="save" press="onSavePurchaseOrder"/>
+				</actions>
+			</ObjectPageHeader>
+				</headerTitle>
+		<headerContent>
+			
+			<l:VerticalLayout>
+				<!--	<m:ObjectStatus text="Document {pomodel>/PurchaseO}  does not contain any selectable items" state="Error"/>
+				-->
+				<m:ObjectAttribute text="Vendor: {oHeaderDataModel>/Number}"/>
+				<m:ObjectAttribute  text="{oHeaderDataModel>/Name}"/>
+			
+			</l:VerticalLayout>
+				<l:VerticalLayout>
+				<m:ObjectAttribute text="Created by   : {oHeaderDataModel>/createdby}"/>
+				<m:ObjectAttribute text="Created Date :{oHeaderDataModel>/createddate}"/>
+				<m:ObjectAttribute text="Company Code : {oHeaderDataModel>/CompCodeno}"/>
+			
+			</l:VerticalLayout>
+			<l:VerticalLayout>
+				<m:ObjectAttribute text="{oHeaderDataModel>/CompCodename}"/>
+			</l:VerticalLayout>
+			<!--<l:VerticalLayout>
+				<m:Label text="NetValue"/>
+				<m:ObjectAttribute text="{oHeaderDataModel>/CompCodename}"/>
+			</l:VerticalLayout>-->
+		</headerContent>
+		<sections>
+			<!--Tabs-->
+			<ObjectPageSection titleUppercase="false" id="orgD" title="Org Data">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.OrgData" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" title="Items">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.EditTable" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="DI" title="DeliveryInvoice">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.DeliveryInvoice" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="Address" title="Address">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.AddressHeader" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="communi" title="Communication">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.CommunicationHeader" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="Partners" title="Partenrs">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.Partners" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="Additionaldata" title="Additional Data">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.AdditionalData" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="Status" title="Status">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.Status" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" id="PP" title="PaymentProcessing">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<core:Fragment fragmentName="com.cassiniProcureToPay.Fragments.PaymentProcessing" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

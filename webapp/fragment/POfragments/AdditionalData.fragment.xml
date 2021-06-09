@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="AdditionalData" editable="true" class="sapUiSmallMargin">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+					emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Validity Start" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="vstart" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleValidityStart" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="suggestionValidityStart" editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+									</suggestionItems>
+								</Input>
+							
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Validity End" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="vend" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleValidityend" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="suggestionValidityend" editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+				
+					
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+									<f:FormElement label="Warrenty" class="sapUiTinyMarginTop">
+							<f:fields>
+							<Input id="Warrenty" textFormatMode="KeyValue"  showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleWarrenty" suggestionItems="{ path: 'Lookup>/DisplyaVendorList' }"
+									suggestionItemSelected="suggestionWarrenty" editable="{EditModel>/isEditable}">
+									<suggestionItems>
+										<core:ListItem key="{Lookup>}" text="{Lookup>}" additionalText="{Lookup>}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+							<f:FormElement label="Collective No" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Input id="collecno"  editable="{EditModel>/isEditable}"  textFormatMode="KeyValue"/>
+							</f:fields>
+						</f:FormElement>
+					
+						
+				
+							
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

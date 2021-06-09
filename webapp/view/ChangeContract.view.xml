@@ -1,0 +1,75 @@
+<mvc:View height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:f="sap.f"
+	displayBlock="true"
+	xmlns:tnt="sap.tnt" controllerName="com.vSimpleApp.controller.ChangeContract">
+		<core:Fragment fragmentName="com.vSimpleApp.view.fragment.RebateHeader" type="XML"/>
+	<tnt:ToolPage id="toolPage">
+<!--		<tnt:header>
+			
+			<f:ShellBar title="Vendor Rebate Management"
+				showMenuButton="true"
+				homeIcon="./images/Logo.png"
+				showCopilot="false"
+				showNotifications="true"
+				menuButtonPressed="onMenuButtonPress"
+				showProductSwitcher="false"
+				notificationsNumber="2">
+				<f:menu>
+					<Menu>
+						<MenuItem text="Flight booking" icon="sap-icon://flight" />
+						<MenuItem text="Car rental" icon="sap-icon://car-rental" />
+					</Menu>
+				</f:menu>
+				<f:profile>
+					<f:Avatar initials="JS" press="onUserNamePress"/>
+				</f:profile>
+				<f:searchManager>
+					<f:SearchManager/>
+				</f:searchManager>
+			</f:ShellBar>
+		</tnt:header>-->
+		<tnt:sideContent>
+			<tnt:SideNavigation expanded="true" selectedKey="{/selectedKey}" itemSelect="onItemSelect">
+				<tnt:NavigationList items="{path: '/navigation'}">
+					<tnt:NavigationListItem text="{title}" icon="{icon}" enabled="{enabled}" expanded="{expanded}" items="{items}" key="{key}">
+						<tnt:NavigationListItem text="{title}" key="{key}" icon="{icon}" enabled="{enabled}">
+						</tnt:NavigationListItem>
+					</tnt:NavigationListItem>
+				</tnt:NavigationList>
+				
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="pageContainer" initialPage="createContract">
+				<pages>
+					<Page
+						id="createContract" 
+						title="{=${Vendor>/TempContract/ContractNo} === '' ? '' : 'Contract: '}{=${Vendor>/TempContract/ContractNo} === '' ? 'Change Contract' : ${Vendor>/TempContract/ContractNo}}"
+						enableScrolling="true"
+						floatingFooter="true"
+						showFooter="{=${Lookup>/SelectedTabKey} !== 'eligibleData'}"
+						class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+						showNavButton="true"
+						navButtonPress="onNavBack">
+						<content>
+							<mvc:XMLView viewName="com.vSimpleApp.view.CreateContract"/>
+						</content>
+						<footer>
+							<OverflowToolbar>
+								<ToolbarSpacer/>
+								<Button visible="{=${Lookup>/SelectedTabKey} === 'item' || ${Lookup>/SelectedTabKey} === 'eligibleData'}" type="Emphasized" text="Save" press="onSaveWithItem"/>
+								<Button visible="{=${Lookup>/SelectedTabKey} === 'accrual'}" type="Emphasized" text="Post" press="onPostAccrual"/>
+								<Button visible="{=${Lookup>/SelectedTabKey} === 'settlement'}" type="Emphasized" text="Post" press="onPostSettlement"/>
+							</OverflowToolbar>
+						</footer>
+					</Page>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

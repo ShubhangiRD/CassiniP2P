@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<form:SimpleForm id="AddressHeader" class="sapUiSmallMargin" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+			labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2"
+			columnsL="2" columnsM="1" singleContainerFullSize="false">
+			<form:content>
+				<core:Title text=" "/>
+				<Label text="Street/House no"/>
+				<Input maxLength="35" value=" " class="sapUiTinyMarginTop" id="idStreetHeader" placeholder=" Your Street">
+					<layoutData>
+						<l:GridData span="XL2 L3 M4 S4"/>
+					</layoutData>
+				</Input>
+				<Input maxLength="10" id="idAddnoHeader" class="sapUiTinyMarginTop" value="{CreateVendor>/VendorContract/AddressNum}" type="Text"
+					placeholder="Address Number"></Input>
+				<Label text="Postal Code" required="true"/>
+				<Input maxLength="10" value="{CreateVendor>/VendorContract/PostalCode}" class="sapUiTinyMarginTop" change="changePostalCode"
+					id="idPostcodeHeader" placeholder=" Postal Code "/>
+				<Input maxLength="35" value=" " id="idCityHeader" class="sapUiTinyMarginTop" placeholder=" City "/>
+				<Label text="Country Code" required="true"/>
+				<Input maxLength="3" id="idCountryCodeHeader" class="sapUiTinyMarginTop" textFormatMode="KeyValue" placeholder=" Country Code "
+					showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelpCountryCode"
+					suggestionItems="{ path: 'Lookup>/CountryCodeRegion' }" suggestionItemSelected="onSuggest">
+					<suggestionItems>
+						<core:ListItem key="{Lookup>Land1}" text="{Lookup>Landx}" additionalText="{Lookup>Land1}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Telphone"/>
+				<Input maxLength="16" value="{CreateVendor>/VendorContract/Telephone}" id="idTelHeader" class="sapUiTinyMarginTop"/>
+				<Label text="Fax"/>
+				<Input maxLength="31" id="idfaxHeader" class="sapUiTinyMarginTop"/>
+				<core:Title text=" "/>
+				<Label text="Extension"/>
+				<Input maxLength="31" id="Extension" class="sapUiTinyMarginTop"/>
+				<Label text="Extension"/>
+				<Input maxLength="31" id="Extension2" class="sapUiTinyMarginTop"/>
+				<Button id="AddnrDetailsHeader" class="sapUiTinyMarginTop" text="Address Details"/>
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

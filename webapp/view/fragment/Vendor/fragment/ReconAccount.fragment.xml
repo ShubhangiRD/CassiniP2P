@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Recon Account List"
+		class="sapUiPopupWithPadding"
+		items="{reconaccount>/ReconAccount}"
+		search="_handleReconAccountSearch"
+		confirm="_handleReconAccountClose"
+		cancel="_handleReconAccountClose">
+		<StandardListItem
+			title="{reconaccount>GLAccount}"
+			info="{reconaccount>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

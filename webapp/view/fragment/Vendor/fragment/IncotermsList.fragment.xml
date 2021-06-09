@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Incoterms List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/IncotermsList}"
+		search="_handleIncotermsVendorSearch"
+		confirm="_handleIncotermsVendorClose"
+		cancel="_handleIncotermsVendorClose">
+		<StandardListItem
+			title="{Lookup>Inco1}"
+			info="{Lookup>Ortob}" />
+	</SelectDialog>
+</core:FragmentDefinition>

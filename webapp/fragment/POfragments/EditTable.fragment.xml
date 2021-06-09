@@ -1,0 +1,103 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:x="sap.uxap" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<t:Table id="idPOItemsTab" class="sapUiSmallMarginTop" rows="{ path: 'PurchaseModel>/TempContract/POItem'}" visibleRowCount="5"
+		selectionMode="MultiToggle">
+		<t:extension>
+			<OverflowToolbar>
+				<Title text="Purchase Order Item"/>
+				<ToolbarSpacer/>
+				<!--	<SearchField search="onSearch" width="17.5rem"/>-->
+				<Button icon="sap-icon://add" type="Transparent" id="idAddbutton" class="remove-attr" tooltip="Add Row" press="onAddNewConditionItem"/>
+				<Button icon="sap-icon://delete" enabled="{=${PurchaseModel>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+					tooltip="Delete Row" press="onDeleteConditionItem"/>
+			</OverflowToolbar>
+		</t:extension>
+		<t:columns>
+			<t:Column width="11rem" hAlign="Center">
+				<Label text="Material Number"/>
+				<t:template>
+					<Input id="idMaterialNumber" class="mtid" textFormatMode="KeyValue" placeholder=" Enter Material No" showSuggestion="true"
+						showValueHelp="true" value="{PurchaseModel>Material}" valueHelpRequest="handlePOMaterialHelp"
+						suggestionItems="{ path: 'Lookup>/MaterialList' }" suggestionItemSelected="onSuggest" liveChange="materialchange"
+						editable="{EditModel>/isEditable}">
+						<suggestionItems>
+							<core:ListItem key="{Lookup>Materialno}" text="{Lookup>Description}" additionalText="{Lookup>Materialno}"/>
+						</suggestionItems>
+					</Input>
+					<!--	<Input id="idMaterialNumber" placeholder="Enter Material No" showSuggestion="true" showValueHelp="true"
+								valueHelpRequest="handleValueHelpMaterial" 	value="{PurchaseModel>Material}" suggestionItems="{VHeader>/MaterialmasterSet}"
+								suggestionItemSelected="MaterialItemSelected">
+								<suggestionItems>
+									<core:Item key="{VHeader>Materialno}"/>
+								</suggestionItems>
+							</Input>-->
+				</t:template>
+			</t:Column>
+			<t:Column hAlign="Center" width="11rem">
+				<Label text="Material Description"/>
+				<t:template>
+					<Input class="desc1" id="nDescription" textFormatMode="KeyValue" placeholder="Enter Material Description" showSuggestion="true"
+						showValueHelp="true" valueHelpRequest="handleMaterialDisVendor" suggestionItems="{ path: 'Lookup>/MaterialDiscription' }"
+						value="{PurchaseModel>ShortText}" editable="{EditModel>/isEditable}" suggestionItemSelected="onSuggest">
+						<suggestionItems>
+							<core:ListItem key="{Lookup>Description}" text="{Lookup>Materialno}" additionalText="{Lookup>Description}"/>
+						</suggestionItems>
+					</Input>
+					<!--	<Input class="desc1" id="nDescription" placeholder="Enter Material Description"  showSuggestion="true" showValueHelp="true"
+							 	value="{PurchaseModel>ShortText}" valueHelpRequest="handleValueHelpMaterialDiscription" editable="{EditModel>/isEditable}" suggestionItems="{VHeader>/MaterialmasterSet}"
+								suggestionItemSelected="MaterialDiscriptionItemSelected">
+								<suggestionItems>
+									<core:Item text="{VHeader>Description}"/>
+								</suggestionItems>
+							</Input>-->
+				</t:template>
+			</t:Column>
+			<t:Column width="9rem" hAlign="Center">
+				<Label text="PO Quantity"/>
+				<t:template>
+					<!--	<u:Currency id="Quantity" textAlign="Center" placeholder="Enter PO Quantity" stringValue="{PurchaseModel>Quantity}"
+						editable="{EditModel>/isEditable}" currency="{ }" useSymbol="true"/>
+				-->
+					<Input id="Quantity" value="{PurchaseModel>Quantity}" editable="{EditModel>/isEditable}" placeholder="Enter PO Quantity"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="9rem" hAlign="Center">
+				<Label text="Unit of Measure"/>
+				<t:template>
+					<Input id="uom1" class="measure1" value="{PurchaseModel>PoUnit}" editable="{EditModel>/isEditable}"/>
+				</t:template>
+			</t:Column>
+			<t:Column width="9rem" hAlign="Center">
+				<Label text="Plant"/>
+				<t:template>
+					<Input id="Plant" textFormatMode="KeyValue" placeholder=" Enter Plant No" showSuggestion="true" showValueHelp="true"
+						editable="{EditModel>/isEditable}" value="{PurchaseModel>Plant}" valueHelpRequest="handleValueHelpPlant"
+						suggestionItems="{ path: 'Lookup>/POPlant' }" suggestionItemSelected="onSuggest">
+						<suggestionItems>
+							<core:ListItem key="{Lookup>Bwkey}" text="{Lookup>Bwkey}" additionalText="{Lookup>Bwkey}"/>
+						</suggestionItems>
+					</Input>
+					<!--<Input id="Plant" placeholder="Enter Plant" showSuggestion="true" showValueHelp="true" editable="{EditModel>/isEditable}" value="{PurchaseModel>Plant}"
+								valueHelpRequest="handleValueHelpPlant" suggestionItems="{VHeader>/get_plant_f4helpSet}"  suggestionItemSelected="PlantItemSelected">
+								<suggestionItems>
+									<core:Item text="{VHeader>Bwkey}"/>
+								</suggestionItems>
+							</Input>-->
+				</t:template>
+			</t:Column>
+			<t:Column width="9rem" hAlign="Center">
+				<Label text="Price"/>
+				<t:template>
+					<Input id="Price" class="price1"
+						value="{ path: 'PurchaseModel>NetPrice'
+					
+					
+						}"
+						editable="{EditModel>/isEditable}"/>
+					<!--<u:Currency id="Price" class="price1" textAlign="Center" stringValue="{PurchaseModel>NetPrice}" currency="{ }"
+						editable="{EditModel>/isEditable}" useSymbol="true"/>-->
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+</core:FragmentDefinition>

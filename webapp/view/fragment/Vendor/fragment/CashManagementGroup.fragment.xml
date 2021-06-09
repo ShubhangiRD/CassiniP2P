@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Cash Management List"
+		class="sapUiPopupWithPadding"
+		items="{cashmanagement>/CashManagement}"
+		search="_handleCashManagementSearch"
+		confirm="_handleCashManagementClose"
+		cancel="_handleCashManagementClose">
+		<StandardListItem
+			title="{cashmanagement>plangrp}"
+			info="{cashmanagement>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="House Bank List"
+		class="sapUiPopupWithPadding"
+		items="{Lookup>/HouseBankList}"
+		search="_handleHouseBankVendorSearch"
+		confirm="_handleHouseBankVendorClose"
+		cancel="_handleHouseBankVendorClose">
+		<StandardListItem
+			title="{Lookup>Hbkid}"
+			info="{Lookup>Bankl}" />
+	</SelectDialog>
+</core:FragmentDefinition>

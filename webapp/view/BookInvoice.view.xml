@@ -1,0 +1,120 @@
+<mvc:View controllerName="com.vSimpleApp.controller.BookInvoice" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns="sap.m">
+		<core:Fragment fragmentName="com.vSimpleApp.view.fragment.RebateHeader" type="XML"/>
+	<VBox fitContainer="true">
+		<f:Form id="FormLumpSum" editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="6" labelSpanL="6" labelSpanM="6" labelSpanS="6" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:toolbar>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button id="lsBtn" icon="sap-icon://add" press="addLumpSum"/>
+				</Toolbar>
+			</f:toolbar>
+			<f:formContainers>
+				<f:FormContainer title="Vendor Data">
+					<f:formElements>
+						<f:FormElement label="Vendor Number">
+							<f:fields>
+								<Input id="vnumber" width="100%" type="Text" class="searchBox" placeholder=" Vendor Number ..." showSuggestion="true" showValueHelp="true"
+									valueHelpRequest="handleValueHelp" suggestionItemSelected="suggestionItemSelected" suggestionItems="{VHeader>/VMasterSet}">
+									<suggestionItems>
+										<core:Item text="{VHeader>Adrnr}"/>
+									</suggestionItems>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Purchase Org">
+							<f:fields>
+								<Input type="Text" id="porg" value="" editable="false" ></Input>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+			<f:formContainers>
+				<f:FormContainer title=" ">
+					<f:formElements>
+						<f:FormElement label="Company Code">
+							<f:fields>
+								<Input type="Text" id="ccode" value="" editable="false"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Nature">
+							<f:fields>
+								<Input type="Text" value="" id="pgrp" editable="false"></Input>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<t:Table id="idRebateConditionItemTable" class="TableStructure sapUiSmallMarginTop" rows="{Vendor>/TempContract/RebateConditionItems}"
+			selectionMode="MultiToggle" visibleRowCount="5">
+			<t:extension>
+				<OverflowToolbar>
+					<Title text="Rebate Condition Table ({=${Vendor>/TempContract/RebateConditionItems}.length})"/>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://add" type="Transparent" tooltip="Add Row" press="onAddNewConditionItem"/>
+					<Button icon="sap-icon://delete" enabled="{=${Vendor>/TempContract/RebateConditionItems}.length > 0}" type="Transparent"
+						tooltip="Delete Row" press="onDeleteConditionItem"/>
+				</OverflowToolbar>
+			</t:extension>
+			<t:columns>
+				<t:Column width="11rem" hAlign="Center">
+					<Label text="Material Number"/>
+					<t:template>
+						<Select selectedKey="{Vendor>RebateType}" change="onChangeRebateType">
+							<core:Item text="Value Rebate" key="v"/>
+							<core:Item text="Growth Rebate" key="g"/>
+						</Select>
+					</t:template>
+				</t:Column>
+				<t:Column hAlign="Center" width="10rem">
+					<Label text="Material Discription"/>
+					<t:template>
+						<CheckBox selected="{Vendor>IsScaleSelected}" select="onSelectScale"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="9rem" hAlign="Center">
+					<Label text="PO Quantity"/>
+					<t:template>
+						<Input type="Number" enabled="{Vendor>IsRateEnabled}" value="{Vendor>Rate}" valueState="{Vendor>RateValueState}"
+							change="onChangeRebateItemRate" textAlign="End" placeholder="Enter Rate (%)..."/>
+					</t:template>
+				</t:Column>
+				<t:Column width="11rem" hAlign="Center">
+					<Label text="Unit Of Measure"/>
+					<t:template>
+						<Select selectedKey="{Vendor>Base}">
+							<core:Item text="Purchase Order" key="po"/>
+							<core:Item text="Goods Receipt" key="gr"/>
+						</Select>
+					</t:template>
+				</t:Column>
+				<t:Column width="11rem" hAlign="Center">
+					<Label text="Plant"/>
+					<t:template>
+						<DatePicker placeholder="Enter From Date..." change="onChangeItemValidFrom" value="{Vendor>ValidFrom}"
+							valueState="{Vendor>ValidFromValueState}"/>
+					</t:template>
+				</t:Column>
+				<t:Column width="11rem" hAlign="Center">
+					<Label text="Price"/>
+					<t:template>
+						<DatePicker placeholder="Enter To Date..." change="onChangeItemValidTo" value="{Vendor>ValidTo}" valueState="{Vendor>ValidToValueState}"/>
+					</t:template>
+				</t:Column>
+			</t:columns>
+			<t:footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button id="faBtn1" icon="sap-icon://save" text="Save" press="onSavePurchaseOrder"/>
+					<Button icon="sap-icon://decline" text="{i18n>cancel}" press="OnCancelOrder"/>
+				</Toolbar>
+			</t:footer>
+		</t:Table>
+	</VBox>
+</mvc:View>

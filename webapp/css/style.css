@@ -1,0 +1,69 @@
+/* Enter your custom styles here */
+.sapFShellBar {
+	background: #161f29 !important;
+}
+.sapFShellBarHomeIcon {
+	height: 1rem !important;
+}
+
+
+.loginPage {
+	background-color: white;
+	/*background-image: url(../images/LoginBackground.png);
+    background-size: 100% 100%;*/
+}
+.loginFormContainer {
+	height: 100%;
+    width: 35.2%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+}
+.loginFormContainer {
+	text-align: center;
+}
+.loginFormContainer .sapMFlexItemAlignAuto {
+	margin-bottom: 1rem;
+}
+.loginTitle {
+	font-size: 1.5rem;
+}
+.loginFormInput .sapMInputBaseContentWrapper {
+	height: 2rem;
+}
+.loginBtn .sapMBtnInner {
+	height: 2rem;
+	flex-direction: column;
+    justify-content: center;
+}
+.iconTabContainer .sapMITBSep {
+	margin-top: 0.8rem !important;
+}
+.iconTabContainer .sapMITBContent {
+	height: min-content !important;
+	margin-bottom: 3.5rem
+}
+.contractForm .sapUiFormTitle {
+	display: none;
+}
+.accrualTabContainer {
+	padding: 0 1rem;
+}
+.vendorText {
+	margin-top: 0.4rem;
+}
+.detailCard {
+	margin-top: 0.1rem;
+}
+.cardLabel {
+	font-size: 0.8rem;
+}
+.valueContainer .sapMFlexItem {
+	text-align: center !important;
+}
+.valueRightAlign {
+	text-align: right !important;
+}
+.amountInput .sapMInputBaseContentWrapper {
+	width: 75% !important;
+}
